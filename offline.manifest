@@ -1,0 +1,48 @@
+CACHE MANIFEST
+
+# v1.07
+
+# For application-cache gotchas, refer:
+# http://www.alistapart.com/articles/application-cache-is-a-douchebag/
+
+fonts/webfontkit-20121115-172814/stylesheet.css
+fonts/webfontkit-20121115-172814/adamina-regular-webfont.woff
+fonts/webfontkit-20121115-172814/ultra-webfont.woff
+
+fonts/webfontkit-20121115-185629/stylesheet.css
+fonts/webfontkit-20121115-185629/pt_sans-web-regular-webfont.woff
+fonts/webfontkit-20121115-185629/lobstertwo-bolditalic-webfont.woff
+fonts/webfontkit-20121115-185629/raleway-semibold-webfont.woff
+
+css/font-awesome.css
+css/styles.css
+
+fonts/fontawesome/fontawesome-webfont.eot
+fonts/fontawesome/fontawesome-webfont.svg
+fonts/fontawesome/fontawesome-webfont.ttf
+fonts/fontawesome/fontawesome-webfont.woff
+fonts/stylesheet.css
+
+html/mansfield_at_the_bay/OEBPS/Text/title_page.xhtml
+html/mansfield_at_the_bay/OEBPS/Text/chap01.xhtml
+
+js/main.js
+js/iscroll.js
+js/require-jquery.js
+js/scroll.js
+js/text.js
+
+favicon.ico
+
+index.html
+
+images/apple-touch-icon-57x57.png
+images/apple-touch-icon-57x57-precomposed.png
+images/apple-touch-icon-72x72.png
+images/apple-touch-icon-114x114.png
+images/splash.png
+images/logo.png
+images/picture.jpg
+
+NETWORK:
+*

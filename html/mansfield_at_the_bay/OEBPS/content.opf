@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="BookID" version="2.0">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+        <dc:title>At the Bay</dc:title>
+        <dc:rights>Public Domain</dc:rights>
+        <dc:contributor opf:role="pro">Jason Darwin</dc:contributor>
+        <dc:creator opf:role="aut">Katherine Mansfield</dc:creator>
+        <dc:publisher>meBooks</dc:publisher>
+        <dc:language>en</dc:language>
+        <dc:identifier id="BookID" opf:scheme="UUID">84ba3092-022a-460d-bb4f-fa558a022793</dc:identifier>
+        <meta name="Sigil version" content="0.2.3"/>
+    </metadata>
+    <manifest>
+        <item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml"/>
+        <item id="page-template.xpgt" href="Styles/page-template.xpgt" media-type="application/vnd.adobe-page-template+xml"/>
+        <item id="stylesheet.css" href="Styles/stylesheet.css" media-type="text/css"/>
+        <item id="chap01.xhtml" href="Text/chap01.xhtml" media-type="application/xhtml+xml"/>
+        <item id="chap02.xhtml" href="Text/chap02.xhtml" media-type="application/xhtml+xml"/>
+        <item id="chap03.xhtml" href="Text/chap03.xhtml" media-type="application/xhtml+xml"/>
+        <item id="chap04.xhtml" href="Text/chap04.xhtml" media-type="application/xhtml+xml"/>
+        <item id="chap05.xhtml" href="Text/chap05.xhtml" media-type="application/xhtml+xml"/>
+        <item id="chap06.xhtml" href="Text/chap06.xhtml" media-type="application/xhtml+xml"/>
+        <item id="chap07.xhtml" href="Text/chap07.xhtml" media-type="application/xhtml+xml"/>
+        <item id="chap08.xhtml" href="Text/chap08.xhtml" media-type="application/xhtml+xml"/>
+        <item id="chap09.xhtml" href="Text/chap09.xhtml" media-type="application/xhtml+xml"/>
+        <item id="chap10.xhtml" href="Text/chap10.xhtml" media-type="application/xhtml+xml"/>
+        <item id="chap11.xhtml" href="Text/chap11.xhtml" media-type="application/xhtml+xml"/>
+        <item id="chap12.xhtml" href="Text/chap12.xhtml" media-type="application/xhtml+xml"/>
+        <item id="title_page.xhtml" href="Text/title_page.xhtml" media-type="application/xhtml+xml"/>
+    </manifest>
+    <spine toc="ncx">
+        <itemref idref="title_page.xhtml"/>
+        <itemref idref="chap01.xhtml"/>
+        <itemref idref="chap02.xhtml"/>
+        <itemref idref="chap03.xhtml"/>
+        <itemref idref="chap04.xhtml"/>
+        <itemref idref="chap05.xhtml"/>
+        <itemref idref="chap06.xhtml"/>
+        <itemref idref="chap07.xhtml"/>
+        <itemref idref="chap08.xhtml"/>
+        <itemref idref="chap09.xhtml"/>
+        <itemref idref="chap10.xhtml"/>
+        <itemref idref="chap11.xhtml"/>
+        <itemref idref="chap12.xhtml"/>
+    </spine>
+</package>

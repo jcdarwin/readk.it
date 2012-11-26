@@ -21,87 +21,75 @@
         </navPoint>
         <navPoint id="navPoint-2" playOrder="2">
             <navLabel>
-                <text>by Katherine Mansfield</text>
+                <text>I</text>
             </navLabel>
-            <content src="Text/title_page.xhtml#heading_id_3"/>
-            <navPoint id="navPoint-3" playOrder="3">
-                <navLabel>
-                    <text>courtesy of the New Zealand Electronic Text Centre</text>
-                </navLabel>
-                <content src="Text/title_page.xhtml#heading_id_4"/>
-            </navPoint>
-            <navPoint id="navPoint-4" playOrder="4">
-                <navLabel>
-                    <text>I</text>
-                </navLabel>
-                <content src="Text/chap01.xhtml"/>
-            </navPoint>
-            <navPoint id="navPoint-5" playOrder="5">
-                <navLabel>
-                    <text>II</text>
-                </navLabel>
-                <content src="Text/chap02.xhtml"/>
-            </navPoint>
-            <navPoint id="navPoint-6" playOrder="6">
-                <navLabel>
-                    <text>III</text>
-                </navLabel>
-                <content src="Text/chap03.xhtml"/>
-            </navPoint>
-            <navPoint id="navPoint-7" playOrder="7">
-                <navLabel>
-                    <text>IV</text>
-                </navLabel>
-                <content src="Text/chap04.xhtml"/>
-            </navPoint>
-            <navPoint id="navPoint-8" playOrder="8">
-                <navLabel>
-                    <text>V</text>
-                </navLabel>
-                <content src="Text/chap05.xhtml"/>
-            </navPoint>
-            <navPoint id="navPoint-9" playOrder="9">
-                <navLabel>
-                    <text>VI</text>
-                </navLabel>
-                <content src="Text/chap06.xhtml"/>
-            </navPoint>
-            <navPoint id="navPoint-10" playOrder="10">
-                <navLabel>
-                    <text>VII</text>
-                </navLabel>
-                <content src="Text/chap07.xhtml"/>
-            </navPoint>
-            <navPoint id="navPoint-11" playOrder="11">
-                <navLabel>
-                    <text>VIII</text>
-                </navLabel>
-                <content src="Text/chap08.xhtml"/>
-            </navPoint>
-            <navPoint id="navPoint-12" playOrder="12">
-                <navLabel>
-                    <text>IX</text>
-                </navLabel>
-                <content src="Text/chap09.xhtml"/>
-            </navPoint>
-            <navPoint id="navPoint-13" playOrder="13">
-                <navLabel>
-                    <text>X</text>
-                </navLabel>
-                <content src="Text/chap10.xhtml"/>
-            </navPoint>
-            <navPoint id="navPoint-14" playOrder="14">
-                <navLabel>
-                    <text>XI</text>
-                </navLabel>
-                <content src="Text/chap11.xhtml"/>
-            </navPoint>
-            <navPoint id="navPoint-15" playOrder="15">
-                <navLabel>
-                    <text>XII</text>
-                </navLabel>
-                <content src="Text/chap12.xhtml"/>
-            </navPoint>
+            <content src="Text/chap01.xhtml"/>
+        </navPoint>
+        <navPoint id="navPoint-3" playOrder="3">
+            <navLabel>
+                <text>II</text>
+            </navLabel>
+            <content src="Text/chap02.xhtml"/>
+        </navPoint>
+        <navPoint id="navPoint-4" playOrder="4">
+            <navLabel>
+                <text>III</text>
+            </navLabel>
+            <content src="Text/chap03.xhtml"/>
+        </navPoint>
+        <navPoint id="navPoint-5" playOrder="5">
+            <navLabel>
+                <text>IV</text>
+            </navLabel>
+            <content src="Text/chap04.xhtml"/>
+        </navPoint>
+        <navPoint id="navPoint-6" playOrder="6">
+            <navLabel>
+                <text>V</text>
+            </navLabel>
+            <content src="Text/chap05.xhtml"/>
+        </navPoint>
+        <navPoint id="navPoint-7" playOrder="7">
+            <navLabel>
+                <text>VI</text>
+            </navLabel>
+            <content src="Text/chap06.xhtml"/>
+        </navPoint>
+        <navPoint id="navPoint-8" playOrder="8">
+            <navLabel>
+                <text>VII</text>
+            </navLabel>
+            <content src="Text/chap07.xhtml"/>
+        </navPoint>
+        <navPoint id="navPoint-9" playOrder="9">
+            <navLabel>
+                <text>VIII</text>
+            </navLabel>
+            <content src="Text/chap08.xhtml"/>
+        </navPoint>
+        <navPoint id="navPoint-10" playOrder="10">
+            <navLabel>
+                <text>IX</text>
+            </navLabel>
+            <content src="Text/chap09.xhtml"/>
+        </navPoint>
+        <navPoint id="navPoint-11" playOrder="11">
+            <navLabel>
+                <text>X</text>
+            </navLabel>
+            <content src="Text/chap10.xhtml"/>
+        </navPoint>
+        <navPoint id="navPoint-12" playOrder="12">
+            <navLabel>
+                <text>XI</text>
+            </navLabel>
+            <content src="Text/chap11.xhtml"/>
+        </navPoint>
+        <navPoint id="navPoint-13" playOrder="13">
+            <navLabel>
+                <text>XII</text>
+            </navLabel>
+            <content src="Text/chap12.xhtml"/>
         </navPoint>
     </navMap>
 </ncx>

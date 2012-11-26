@@ -8,20 +8,19 @@
 
 define([
     'jquery',
-    'epub',
-    'layout'
-], function($, epub, layout){
-
-    var epub_dir = "../html/mansfield_at_the_bay";
+    'app/config',
+    'app/epub',
+    'app/layout'
+], function($, config, epub, layout){
 
     var initialize = function () {
         // Parse the EPUB
-        epub.parse(epub_dir, '/META-INF/container.xml', load_publication);
+        epub.parse(config.epub_dir, '/META-INF/container.xml', load_publication);
     };
 
     var load_publication = function (entries) {
         $.each(entries, function(index, value){
-            console.log(value.href);
+            //console.log(value.href);
 
             // Use the requirejs/text plugin to load our html resources.
             // https://github.com/requirejs/text

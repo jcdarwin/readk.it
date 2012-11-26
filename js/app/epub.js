@@ -10,7 +10,6 @@
 define([
     'jquery'
 ], function($){
-    // Globals
     var epub_dir = '';
     var oebps_dir = '';
     var opf_file = '';
@@ -18,6 +17,7 @@ define([
     var toc_entries = [];
     var toc_callback;
 
+    /* Main function controlling the processing of the epub. */
     var parse = function (d, f, callback) {
         epub_dir = d;
         toc_callback = callback;
@@ -28,7 +28,7 @@ define([
     var container = function (f) {
         opf_file = $(f).find('rootfile').attr('full-path');
         // Get the OEPBS dir, if there is one
-        if (opf_file.indexOf('/') != -1) {
+        if (opf_file.indexOf('/') !== -1) {
             oebps_dir = opf_file.substr(0, opf_file.lastIndexOf('/'));
         }
         opf_file = epub_dir + '/' + opf_file;
@@ -54,7 +54,7 @@ define([
 
         $(f).find(opf_item_tag).each(function() {
             // Cheat and find the first file ending in NCX
-            if ( $(this).attr('href').indexOf('.ncx') != -1) {
+            if ( $(this).attr('href').indexOf('.ncx') !== -1) {
                 ncx_file = epub_dir + '/' + oebps_dir + '/' + $(this).attr('href');
                 $.get(ncx_file, {}, toc);
             }

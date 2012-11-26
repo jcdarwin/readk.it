@@ -6,9 +6,10 @@
 ** Functions to support readk.it user interface customisation.
 */
 
-$(function() {
-
-    // Register handlers.
+define([
+    'jquery'
+], function($){
+    /* Register handlers. */
 
     // Font style handlers
     $('.serif').click(function(){
@@ -16,7 +17,7 @@ $(function() {
         $('link[title=sans]')[0].disabled=true;
         $('link[title=serif]')[0].disabled=false;
         setTimeout(function () {
-            $.each(scrollers, function() {
+            $.each(layout.scrollers, function() {
                 this.refresh();
             });
         }, 0);
@@ -27,7 +28,7 @@ $(function() {
         $('link[title=sans]')[0].disabled=false;
         $('link[title=serif]')[0].disabled=true;
         setTimeout(function () {
-            $.each(scrollers, function() {
+            $.each(layout.scrollers, function() {
                 this.refresh();
             });
         }, 0);
@@ -43,7 +44,7 @@ $(function() {
 
     $('#psize').on('mouseup touchend', function() {
         setTimeout(function () {
-            $.each(scrollers, function() {
+            $.each(layout.scrollers, function() {
                 this.refresh();
             });
         }, 0);
@@ -59,7 +60,7 @@ $(function() {
 
     $('#plh').on('mouseup touchend', function() {
         setTimeout(function () {
-            $.each(scrollers, function() {
+            $.each(layout.scrollers, function() {
                 this.refresh();
             });
         }, 0);
@@ -68,7 +69,7 @@ $(function() {
     // Initialise online status indicator
     function check_status() {
         var status = navigator.onLine ? 'online' : 'offline';
-        if ( status == 'online' ) {
+        if ( status === 'online' ) {
             $('.status').removeClass('offline');
         } else {
             $('.status').removeClass('online');

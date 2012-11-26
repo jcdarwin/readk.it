@@ -54,7 +54,8 @@ define([
 
     return {
         update: update,
-        add: add
+        add: add,
+        scrollers: scrollers
     };
 
 });

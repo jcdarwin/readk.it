@@ -7,8 +7,10 @@
 */
 
 define([
-    'jquery'
-], function($){
+    'jquery',
+    'layout'
+], function($, layout){
+
     /* Register handlers. */
 
     // Font style handlers

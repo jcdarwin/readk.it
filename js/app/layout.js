@@ -48,6 +48,10 @@ define([
         update();
     };
 
+    var body = function() {
+        return $('body');
+    };
+
     $(function() {
         $(window).bind("orientationchange", update);
     });
@@ -55,7 +59,8 @@ define([
     return {
         update: update,
         add: add,
-        scrollers: scrollers
+        scrollers: scrollers,
+        body: body
     };
 
 });

@@ -41,7 +41,7 @@ define([
         iscroll.scrollToPage(currentPage, 0, 0);
     };
 
-    // Function to add a page
+    // Add a page
     var add = function (id, html) {
         $('#pageScroller').append('<div class="page"><div id="' + id + '" class="wrapper"><div class="scroller">' + html + '</div></div></div>');
         scrollers.push( new iScroll(id, {hScrollbar: false, vScrollbar: false, lockDirection: true }) );

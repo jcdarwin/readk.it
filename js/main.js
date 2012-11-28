@@ -8,7 +8,10 @@ require.config({
     }
 });
 
+var initialized = function () {
+};
+
 require(['app/controller', 'app/config'], function(controller, config){
     config.epub_dir = config.epub_directory;
-    controller.initialize();
+    controller.initialize(initialized);
 });

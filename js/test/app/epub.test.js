@@ -1,14 +1,16 @@
 define(function (require) {
 
-    require(['./controller', './config', './layout'], function(controller, config, layout){
-        config.epub_dir = config.epub_directory;
-        controller.initialize();
-        QUnit.test("testing 1", function () {
-            QUnit.equal(layout.body().html(), 16);
-        });
-    });
+    require(['./controller', './config', './epub', './layout'], function(controller, config, epub, layout){
 
-    //var $ = require('jquery');
-    var epub = require('./epub');
+        var initialized = function () {
+            QUnit.test("layout: contains correct number of pages, returns 13", function () {
+                QUnit.equal( $(layout.body).find('.page').size(), 13 );
+            });
+        };
+
+        config.epub_dir = config.epub_directory;
+        controller.initialize(initialized);
+
+    });
 
 });

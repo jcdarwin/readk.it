@@ -11,16 +11,22 @@ define([
     'app/config',
     'app/epub',
     'app/layout'
-], function($, config, epub, layout){
+], function($, config, Epub, layout){
 
+    var epub;
     var load_publication_callback;
 
     var initialize = function (callback) {
         load_publication_callback = callback;
         // Parse the EPUB
-        this.epub = new epub(config.epub_dir, '/META-INF/container.xml', load_publication);
+        epub = new Epub(config.epub_dir, '/META-INF/container.xml', load_publication);
+        console.log(epub);
     };
 
+    var getEpub = function () {
+        return epub;
+    }
+    
     var load_publication = function (entries) {
 
         // require.js text plugin fires asynchronously, so we'll use
@@ -49,7 +55,8 @@ define([
 
     return {
         initialize: initialize,
-        epub: epub
+        getEpub: getEpub,
+        load_publication: load_publication
     };
 
 });

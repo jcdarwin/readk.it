@@ -25,7 +25,7 @@ define(function (require) {
                 start();
                 equal( $(layout.body()).find('.page').size(), data.total_pages );
 
-                $.each(controller.epub.getEntries(), function(index, value){
+                $.each(controller.getEpub().getEntries(), function(index, value){
                     console.log(value.id);
                 });
             };

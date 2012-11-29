@@ -9,6 +9,7 @@ require.config({
 });
 
 var initialized = function () {
+    console.log('main.initialized');
 };
 
 require(['app/controller', 'app/config'], function(controller, config){

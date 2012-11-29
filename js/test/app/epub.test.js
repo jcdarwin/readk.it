@@ -9,23 +9,29 @@ define(function (require) {
             console.log((result ? "log" : "error" ) + (message ? message : ''));
         };
 
+        config.epub_dir = config.epub_directory;
+
+        var data = {total_pages: 13};
+
         module('mansfield', {
             setup: function() {
             }
         });
 
-        test("layout: contains correct number of pages, returns 13", function () {
+        test("layout: contains correct number of pages, returns " + data.total_pages, function () {
             expect(1);
 
             var initialized = function () {
                 start();
-                equal( $(layout.body).find('.page').size(), 13 );
+                equal( $(layout.body()).find('.page').size(), data.total_pages );
+//            $.each(controller.epub.getEntries(), function(index, value){
+//                console.log(value.id);
+//            });
             };
 
-            config.epub_dir = config.epub_directory;
-            controller.initialize(initialized);
             // Now we need to wait for the asynchronous callback to initialized
             stop();
+            controller.initialize(initialized);
 
         });
 

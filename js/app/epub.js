@@ -18,10 +18,17 @@ define([
     var toc_callback;
 
     /* Main function controlling the processing of the epub. */
-    var parse = function (d, f, callback) {
+    function epub (d, f, callback) {
         epub_dir = d;
         toc_callback = callback;
         $.get(d + f, {}, container);
+    }
+
+    // Define the prototype.
+    epub.prototype = {
+        getEntries: function(){
+            return (this.toc_entries);
+        }
     };
 
     /* Open the container file to find the resources */
@@ -103,8 +110,6 @@ define([
         toc_callback(toc_entries);
     };
 
-    return {
-        parse: parse
-    };
+    return (epub);
 
 });

@@ -24,9 +24,10 @@ define(function (require) {
             var initialized = function () {
                 start();
                 equal( $(layout.body()).find('.page').size(), data.total_pages );
-//            $.each(controller.epub.getEntries(), function(index, value){
-//                console.log(value.id);
-//            });
+
+                $.each(controller.epub.getEntries(), function(index, value){
+                    console.log(value.id);
+                });
             };
 
             // Now we need to wait for the asynchronous callback to initialized

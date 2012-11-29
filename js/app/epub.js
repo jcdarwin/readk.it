@@ -24,10 +24,10 @@ define([
         $.get(d + f, {}, container);
     }
 
-    // Define the prototype.
+    // Define the instance methods.
     epub.prototype = {
         getEntries: function(){
-            return (this.toc_entries);
+            return (toc_entries);
         }
     };
 

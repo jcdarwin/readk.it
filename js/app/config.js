@@ -8,5 +8,5 @@
 */
 
 define({
-    epub_directory: "../../html/mansfield_at_the_bay"
+    epub_directory: "../../html/"
 });

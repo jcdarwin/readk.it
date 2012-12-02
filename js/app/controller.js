@@ -11,23 +11,33 @@ define([
     'app/config',
     'app/epub',
     'app/layout'
-], function($, config, epub, layout){
+], function($, config, Epub, layout){
 
+    var pages = [];
     var load_publication_callback;
+    var publication;
 
-    var initialize = function (callback) {
+    /* Constructor */
+    var Controller = function (title, callback) {
         load_publication_callback = callback;
         // Parse the EPUB
-        this.epub = new epub(config.epub_dir, '/META-INF/container.xml', load_publication);
+        publication = new Epub(title, '/META-INF/container.xml', load_publication);
     };
 
-    var load_publication = function (entries) {
+    /* Define the instance methods */
+    Controller.prototype = {
+        getPublication: function(){
+            return (publication);
+        }
+    };
+
+    var load_publication = function (toc) {
 
         // require.js text plugin fires asynchronously, so we'll use
-        // deferreds to work out when all texts loaded.
+        // deferreds to work out when all texts have been retreived.
         var deferreds = [];
 
-        $.each(entries, function(index, value){
+        $.each(toc, function(index, value){
             var deferred = new $.Deferred();
             deferreds.push(deferred);
 
@@ -35,21 +45,26 @@ define([
             // https://github.com/requirejs/text
             require(["text!" + value.href + "!strip"],
                 function(html) {
-                    layout.add(value.id, html);
+                    // Because our calls to retreive the pages are async,
+                    // it's possible that we receive the pages back
+                    // out of order.
+                    pages[value.id] = html;
                     deferred.resolve();
                 }
             );
         });
 
         $.when.apply(null, deferreds).then( function() {
-            // All deferreds have been resolved
+            // All deferreds have been resolved.
+            // We can now load the retrieved pages into our
+            // publication according to the order specified.
+            $.each(publication.getToc(), function(index, value){
+                layout.add(value.id, pages[value.id]);
+            });
             load_publication_callback();
         });
     };
 
-    return {
-        initialize: initialize,
-        epub: epub
-    };
+    return (Controller);
 
 });

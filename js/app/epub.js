@@ -17,16 +17,16 @@ define([
     var toc_entries = [];
     var toc_callback;
 
-    /* Main function controlling the processing of the epub. */
-    function epub (d, f, callback) {
+    /* Constructor */
+    function Epub (d, f, callback) {
         epub_dir = d;
         toc_callback = callback;
         $.get(d + f, {}, container);
     }
 
-    // Define the instance methods.
-    epub.prototype = {
-        getEntries: function(){
+    /* Define the instance methods. */
+    Epub.prototype = {
+        getToc: function(){
             return (toc_entries);
         }
     };
@@ -110,6 +110,6 @@ define([
         toc_callback(toc_entries);
     };
 
-    return (epub);
+    return (Epub);
 
 });

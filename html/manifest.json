@@ -1,4 +1,3 @@
 [
-{"name": "At the Bay", "version": "2.0", "identifier": "./mansfield_at_the_bay", "path" : "mansfield_at_the_bay", "total_pages" : 13},
-{"name": "Accessible EPUB 3", "version": "3.0", "identifier": "urn:isbn:9781449328030", "path": "./thirdparty/30/accessible_epub_3", "total_pages": 22}
+{"name": "At the Bay", "version": "2.0", "identifier": "./mansfield_at_the_bay", "path" : "mansfield_at_the_bay", "total_pages" : 13}
 ]

@@ -11,6 +11,7 @@ require.config({
 var data = {title: 'mansfield_at_the_bay', total_pages: 13};
 
 var initialized = function () {
+    console.log('main.initialized');
 };
 
 require(['app/controller', 'app/config'], function(Controller, config){

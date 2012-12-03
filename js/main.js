@@ -13,6 +13,6 @@ var initialized = function () {
 };
 
 require(['app/controller', 'app/config'], function(Controller, config){
-    var book = {epub_directory: config.epub_directory, "name": "At the Bay", "version": "2.0", "identifier": "84ba3092-022a-460d-bb4f-fa558a022793", "path": "./mansfield_at_the_bay/", "total_pages": 13};
+    var book = {epub_directory: config.epub_directory, "name": "Accessible EPUB 3", "version": "3.0", "identifier": "urn:isbn:9781449328030", "path": "./thirdparty/30/accessible_epub_3/", "total_pages": 22};
     controller = new Controller(book, initialized);
 });

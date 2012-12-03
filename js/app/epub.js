@@ -19,7 +19,7 @@ define([
         this.opf_file = '';
         this.ncx_file = '';
         this.toc_entries = [];
-        $.get(d + f, {}, function(data){container(data, self, callback)});
+        $.get(d + f, {}, function(data){container(data, self, callback);});
         return this;
     }
 
@@ -35,8 +35,8 @@ define([
         if (epub.opf_file.indexOf('/') !== -1) {
             epub.oebps_dir = epub.opf_file.substr(0, epub.opf_file.lastIndexOf('/'));
         }
-        epub.opf_file = epub.epub_dir + '/' + epub.opf_file;
-        $.get(epub.opf_file, {}, function(data){opf(data, epub, callback)});
+        epub.opf_file = epub.epub_dir + epub.opf_file;
+        $.get(epub.opf_file, {}, function(data){opf(data, epub, callback);});
     };
 
     /* Open the OPF file and read some useful metadata from it */
@@ -44,6 +44,9 @@ define([
         // Get the document title
         // Depending on the browser, namespaces may or may not be handled here
         var version = $(f).find('package').attr('version');
+        if ( typeof(version) === 'undefined') {
+            version = $(f).filter(':first').attr('version');
+        }
         var title = $(f).find('title').text();  // Safari
         var author = $(f).find('creator').text();
         $('#content-title').html(title + ' by ' + author);
@@ -57,50 +60,11 @@ define([
            opf_item_tag = 'item';
         }
 
-        switch( version ) {
-            case '2.0':
-                // Get the NCX
-                $(f).find(opf_item_tag).each(function() {
-                    // Cheat and find the first file ending in NCX
-                    if ( $(this).attr('href').indexOf('.ncx') !== -1) {
-                        ncx_file = epub.epub_dir + '/' + epub.oebps_dir + '/' + $(this).attr('href');
-                        $.get(ncx_file, {}, function(data){ncx(data, epub, callback)});
-                    }
-                });
-                break;
-            case '3.0':
-                // Get the TOC
-                $(f).find(opf_item_tag).attr('[properties="nav"]').each(function() {
-                    toc_file = epub.epub_dir + '/' + epub.oebps_dir + '/' + $(this).attr('href');
-                    $.get(toc_file, {}, function(data){toc(data, epub, callback)});
-                });
-                break;
-        }
-        
-    };
-
-    /* Open the NCX, get the first item and open it */
-    var ncx = function (f, epub, callback) {
-        $(f).find('navPoint').each(function() {
-            epub.toc_entries.push({id: $(this).attr('id'), title: $(this).find('text:first').text(), href: epub.epub_dir + '/' + epub.oebps_dir + '/' + $(this).find('content').attr('src')});
-            // If 's' has a parent navPoint, indent it
-            //if ($(this).parent()[0].tagName.toLowerCase() == 'navpoint') {
-            //  s.addClass('indent');
-            //}
-        });
-
-        callback(epub.toc_entries);
-    };
-
-    /* Open the TOC, get the first item and open it */
-    var toc = function (f, epub, callback) {
-
-        $(f).find('li a').each(function() {
-            epub.toc_entries.push({id: $(this).attr('href'), title: '', href: epub.epub_dir + '/' + epub.oebps_dir + '/' + $(this).attr('href')});
-            // If 's' has a parent navPoint, indent it
-            //if ($(this).parent()[0].tagName.toLowerCase() == 'navpoint') {
-            //  s.addClass('indent');
-            //}
+        // Read the spine entries
+        $(f).find('spine itemref').each(function() {
+            var idref = $(this).attr('idref');
+            var href = $(f).find('manifest ' + opf_item_tag + '[id="' + idref + '"]').attr('href');
+            epub.toc_entries.push({id: $(this).attr('idref'), title: '', href: epub.epub_dir + '/' + epub.oebps_dir + '/' + href});
         });
 
         callback(epub.toc_entries);

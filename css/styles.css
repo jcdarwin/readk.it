@@ -135,3 +135,7 @@ body {
     /* Accomodate status bar */
     .header { margin-top: 20px; -webkit-user-select: none; }
 }
+
+img {
+    max-width: 100%;
+}

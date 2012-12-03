@@ -24,7 +24,7 @@ def printer(name, version, identifier, path, pages):
     # {"name": "At the Bay", "version": "2.0", identifier": "12345678", "total_pages": 13}
     if printing:
         print ","
-    print "{\"name\": \"%(name)s\", \"version\": \"%(version)s\", \"identifier\": \"%(identifier)s\", \"path\": \"%(path)s\", \"total_pages\": %(pages)s}" % {'name': name, 'version': version, 'identifier': identifier, 'path': path, 'pages': pages}
+    print "{\"epub_directory\": \"../../html/\", \"name\": \"%(name)s\", \"version\": \"%(version)s\", \"identifier\": \"%(identifier)s\", \"path\": \"%(path)s\", \"total_pages\": %(pages)s}" % {'name': name, 'version': version, 'identifier': identifier, 'path': path, 'pages': pages}
 #    printing += 1
 
 

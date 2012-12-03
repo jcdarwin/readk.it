@@ -19,6 +19,20 @@ define([
     var publication;
     var item;
 
+    // tiny plugin to allow us to modify attribute values
+    $.fn.prependAttr = function(attrName, prefix) {
+        if (typeof this.attr(attrName) !== 'undefined') {
+            this.attr(attrName, function(i, val) {
+                return prefix + val;
+            });
+        }
+        return this;
+    };
+
+    var url_selectors = $.map($.elemUrlAttr(), function(i, v){
+        return v + '[' + i + ']';
+    }).join(',');
+
     /* Constructor */
     var Controller = function (book, callback) {
         item = book;
@@ -64,23 +78,19 @@ define([
             // publication according to the order specified.
             $.each(publication.getToc(), function(index, value){
 
+                var page = $(pages[value.id]);
                 // We have to rewrite any internal urls
-                $.fn.prependAttr = function(attrName, prefix) {
-                    this.attr(attrName, function(i, val) {
-                        return prefix + val;
-                    });
-                    return this;
-                };
+                $.each(page.find(url_selectors).filter(':urlInternal'), function(index, value){
+                    return $(value).prependAttr('href', publication.epub_dir + publication.oebps_dir + '/');
+                });
+                $.each(page.find(url_selectors).filter(':urlInternal'), function(index, value){
+                    return $(value).prependAttr('src', publication.epub_dir + publication.oebps_dir + '/');
+                });
+                //page.find(url_selectors).filter(':urlInternal').prependAttr('action', publication.epub_dir + publication.oebps_dir + '/');
 
-                var url_selectors = $.map($.elemUrlAttr(), function(i, v){
-                    return v + '[' + i + ']';
-                }).join(',');
-
-                //$(pages[value.id]).find(url_selectors).filter(':urlInternal').preprendAttr('href', publication.epub_dir);
-                //$(pages[value.id]).find(url_selectors).filter(':urlInternal').preprendAttr('src', publication.epub_dir);
-                //$(pages[value.id]).find(url_selectors).filter(':urlInternal').preprendAttr('action', publication.epub_dir);
-
-                layout.add(value.id, pages[value.id]);
+                // OK, so now we need to get the outerHTML
+                // http://stackoverflow.com/questions/2419749/get-selected-elements-outer-html
+                layout.add(value.id, page.clone().wrap('<p>').parent().html());
             });
             load_publication_callback(item, publication);
         });

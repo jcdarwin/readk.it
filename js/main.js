@@ -8,12 +8,11 @@ require.config({
     }
 });
 
-var data = {title: 'mansfield_at_the_bay', total_pages: 13};
-
 var initialized = function () {
     console.log('main.initialized');
 };
 
 require(['app/controller', 'app/config'], function(Controller, config){
-    controller = new Controller(config.epub_directory + data.title, initialized);
+    var book = {epub_directory: config.epub_directory, "name": "At the Bay", "version": "2.0", "identifier": "84ba3092-022a-460d-bb4f-fa558a022793", "path": "./mansfield_at_the_bay/", "total_pages": 13};
+    controller = new Controller(book, initialized);
 });

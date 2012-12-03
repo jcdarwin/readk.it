@@ -38,7 +38,9 @@ define([
         $('#pageScroller').css('width', page_width * pages);
         $('.page').css('width', page_width - 40);
         iscroll.refresh();
-        iscroll.scrollToPage(currentPage, 0, 0);
+        if (currentPage !== 0) {
+            iscroll.scrollToPage(currentPage, 0, 0);
+        }
     };
 
     // Add a page

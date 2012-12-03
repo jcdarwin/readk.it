@@ -21,6 +21,7 @@ define(function (require) {
         })
         .success(function() {
             $.each(data, function(index, book) {
+                book.epub_directory = epub_directory;
                 perform_tests(book);
             });
         })
@@ -34,45 +35,36 @@ define(function (require) {
                 }
             });
 
-            var initialized = function () {
+            var initialized = function (item, publication) {
 
-                test("epub: contains correct number of pages, returns " + book.total_pages, function () {
-                    expect(1);
+                test("epub: number and order of pages correct, returns " + item.total_pages + " and array", function () {
+                    expect(3);
                     equal(
                         $(testController.getPublication().getToc()).size(),
-                        book.total_pages,
-                        'total number of pages = ' + $(testController.getPublication().getToc()).size()
+                        item.total_pages,
+                        'total number of pages in epub = ' + $(publication.getToc()).size()
                     );
-                });
-
-                test("layout: contains correct number of pages, returns " + $(testController.getPublication().getToc()).size(), function () {
-                    expect(1);
                     equal(
                         $(layout.body()).find('.page').size(),
                         $(testController.getPublication().getToc()).size(),
-                        'total number of pages = ' + $(layout.body()).find('.page').size()
+                        'total number of pages added to layout = ' + $(layout.body()).find('.page').size()
                     );
-                });
-
-                test("layout: contains pages in the order specified by opf file, return toc ids", function () {
-                    expect(1);
                     deepEqual(
-                        $.map(testController.getPublication().getToc(), function(value){
+                        $.map(publication.getToc(), function(value){
                             return value.id;
                         }),
                         $.map($(layout.body()).find('.page .wrapper'), function(value){
                             return value.id;
                         }),
-                        'order of pages is ' + $.map($(layout.body()).find('.page .wrapper'), function(value){
+                        'order of pages as specified by spine is ' + $.map($(layout.body()).find('.page .wrapper'), function(value){
                             return ' ' + value.id;
                         })
                     );
                 });
-
             };
 
             // Now we need to wait for the asynchronous callback to initialized
-            var testController = new Controller(epub_directory + book.path, initialized);
+            var testController = new Controller(book, initialized);
 
         }
 

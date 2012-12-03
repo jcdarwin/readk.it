@@ -8,20 +8,24 @@
 
 define([
     'jquery',
+    'jquery.ba-urlinternal.min',
     'app/config',
     'app/epub',
     'app/layout'
-], function($, config, Epub, layout){
+], function($, jbum, config, Epub, layout){
 
     var pages = [];
     var load_publication_callback;
     var publication;
+    var item;
 
     /* Constructor */
-    var Controller = function (title, callback) {
+    var Controller = function (book, callback) {
+        item = book;
+        title = book.epub_directory + book.path;
         load_publication_callback = callback;
         // Parse the EPUB
-        publication = new Epub(title, '/META-INF/container.xml', load_publication);
+        publication = new Epub(title, 'META-INF/container.xml', load_publication);
     };
 
     /* Define the instance methods */
@@ -59,9 +63,26 @@ define([
             // We can now load the retrieved pages into our
             // publication according to the order specified.
             $.each(publication.getToc(), function(index, value){
+
+                // We have to rewrite any internal urls
+                $.fn.prependAttr = function(attrName, prefix) {
+                    this.attr(attrName, function(i, val) {
+                        return prefix + val;
+                    });
+                    return this;
+                };
+
+                var url_selectors = $.map($.elemUrlAttr(), function(i, v){
+                    return v + '[' + i + ']';
+                }).join(',');
+
+                //$(pages[value.id]).find(url_selectors).filter(':urlInternal').preprendAttr('href', publication.epub_dir);
+                //$(pages[value.id]).find(url_selectors).filter(':urlInternal').preprendAttr('src', publication.epub_dir);
+                //$(pages[value.id]).find(url_selectors).filter(':urlInternal').preprendAttr('action', publication.epub_dir);
+
                 layout.add(value.id, pages[value.id]);
             });
-            load_publication_callback();
+            load_publication_callback(item, publication);
         });
     };
 

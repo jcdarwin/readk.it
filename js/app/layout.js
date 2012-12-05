@@ -44,8 +44,8 @@ define([
     };
 
     // Add a page
-    var add = function (id, html) {
-        $('#pageScroller').append('<div class="page"><div id="' + id + '" class="wrapper"><div class="scroller">' + html + '</div></div></div>');
+    var add = function (id, file, html) {
+        $('#pageScroller').append('<div class="page" id="' + file + '"><div id="' + id + '" class="wrapper"><div class="scroller">' + html + '</div></div></div>');
         scrollers.push( new iScroll(id, {hScrollbar: false, vScrollbar: false, lockDirection: true }) );
         update();
     };

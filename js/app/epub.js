@@ -24,8 +24,16 @@ define([
     }
 
     // Define the instance methods.
-    Epub.prototype.getToc = function(){
-        return (this.toc_entries);
+    Epub.prototype.getToc = function(id){
+        if (!id) {
+            return (this.toc_entries);
+        } else {
+            for(var i = 0; i < toc_entries.length; i++) {
+                if (toc_entries[i].id == id) {
+                    return toc_entries[i];
+                }
+            }
+        }
     };
 
     /* Open the container file to find the resources */
@@ -64,7 +72,8 @@ define([
         $(f).find('spine itemref').each(function() {
             var idref = $(this).attr('idref');
             var href = $(f).find('manifest ' + opf_item_tag + '[id="' + idref + '"]').attr('href');
-            epub.toc_entries.push({id: $(this).attr('idref'), title: '', href: epub.epub_dir + '/' + epub.oebps_dir + '/' + href});
+            var file = href.replace(/\//g, '_');
+            epub.toc_entries.push({id: $(this).attr('idref'), file: file, href: epub.epub_dir + '/' + epub.oebps_dir + '/' + href});
         });
 
         callback(epub.toc_entries);

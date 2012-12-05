@@ -79,9 +79,23 @@ define([
             $.each(publication.getToc(), function(index, value){
 
                 var page = $(pages[value.id]);
-                // We have to rewrite any internal urls
+                // We have to rewrite any internal urls and corresponding ids
                 $.each(page.find(url_selectors).filter(':urlInternal'), function(index, value){
-                    return $(value).prependAttr('href', publication.epub_dir + publication.oebps_dir + '/');
+                    if ( typeof $(value).attr('href') !== 'undefined' ) {
+                        if ($(value).attr('href').substr(0,1) == '#') {
+                            // We must have something like '#milestone1' => '#chapter1_milestone1'
+                            $(value).attr('href', '#' + publication.file + '_' + $(value).attr('href').substr(1));
+                        } else {
+                            // We must have something like 'text/chapter2#milestone1' => '#text_chapter2#milestone1'
+                            $(value).attr('href', '#' + $(value).attr('href').replace(/\//g, '_').replace(/#/g, '_'));
+                        }
+                    }
+                    return $(value);
+                });
+                $.each(page.find('[id]'), function(index, v){
+                    // We want 'milestone1' => 'chapter1#milestone1'
+                    $(v).attr('id', value.file + '_' + $(v).attr('id'));
+                    return $(v);
                 });
                 $.each(page.find(url_selectors).filter(':urlInternal'), function(index, value){
                     return $(value).prependAttr('src', publication.epub_dir + publication.oebps_dir + '/');
@@ -90,7 +104,9 @@ define([
 
                 // OK, so now we need to get the outerHTML
                 // http://stackoverflow.com/questions/2419749/get-selected-elements-outer-html
-                layout.add(value.id, page.clone().wrap('<p>').parent().html());
+                var results = '';
+                $.each(page.clone().wrap('<div>').parent(), function(i, v){ results += $(v).html();});
+                layout.add(value.id, value.file, results);
             });
             load_publication_callback(item, publication);
         });

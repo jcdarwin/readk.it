@@ -8,7 +8,7 @@
 
 define([
     'jquery',
-    'layout'
+    'app/layout'
 ], function($, layout){
 
     /* Register handlers. */

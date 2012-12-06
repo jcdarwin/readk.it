@@ -11,8 +11,9 @@ define([
     'jquery.ba-urlinternal.min',
     'app/config',
     'app/epub',
-    'app/layout'
-], function($, jbum, config, Epub, layout){
+    'app/layout',
+    'app/chrome'
+], function($, jbum, config, Epub, layout, chrome){
 
     var pages = [];
     var load_publication_callback;
@@ -83,29 +84,32 @@ define([
                 $.each(page.find(url_selectors).filter(':urlInternal'), function(index, value){
                     if ( typeof $(value).attr('href') !== 'undefined' ) {
                         if ($(value).attr('href').substr(0,1) == '#') {
-                            // We must have something like '#milestone1' => '#chapter1_milestone1'
+                            // We must have something like '#milestone1'; convert to '#chapter1_milestone1'
                             $(value).attr('href', '#' + publication.file + '_' + $(value).attr('href').substr(1));
                         } else {
-                            // We must have something like 'text/chapter2#milestone1' => '#text_chapter2#milestone1'
+                            // We must have something like 'text/chapter2#milestone1'; convert to '#text_chapter2#milestone1'
                             $(value).attr('href', '#' + $(value).attr('href').replace(/\//g, '_').replace(/#/g, '_'));
                         }
                     }
                     return $(value);
                 });
-                $.each(page.find('[id]'), function(index, v){
-                    // We want 'milestone1' => 'chapter1#milestone1'
+                $.each(page.find('[id]'), function(i, v){
+                    // We want to change something like 'milestone1' to 'chapter1#milestone1'
                     $(v).attr('id', value.file + '_' + $(v).attr('id'));
                     return $(v);
                 });
-                $.each(page.find(url_selectors).filter(':urlInternal'), function(index, value){
-                    return $(value).prependAttr('src', publication.epub_dir + publication.oebps_dir + '/');
+                $.each(page.find(url_selectors).filter(':urlInternal'), function(i, v){
+                    return $(v).prependAttr('src', publication.epub_dir + publication.oebps_dir + '/');
                 });
+                // Do we need to worry about rewriting form action attributes?
                 //page.find(url_selectors).filter(':urlInternal').prependAttr('action', publication.epub_dir + publication.oebps_dir + '/');
 
                 // OK, so now we need to get the outerHTML
                 // http://stackoverflow.com/questions/2419749/get-selected-elements-outer-html
                 var results = '';
-                $.each(page.clone().wrap('<div>').parent(), function(i, v){ results += $(v).html();});
+                $.each(page.clone().wrap('<div>').parent(), function(i, v){
+                    results += $(v).html();
+                });
                 layout.add(value.id, value.file, results);
             });
             load_publication_callback(item, publication);

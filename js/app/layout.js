@@ -6,7 +6,7 @@
 ** Functions to support readk.it layout and navigation.
 **
 ** Important concepts:
-** * page: a scrolling div containing an entire epub html file
+** * page: a scrolling div containing an entire epub html file (i.e. chapter)
 */
 
 define([
@@ -25,7 +25,7 @@ define([
         lockDirection: true});
 
     // Function to redraw the layout after DOM changes.
-    var update = function () {
+    var update = function (scroll) {
 
         var currentPage = 0;
 
@@ -38,7 +38,7 @@ define([
         $('#pageScroller').css('width', page_width * pages);
         $('.page').css('width', page_width - 40);
         iscroll.refresh();
-        if (currentPage !== 0) {
+        if (scroll && currentPage !== 0) {
             iscroll.scrollToPage(currentPage, 0, 0);
         }
     };
@@ -46,6 +46,15 @@ define([
     // Add a page
     var add = function (id, file, html) {
         $('#pageScroller').append('<div class="page" id="' + file + '"><div id="' + id + '" class="wrapper"><div class="scroller">' + html + '</div></div></div>');
+
+        // Capture clicks on anchors so we can update the scroll position
+        // only after the location changes.
+        $('#' + id + ' a').on('click', function(event) {
+            event.preventDefault();
+            window.location = $(this).attr('href');
+            update(false);
+        });
+
         scrollers.push( new iScroll(id, {hScrollbar: false, vScrollbar: false, lockDirection: true }) );
         update();
     };

@@ -19,7 +19,7 @@ define([
         $('link[title=sans]')[0].disabled=true;
         $('link[title=serif]')[0].disabled=false;
         setTimeout(function () {
-            $.each(layout.scrollers, function() {
+            $.each(layout.page_scrollers, function() {
                 this.refresh();
             });
         }, 0);
@@ -30,7 +30,7 @@ define([
         $('link[title=sans]')[0].disabled=false;
         $('link[title=serif]')[0].disabled=true;
         setTimeout(function () {
-            $.each(layout.scrollers, function() {
+            $.each(layout.page_scrollers, function() {
                 this.refresh();
             });
         }, 0);
@@ -46,7 +46,7 @@ define([
 
     $('#psize').on('mouseup touchend', function() {
         setTimeout(function () {
-            $.each(layout.scrollers, function() {
+            $.each(layout.page_scrollers, function() {
                 this.refresh();
             });
         }, 0);
@@ -62,7 +62,7 @@ define([
 
     $('#plh').on('mouseup touchend', function() {
         setTimeout(function () {
-            $.each(layout.scrollers, function() {
+            $.each(layout.page_scrollers, function() {
                 this.refresh();
             });
         }, 0);

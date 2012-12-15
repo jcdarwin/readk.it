@@ -22,11 +22,11 @@ define([
         momentum: false,
         hScrollbar: false,
         vScrollbar: false,
-        lockDirection: true});
+        lockDirection: true
+        });
 
     // Function to redraw the layout after DOM changes.
-    var update = function (scroll) {
-
+    var update = function (scroller) {
         var currentPage = 0;
 
         if (page_width > 0) {
@@ -38,25 +38,29 @@ define([
         $('#pageScroller').css('width', page_width * pages);
         $('.page').css('width', page_width - 40);
         iscroll.refresh();
-        if (scroll && currentPage !== 0) {
-            iscroll.scrollToPage(currentPage, 0, 0);
-        }
+        scroller.refresh();
+//        if (scroll && currentPage !== 0) {
+//            iscroll.scrollToPage(currentPage, 0, 0);
+//        }
     };
 
     // Add a page
     var add = function (id, file, html) {
         $('#pageScroller').append('<div class="page" id="' + file + '"><div id="' + id + '" class="wrapper"><div class="scroller">' + html + '</div></div></div>');
 
+        iscroller = new iScroll(id, {snap: true, momentum: true, hScrollbar: false, vScrollbar: true, lockDirection: true});
+        scrollers.push(iscroller);
+
         // Capture clicks on anchors so we can update the scroll position
         // only after the location changes.
         $('#' + id + ' a').on('click', function(event) {
             event.preventDefault();
-            window.location = $(this).attr('href');
-            update(false);
+            //window.location = $(this).attr('href');
+            var pages = $('.page').length;
+            iscroll.scrollToPage(1, 0, 1000);
         });
 
-        scrollers.push( new iScroll(id, {hScrollbar: false, vScrollbar: false, lockDirection: true }) );
-        update();
+        update(iscroller);
     };
 
     var body = function() {
@@ -67,11 +71,15 @@ define([
         $(window).bind("orientationchange", update);
     });
 
+    var finalise = function() {
+    };
+
     return {
         update: update,
         add: add,
         scrollers: scrollers,
-        body: body
+        body: body,
+        finalise: finalise
     };
 
 });

@@ -112,6 +112,9 @@ define([
                 });
                 layout.add(value.id, value.file, results);
             });
+
+            layout.finalise();
+
             load_publication_callback(item, publication);
         });
     };

@@ -20,7 +20,7 @@ define([
         $('link[title=serif]')[0].disabled=false;
         setTimeout(function () {
             $.each(layout.page_scrollers, function() {
-                this.refresh();
+                this.scroller.refresh();
             });
         }, 0);
     });
@@ -31,7 +31,7 @@ define([
         $('link[title=serif]')[0].disabled=true;
         setTimeout(function () {
             $.each(layout.page_scrollers, function() {
-                this.refresh();
+                this.scroller.refresh();
             });
         }, 0);
     });
@@ -47,7 +47,7 @@ define([
     $('#psize').on('mouseup touchend', function() {
         setTimeout(function () {
             $.each(layout.page_scrollers, function() {
-                this.refresh();
+                this.scroller.refresh();
             });
         }, 0);
     });
@@ -63,7 +63,7 @@ define([
     $('#plh').on('mouseup touchend', function() {
         setTimeout(function () {
             $.each(layout.page_scrollers, function() {
-                this.refresh();
+                this.scroller.refresh();
             });
         }, 0);
     });

@@ -127,13 +127,13 @@ body {
 /* iPad [portrait + landscape] */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
     /* Accomodate status bar */
-    .header { margin-top: 20px; -webkit-user-select: none; }
+    .header { -webkit-user-select: none; }
 }
 
 /* iPhone [portrait + landscape] */
 @media only screen and (max-device-width: 480px) {
     /* Accomodate status bar */
-    .header { margin-top: 20px; -webkit-user-select: none; }
+    .header { -webkit-user-select: none; }
 }
 
 img {
@@ -141,5 +141,5 @@ img {
 }
 
 pre {
-    overflow: scroll;
+    overflow: auto;
 }

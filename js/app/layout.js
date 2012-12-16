@@ -14,8 +14,9 @@
 
 define([
     'jquery',
-    'iscroll'
-], function($, iScroll){
+    'iscroll',
+    'underscore'
+], function($, iScroll, _){
 
     // Global vars
     var page_scrollers = [];
@@ -25,8 +26,15 @@ define([
         momentum: false,
         hScrollbar: true,
         vScrollbar: false,
-        lockDirection: true
-        });
+        lockDirection: true,
+        onAnimationEnd: function(){
+            if (this.options['page_scroller_waiting']) {
+                this.options['page_scroller_waiting'].scroller.scrollToElement($('[id="' + this.options['page_scroller_anchor'] + '"]')[0], 0);
+                this.options['page_scroller_waiting'] = undefined;
+                this.options['page_scroller_anchor'] = undefined;
+            }
+        }
+    });
 
     // Function to redraw the layout after DOM changes.
     var update = function (page_scroller) {
@@ -47,47 +55,49 @@ define([
 //        }
     };
 
-    // We need to override iScroll.scrollToElement as it doesn't
-    // take into account the position of in-page elements
-    // relative to the overall layour.
-    book_scroller.scrollToElement = function (el, page, time) {
-        var that = book_scroller, pos;
-        el = el.nodeType ? el : that.scroller.querySelector(el);
-        if (!el) return;
-
-        if (el !== page) {
-            pos = that._offset(page);
-        } else {
-            pos = that._offset(el);
-        }
-        pos.left += that.wrapperOffsetLeft;
-        pos.top += that.wrapperOffsetTop;
-
-        pos.left = pos.left > 0 ? 0 : pos.left < that.maxScrollX ? that.maxScrollX : pos.left;
-        pos.top = pos.top > that.minScrollY ? that.minScrollY : pos.top < that.maxScrollY ? that.maxScrollY : pos.top;
-        time = time === undefined ? m.max(m.abs(pos.left)*2, m.abs(pos.top)*2) : time;
-
-        that.scrollTo(pos.left, pos.top, time);
-    };
-
     // Add a page
     var add = function (id, file, html) {
         $('#pageScroller').append('<div class="page" id="' + file + '"><div id="' + id + '" class="wrapper"><div class="scroller">' + html + '</div></div></div>');
 
-        page_scroller = new iScroll(id, {snap: true, momentum: true, hScrollbar: false, vScrollbar: true, lockDirection: true});
-        page_scrollers.push(page_scroller);
+        var page_scroller = new iScroll(id, {snap: true, momentum: true, hScrollbar: false, vScrollbar: true, lockDirection: true});
+        page_scrollers.push({file: file, scroller: page_scroller});
 
         // Capture clicks on anchors so we can update the scroll position
         $('#' + id + ' a').on('click', function(event) {
             event.preventDefault();
+
+            // Using window.location causes a few problems:
+            // * we end up with the url fragment in the address bar
+            // * iScroll doesn't recognise that the horizontal position has changed
+            //   and therefore won't let us page back to the beginning.
+            //
             //window.location = $(this).attr('href');
             //setTimeout(function () {
             //    update(book_scroller);
             //}, 0);
+
             var matches = this.href.match(/^.*#((.*?)(?:__.*)?)$/);
+            // http://localhost:8000/#ch04.xhtml                               => ["http://localhost:8000/#ch04.xhtml", "ch04.xhtml", "ch04.xhtml"]
+            // http://localhost:8000/#ch04.xhtml__epub_3_best_practices_teaser => ["http://localhost:8000/#ch04.xhtml__epub_3_best_practices_teaser", "ch04.xhtml__epub_3_best_practices_teaser", "ch04.xhtml"]
             var anchor = matches[1];
             var page_anchor = matches[2];
-            book_scroller.scrollToElement($('[id="' + anchor + '"]')[0], $('[id="' + page_anchor + '"]')[0], 1000);
+
+            // We have to use the book_scroller to scroll horizontally to the page...
+            // and then callback to the page scroller to scroll vertically to the desired part of the page.
+
+            // Firstly, find the page scroller from our collection that is keyed to our page.
+            var filtered_page_scrollers = _.filter(page_scrollers, function(scroller) {
+                return scroller.file == page_anchor;
+            });
+
+            // Next, set the options in the book_scroller indicating that there is
+            // a page-scroller waiting to be processed.
+            book_scroller.options['page_scroller_waiting'] = filtered_page_scrollers[0];
+            book_scroller.options['page_scroller_anchor'] = anchor;
+
+            // Finally, call the book_scroller to scroll horizontally to the page.
+            // Book_scroller will callback to the function in the 'onAnimationEnd' option.
+            book_scroller.scrollToElement($('[id="' + page_anchor + '"]')[0], 0);
         });
 
         update(page_scroller);
@@ -102,6 +112,14 @@ define([
     });
 
     var finalise = function() {
+        if (
+        ("standalone" in window.navigator) &&
+        window.navigator.standalone
+        ){
+            // Account for the status bar on iOS when in stand-alone mode.
+            // http://www.bennadel.com/blog/1950-Detecting-iPhone-s-App-Mode-Full-Screen-Mode-For-Web-Applications.htm
+            $('.header').css({'margin-top': '20px'});
+        }
     };
 
     return {

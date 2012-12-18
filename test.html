@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 <title>Load Page in Iframe Using Query String Data</title>
@@ -61,11 +62,24 @@ function load_iframe_using_javascript(obj){
     document.getElementById(obj.id).src = manifest[0].file;
 }
 
+function inject_into_iframe(iframe_name) {
+    var iframe = document.getElementById(iframe_name);
+    var content = iframe.contentWindow.document.body.innerHTML;
+    alert('content: ' + content);   
+
+}
+
+function post_message(iframe_name) {
+    var iframe = document.getElementById(iframe_name);
+    alert('posting' );
+    iframe.contentWindow.postMessage('function alertme(){alert("posted");}', '*');
+}
+
 var iframe_props = {
     id: 'ifrm', // id of iframe
     urls: {
         // lookup values and urls to load in iframe 
-        'dflt': 'html/thirdparty/30/accessible_epub_3/EPUB/ch04.xhtml', // a default page
+        'dflt': 'chap01.html', // a default page
         // full URL example
         'ext': 'html/thirdparty/30/accessible_epub_3/EPUB/ch03s05.xhtml',
         'new': 'html/thirdparty/30/accessible_epub_3/EPUB/ch02s03.xhtml'
@@ -80,6 +94,10 @@ checkQuery4Iframe(iframe_props);
 <p>This example <a href="?ifrm=ext">link</a> loads the first iframe based on query parameters.</p>
 
 <p>This example <a href="#" onclick="javascript:load_iframe_using_javascript(iframe_props);return false;">link</a> simply uses javascript to change the document.location of the first iframe.</p>
+
+<p>This example <a href="#" onclick="javascript:inject_into_iframe('ifrm');return false;">link</a> uses javascript to inject material into the content of  the first iframe.</p>
+
+<p>This example <a href="#" onclick="javascript:post_message('ifrm');return false;">link</a> uses postmessage to communicate with the first iframe.</p>
 
 <p>More information is available <a href="http://www.dyn-web.com/tutorials/iframes/query/">online</a>.</p>
 

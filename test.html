@@ -1,0 +1,89 @@
+<html>
+<head>
+<title>Load Page in Iframe Using Query String Data</title>
+<style type="text/css">
+body { font: 14px/1.3 verdana, arial, helvetica, sans-serif; }
+h1 { font-size:1.3em; }
+a:link { color:#33c; } 
+a:visited { color:#339; }
+ul li { margin-bottom:.3em; }  
+
+iframe#ifrm {
+    border:1px solid #ccc;
+    width:600px; height:200px;
+    margin:1em 0;
+    }   
+</style>
+</head>
+<body>
+
+<h1>Obtain Iframe src from Query String Data</h1>
+
+<!-- iframe with id and default page in src -->
+<iframe seamless name="ifrm" id="ifrm" src="html/thirdparty/30/accessible_epub_3/EPUB/ch03s02.xhtml">Your browser doesn't support iframes.</iframe>
+<iframe seamless name="ifrm2" id="ifrm" src="html/manifest.json">Your browser doesn't support iframes.</iframe>
+
+<script type="text/javascript">
+// free code from dyn-web.com 
+// http://www.dyn-web.com/tutorials/iframes/query.php
+
+var dw_Util; 
+if (!dw_Util) dw_Util = {};
+
+// obj: link or window.location
+dw_Util.getValueFromQueryString = function (name, obj) {
+    obj = obj? obj: window.location; 
+    if (obj.search && obj.search.indexOf(name != -1) ) {
+        var pairs = obj.search.slice(1).split("&"); // name/value pairs
+        var set;
+        for (var i=0; pairs[i]; i++) {
+            set = pairs[i].split("="); // Check each pair for match on name 
+            if ( set[0] == name && set[1] ) {
+                return set[1];
+            }
+        }
+    }
+    return '';
+}
+
+// example query string for 2 iframes: ?ifrm=dw&ifm2=cd
+function checkQuery4Iframe(obj) {
+    var id = obj.id, urls = obj.urls, pg, url;
+    // value for id in query string?
+    pg = dw_Util.getValueFromQueryString(id);
+    // value found for id? in list of urls? if not, use default 
+    url = ( pg && urls[pg] )? urls[pg]: urls['dflt']
+    document.getElementById(id).src = url;
+}
+
+function load_iframe_using_javascript(obj){
+    //document.getElementById(obj.id).src = obj.urls.new;
+    document.getElementById(obj.id).src = manifest[0].file;
+}
+
+var iframe_props = {
+    id: 'ifrm', // id of iframe
+    urls: {
+        // lookup values and urls to load in iframe 
+        'dflt': 'html/thirdparty/30/accessible_epub_3/EPUB/ch04.xhtml', // a default page
+        // full URL example
+        'ext': 'html/thirdparty/30/accessible_epub_3/EPUB/ch03s05.xhtml',
+        'new': 'html/thirdparty/30/accessible_epub_3/EPUB/ch02s03.xhtml'
+    }
+}
+
+// Call function below iframe or onload (or document.ready)
+checkQuery4Iframe(iframe_props);
+
+</script>
+
+<p>This example <a href="?ifrm=ext">link</a> loads the first iframe based on query parameters.</p>
+
+<p>This example <a href="#" onclick="javascript:load_iframe_using_javascript(iframe_props);return false;">link</a> simply uses javascript to change the document.location of the first iframe.</p>
+
+<p>More information is available <a href="http://www.dyn-web.com/tutorials/iframes/query/">online</a>.</p>
+
+<script src="test.manifest.js"></script>
+
+</body>
+</html>

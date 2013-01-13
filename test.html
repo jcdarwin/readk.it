@@ -15,6 +15,9 @@ iframe#ifrm {
     margin:1em 0;
     }   
 </style>
+
+<script src="js/lib/jquery-1.8.3.min.js"></script>
+
 </head>
 <body>
 
@@ -22,7 +25,7 @@ iframe#ifrm {
 
 <!-- iframe with id and default page in src -->
 <iframe seamless name="ifrm" id="ifrm" src="html/thirdparty/30/accessible_epub_3/EPUB/ch03s02.xhtml">Your browser doesn't support iframes.</iframe>
-<iframe seamless name="ifrm2" id="ifrm" src="html/manifest.json">Your browser doesn't support iframes.</iframe>
+<iframe seamless name="ifrm2" id="ifrm2" src="test.manifest.js.html">Your browser doesn't support iframes.</iframe>
 
 <script type="text/javascript">
 // free code from dyn-web.com 
@@ -59,7 +62,7 @@ function checkQuery4Iframe(obj) {
 
 function load_iframe_using_javascript(obj){
     //document.getElementById(obj.id).src = obj.urls.new;
-    document.getElementById(obj.id).src = manifest[0].file;
+    document.getElementById(obj.id).src = manifest[1].file;
 }
 
 function inject_into_iframe(iframe_name) {
@@ -69,10 +72,20 @@ function inject_into_iframe(iframe_name) {
 
 }
 
-function post_message(iframe_name) {
-    var iframe = document.getElementById(iframe_name);
-    alert('posting' );
-    iframe.contentWindow.postMessage('function alertme(){alert("posted");}', '*');
+var message_request = function (msg){
+    msg.source.postMessage('{"id": "ifrm2", "response": "' + manifest[1].root + manifest[1].opf.spine[1].itemref.href + '"}', "*");
+};
+
+window.addEventListener('message', function (e) {
+    data = jQuery.parseJSON(e.data);
+    document.getElementById(data.id).src = data.response;
+}, false);
+
+
+function post_message(iframe_id, message) {
+    var iframe = document.getElementById(iframe_id);
+    alert('posting: ' + message);
+    iframe.contentWindow.postMessage(message, '*');
 }
 
 var iframe_props = {
@@ -86,7 +99,7 @@ var iframe_props = {
     }
 }
 
-// Call function below iframe or onload (or document.ready)
+// Call function below iframe on onload (or document.ready)
 checkQuery4Iframe(iframe_props);
 
 </script>
@@ -97,11 +110,11 @@ checkQuery4Iframe(iframe_props);
 
 <p>This example <a href="#" onclick="javascript:inject_into_iframe('ifrm');return false;">link</a> uses javascript to inject material into the content of  the first iframe.</p>
 
-<p>This example <a href="#" onclick="javascript:post_message('ifrm');return false;">link</a> uses postmessage to communicate with the first iframe.</p>
+<p>This example <a href="#" onclick="javascript:post_message('ifrm', 'function alertme(){alert(\x22posted\x22);}');return false;">link</a> uses postmessage to communicate with the first iframe.</p>
+
+<p>This example <a href="#" onclick="javascript:post_message('ifrm2', message_request.toString());return false;">link</a> uses postmessage to communicate with the second iframe.</p>
 
 <p>More information is available <a href="http://www.dyn-web.com/tutorials/iframes/query/">online</a>.</p>
-
-<script src="test.manifest.js"></script>
 
 </body>
 </html>

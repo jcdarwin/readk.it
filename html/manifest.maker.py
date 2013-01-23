@@ -12,24 +12,21 @@ except:
     print("ERROR: lxml library must be installed.")
     sys.exit(1)
 
+info = {}
 namespaces = {"opf": "http://www.idpf.org/2007/opf", "dc": "http://purl.org/dc/elements/1.1/", "xhtml": "http://www.w3.org/1999/xhtml"}
-printing = 0
+comma = ''
 
 #import glob
 #for files in glob.glob("*.xhtml"):
 #    print files
 
 
-def printer(name, version, identifier, path, pages):
+def printer(name, version, identifier, path, pages, cover):
     # {"name": "At the Bay", "version": "2.0", identifier": "12345678", "total_pages": 13}
-    if printing:
-        print ","
-    print "{\"epub_directory\": \"../../html/\", \"name\": \"%(name)s\", \"version\": \"%(version)s\", \"identifier\": \"%(identifier)s\", \"path\": \"%(path)s\", \"total_pages\": %(pages)s}" % {'name': name, 'version': version, 'identifier': identifier, 'path': path, 'pages': pages}
-#    printing += 1
+    print "{\"name\": \"%(name)s\", \"version\": \"%(version)s\", \"identifier\": \"%(identifier)s\", \"path\": \"%(path)s\", \"total_pages\": %(pages)s, \"cover\": \"%(cover)s\"}" % {'name': name, 'version': version, 'identifier': identifier, 'path': path, 'pages': pages, 'cover': cover}
 
 
 def parseInfo(r, f):
-    info = {}
     try:
         f = open(os.path.join(r, f)).read()
     except:
@@ -57,11 +54,12 @@ def parseInfo(r, f):
         pass
 
     info["path_to_ncx"] = info["root_folder"] + "/" + info["ncx_name"]
-    return info
+    #return info
 
 
 def parseOPF(r, f):
-    opf = ET.fromstring(open(parseInfo(r, f)["path_to_opf"]).read())
+    parseInfo(r, f)
+    opf = ET.fromstring(open(info["path_to_opf"]).read())
 
     return opf
 
@@ -79,6 +77,13 @@ for r, d, files in os.walk("."):
             itemref = opf.xpath("//opf:spine/opf:itemref", namespaces=namespaces)
             pages = len(itemref)
             path = re.sub(r'^(.*)(/META-INF)$', r"\g<1>", r)
+            cover = opf.xpath("//opf:item[contains(@properties, 'cover-image')]/@href", namespaces=namespaces)
+            if cover:
+                cover = info["root_folder"] + '/' + cover[0]
+            else:
+                cover = ''
 
-            printer(title[0].text, version[0], identifier[0].text, path, pages)
+            print comma
+            printer(title[0].text.encode('utf-8'), version[0], identifier[0].text, path, pages, cover)
+            comma = ','
 print "]"

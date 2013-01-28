@@ -19,7 +19,7 @@ define([
                 console.log(value.name);
 
                 // Load an entry for the publication into the library view
-                $('#library').append('<div class="publication"><a href="' + value.path + '"><img src="' + value.cover + '" /></a><h2><a href="' + value.path + '">' + value.name + '</a></h2></div>');
+                $('#library').append('<div class="publication"><a href="../../?path=' + encodeURIComponent(value.path) + '"><img src="' + value.cover + '" /></a><h2><a href="../../?path=' + encodeURIComponent(value.path) + '" title="' + value.identifier + '">' + value.name + '</a></h2></div>');
 
             });
         });

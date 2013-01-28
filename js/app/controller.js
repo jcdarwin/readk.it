@@ -36,11 +36,9 @@ define([
 
     /* Constructor */
     var Controller = function (book, callback) {
-        item = book;
-        title = book.epub_directory + book.path;
         load_publication_callback = callback;
         // Parse the EPUB
-        publication = new Epub(title, 'META-INF/container.xml', load_publication);
+        publication = new Epub(book, 'META-INF/container.xml', load_publication);
     };
 
     /* Define the instance methods */
@@ -99,7 +97,8 @@ define([
                     return $(v);
                 });
                 $.each(page.find(url_selectors).filter(':urlInternal'), function(i, v){
-                    return $(v).prependAttr('src', publication.epub_dir + publication.oebps_dir + '/');
+                    // prepend the path to the html file to <img src="../blah.jpg" />
+                    return $(v).prependAttr('src', value.href.replace(/[^\/]*?$/, ''));
                 });
                 // Do we need to worry about rewriting form action attributes?
                 //page.find(url_selectors).filter(':urlInternal').prependAttr('action', publication.epub_dir + publication.oebps_dir + '/');
@@ -115,7 +114,7 @@ define([
 
             layout.finalise();
 
-            load_publication_callback(item, publication);
+            load_publication_callback(publication);
         });
     };
 

@@ -24,7 +24,8 @@ require(['jquery', 'app/controller', 'app/config'], function($, Controller, conf
     };
 
     var book;
-    var path = $().querystring('path');
+    // var path = $().querystring('path');
+    var path = window.location.hash.replace(/^#/, '');
 
     if (path) {
         path = decodeURIComponent(path);

@@ -79,29 +79,28 @@ define([
 
                 var page = $(pages[value.id]);
                 // We have to rewrite any internal urls and corresponding ids
-                $.each(page.find(url_selectors).filter(':urlInternal'), function(index, value){
-                    if ( typeof $(value).attr('href') !== 'undefined' ) {
-                        if ($(value).attr('href').substr(0,1) == '#') {
+                var internal_urls = page.find(url_selectors).filter(':urlInternal');
+
+                $.each(internal_urls, function(i, v){
+                    if ( typeof $(v).attr('href') !== 'undefined' ) {
+                        if ($(v).attr('href').substr(0,1) == '#') {
                             // We must have something like '#milestone1'; convert to '#chapter1_milestone1'
-                            $(value).attr('href', '#' + publication.file + '_' + $(value).attr('href').substr(1));
+                            $(v).attr('href', '#' + publication.file + '_' + $(v).attr('href').substr(1));
                         } else {
                             // We must have something like 'text/chapter2#milestone1'; convert to '#text_chapter2#milestone1'
-                            $(value).attr('href', '#' + $(value).attr('href').replace(/\//g, '_').replace(/#/g, '_'));
+                            $(v).attr('href', '#' + $(v).attr('href').replace(/\//g, '_').replace(/#/g, '_'));
                         }
+                    } else if ( typeof $(v).attr('src') !== 'undefined' ){
+                        // prepend the path to the html file to <img src="../blah.jpg" />
+                        return $(v).prependAttr('src', value.href.replace(/[^\/]*?$/, ''));
                     }
-                    return $(value);
+                    return $(v);
                 });
                 $.each(page.find('[id]'), function(i, v){
                     // We want to change something like 'milestone1' to 'chapter1#milestone1'
                     $(v).attr('id', value.file + '_' + $(v).attr('id'));
                     return $(v);
                 });
-                $.each(page.find(url_selectors).filter(':urlInternal'), function(i, v){
-                    // prepend the path to the html file to <img src="../blah.jpg" />
-                    return $(v).prependAttr('src', value.href.replace(/[^\/]*?$/, ''));
-                });
-                // Do we need to worry about rewriting form action attributes?
-                //page.find(url_selectors).filter(':urlInternal').prependAttr('action', publication.epub_dir + publication.oebps_dir + '/');
 
                 // OK, so now we need to get the outerHTML
                 // http://stackoverflow.com/questions/2419749/get-selected-elements-outer-html

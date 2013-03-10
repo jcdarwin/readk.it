@@ -12,7 +12,7 @@ var client = {
         'client_js/script',
         'css!client_css/base.css',
         'css!client_css/demo_bar.css',
-        'css!client_css/themes/type_01.css',
+        'css!client_css/themes/type_05.css',
 /*
         'css!client_css/themes/type_02.css',
         'css!client_css/themes/type_03.css',
@@ -34,15 +34,15 @@ var client = {
         'css!client_css/themes/type_19.css',
         'css!client_css/themes/type_20.css',
         'css!client_css/themes/type_101.css',
-*/
-        'css!client_css/themes/color_01.css'
-/*        ,
+        'css!client_css/themes/color_01.css',
         'css!client_css/themes/color_02.css',
         'css!client_css/themes/color_03.css',
         'css!client_css/themes/color_04.css',
         'css!client_css/themes/color_05.css',
         'css!client_css/themes/color_06.css',
-        'css!client_css/themes/color_07.css',
+*/
+        'css!client_css/themes/color_07.css'
+/*        ,
         'css!client_css/themes/color_08.css',
         'css!client_css/themes/color_09.css',
         'css!client_css/themes/color_10.css',

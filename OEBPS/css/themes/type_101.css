@@ -1,0 +1,485 @@
+/*
+••••••••••••••••••••••••
+
+Powered by Type & Grids™
+www.typeandgrids.com
+
+••••••••••••••••••••••••
+*/
+
+/*===================================================================================================
+Contents
+=====================================================================================================
+	1) @font-face definitions
+	2) Styles
+	3) Positioning adjustments
+	4) Media query adjustments
+*/
+
+/*===================================================================================================
+1) @font-face definitions
+===================================================================================================*/
+@font-face {
+    font-family: 'ProximaNova';
+    src: url('../../fonts/ProximaNova/ProximaNova-Reg-webfont.eot');
+    src: url('../../fonts/ProximaNova/ProximaNova-Reg-webfont.eot?iefix') format('eot'),
+         url('../../fonts/ProximaNova/ProximaNova-Reg-webfont.woff') format('woff'),
+         url('../../fonts/ProximaNova/ProximaNova-Reg-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ProximaNova';
+    src: url('../../fonts/ProximaNova/ProximaNova-Bold-webfont.eot');
+    src: url('../../fonts/ProximaNova/ProximaNova-Bold-webfont.eot?iefix') format('eot'),
+         url('../../fonts/ProximaNova/ProximaNova-Bold-webfont.woff') format('woff'),
+         url('../../fonts/ProximaNova/ProximaNova-Bold-webfont.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+  font-family: 'PT Serif';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Serif'), local('PTSerif-Regular'), url(../../fonts/PTSerif/PTSerif-Regular.woff) format('woff');
+}
+@font-face {
+  font-family: 'PT Serif';
+  font-style: normal;
+  font-weight: 700;
+  src: local('PT Serif Bold'), local('PTSerif-Bold'), url(../../fonts/PTSerif/PTSerif-Bold.woff) format('woff');
+}
+@font-face {
+  font-family: 'PT Serif';
+  font-style: italic;
+  font-weight: 400;
+  src: local('PT Serif Italic'), local('PTSerif-Italic'), url(../../fonts/PTSerif/PTSerif-Italic.woff) format('woff');
+}
+
+/*===================================================================================================
+2) Styles
+===================================================================================================*/
+
+#logo h1, #logoDetailView h1 {
+	font-family: "PT Serif", Arial, sans-serif;
+	font-weight: bold;
+    font-style: normal;
+	font-size: 36px;
+	line-height: 1.5;
+	letter-spacing: -0.07em;
+	text-decoration: none;
+	text-transform: none;
+	text-rendering: optimizeLegibility;
+}
+
+#logo h2, #logoDetailView h2 {
+	font-family: "ProximaNova", Arial, sans-serif;
+	font-weight: normal;
+    font-style: normal;
+	font-size: 14px;
+	line-height: 1.2;
+	letter-spacing: 0;
+	text-decoration: none;
+	text-transform: none;
+	text-rendering: auto;
+}
+
+nav ul li a, nav ul li button, nav ul li span, #detailViewBack a {
+	font-family: "ProximaNova", Arial, sans-serif;
+	font-weight: normal;
+    font-style: normal;
+	font-size: 14px;
+	line-height: 1.5;
+	letter-spacing: 0;
+	text-decoration: none;
+	text-transform: none;
+	text-rendering: auto;
+}
+
+#overview h3 {
+	font-family: "PT Serif", Arial, sans-serif;
+	font-weight: normal;
+    font-style: normal;
+	font-size: 42px;
+	line-height: 1.2;
+	letter-spacing: -0.04em;
+	text-decoration: none;
+	text-transform: none;
+	text-rendering: optimizeLegibility;
+}
+
+.projectThumbnailHover h4 {
+	font-family: "PT Serif", Arial, sans-serif;
+	font-weight: normal;
+    font-style: normal;
+	font-size: 24px;
+	line-height: 1.2;
+	letter-spacing: 0;
+	text-decoration: none;
+	text-transform: none;
+	text-rendering: auto;
+}
+
+.projectThumbnailHover h5 {
+	font-family: "ProximaNova", Arial, sans-serif;
+	font-weight: normal;
+    font-style: normal;
+	font-size: 14px;
+	line-height: 1.2;
+	letter-spacing: 0;
+	text-decoration: none;
+	text-transform: none;
+	text-rendering: auto;
+}
+
+.projectInfo h4 {
+	font-family: "ProximaNova", Arial, sans-serif;
+	font-weight: bold;
+    font-style: normal;
+	font-size: 14px;
+	line-height: 1.2;
+	letter-spacing: 0;
+	text-decoration: none;
+	text-transform: none;
+	text-rendering: auto;
+}
+
+.projectNavCounter {
+	font-family: "ProximaNova", Arial, sans-serif;
+	font-weight: normal;
+    font-style: normal;
+	font-size: 13px;
+	line-height: 1.2;
+	letter-spacing: 0;
+	text-decoration: none;
+	text-transform: none;
+	text-rendering: auto;
+}
+
+.projectNavButtons button {
+	font-family: "ProximaNova", Arial, sans-serif;
+	font-weight: bold;
+    font-style: normal;
+	font-size: 11px;
+	line-height: 1.2;
+	letter-spacing: 0.1em;
+	text-decoration: none;
+	text-transform: uppercase;
+	text-rendering: auto;
+}
+
+.projectNavClose button, .projectNavEnlarge button {
+	font-family: "ProximaNova", Arial, sans-serif;
+	font-weight: bold;
+    font-style: normal;
+	font-size: 11px;
+	line-height: 1.2;
+	letter-spacing: 0.1em;
+	text-decoration: none;
+	text-transform: uppercase;
+	text-rendering: auto;
+}
+
+p, li, .projectInfo p, .projectInfo li {
+	font-family: "ProximaNova", Arial, sans-serif;
+	font-weight: normal;
+    font-style: normal;
+	font-size: 14px;
+	line-height: 1.3;
+	letter-spacing: 0;
+	text-decoration: none;
+	text-transform: none;
+	text-rendering: auto;
+}
+
+footer p {
+	font-family: "ProximaNova", Arial, sans-serif;
+	font-weight: normal;
+    font-style: normal;
+	font-size: 14px;
+	line-height: 1.2;
+	letter-spacing: 0;
+	text-decoration: none;
+	text-transform: none;
+	text-rendering: auto;
+}
+
+#footerLinks li {
+	font-family: "ProximaNova", Arial, sans-serif;
+	font-weight: normal;
+    font-style: normal;
+	font-size: 14px;
+	line-height: 1.2;
+	letter-spacing: 0;
+	text-decoration: none;
+	text-transform: none;
+	text-rendering: auto;
+}
+
+blockquote, blockquote p {
+	font-family: "ProximaNova", Arial, sans-serif;
+	font-weight: normal;
+    font-style: normal;
+	font-size: 14px;
+	line-height: 1.4;
+	letter-spacing: 0;
+	text-decoration: none;
+	text-transform: none;
+	text-rendering: auto;
+}
+
+blockquote cite {
+	font-family: "ProximaNova", Arial, sans-serif;
+	font-weight: bold;
+    font-style: normal;
+	font-size: 14px;
+	line-height: 1.3;
+	letter-spacing: 0;
+	text-decoration: none;
+	text-transform: none;
+	text-rendering: auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: "PT Serif", Arial, sans-serif;
+	font-weight: bold;
+	letter-spacing: -0.02em;
+	text-transform: none;
+}
+
+#heroNav a {
+	font-family: "ProximaNova", Arial, sans-serif;
+	font-weight: bold;
+    font-style: normal;
+	font-size: 16px;
+	line-height: 1.2;
+	letter-spacing: 0;
+	text-decoration: underline;
+	text-transform: none;
+	text-rendering: auto;
+}
+
+#formField {
+	font-family: "ProximaNova", Arial, sans-serif;
+	font-weight: normal;
+    font-style: normal;
+	font-size: 14px;
+	line-height: 1.2;
+	letter-spacing: 0;
+	text-decoration: none;
+	text-transform: none;
+	text-rendering: auto;
+}
+
+#formSubmit {
+	font-family: "ProximaNova", Arial, sans-serif;
+	font-weight: bold;
+    font-style: normal;
+	font-size: 12px;
+	line-height: 1.2;
+	letter-spacing: 0.09em;
+	text-decoration: none;
+	text-transform: uppercase;
+	text-rendering: auto;
+}
+
+h5 {
+	font-weight: bold;
+	padding-bottom: 8px;
+	font-size: 12px;
+	letter-spacing: 0.10em;
+	text-transform: uppercase;
+}
+
+/*===================================================================================================
+3) Positioning adjustments
+===================================================================================================*/
+
+#logo h2, #logoDetailView h2 {
+	margin-top: -20px;
+	padding-left: 1px;
+}
+
+nav {
+	padding-top: 46px;
+	margin-bottom: -30px;
+}
+
+nav ul li {
+	padding-left: 26px;
+}
+
+#overview {
+	padding-bottom: 10px;	
+}
+
+#overview h3 {
+	margin-top: -7px;
+	margin-bottom: 22px;
+}
+
+.projectThumbnailHover h4 {
+	margin-top: 40px;
+}
+
+.projectThumbnailHover h5 {
+	padding-top: 69px;
+}
+
+.projectInfo h4 {
+	padding-top: 11px;
+	padding-bottom: 6px;
+}
+
+.projectNavCounter {
+	padding-top: 12px;
+}
+
+.projectNavClose, .projectNavEnlarge {
+	padding-top: 5px;
+	padding-top: 7px\9; /* IE adjustment */
+}
+
+.projectNavButtons {
+	padding-top: 5px;
+	padding-top: 7px\9; /* IE adjustment */
+}
+
+/* Tweak positioning slightly in Firefox */
+@-moz-document url-prefix() {
+  .projectNavEnlarge, .projectNavClose, .projectNavButtons {
+		padding-top: 6px;
+	}
+}
+
+.projectInfo ul {
+	margin-top: -8px;
+	margin-bottom: 7px;
+}
+
+.projectInfo p + ul {
+	margin-top: -20px;
+}
+
+.projectInfo li, .linedList li {
+	border-top: 1px solid #ddd;
+	margin-top: 6px;
+	margin-bottom: -2px;
+	padding-top: 6px;
+	padding-bottom: 0px;
+}
+
+@-moz-document url-prefix() {
+	.projectInfo li, .linedList li {
+		margin-bottom: -2px;
+	}
+}
+
+.projectInfo li:last-child {
+	margin-bottom: -3px;
+}
+
+.linedList {
+	padding-bottom: 7px;
+}
+
+/*===================================================================================================
+4) Media query adjustments
+===================================================================================================*/
+	/* Smaller than standard 960 (devices and browsers) */
+	@media only screen and (max-width: 959px) {
+		
+		nav ul li a, nav ul li button, nav ul li span, #detailViewBack {
+			font-size: 16px;
+		}
+		
+		nav {
+			padding-top: 44px;
+		}
+		
+		#overview h3 {
+			font-size: 38px;
+		}
+		
+	}
+
+	/* Tablet portrait size to standard 960 (devices and browsers) */
+	@media only screen and (min-width: 768px) and (max-width: 959px) {
+		
+		.projectThumbnailHover h4 {
+			font-size: 18px;
+		}
+		
+		.projectThumbnailHover h5 {
+			font-size: 12px;
+			padding-top: 61px;
+		}
+		
+	}
+
+	/* All mobile sizes (devices and browser) */
+	@media only screen and (max-width: 767px) {
+		
+		#logo h1, #logoDetailView h1 {
+			line-height: 1.1;
+		}
+		
+		#logo h2, #logoDetailView h2 {
+			margin-top: -12px;
+		}
+		
+		header {
+			padding-top: 40px;
+		}
+		
+		nav {
+			padding-top: 9px;
+			margin-bottom: -11px;
+		}
+		
+		@-moz-document url-prefix() {
+			nav {
+				padding-top: 10px;
+			}
+		}
+		
+		#overview {
+			padding-bottom: 0px;
+		}
+		
+		#overview h3 {
+			font-size: 30px;
+			line-height: 1.2;
+		}
+		
+		footer p {
+			font-size: 14px;
+		}
+		
+	}
+
+	/* Mobile landscape size to tablet portrait (devices and browsers) */
+	@media only screen and (min-width: 480px) and (max-width: 767px) {
+		
+	}
+
+	/* Mobile portrait size to mobile landscape size (devices and browsers) */
+	@media only screen and (max-width: 479px) {
+		
+		#overview h3 {
+			font-size: 24px;
+			line-height: 1.2;	
+		}
+		
+		.projectThumbnailHover h4 {
+			font-size: 14px;
+		}
+		
+		.projectThumbnailHover h5 {
+			font-size: 12px;
+			padding-top: 56px;
+		}
+		
+	}

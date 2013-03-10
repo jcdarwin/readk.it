@@ -1,0 +1,39 @@
+/*
+••••••••••••••••••••••••
+
+Powered by Type & Grids™
+www.typeandgrids.com
+
+••••••••••••••••••••••••
+*/
+
+#sitePreloader { background-color: #000000; } /* Preloader GIF created with http://preloaders.net */
+body { background-color: #a1998f; }
+/*body { background: url("../../images/backgrounds/bg_01.png") repeat; }*/
+.thumbnailMask { background-image: url("../../images/masks/a1998f_01.png"); }
+header { border-color: #ffffff; }
+#logo h1, #logoDetailView h1 { color: #ffffff; text-shadow: 1px 1px 1px #999188; }
+#logo h2, #logoDetailView h2 { color: #ffffff; text-shadow: 1px 1px 1px #999188; }
+nav ul li a, nav ul li a:visited, nav ul li button { color: #ffffff; text-shadow: 1px 1px 1px #999188; }
+.currentPage, button.currentPage:hover { color: #c1bcb6 !important; text-shadow: none; }
+nav ul li button:hover, nav ul li button:active, nav ul li button:focus, nav ul li a:hover, nav ul li a:active, nav ul li a:focus, #heroNav a:hover, #heroNav a:visited:hover, #heroNav a:active, #heroNav a:focus, #formSubmit:hover, .contentModule a:hover, .contentModule a:visited:hover, .contentModule a:active, .contentModule a:focus { color: #3e3b37; text-shadow: none; }
+hr, .projectInfo h4, .projectNav, .projectInfo, .linedList, .projectInfo li, .projectInfo p:nth-last-child(2), .linedList li, nav, blockquote, #formField, #content #heroNav ul li, #footerLinks li, #heroNav, .contentModule, .eight:nth-child(4n) .contentModule:last-child, .eight:nth-of-type(1) .contentModule:last-child { border-color: #88817a; }
+#overview h3 { color: #ffffff; text-shadow: 1px 1px 1px #999188; }
+.projectThumbnailHover { background-color: rgba(89, 84, 79, 0.95); }
+.projectThumbnailHover h4 { color: #ffffff; text-shadow: none; }
+.projectThumbnailHover h5 { color: #ffffff; text-shadow: none; }
+.projectInfo h4 { color: #ffffff; text-shadow: 1px 1px 1px #999188; }
+.projectNav { color: #ffffff; text-shadow: 1px 1px 1px #999188; }
+.projectNavClose button, .projectNavButtons button, .projectNavEnlarge button, .projectNavCounter, #formSubmit, #formField { color: #ffffff; text-shadow: 1px 1px 1px #999188; }
+.projectNav button:hover, .projectNav button:active, .projectNav button:focus { color: #3e3b37; text-shadow: none; }
+.projectNavInactive, button.projectNavInactive, button.projectNavInactive:hover, button.projectNavInactive:active { color: #c1bcb6 !important; text-shadow: none; }
+p, li, .projectInfo p, .projectInfo li, blockquote, blockquote p, blockquote cite { color: #ffffff; text-shadow: 1px 1px 1px #999188; }
+p strong, .projectInfo strong, li strong { color: #ffffff; text-shadow: 1px 1px 1px #999188; }
+footer p { color: #ffffff; text-shadow: 1px 1px 1px #999188; }
+footer a { color: #ffffff; text-shadow: 1px 1px 1px #999188; }
+h1, h2, h3, h4, h5, h6, #faq p:first-child, .contentModule a, .contentModule a:visited { color: #ffffff; text-shadow: 1px 1px 1px #999188; }
+#heroNav a, #heroNav a:visited { color: #ffffff; text-shadow: 1px 1px 1px #999188; }
+a, a:visited { color: #ffffff; text-shadow: 1px 1px 1px #999188; }
+a:hover, a:active, a:focus { color: #3e3b37; text-shadow: none; }
+#formField { background: #aaa39b; }
+#formField:focus { background: #b3aca5; }

@@ -1,0 +1,39 @@
+/*
+••••••••••••••••••••••••
+
+Powered by Type & Grids™
+www.typeandgrids.com
+
+••••••••••••••••••••••••
+*/
+
+#sitePreloader { background-color: #000000; } /* Preloader GIF created with http://preloaders.net */
+/*body { background-color: #f96e5b; }*/
+body { background: #f96e5b url("../../images/backgrounds/grid_24.png") repeat; }
+.thumbnailMask { background-image: url("../../images/masks/f96e5b_01.png"); }
+header { border-color: #321612; }
+#logo h1, #logoDetailView h1 { color: #321612; }
+#logo h2, #logoDetailView h2 { color: #321612; }
+nav ul li a, nav ul li a:visited, nav ul li button { color: #321612; }
+.currentPage, button.currentPage:hover { color: #ba5345 !important; }
+nav ul li button:hover, nav ul li button:active, nav ul li button:focus, nav ul li a:hover, nav ul li a:active, nav ul li a:focus, #heroNav a:hover, #heroNav a:visited:hover, #heroNav a:active, #heroNav a:focus, #formSubmit:hover, .contentModule a:hover, .contentModule a:visited:hover, .contentModule a:active, .contentModule a:focus { color: #ffffff; }
+hr, .projectInfo h4, .projectNav, .projectInfo, .linedList, .projectInfo li, .projectInfo p:nth-last-child(2), .linedList li, nav, blockquote, #formField, #content #heroNav ul li, #footerLinks li, #heroNav, .contentModule, .eight:nth-child(4n) .contentModule:last-child, .eight:nth-of-type(1) .contentModule:last-child { border-color: #fba99d; }
+#overview h3 { color: #ffffff; }
+.projectThumbnailHover { background-color: rgba(50, 22, 18, 0.95); }
+.projectThumbnailHover h4 { color: #ffffff; }
+.projectThumbnailHover h5 { color: #ffffff; }
+.projectInfo h4 { color: #4a211b; }
+.projectNav { color: #4a211b; }
+.projectNavClose button, .projectNavButtons button, .projectNavEnlarge button, .projectNavCounter, #formSubmit, #formField { color: #4a211b; }
+.projectNav button:hover, .projectNav button:active, .projectNav button:focus { color: #ffffff; }
+.projectNavInactive, button.projectNavInactive, button.projectNavInactive:hover, button.projectNavInactive:active { color: #ba5345 !important; }
+p, li, .projectInfo p, .projectInfo li, blockquote, blockquote p, blockquote cite { color: #4a211b; }
+p strong, .projectInfo strong, li strong { color: #4a211b; }
+footer p { color: #4a211b; }
+footer a { color: #4a211b; }
+h1, h2, h3, h4, h5, h6, #faq p:first-child, .contentModule a, .contentModule a:visited { color: #321612; }
+#heroNav a, #heroNav a:visited { color: #321612; }
+a, a:visited { color: #4a211b; }
+a:hover, a:active, a:focus { color: #ffffff; }
+#formField { background: #fa7d6c; }
+#formField:focus { background: #fcb7ad; }

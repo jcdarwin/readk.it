@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1" xml:lang="en">
+  <head>
+    <meta name="dtb:uid" content="Readk.it: a manifesto"/>
+    <meta name="dtb:depth" content="1"/>
+    <meta name="dtb:totalPageCount" content="0"/>
+    <meta name="dtb:maxPageNumber" content="0"/>
+  </head>
+  <docTitle>
+    <text>Readk.it: a manifesto</text>
+  </docTitle>
+  <navMap>
+    <navPoint id="1" playOrder="1">
+      <navLabel>
+        <text>Main</text>
+      </navLabel>
+      <content src="index.html"/>
+    </navPoint>
+    <navPoint id="2" playOrder="2">
+      <navLabel>
+        <text>Project 1</text>
+      </navLabel>
+      <content src="projects/project_01/index.html"/>
+    </navPoint>
+    <navPoint id="3" playOrder="3">
+      <navLabel>
+        <text>Project 2</text>
+      </navLabel>
+      <content src="projects/project_02/index.html"/>
+    </navPoint>
+  </navMap>
+</ncx>

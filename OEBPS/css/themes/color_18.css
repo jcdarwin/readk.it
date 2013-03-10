@@ -1,0 +1,39 @@
+/*
+••••••••••••••••••••••••
+
+Powered by Type & Grids™
+www.typeandgrids.com
+
+••••••••••••••••••••••••
+*/
+
+#sitePreloader { background-color: #000000; } /* Preloader GIF created with http://preloaders.net */
+body { background-color: #f8e3a5; }
+/*body { background: url("../../images/backgrounds/bg_01.png") repeat; }*/
+.thumbnailMask { background-image: url("../../images/masks/f8e3a5_01.png"); }
+header { border-color: #313d73; }
+#logo h1, #logoDetailView h1 { color: #313d73; }
+#logo h2, #logoDetailView h2 { color: #313d73; }
+nav ul li a, nav ul li a:visited, nav ul li button { color: #313d73; }
+.currentPage, button.currentPage:hover { color: #a8a191 !important; }
+nav ul li button:hover, nav ul li button:active, nav ul li button:focus, nav ul li a:hover, nav ul li a:active, nav ul li a:focus, #heroNav a:hover, #heroNav a:visited:hover, #heroNav a:active, #heroNav a:focus, #formSubmit:hover, .contentModule a:hover, .contentModule a:visited:hover, .contentModule a:active, .contentModule a:focus { color: #6f779d; }
+hr, .projectInfo h4, .projectNav, .projectInfo, .linedList, .projectInfo li, .projectInfo p:nth-last-child(2), .linedList li, nav, blockquote, #formField, #content #heroNav ul li, #footerLinks li, #heroNav, .contentModule, .eight:nth-child(4n) .contentModule:last-child, .eight:nth-of-type(1) .contentModule:last-child { border-color: #c6b584; }
+#overview h3 { color: #313d73; }
+.projectThumbnailHover { background-color: rgba(30, 36, 69, 0.9); }
+.projectThumbnailHover h4 { color: #ffffff; }
+.projectThumbnailHover h5 { color: #ffffff; }
+.projectInfo h4 { color: #313d73; }
+.projectNav { color: #313d73; }
+.projectNavClose button, .projectNavButtons button, .projectNavEnlarge button, .projectNavCounter, #formSubmit, #formField { color: #313d73; }
+.projectNav button:hover, .projectNav button:active, .projectNav button:focus { color: #6f779d; }
+.projectNavInactive, button.projectNavInactive, button.projectNavInactive:hover, button.projectNavInactive:active { color: #a8a191 !important; }
+p, li, .projectInfo p, .projectInfo li, blockquote, blockquote p, blockquote cite { color: #313d73; }
+p strong, .projectInfo strong, li strong { color: #313d73; }
+footer p { color: #313d73; }
+footer a { color: #313d73; }
+h1, h2, h3, h4, h5, h6, #faq p:first-child, .contentModule a, .contentModule a:visited { color: #313d73; }
+#heroNav a, #heroNav a:visited { color: #313d73; }
+a, a:visited { color: #313d73; }
+a:hover, a:active, a:focus { color: #6f779d; }
+#formField { background: #f9e8b7; }
+#formField:focus { background: #fcf2d2; }

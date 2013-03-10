@@ -1,0 +1,155 @@
+body {
+    font-family: helvetica neue;
+    font-size: 26px;
+    line-height: 1.5;
+    background-color: #FFFFFF;
+}
+
+.page h1,
+.page h2
+{
+    color: #BCBEC0;
+    font-weight: normal;
+    margin-top: 0px;
+}
+
+.page hr {
+    height: 2px;
+    background-color: #E6E7E8;
+    border: none;
+    border-bottom: solid 1px #E7EAEC;
+}
+
+.page {
+    float: left;
+    -webkit-transform:translate3d(0,0,0);
+    height: 100%;
+/*
+    padding: 20px;
+*/
+}
+
+#pageWrapper {
+    position:absolute;
+    z-index:1;
+    overflow:hidden;
+    top:40px;
+/*
+    left:20px;
+    right:20px;
+*/
+    left:0;
+    right:0;
+    bottom:0;
+    padding-bottom: 20px;
+}
+
+.wrapper {
+    position:absolute;
+    z-index:1;
+    top:0px;
+    bottom:0px;
+/*
+    left:20px;
+    right:20px;
+*/
+    left:0;
+    right:0;
+    overflow:auto;
+}
+
+.scroller {
+	position:absolute; z-index:1;
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+	width:100%;
+	padding:0;
+}
+
+.header {
+    height: 40px;
+    width: 100%;
+    background-color: #E6E7E8;
+    z-index: 2;
+}
+
+.header {
+    position:absolute;
+    top: 0;
+    left: 0;
+    margin-top: 0;
+}
+
+.controls {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 18px;
+    -webkit-user-select: none;
+}
+
+.size, .lh {
+    float: left;
+    margin-right: 20px;
+}
+
+.size label, .lh label {
+/*    display: block; */
+}
+
+.icon {
+    color: #ffffff;
+    margin-top:5px;
+    display:inline-block;
+    width:30px;height:30px;border-radius:15px;text-align:center;background:#000;
+    line-height: 30px;
+}
+
+.status {
+    float:right;
+    margin-right: 10px;
+    cursor: default;
+    width: 70px;
+}
+
+.online {
+    background-color: #56A2D3;
+}
+
+.offline {
+    background-color: #BCBEC0;
+}
+
+.sans {
+    font-family: Arial;
+    font-weight: bold;
+    float:right;
+    margin-right: 10px;
+    cursor: default;
+}
+
+.serif {
+    font-family: Georgia;
+    font-weight: bold;
+    float:right;
+    margin-right: 10px;
+    cursor: default;
+}
+
+/* iPad [portrait + landscape] */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    /* Accomodate status bar */
+    .header { -webkit-user-select: none; }
+}
+
+/* iPhone [portrait + landscape] */
+@media only screen and (max-device-width: 480px) {
+    /* Accomodate status bar */
+    .header { -webkit-user-select: none; }
+}
+
+img {
+    max-width: 100%;
+}
+
+pre {
+    overflow: auto;
+}

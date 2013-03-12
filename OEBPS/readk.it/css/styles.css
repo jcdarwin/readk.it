@@ -82,15 +82,15 @@ body {
 }
 
 .controls {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
     font-size: 18px;
     -webkit-user-select: none;
 }
 
 .size, .lh {
     float: left;
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
 .size label, .lh label {

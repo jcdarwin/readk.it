@@ -18,11 +18,17 @@
     </navPoint>
     <navPoint id="2" playOrder="2">
       <navLabel>
+        <text>A</text>
+      </navLabel>
+      <content src="projects/a/index.html"/>
+    </navPoint>
+    <navPoint id="3" playOrder="3">
+      <navLabel>
         <text>Project 1</text>
       </navLabel>
       <content src="projects/project_01/index.html"/>
     </navPoint>
-    <navPoint id="3" playOrder="3">
+    <navPoint id="4" playOrder="4">
       <navLabel>
         <text>Project 2</text>
       </navLabel>

@@ -84,7 +84,7 @@ define([
 
                 // Ensure internal image urls have the correct path prepended.
                 // We have to do this here as jQuery will try to resolve the src.
-                pages[value.id] = pages[value.id].replace(/<img src=(['"])/g, '<img src=$1' + value.path.replace(/[^\/]+/g, '..') + value.href.replace(/[^\/]*?$/, ''));
+                pages[value.id] = pages[value.id].replace(/(<[^<>]* src=['"])/g, '$1' + value.path.replace(/[^\/]+/g, '..') + value.href.replace(/[^\/]*?$/, ''));
 
                 var page = $(pages[value.id]);
                 // We have to rewrite any internal urls and corresponding ids
@@ -99,9 +99,6 @@ define([
                             // We must have something like 'text/chapter2#milestone1'; convert to '#text_chapter2#milestone1'
                             $(v).attr('href', '#' + $(v).attr('href').replace(/\//g, '_').replace(/#/g, '_'));
                         }
-                    } else if ( typeof $(v).attr('src') !== 'undefined' ){
-                        // prepend the path to the html file to <img src="../blah.jpg" />
-                        return $(v).prependAttr('src', value.href.replace(/[^\/]*?$/, ''));
                     }
                     return $(v);
                 });

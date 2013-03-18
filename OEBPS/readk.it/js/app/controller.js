@@ -82,6 +82,10 @@ define([
             // publication according to the order specified.
             $.each(publication.getToc(), function(index, value){
 
+                // Ensure internal image urls have the correct path prepended.
+                // We have to do this here as jQuery will try to resolve the src.
+                pages[value.id] = pages[value.id].replace(/<img src=(['"])/g, '<img src=$1' + value.path.replace(/[^\/]+/g, '..') + value.href.replace(/[^\/]*?$/, ''));
+
                 var page = $(pages[value.id]);
                 // We have to rewrite any internal urls and corresponding ids
                 var internal_urls = page.find(url_selectors).filter(':urlInternal');

@@ -73,7 +73,7 @@ define([
             var idref = $(this).attr('idref');
             var href = $(f).find('manifest ' + opf_item_tag + '[id="' + idref + '"]').attr('href');
             var file = href.replace(/\//g, '_');
-            epub.toc_entries.push({id: $(this).attr('idref'), file: file, href: '/' + epub.epub_dir + epub.oebps_dir + '/' + href});
+            epub.toc_entries.push({id: $(this).attr('idref'), file: file, href: '/' + epub.epub_dir + epub.oebps_dir + '/' + href, path: href.replace(/[^\/]*?$/, '')});
         });
 
         callback(epub.toc_entries);

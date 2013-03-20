@@ -26,18 +26,28 @@
         <meta name="apple-mobile-web-app-capable" content="yes">    
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">    
         <link rel="apple-touch-startup-image" href="images/splash.png">
-
+<style>
+    @media only screen and (max-device-width: 480px) {
+        .slider{
+            display: none;
+        }
+    }
+</style>
     </head>
     <body>
+<script type="text/javascript">
+    document.write('<link title="sans"  rel="stylesheet" type="text/css" href="css/sans.css">');
+    document.write('<link title="serif" rel="stylesheet" type="text/css" href="css/serif.css">');
+</script>
 
         <div class="header">
             <div class="controls">
-                <div class="size">
+                <div class="size slider">
                     <label for="psize" class="icon" title="font size"><i class="icon-text-height"></i></label>
-                    <input type="range" name="psize" value="16" min="5" max="45" id="psize" />
+                    <input type="range" name="psize" value="16" min="10" max="40" id="psize" />
                     <span class="value">16</span>px
                 </div>
-                <div class="lh">
+                <div class="lh slider">
                     <label for="plh" class="icon" title="line height"><i class="icon-align-justify"></i></label>
                     <input type="range" name="plh" value="1.41" id="plh" step="0.01" min="0" max="5" />
                     <span class="value">1.41</span>

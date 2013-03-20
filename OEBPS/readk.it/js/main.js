@@ -35,7 +35,6 @@ require.config({
 
 var initialized = function () {
     $.event.trigger('kickoff');
-    console.log('main.initialized');
 };
 
 require(required, function($, Controller, config){

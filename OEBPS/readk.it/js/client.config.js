@@ -11,9 +11,9 @@ var client = {
         'client_js/libs/jquery.fitvids',
         'client_js/script',
         'css!client_css/base.css',
+/*
         'css!client_css/demo_bar.css',
         'css!client_css/themes/type_05.css',
-/*
         'css!client_css/themes/type_02.css',
         'css!client_css/themes/type_03.css',
         'css!client_css/themes/type_04.css',

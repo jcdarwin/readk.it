@@ -7,7 +7,6 @@ www.typeandgrids.com
 ••••••••••••••••••••••••
 */
 
-#sitePreloader { background-color: #000000; } /* Preloader GIF created with http://preloaders.net */
 body { background-color: #f2f2f2; }
 /*body { background: url("../../images/backgrounds/bg_06.png") repeat; }*/
 .thumbnailMask { background-image: url("../../images/masks/f2f2f2_01.png"); }

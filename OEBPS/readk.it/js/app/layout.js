@@ -23,6 +23,7 @@ define([
     var page_width = 0;
     var book_scroller = new iScroll('pageWrapper', {
         snap: true,
+        snapThreshold:1,
         momentum: false,
         hScrollbar: true,
         vScrollbar: false,
@@ -50,7 +51,9 @@ define([
 //        $('.page').css('width', page_width - 40);
         $('.page').css('width', page_width);
         book_scroller.refresh();
-        page_scroller.refresh();
+        if (page_scroller) {
+            page_scroller.refresh();
+        }
 //        if (scroll && currentPage !== 0) {
 //            book_scroller.scrollToPage(currentPage, 0, 0);
 //        }
@@ -108,8 +111,40 @@ define([
         return $('body');
     };
 
+    // Update our page layout after an orientation change
     $(function() {
         $(window).bind("orientationchange", update);
+    });
+
+    // Update our page layout after a window resize
+    var resizeTimer;
+    $(window).resize(function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(update, 100);
+    });
+
+    // Function to iterate through registered event handlers.
+    // http://james.padolsey.com/javascript/debug-jquery-events-with-listhandlers/
+    $.fn.listHandlers = function(events, outputFunction) {
+        return this.each(function(i){
+            var elem = this,
+                dEvents = $._data(window, "events");
+            if (!dEvents) {return;}
+            $.each(dEvents, function(name, handler){
+                if((new RegExp('^(' + (events === '*' ? '.+' : events.replace(',','|').replace(/^on/i,'')) + ')$' ,'i')).test(name)) {
+                   $.each(handler, function(i,obj){
+                       outputFunction(elem);
+                   });
+               }
+            });
+        });
+    };
+
+    // Ensure that any click handler forces a layout refresh.
+    $('*').listHandlers('resize', function(el){
+        $(el).click(function(){
+            update();
+        });
     });
 
     var finalise = function() {

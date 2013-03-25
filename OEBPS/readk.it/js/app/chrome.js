@@ -76,7 +76,6 @@ define([
         } else {
             $('.status').removeClass('online');
         }
-        $('.status').text(status);
         $('.status').addClass(status);
     }
 

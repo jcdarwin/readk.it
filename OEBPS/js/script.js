@@ -328,10 +328,10 @@ $(document).on('kickoff', function() {
 		
 		// Add a delay to fix weird issue with resizing About page
 		function closeSlider() {
-//			if(openedProjectInfo) {
+			if(openedProjectInfo && currOpenProject) {
 				closeOpenedProject(currOpenProject.find(".thumbnailImage"));
 				currOpenProject.find(".projectThumbnailHover").css("visibility", "visible");
-//			}
+			}
 		}
 		//setTimeout(closeSlider, 400);
 		setTimeout(closeSlider, 1);

@@ -66,7 +66,41 @@ define([
         var page_scroller = new iScroll(id, {snap: true, momentum: true, hScrollbar: false, vScrollbar: true, lockDirection: true});
         page_scrollers.push({file: file, scroller: page_scroller});
 
-        // Capture clicks on anchors so we can update the scroll position
+        // Capture clicks so we can update the scroll position.
+        $('#' + id).on('click', function(event) {
+            file = this.id.replace(/_/, '.');
+
+            // Firstly, find the page scroller from our collection that is keyed to our page.
+            var filtered_page_scrollers = _.filter(page_scrollers, function(scroller) {
+                return scroller.file == file;
+            });
+
+            // Redraw the page scroller layout, as the click may have resulted in
+            // the size of the page changing.
+            // We leave this a second to let any animations complete.
+            setTimeout(function(){
+                update((filtered_page_scrollers[0]).scroller);
+            }, 1000);
+        });
+
+        // Capture clicks on buttons so we can update the scroll position.
+        $('#' + id + ' button').on('click', function(event) {
+            file = $(this).parents('.page').attr('id').replace(/_/, '.');
+
+            // Firstly, find the page scroller from our collection that is keyed to our page.
+            var filtered_page_scrollers = _.filter(page_scrollers, function(scroller) {
+                return scroller.file == file;
+            });
+
+            // Redraw the page scroller layout, as the click may have resulted in
+            // the size of the page changing.
+            // We leave this a second to let any animations complete.
+            setTimeout(function(){
+                update((filtered_page_scrollers[0]).scroller);
+            }, 1000);
+        });
+
+        // Capture clicks on anchors so we can update the scroll position.
         $('#' + id + ' a').on('click', function(event) {
             event.preventDefault();
 
@@ -99,9 +133,16 @@ define([
             book_scroller.options['page_scroller_waiting'] = filtered_page_scrollers[0];
             book_scroller.options['page_scroller_anchor'] = anchor;
 
-            // Finally, call the book_scroller to scroll horizontally to the page.
+            // Call the book_scroller to in case we have to scroll horizontally to the page.
             // Book_scroller will callback to the function in the 'onAnimationEnd' option.
             book_scroller.scrollToElement($('[id="' + page_anchor + '"]')[0], 0);
+
+            // Redraw the page scroller layout, as the click may have resulted in
+            // the size of the page changing.
+            // We leave this a second to let any animations complete.
+            setTimeout(function(){
+                update((filtered_page_scrollers[0]).scroller);
+            }, 1000);
         });
 
         update(page_scroller);
@@ -123,31 +164,7 @@ define([
         resizeTimer = setTimeout(update, 100);
     });
 
-    // Function to iterate through registered event handlers.
-    // http://james.padolsey.com/javascript/debug-jquery-events-with-listhandlers/
-    $.fn.listHandlers = function(events, outputFunction) {
-        return this.each(function(i){
-            var elem = this,
-                dEvents = $._data(window, "events");
-            if (!dEvents) {return;}
-            $.each(dEvents, function(name, handler){
-                if((new RegExp('^(' + (events === '*' ? '.+' : events.replace(',','|').replace(/^on/i,'')) + ')$' ,'i')).test(name)) {
-                   $.each(handler, function(i,obj){
-                       outputFunction(elem);
-                   });
-               }
-            });
-        });
-    };
-
-    // Ensure that any click handler forces a layout refresh.
-    $('*').listHandlers('resize', function(el){
-        $(el).click(function(){
-            update();
-        });
-    });
-
-    var finalise = function() {
+    var finalise = function(that) {
         if (
         ("standalone" in window.navigator) &&
         window.navigator.standalone

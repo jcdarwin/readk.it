@@ -123,7 +123,7 @@ $(document).on('kickoff', function() {
 	$('#sitePreloader').delay(200).fadeOut(500, function() {
 		$(this).remove();
 	});
-	
+
 	// Fade site in
 //*	$(".container").delay(700).fadeIn(500, function(){
 	    $.event.trigger('kickedoff');

@@ -164,7 +164,7 @@ define([
         resizeTimer = setTimeout(update, 100);
     });
 
-    var finalise = function(that) {
+    var finalise = function() {
         if (
         ("standalone" in window.navigator) &&
         window.navigator.standalone

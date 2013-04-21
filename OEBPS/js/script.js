@@ -9,139 +9,122 @@ www.typeandgrids.com
 
 jQuery.easing.def = "easeOutQuad";
 
-$(document).ready(function()
-{
+$(document).ready(function() {
     $.event.trigger('kickoff');
 });
 
-$(document).on('kickoff', function()
-{
-	
+$(document).on('kickoff', function() {
+console.log('kickoff');	
 	// Make enlarge buttons inactive if no onClick event
 	$(".enlargeButton").each(function() {
-        if ( $(this).attr("onClick") == undefined )  {
+        if ( $(this).attr("onClick") === undefined )  {
             $(this).addClass("projectNavInactive");
-        };
+        }
     });
-	
+
 	// For fluid video embedding
 	$(".video").fitVids();
-	
+
 	// Hide project info
 	$(".projectInfo").css("display", "none");
 	// Don't hide video info
 	$(".videoInfo").css("display", "inline");
-	
+
 	// Move projects to second column
 	$(".project:odd").appendTo("#col2");
-		
+
 	// Project thumbnail hover
-	$(".projectThumbnail").on("mouseenter", function(e)
-	{
+	$(".projectThumbnail").on("mouseenter", function(e) {
 		$(this).children(".projectThumbnailHover").fadeIn(300);
-		
+
 		$(this).children(".projectThumbnailHover").find("h4").css("display", "block");
 		$(this).children(".projectThumbnailHover").find("h4").css("opacity", "0");
 		$(this).children(".projectThumbnailHover").find("h4").delay(200).animate({left: '30', opacity: 1}, 200);
-		
+
 		$(this).children(".projectThumbnailHover").find("h5").css("display", "block");
 		$(this).children(".projectThumbnailHover").find("h5").css("opacity", "0");
 		$(this).children(".projectThumbnailHover").find("h5").delay(350).animate({left: '30', opacity: 1}, 200);
-	})
-	
-	$(".projectThumbnail").on("mouseleave", function(e)
-	{
+	});
+
+	$(".projectThumbnail").on("mouseleave", function(e)	{
 		$(this).children(".projectThumbnailHover").fadeOut(200);
 		$(this).children(".projectThumbnailHover").find("h4").animate({left: '0', opacity: 0}, 0);
 		$(this).children(".projectThumbnailHover").find("h5").animate({left: '0', opacity: 0}, 0);
-	})
-	
-	// Hide hover effect on touch devices
+	});
 
+	// Hide hover effect on touch devices
 	if (Modernizr.touch) {
 		$(".projectThumbnailHover").css("display", "none");
 		$(".projectThumbnailHover").css("visibility", "hidden");
 		$(".projectThumbnail").unbind("mouseenter");
-		$(".projectThumbnail").unbind("mouseleave");	
+		$(".projectThumbnail").unbind("mouseleave");
 	}
-	
+
 	// Page navigation
 	var isWorkCurrentPage = true;
 	var isAboutCurrentPage = false;
-	
-	$("#logoDetailView").click(function()
-	{
+
+	$("#logoDetailView").click(function() {
 		window.location = "../../index.html";
 	});
-	
-	$("#workPage, #logo").click(function()
+
+	$("#workPage, #logo").click(function() {
+		if(!isWorkCurrentPage)
 		{
-			if(!isWorkCurrentPage)
-			{
-				isWorkCurrentPage = true;
-				isAboutCurrentPage = false;
-				$("#workPage").attr("class", "currentPage");
-				$("#aboutPage").removeClass("currentPage");
-				
-				$("#about").fadeOut(500, function()
-				{
-					$("#work").fadeIn(500);
-				});
-			}
-		});
-	
-	$("#aboutPage").click(function()
-		{
-			if(!isAboutCurrentPage)
-			{
+			isWorkCurrentPage = true;
+			isAboutCurrentPage = false;
+			$("#workPage").attr("class", "currentPage");
+			$("#aboutPage").removeClass("currentPage");
+			$("#about").fadeOut(500, function() {
+				$("#work").fadeIn(500);
+			});
+		}
+	});
+
+	$("#aboutPage").click(function() {
+			if(!isAboutCurrentPage) {
 				isAboutCurrentPage = true;
 				isWorkCurrentPage = false;
 				$("#aboutPage").attr("class", "currentPage");
 				$("#workPage").removeClass("currentPage");
-				
-				$("#work").fadeOut(500, function()
-				{
+				$("#work").fadeOut(500, function() {
 					$("#about").fadeIn(500);
 				});
 			}
 		});
-	
+
 	// Make Work page current page
 	$("#workPage").attr("class", "currentPage");
-	
+
 	// Hide About page
 	//$("#about").css("display", "none");
 	$("#about").fadeOut(0);
-	
+
 	// For site fade site in
 //*	$(".container").css("display", "none");
-	
-});
 
-// Remove site preloader after site is loaded
-$(document).on('kickoff', function() {
+	// Remove site preloader after site is loaded
+
 	$('#sitePreloader').delay(200).fadeOut(500, function() {
 		$(this).remove();
 	});
 
 	// Fade site in
 //*	$(".container").delay(700).fadeIn(500, function(){
-	    $.event.trigger('kickedoff');
+		$.event.trigger('kickedoff');
 //*	});
-});
 
-// Portfolio slider setup
-$(document).on('kickoff', function() {
+	// Portfolio slider setup
 	var sliderProps = {
 		autoScaleSlider: true,
-	   	autoScaleSliderWidth: 460,
-	   	autoScaleSliderHeight: 284,
-	   	captionShowEffects: '',
-	   	controlNavEnabled: false,
-	   	keyboardNavEnabled: true,
-	   	directionNavEnabled: false,
-	   	startSlideIndex: 0,
-	   	imageScaleMode: 'fill' },
+		autoScaleSliderWidth: 460,
+		autoScaleSliderHeight: 284,
+		captionShowEffects: '',
+		controlNavEnabled: false,
+		keyboardNavEnabled: true,
+		directionNavEnabled: false,
+		startSlideIndex: 0,
+		imageScaleMode: 'fill' },
 		openedProjectInfo = false,
 		isAnimating = false,
 		currOpenProject;
@@ -160,22 +143,31 @@ $(document).on('kickoff', function() {
 			return;
 		}
 		isAnimating = true;
-		
+
 		var firstImgLoaded = false,
 			projectEl = $(this).parent('.project'),
 			projectNav = projectEl.find('.projectNav'),
-			
+
 			//
 			projectInfo = projectEl.find('.projectInfo'),
 			//
-			
+
 			newOpenProjectInfo = projectEl.find(".projectInfo"),
 			currEl = $(this).find(".thumbnailImage");
-				
+
+		var sliderEl,
+			imgPreloaderOverlay;
+
 		if( !projectEl.data('slider-inited') ) {
-			var portfolioSliderData = projectEl.find('.portfolioSliderData'),
-				imgPreloaderOverlay;
-		
+			var portfolioSliderData = projectEl.find('.portfolioSliderData');
+
+			//var currItemCounter = projectNav.find('.projectNavCounter'),
+			var currItemCounter,
+				arrowNext,
+				arrowPrev,
+				arrowPrevBlocked,
+				arrowNextBlocked;
+
 			if(portfolioSliderData.length > 0) {
 				imgPreloaderOverlay = $('<div class="first-img-preloader"><div class="preloader-graphics"></d</div>');
 				projectEl.append(imgPreloaderOverlay);
@@ -184,14 +176,14 @@ $(document).on('kickoff', function() {
 					.addClass('portfolioSlidesContainer')
 					.wrap($('<div class="portfolioSlider"></div>'))
 					.find('li').addClass('portfolioSlide');
-			
-				var sliderEl = projectEl.find('.portfolioSlider');
+
+				sliderEl = projectEl.find('.portfolioSlider');
 				currEl.clone().addClass('portfolioImage myImage').appendTo(sliderEl.find('li').eq(0).removeAttr('data-src'));
 				var imgLoadCounter = 0;
-				
+
 				var sliderInstance = sliderEl.portfolioSlider(sliderProps).data('portfolioSlider');
 				var numSlides = sliderInstance.numSlides;
-				
+
 				// Fixes bug when resizing window on About page
 				$("#logo, #workPage").click(function() {
 					function bugFix() {
@@ -200,13 +192,13 @@ $(document).on('kickoff', function() {
 					}
 					setTimeout(bugFix, 710);
 				});
-				
+
 				//var currItemCounter = projectNav.find('.projectNavCounter'),
-				var currItemCounter = projectInfo.find('.projectNavCounter'),
-					arrowNext = projectNav.find('.projectNavButtons .next'),
-					arrowPrev = projectNav.find('.projectNavButtons .prev'),
-					arrowPrevBlocked = false,
-					arrowNextBlocked = false;
+				currItemCounter = projectInfo.find('.projectNavCounter'),
+				arrowNext = projectNav.find('.projectNavButtons .next'),
+				arrowPrev = projectNav.find('.projectNavButtons .prev'),
+				arrowPrevBlocked = false,
+				arrowNextBlocked = false;
 
 				function updateNextPrevButtons() {
 					if(sliderInstance.currentSlideId <= 0) {
@@ -230,7 +222,7 @@ $(document).on('kickoff', function() {
 					currItemCounter.text( (sliderInstance.currentSlideId + 1) + ' of ' + numSlides );
 					updateNextPrevButtons();
 				};
-				
+
 				arrowNext.click(function() {
 					if(!arrowNextBlocked) {
 						sliderInstance.next();
@@ -245,7 +237,7 @@ $(document).on('kickoff', function() {
 				sliderInstance.settings.beforeSlideChange.call();
 				updateNextPrevButtons();
 				projectEl.data('slider-inited', true);
-				
+
 				imgPreloaderOverlay.css({
 					width: currEl.width(),
 					height: currEl.height()
@@ -264,12 +256,12 @@ $(document).on('kickoff', function() {
 							imgPreloaderOverlay.stop().fadeOut();
 						}, 400);
 					}
-					
+
 				};
 
 			} else {
 				if(projectNav.length > 0) {
-					var currItemCounter = projectInfo.find('.projectNavCounter'),
+					currItemCounter = projectInfo.find('.projectNavCounter'),
 					arrowNext = projectNav.find('.projectNavButtons .next'),
 					arrowPrev = projectNav.find('.projectNavButtons .prev'),
 					arrowPrevBlocked = false,
@@ -281,8 +273,8 @@ $(document).on('kickoff', function() {
 				isAnimating = false;
 			}
 		} else {
-			var sliderEl = projectEl.find('.portfolioSlider');
-			if(sliderEl.length > 0) {
+			sliderEl = projectEl.find('.portfolioSlider');
+			if (sliderEl.length > 0) {
 				sliderEl.data('portfolioSlider').goToSilent(0);
 				imgPreloaderOverlay = projectEl.find('.first-img-preloader');
 				imgPreloaderOverlay.css({
@@ -292,7 +284,7 @@ $(document).on('kickoff', function() {
 
 				setTimeout(function() {
 					sliderEl.show();
-					
+
 					setTimeout(function() {
 						currEl.css({'visibility': 'hidden'});
 						imgPreloaderOverlay.stop().fadeOut();
@@ -300,32 +292,32 @@ $(document).on('kickoff', function() {
 						sliderEl.data('portfolioSlider').goTo(1);
 						isAnimating = false;
 					}, 400);
-					
+
 				}, 450);
-				
+
 			} else {
 				isAnimating = false;
 			}
-			
+
 		}
 
 		if(openedProjectInfo) {
 			if(newOpenProjectInfo.is(openedProjectInfo)) {
-				closeOpenedProject(currOpenProject.find(".thumbnailImage"));
-				currOpenProject.find(".projectThumbnailHover").fadeOut(800, function(){currOpenProject.find(".projectThumbnailHover").css("visibility", "visible")});
+				// The following is deactivated as it causes a problem on iOS
+				// closeOpenedProject(currOpenProject.find(".thumbnailImage"));
+				// currOpenProject.find(".projectThumbnailHover").fadeOut(800, function(){currOpenProject.find(".projectThumbnailHover").css("visibility", "visible");});
 				return false;
 			} else {
 				closeOpenedProject(currOpenProject.find(".thumbnailImage"));
-				currOpenProject.find(".projectThumbnailHover").fadeOut(800, function(){currOpenProject.find(".projectThumbnailHover").css("visibility", "visible")});
+				currOpenProject.find(".projectThumbnailHover").fadeOut(800, function(){currOpenProject.find(".projectThumbnailHover").css("visibility", "visible");});
 			}
 		}
-		currOpenProject =projectEl;
+		currOpenProject = projectEl;
 		openedProjectInfo = newOpenProjectInfo.stop().delay(200).slideDown(900).data('project-open', true);
-		currOpenProject.find(".projectThumbnailHover").fadeOut(200, function(){currOpenProject.find(".projectThumbnailHover").css("visibility", "hidden")});
+		currOpenProject.find(".projectThumbnailHover").fadeOut(200, function(){currOpenProject.find(".projectThumbnailHover").css("visibility", "hidden");});
 	});
-	
+
 	$(".closeButton, #aboutPage, #logo").click(function() {
-		
 		// Add a delay to fix weird issue with resizing About page
 		function closeSlider() {
 			if(openedProjectInfo && currOpenProject) {
@@ -335,23 +327,21 @@ $(document).on('kickoff', function() {
 		}
 		//setTimeout(closeSlider, 400);
 		setTimeout(closeSlider, 1);
-		
+
 	});
-	
+
 });
 
 // Theme switcher
 // =================================================================================================
-function changeTheme()
-{
+function changeTheme() {
 	$(".thumbnailMask").css("background-image", "none");
-	$("#shapeSelector").val('1');	
+	$("#shapeSelector").val('1');
 	$('#colorTheme').attr('href', $('#colorSelector').val());
 	$('#typeTheme').attr('href', $('#typeSelector').val());
 }
 
-function changeShape()
-{
+function changeShape() {
 	function hexc(colorval)
 	{
 		var parts = colorval.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);

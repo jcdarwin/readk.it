@@ -88,6 +88,11 @@ body {
     -webkit-user-select: none;
 }
 
+.slider, .slider span, label i, span.icon, span i {
+    font-size: 18px;
+}
+
+
 .size, .lh {
     float: left;
     margin-right: 10px;

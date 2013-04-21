@@ -52,7 +52,7 @@ Contents
 	font-family: "Lora", Georgia, serif;
 	font-weight: bold;
     font-style: normal;
-	font-size: 36px;
+	font-size: 2.4rem;
 	line-height: 1.5;
 	letter-spacing: -0.04em;
 	text-decoration: none;
@@ -64,7 +64,7 @@ Contents
 	font-family: "Lora", Georgia, serif;
 	font-weight: normal;
     font-style: italic;
-	font-size: 14px;
+	font-size: 1rem;
 	line-height: 1.2;
 	letter-spacing: 0;
 	text-decoration: none;
@@ -76,7 +76,7 @@ nav ul li a, nav ul li button, nav ul li span, #detailViewBack a {
 	font-family: "Lora", Georgia, serif;
 	font-weight: bold;
     font-style: normal;
-	font-size: 12px;
+	font-size: 0.9rem;
 	line-height: 1.5;
 	letter-spacing: 0;
 	text-decoration: none;
@@ -124,7 +124,7 @@ nav ul li a, nav ul li button, nav ul li span, #detailViewBack a {
 	font-family: "Lora", Georgia, serif;
 	font-weight: bold;
     font-style: normal;
-	font-size: 14px;
+	font-size: 1rem;
 	line-height: 1.2;
 	letter-spacing: 0;
 	text-decoration: none;
@@ -148,9 +148,9 @@ nav ul li a, nav ul li button, nav ul li span, #detailViewBack a {
 	font-family: "Lora", Georgia, serif;
 	font-weight: bold;
     font-style: normal;
-	font-size: 11px;
+	font-size: 0.8rem;
 	line-height: 1.2;
-	letter-spacing: 0.05em;
+	letter-spacing: 0.05rem;
 	text-decoration: none;
 	text-transform: uppercase;
 	text-rendering: auto;
@@ -160,19 +160,26 @@ nav ul li a, nav ul li button, nav ul li span, #detailViewBack a {
 	font-family: "Lora", Georgia, serif;
 	font-weight: bold;
     font-style: normal;
-	font-size: 11px;
+	font-size: 0.8rem;
 	line-height: 1.2;
-	letter-spacing: 0.05em;
+	letter-spacing: 0.05rem;
 	text-decoration: none;
 	text-transform: uppercase;
 	text-rendering: auto;
 }
 
-p, li, .projectInfo p, .projectInfo li {
+p, li {
+	font-size: 1.1rem;
+}
+
+.projectInfo p, .projectInfo li, .projectInfo li strong {
+	font-size: 1.1rem;
+}
+
+p, li, .projectInfo p, .projectInfo li, .projectInfo li strong  {
 	font-family: "Lora", Georgia, serif;
 	font-weight: normal;
     font-style: normal;
-	font-size: 14px;
 	line-height: 1.6;
 	letter-spacing: 0;
 	text-decoration: none;
@@ -304,19 +311,19 @@ nav ul li {
 }
 
 .projectNavClose, .projectNavEnlarge {
-	padding-top: 4px;
+	padding-top: 0.2rem;
 	padding-top: 7px\9; /* IE adjustment */
 }
 
 .projectNavButtons {
-	padding-top: 4px;
+	padding-top: 0.2rem;
 	padding-top: 7px\9; /* IE adjustment */
 }
 
 /* Tweak positioning slightly in Firefox */
 @-moz-document url-prefix() {
   .projectNavEnlarge, .projectNavClose, .projectNavButtons {
-		padding-top: 5px;
+		padding-top: 0.4rem;
 	}
 }
 
@@ -386,12 +393,12 @@ nav ul li {
 	@media only screen and (max-width: 767px) {
 		
 		#logo h1, #logoDetailView h1 {
-			font-size: 32px;
+			font-size: 2rem;
 			line-height: 1.1;
 		}
 		
 		#logo h2, #logoDetailView h2 {
-			margin-top: -10px;
+			margin-top: -0.7rem;
 		}
 		
 		header {
@@ -404,11 +411,11 @@ nav ul li {
 		}
 		
 		#overview {
-			padding-bottom: 0px;
+			padding-bottom: 0;
 		}
 		
 		#overview h3 {
-			font-size: 30px;
+			font-size: 1.7rem;
 		}
 		
 		footer p {

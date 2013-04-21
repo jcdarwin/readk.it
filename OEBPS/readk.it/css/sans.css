@@ -64,7 +64,7 @@ Contents
 	font-family: "Source Sans Pro", Arial, sans-serif;
 	font-weight: 700;
 	font-style: normal;
-	font-size: 34px;
+	font-size: 2.4rem;
 	line-height: 1.5;
 	letter-spacing: 0.02em;
 	text-decoration: none;
@@ -76,8 +76,8 @@ Contents
 	font-family: "Source Sans Pro", Arial, sans-serif;
 	font-weight: 400;
     font-style: normal;
-	font-size: 14px;
-	line-height: 1.2;
+	font-size: 1.2rem;
+	line-height: 1.4;
 	letter-spacing: 0;
 	text-decoration: none;
 	text-transform: none;
@@ -88,9 +88,9 @@ nav ul li a, nav ul li button, nav ul li span, #detailViewBack a {
 	font-family: "Source Sans Pro", Arial, sans-serif;
 	font-weight: 600;
     font-style: normal;
-	font-size: 12px;
+	font-size: 0.9rem;
 	line-height: 1.5;
-	letter-spacing: 0.09em;
+	letter-spacing: 0.09rem;
 	text-decoration: none;
 	text-transform: uppercase;
 	text-rendering: auto;
@@ -100,9 +100,9 @@ nav ul li a, nav ul li button, nav ul li span, #detailViewBack a {
 	font-family: "Source Sans Pro", Arial, sans-serif;
 	font-weight: 300;
     font-style: normal;
-	font-size: 40px;
+	font-size: 2.9rem;
 	line-height: 1.2;
-	letter-spacing: -0.02em;
+	letter-spacing: -0.02rem;
 	text-decoration: none;
 	text-transform: none;
 	text-rendering: optimizeLegibility;
@@ -136,7 +136,7 @@ nav ul li a, nav ul li button, nav ul li span, #detailViewBack a {
 	font-family: "Source Sans Pro", Arial, sans-serif;
 	font-weight: 700;
     font-style: normal;
-	font-size: 16px;
+	font-size: 1.1rem;
 	line-height: 1.2;
 	letter-spacing: 0;
 	text-decoration: none;
@@ -160,9 +160,9 @@ nav ul li a, nav ul li button, nav ul li span, #detailViewBack a {
 	font-family: "Source Sans Pro", Arial, sans-serif;
 	font-weight: 600;
     font-style: normal;
-	font-size: 12px;
+	font-size: 0.9rem;
 	line-height: 1.2;
-	letter-spacing: 0.09em;
+	letter-spacing: 0.09rem;
 	text-decoration: none;
 	text-transform: uppercase;
 	text-rendering: auto;
@@ -172,20 +172,27 @@ nav ul li a, nav ul li button, nav ul li span, #detailViewBack a {
 	font-family: "Source Sans Pro", Arial, sans-serif;
 	font-weight: 600;
     font-style: normal;
-	font-size: 12px;
+	font-size: 0.9rem;
 	line-height: 1.2;
-	letter-spacing: 0.09em;
+	letter-spacing: 0.09rem;
 	text-decoration: none;
 	text-transform: uppercase;
 	text-rendering: auto;
 }
 
-p, li, .projectInfo p, .projectInfo li {
+p, li {
+	font-size: 1.1rem;
+}
+
+.projectInfo p, .projectInfo li, .projectInfo li strong {
+	font-size: 1.1rem;
+}
+
+p, li, .projectInfo p, .projectInfo li, .projectInfo li strong  {
 	font-family: "Source Sans Pro", Arial, sans-serif;
 	font-weight: 400;
     font-style: normal;
-	font-size: 15px;
-	line-height: 1.4;
+	line-height: 1.4rem;
 	letter-spacing: 0;
 	text-decoration: none;
 	text-transform: none;
@@ -281,8 +288,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 nav {
-	padding-top: 41px;
-	margin-bottom: -30px;
+	padding-top: 3.4rem;
+	margin-bottom: -2.1rem;
 }
 
 nav ul li {
@@ -290,7 +297,7 @@ nav ul li {
 }
 
 #overview {
-	padding-bottom: 10px;	
+	padding-bottom: 10px;
 }
 
 #overview h3 {
@@ -316,19 +323,19 @@ nav ul li {
 }
 
 .projectNavClose, .projectNavEnlarge {
-	padding-top: 3px;
+	padding-top: 0.2rem;
 	padding-top: 5px\9; /* IE adjustment */
 }
 
 .projectNavButtons {
-	padding-top: 3px;
+	padding-top: 0.2rem;
 	padding-top: 5px\9; /* IE adjustment */
 }
 
 /* Tweak positioning slightly in Firefox */
 @-moz-document url-prefix() {
   .projectNavEnlarge, .projectNavClose, .projectNavButtons {
-		padding-top: 6px;
+		padding-top: 0.4rem;
 	}
 }
 
@@ -398,12 +405,12 @@ nav ul li {
 	@media only screen and (max-width: 767px) {
 		
 		#logo h1, #logoDetailView h1 {
-			font-size: 30px;
+			font-size: 2.1rem;
 			line-height: 1;
 		}
 		
 		#logo h2, #logoDetailView h2 {
-			margin-top: -12px;
+			margin-top: -0.9rem;
 		}
 		
 		header {
@@ -416,11 +423,11 @@ nav ul li {
 		}
 		
 		#overview {
-			padding-bottom: 0px;
+			padding-bottom: 0;
 		}
 		
 		#overview h3 {
-			font-size: 24px;
+			font-size: 1.7rem;
 		}
 		
 		footer p {
@@ -444,12 +451,12 @@ nav ul li {
 		}
 		
 		#logo h2, #logoDetailView h2 {
-			font-size: 14px;
-			margin-top: -12px;
+			font-size: 1rem;
+			margin-top: -0.9rem;
 		}
 		
 		#overview h3 {
-			font-size: 24px;	
+			font-size: 1.7rem;	
 		}
 		
 		.projectThumbnailHover h4 {

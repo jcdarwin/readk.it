@@ -118,7 +118,7 @@ define([
                 layout.add(value.id, value.file, pages[value.id]);
             });
 
-            layout.finalise(window);
+            layout.finalise();
 
             load_publication_callback(publication);
         });

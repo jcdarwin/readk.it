@@ -40,7 +40,7 @@ define([
     $('#psize').on('change', function() {
         var elem = $(this).attr('id').split('size')[0];
         var value = $(this).val();
-        $(elem).css('font-size', value + 'px');
+        $('html').css('font-size', value + 'px');
         $(this).next('span.value').text(value);
     });
 
@@ -56,7 +56,7 @@ define([
     $('#plh').on('change', function() {
         var elem = $(this).attr('id').split('lh')[0];
         var value = parseFloat($(this).val()).toFixed(2); // keeps the range to outputing two decimal places
-        $(elem).css('line-height', $(this).val());
+        $('p,li,h1,h2,h3,h4,h5,button').css('line-height', $(this).val());
         $(this).next('span.value').text(value);
     });
 

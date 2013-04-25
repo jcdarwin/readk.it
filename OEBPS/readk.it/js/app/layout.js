@@ -79,7 +79,10 @@ define([
             // the size of the page changing.
             // We leave this a second to let any animations complete.
             setTimeout(function(){
-                update((filtered_page_scrollers[0]).scroller);
+                try {
+                    update((filtered_page_scrollers[0]).scroller);
+                } catch (e) {
+                }
             }, 1000);
         });
 

@@ -89,7 +89,7 @@ define([
     // http://www.bennadel.com/blog/1950-Detecting-iPhone-s-App-Mode-Full-Screen-Mode-For-Web-Applications.htm
     if (
     ("standalone" in window.navigator) &&
-    !window.navigator.standalone
+     window.navigator.standalone
     ){
         $('.header').css('top', '20px');
     }

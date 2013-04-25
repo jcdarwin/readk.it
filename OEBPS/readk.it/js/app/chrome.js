@@ -91,6 +91,7 @@ define([
     ("standalone" in window.navigator) &&
      window.navigator.standalone
     ){
+        alert('setting header to 20px');
         $('.header').css('top', '20px');
     }
 

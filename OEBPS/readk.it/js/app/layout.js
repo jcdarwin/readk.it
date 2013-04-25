@@ -68,6 +68,7 @@ define([
 
         // Capture clicks so we can update the scroll position.
         $('#' + id).on('click', function(event) {
+
             file = this.id.replace(/_/, '.');
 
             // Firstly, find the page scroller from our collection that is keyed to our page.
@@ -105,47 +106,52 @@ define([
 
         // Capture clicks on anchors so we can update the scroll position.
         $('#' + id + ' a').on('click', function(event) {
-            event.preventDefault();
 
-            // Using window.location causes a few problems:
-            // * we end up with the url fragment in the address bar
-            // * iScroll doesn't recognise that the horizontal position has changed
-            //   and therefore won't let us page back to the beginning.
-            //
-            //window.location = $(this).attr('href');
-            //setTimeout(function () {
-            //    update(book_scroller);
-            //}, 0);
+            if ( $(this).attr('rel') == 'external' ) {
+                // Let clicks on anchors with rel="external" act as normal.
+            } else {
+                event.preventDefault();
 
-            var matches = this.href.match(/^.*#((.*?)(?:__.*)?)$/);
-            // http://localhost:8000/#ch04.xhtml                               => ["http://localhost:8000/#ch04.xhtml", "ch04.xhtml", "ch04.xhtml"]
-            // http://localhost:8000/#ch04.xhtml__epub_3_best_practices_teaser => ["http://localhost:8000/#ch04.xhtml__epub_3_best_practices_teaser", "ch04.xhtml__epub_3_best_practices_teaser", "ch04.xhtml"]
-            var anchor = matches[1];
-            var page_anchor = matches[2];
+                // Using window.location causes a few problems:
+                // * we end up with the url fragment in the address bar
+                // * iScroll doesn't recognise that the horizontal position has changed
+                //   and therefore won't let us page back to the beginning.
+                //
+                //window.location = $(this).attr('href');
+                //setTimeout(function () {
+                //    update(book_scroller);
+                //}, 0);
 
-            // We have to use the book_scroller to scroll horizontally to the page...
-            // and then callback to the page scroller to scroll vertically to the desired part of the page.
+                var matches = this.href.match(/^.*#((.*?)(?:__.*)?)$/);
+                // http://localhost:8000/#ch04.xhtml                               => ["http://localhost:8000/#ch04.xhtml", "ch04.xhtml", "ch04.xhtml"]
+                // http://localhost:8000/#ch04.xhtml__epub_3_best_practices_teaser => ["http://localhost:8000/#ch04.xhtml__epub_3_best_practices_teaser", "ch04.xhtml__epub_3_best_practices_teaser", "ch04.xhtml"]
+                var anchor = matches[1];
+                var page_anchor = matches[2];
 
-            // Firstly, find the page scroller from our collection that is keyed to our page.
-            var filtered_page_scrollers = _.filter(page_scrollers, function(scroller) {
-                return scroller.file == page_anchor;
-            });
+                // We have to use the book_scroller to scroll horizontally to the page...
+                // and then callback to the page scroller to scroll vertically to the desired part of the page.
 
-            // Next, set the options in the book_scroller indicating that there is
-            // a page-scroller waiting to be processed.
-            book_scroller.options['page_scroller_waiting'] = filtered_page_scrollers[0];
-            book_scroller.options['page_scroller_anchor'] = anchor;
+                // Firstly, find the page scroller from our collection that is keyed to our page.
+                var filtered_page_scrollers = _.filter(page_scrollers, function(scroller) {
+                    return scroller.file == page_anchor;
+                });
 
-            // Call the book_scroller to in case we have to scroll horizontally to the page.
-            // Book_scroller will callback to the function in the 'onAnimationEnd' option.
-            book_scroller.scrollToElement($('[id="' + page_anchor + '"]')[0], 0);
+                // Next, set the options in the book_scroller indicating that there is
+                // a page-scroller waiting to be processed.
+                book_scroller.options['page_scroller_waiting'] = filtered_page_scrollers[0];
+                book_scroller.options['page_scroller_anchor'] = anchor;
 
-            // Redraw the page scroller layout, as the click may have resulted in
-            // the size of the page changing.
-            // We leave this a second to let any animations complete.
-            setTimeout(function(){
-                update((filtered_page_scrollers[0]).scroller);
-            }, 1000);
+                // Call the book_scroller to in case we have to scroll horizontally to the page.
+                // Book_scroller will callback to the function in the 'onAnimationEnd' option.
+                book_scroller.scrollToElement($('[id="' + page_anchor + '"]')[0], 0);
+
+                // Redraw the page scroller layout, as the click may have resulted in
+                // the size of the page changing.
+                // We leave this a second to let any animations complete.
+                setTimeout(function(){
+                    update((filtered_page_scrollers[0]).scroller);
+                }, 1000);
+            }
         });
 
         update(page_scroller);

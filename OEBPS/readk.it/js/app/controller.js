@@ -92,12 +92,14 @@ define([
 
                 $.each(internal_urls, function(i, v){
                     if ( typeof $(v).attr('href') !== 'undefined' ) {
-                        if ($(v).attr('href').substr(0,1) == '#') {
-                            // We must have something like '#milestone1'; convert to '#chapter1_milestone1'
-                            $(v).attr('href', '#' + publication.file + '_' + $(v).attr('href').substr(1));
-                        } else {
-                            // We must have something like 'text/chapter2#milestone1'; convert to '#text_chapter2#milestone1'
-                            $(v).attr('href', '#' + $(v).attr('href').replace(/\//g, '_').replace(/#/g, '_'));
+                        if ( $(v).attr('rel') != 'external' ) {
+                            if ($(v).attr('href').substr(0,1) == '#') {
+                                // We must have something like '#milestone1'; convert to '#chapter1_milestone1'
+                                $(v).attr('href', '#' + publication.file + '_' + $(v).attr('href').substr(1));
+                            } else {
+                                // We must have something like 'text/chapter2#milestone1'; convert to '#text_chapter2#milestone1'
+                                $(v).attr('href', '#' + $(v).attr('href').replace(/\//g, '_').replace(/#/g, '_'));
+                            }
                         }
                     }
                     return $(v);

@@ -84,7 +84,7 @@ define([
 
                 // Ensure internal image urls have the correct path prepended.
                 // We have to do this here as jQuery will try to resolve the src.
-                pages[value.id] = pages[value.id].replace(/(<[^<>]* src=['"])/g, '$1' + value.path.replace(/[^\/]+/g, '..') + value.href.replace(/[^\/]*?$/, ''));
+                pages[value.id] = pages[value.id].replace(/(<[^<>]* (?:src|poster)=['"])/g, '$1' + value.path.replace(/[^\/]+/g, '..') + value.href.replace(/[^\/]*?$/, ''));
 
                 var page = $(pages[value.id]);
                 // We have to rewrite any internal urls and corresponding ids

@@ -91,8 +91,7 @@ define([
     ("standalone" in window.navigator) &&
      window.navigator.standalone
     ){
-        alert('setting header to 20px');
-        $('.header').css('top', '20px');
+        $('#pageWrapper').css('top', '60px');
     }
 
     // Check online status immediately, instead of waiting for the first setInterval

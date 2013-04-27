@@ -38,6 +38,19 @@ define([
                 currentPage = - Math.ceil( $('#pageScroller').position().left / page_width);
             }
 
+            if (!restoring) {
+                if (storage('page') != currentPage) {
+                    console.log('turned from ' + storage('page') + ' to ' + currentPage);
+                    if (storage('history')) {
+                        var history = storage('history');
+                        history.push(storage('page'));
+                        storage('history', history);
+                    } else {
+                        storage('history', [storage('page')]);
+                    }
+                }
+            }
+
             storage('page', currentPage);
             pages[currentPage].x = $(book_scroller)[0].x;
             storage('pages', pages);
@@ -69,6 +82,16 @@ define([
     // Local / session / cookie storage
     var storage = function (key, value) {
         return $.localStorage(key, value);
+    };
+
+    // Revisit the last entry in the history.
+    var go_back = function () {
+        var history = storage('history');
+        var page = history.pop();
+
+        book_scroller.scrollToPage(page, 0, 0);
+
+        storage('history', history);
     };
 
     // Add a page
@@ -231,6 +254,7 @@ define([
         update: update,
         add: add,
         storage: storage,
+        go_back: go_back,
         restore_bookmarks: restore_bookmarks,
         page_scrollers: page_scrollers,
         body: body,

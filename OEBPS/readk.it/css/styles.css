@@ -92,7 +92,6 @@ body {
     font-size: 18px;
 }
 
-
 .size, .lh {
     float: left;
     margin-right: 10px;
@@ -106,8 +105,21 @@ body {
     color: #ffffff;
     margin-top:5px;
     display:inline-block;
-    width:36px;height:30px;border-radius:15px;text-align:center;background:#000;
+    width:36px;height:26px;border-radius:15px;text-align:center;background:#000;padding-top:6px;
     line-height: 30px;
+    cursor: hand; cursor: pointer; 
+}
+
+.font {
+    display: inline-block;
+    margin-top: -4px;
+    font-size: 18px;
+}
+
+.back {
+    float:left;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .status {
@@ -129,7 +141,6 @@ body {
     font-weight: bold;
     float:right;
     margin-right: 10px;
-    cursor: hand; cursor: pointer; 
 }
 
 .serif {
@@ -137,7 +148,6 @@ body {
     font-weight: bold;
     float:right;
     margin-right: 10px;
-    cursor: hand; cursor: pointer; 
 }
 
 /* iPad [portrait + landscape] */
@@ -161,3 +171,20 @@ pre {
 }
 
 #sitePreloader { background-color: #000000; } /* Preloader GIF created with http://preloaders.net */
+
+input[type=range] {
+    -webkit-appearance: none;
+    background-color: silver;
+    width: 160px;
+    height:20px;
+    border-radius: 5px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+     -webkit-appearance: none;
+    background-color: #666;
+    opacity: 0.8;
+    width: 20px;
+    height: 26px;
+    border-radius: 5px;
+}

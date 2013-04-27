@@ -13,6 +13,10 @@ define([
 
     /* Register handlers. */
 
+    $('.back').click(function(){
+        layout.go_back();
+    });
+
     // Font style handlers
     $('.serif').click(function(){
         // Switch stylesheet from sans to serif (i.e. body text)

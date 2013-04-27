@@ -25,6 +25,7 @@ define([
     var page_width = 0;
     var currentPage = 0;
     var restoring = true;
+    var going_back = false;
     var book_scroller = new iScroll('pageWrapper', {
         snap: true,
         snapThreshold:1,
@@ -40,13 +41,19 @@ define([
 
             if (!restoring) {
                 if (storage('page') != currentPage) {
-                    console.log('turned from ' + storage('page') + ' to ' + currentPage);
-                    if (storage('history')) {
-                        var history = storage('history');
-                        history.push(storage('page'));
-                        storage('history', history);
+                    //console.log('turned from ' + storage('page') + ' to ' + currentPage);
+                    if (going_back) {
+                        // If we're in the process of going back along our history,
+                        // don't record this page transition itself in the history.
+                        going_back = false;
                     } else {
-                        storage('history', [storage('page')]);
+                        if (storage('history')) {
+                            var history = storage('history');
+                            history.push(storage('page'));
+                            storage('history', history);
+                        } else {
+                            storage('history', [storage('page')]);
+                        }
                     }
                 }
             }
@@ -88,6 +95,7 @@ define([
     var go_back = function () {
         var history = storage('history');
         var page = history.pop();
+        going_back = true;
 
         book_scroller.scrollToPage(page, 0, 0);
 

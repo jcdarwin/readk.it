@@ -14,7 +14,6 @@ $(document).ready(function() {
 });
 
 $(document).on('kickoff', function() {
-console.log('kickoff');	
 	// Make enlarge buttons inactive if no onClick event
 	$(".enlargeButton").each(function() {
         if ( $(this).attr("onClick") === undefined )  {

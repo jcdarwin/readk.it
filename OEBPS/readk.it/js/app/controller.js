@@ -8,12 +8,13 @@
 
 define([
     'jquery',
+    'jquery.storage',
     'jquery.ba-urlinternal.min',
     'app/config',
     'app/epub',
     'app/layout',
     'app/chrome'
-], function($, jbum, config, Epub, layout, chrome){
+], function($, $storage, jbum, config, Epub, layout, chrome){
 
     var pages = [];
     var load_publication_callback;
@@ -50,6 +51,7 @@ define([
             $.each(publication.getToc(), function(index, value){
             });
             layout.update(layout.page_scrollers[0].scroller);
+            layout.restore_bookmark();
         }
     };
 

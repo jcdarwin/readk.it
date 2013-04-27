@@ -14,13 +14,15 @@
 
 define([
     'jquery',
+    'jquery.storage',
     'iscroll',
     'underscore'
-], function($, iScroll, _){
+], function($, $storage, iScroll, _){
 
     // Global vars
     var page_scrollers = [];
     var page_width = 0;
+    var currentPage = 0;
     var book_scroller = new iScroll('pageWrapper', {
         snap: true,
         snapThreshold:1,
@@ -29,6 +31,14 @@ define([
         vScrollbar: false,
         lockDirection: true,
         onAnimationEnd: function(){
+            // Store details of the page we're on
+            if (page_width > 0) {
+                currentPage = - Math.ceil( $('#pageScroller').position().left / page_width);
+            }
+
+            $.localStorage('page', currentPage);
+            $.localStorage('x', $(book_scroller)[0].x);
+
             if (this.options['page_scroller_waiting']) {
                 this.options['page_scroller_waiting'].scroller.scrollToElement($('[id="' + this.options['page_scroller_anchor'] + '"]')[0], 0);
                 this.options['page_scroller_waiting'] = undefined;
@@ -39,12 +49,6 @@ define([
 
     // Function to redraw the layout after DOM changes.
     var update = function (page_scroller) {
-        var currentPage = 0;
-
-        if (page_width > 0) {
-            currentPage = - Math.ceil( $('#pageScroller').position().left / page_width);
-        }
-
         page_width = $('#pageWrapper').width();
         var pages = $('.page').length;
         $('#pageScroller').css('width', page_width * pages);
@@ -63,7 +67,12 @@ define([
     var add = function (id, file, html) {
         $('#pageScroller').append('<div class="page" id="' + file + '"><div id="' + id + '" class="wrapper"><div class="scroller">' + html + '</div></div></div>');
 
-        var page_scroller = new iScroll(id, {snap: true, momentum: true, hScrollbar: false, vScrollbar: true, lockDirection: true});
+        var page_scroller = new iScroll(id, {snap: true, momentum: true, hScrollbar: false, vScrollbar: true, lockDirection: true,
+            onAnimationEnd: function(){
+                // Store details of the current position on the page.
+                $.localStorage('y', $(this)[0].y);
+            }
+        });
         page_scrollers.push({file: file, scroller: page_scroller});
 
         // Capture clicks so we can update the scroll position.
@@ -157,6 +166,12 @@ define([
         update(page_scroller);
     };
 
+    // Restore our previous position in the layout
+    var restore_bookmark = function () {
+        book_scroller.scrollToPage($.localStorage('page'), 0, 0);
+        (page_scrollers[$.localStorage('page')]).scroller.scrollTo(0, $.localStorage('y'), 0, 0);
+    };
+
     var body = function() {
         return $('body');
     };
@@ -187,6 +202,7 @@ define([
     return {
         update: update,
         add: add,
+        restore_bookmark: restore_bookmark,
         page_scrollers: page_scrollers,
         body: body,
         finalise: finalise

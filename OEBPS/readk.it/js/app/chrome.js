@@ -16,7 +16,7 @@ define([
     // Font style handlers
     $('.serif').click(function(){
         // Switch stylesheet from sans to serif (i.e. body text)
-        // The trick here is to disable both stylsheets first,
+        // The trick here is to disable both stylesheets first,
         // and then enable the one we want.
         $('link[title=sans]')[0].disabled=true;
         $('link[title=serif]')[0].disabled=true;
@@ -26,11 +26,12 @@ define([
                 this.scroller.refresh();
             });
         }, 0);
+        layout.storage('font', 'serif');
     });
 
     $('.sans').click(function(){
         // Switch stylesheet from serif to sans (i.e. body text)
-        // The trick here is to disable both stylsheets first,
+        // The trick here is to disable both stylesheets first,
         // and then enable the one we want.
         $('link[title=serif]')[0].disabled=true;
         $('link[title=sans]')[0].disabled=true;
@@ -40,7 +41,16 @@ define([
                 this.scroller.refresh();
             });
         }, 0);
+        layout.storage('font', 'sans');
     });
+
+    // Checked for stored font preference and apply accordingly.
+    var font = layout.storage('font');
+    if (font == 'serif') {
+        $('.serif').click();
+    } else if (font == 'sans') {
+        $('.sans').click();
+    }
 
     // Fontsize event handlers
     $('#psize').on('change', function() {

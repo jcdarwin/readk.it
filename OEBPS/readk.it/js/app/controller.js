@@ -51,7 +51,7 @@ define([
             $.each(publication.getToc(), function(index, value){
             });
             layout.update(layout.page_scrollers[0].scroller);
-            layout.restore_bookmark();
+            layout.restore_bookmarks();
         }
     };
 

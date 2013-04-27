@@ -21,8 +21,10 @@ define([
 
     // Global vars
     var page_scrollers = [];
+    var pages = [];
     var page_width = 0;
     var currentPage = 0;
+    var restoring = true;
     var book_scroller = new iScroll('pageWrapper', {
         snap: true,
         snapThreshold:1,
@@ -36,8 +38,9 @@ define([
                 currentPage = - Math.ceil( $('#pageScroller').position().left / page_width);
             }
 
-            $.localStorage('page', currentPage);
-            $.localStorage('x', $(book_scroller)[0].x);
+            storage('page', currentPage);
+            pages[currentPage].x = $(book_scroller)[0].x;
+            storage('pages', pages);
 
             if (this.options['page_scroller_waiting']) {
                 this.options['page_scroller_waiting'].scroller.scrollToElement($('[id="' + this.options['page_scroller_anchor'] + '"]')[0], 0);
@@ -63,16 +66,25 @@ define([
 //        }
     };
 
+    // Local / session / cookie storage
+    var storage = function (key, value) {
+        return $.localStorage(key, value);
+    };
+
     // Add a page
     var add = function (id, file, html) {
         $('#pageScroller').append('<div class="page" id="' + file + '"><div id="' + id + '" class="wrapper"><div class="scroller">' + html + '</div></div></div>');
 
         var page_scroller = new iScroll(id, {snap: true, momentum: true, hScrollbar: false, vScrollbar: true, lockDirection: true,
             onAnimationEnd: function(){
-                // Store details of the current position on the page.
-                $.localStorage('y', $(this)[0].y);
+                if (!restoring) {
+                    // Store details of the current position on the page.
+                    pages[currentPage].y = (page_scrollers[currentPage]).scroller.y;
+                    storage('pages', pages);
+                }
             }
         });
+        pages[page_scrollers.length] = {x: 0, y: 0};
         page_scrollers.push({file: file, scroller: page_scroller});
 
         // Capture clicks so we can update the scroll position.
@@ -167,9 +179,25 @@ define([
     };
 
     // Restore our previous position in the layout
-    var restore_bookmark = function () {
-        book_scroller.scrollToPage($.localStorage('page'), 0, 0);
-        (page_scrollers[$.localStorage('page')]).scroller.scrollTo(0, $.localStorage('y'), 0, 0);
+    var restore_bookmarks = function () {
+        if (storage('pages')) {
+            pages = storage('pages');
+
+            var page = storage('page'),
+                y = 0;
+
+            book_scroller.scrollToPage(page, 0, 0);
+
+            for (var i=0; i < pages.length; i++) {
+                y = (pages[i]).y;
+                (page_scrollers[i]).scroller.scrollTo(0, y, 0, 0);
+            }
+
+            y = (pages[page]).y;
+            (page_scrollers[page]).scroller.scrollTo(0, y, 0, 0);
+
+        }
+        restoring = false;
     };
 
     var body = function() {
@@ -202,7 +230,8 @@ define([
     return {
         update: update,
         add: add,
-        restore_bookmark: restore_bookmark,
+        storage: storage,
+        restore_bookmarks: restore_bookmarks,
         page_scrollers: page_scrollers,
         body: body,
         finalise: finalise

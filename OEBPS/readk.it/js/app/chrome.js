@@ -37,9 +37,15 @@ define([
         // Switch stylesheet from sans to serif (i.e. body text)
         // The trick here is to disable both stylesheets first,
         // and then enable the one we want.
-        $('link[title=sans]')[0].disabled=true;
-        $('link[title=serif]')[0].disabled=true;
-        $('link[title=serif]')[0].disabled=false;
+        $.each($('link[title=sans]'), function(i, link) {
+            link.disabled=true;
+        });
+        $.each($('link[title=serif]'), function(i, link) {
+            link.disabled=true;
+        });
+        $.each($('link[title=serif]'), function(i, link) {
+            link.disabled=false;
+        });
         setTimeout(function () {
             $.each(layout.page_scrollers, function() {
                 this.scroller.refresh();
@@ -52,9 +58,15 @@ define([
         // Switch stylesheet from serif to sans (i.e. body text)
         // The trick here is to disable both stylesheets first,
         // and then enable the one we want.
-        $('link[title=serif]')[0].disabled=true;
-        $('link[title=sans]')[0].disabled=true;
-        $('link[title=sans]')[0].disabled=false;
+        $.each($('link[title=serif]'), function(i, link) {
+            link.disabled=true;
+        });
+        $.each($('link[title=sans]'), function(i, link) {
+            link.disabled=true;
+        });
+        $.each($('link[title=sans]'), function(i, link) {
+            link.disabled=false;
+        });
         setTimeout(function () {
             $.each(layout.page_scrollers, function() {
                 this.scroller.refresh();

@@ -50,19 +50,19 @@ Contents
 
 #logo h1, #logoDetailView h1 {
 	font-family: "Lora", Georgia, serif;
-	font-weight: bold;
+	font-weight: 700;
     font-style: normal;
 	font-size: 2.4rem;
 	line-height: 1.5;
-	letter-spacing: -0.04em;
+	letter-spacing: 0.02em;
 	text-decoration: none;
-	text-transform: none;
+	text-transform: uppercase;
 	text-rendering: optimizeLegibility;
 }
 
 #logo h2, #logoDetailView h2 {
 	font-family: "Lora", Georgia, serif;
-	font-weight: normal;
+	font-weight: 400;
     font-style: italic;
 	font-size: 1rem;
 	line-height: 1.2;
@@ -88,7 +88,7 @@ nav ul li a, nav ul li button, nav ul li span, #detailViewBack a {
 	font-family: "Lora", Georgia, serif;
 	font-weight: normal;
     font-style: italic;
-	font-size: 36px;
+	font-size: 2.9rem;
 	line-height: 1.2;
 	letter-spacing: -0.03em;
 	text-decoration: none;

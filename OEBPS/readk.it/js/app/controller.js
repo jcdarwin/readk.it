@@ -56,9 +56,8 @@ define([
     };
 
     var load_publication = function (toc) {
-
         // require.js text plugin fires asynchronously, so we'll use
-        // deferreds to work out when all texts have been retreived.
+        // deferreds to work out when all texts have been retrieved.
         var deferreds = [];
 
         $.each(toc, function(index, value){

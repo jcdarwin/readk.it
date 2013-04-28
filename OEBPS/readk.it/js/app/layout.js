@@ -25,7 +25,6 @@ define([
     var page_width = 0;
     var currentPage = 0;
     var restoring = true;
-    var going_back = false;
     var book_scroller = new iScroll('pageWrapper', {
         snap: true,
         snapThreshold:1,
@@ -39,34 +38,27 @@ define([
                 currentPage = - Math.ceil( $('#pageScroller').position().left / page_width);
             }
 
-            if (!restoring) {
+            if (this.options['page_scroller_waiting']) {
+                this.options['page_scroller_waiting'].scroller.scrollToElement($('[href="#' + this.options['page_scroller_anchor'] + '"]')[0], 0);
+                this.options['page_scroller_waiting'] = undefined;
+                this.options['page_scroller_anchor'] = undefined;
+
                 if (storage('page') != currentPage) {
-                    //console.log('turned from ' + storage('page') + ' to ' + currentPage);
-                    if (going_back) {
-                        // If we're in the process of going back along our history,
-                        // don't record this page transition itself in the history.
-                        going_back = false;
+                    if (storage('history')) {
+                        var history = storage('history');
+                        history.push(storage('page'));
+                        storage('history', history);
                     } else {
-                        if (storage('history')) {
-                            var history = storage('history');
-                            history.push(storage('page'));
-                            storage('history', history);
-                        } else {
-                            storage('history', [storage('page')]);
-                        }
+                        storage('history', [storage('page')]);
                     }
+                    // Notify any subscribers that the history has changed.
+                    notifications('history_changed').publish('');
                 }
             }
 
             storage('page', currentPage);
             pages[currentPage].x = $(book_scroller)[0].x;
             storage('pages', pages);
-
-            if (this.options['page_scroller_waiting']) {
-                this.options['page_scroller_waiting'].scroller.scrollToElement($('[id="' + this.options['page_scroller_anchor'] + '"]')[0], 0);
-                this.options['page_scroller_waiting'] = undefined;
-                this.options['page_scroller_anchor'] = undefined;
-            }
         }
     });
 
@@ -95,7 +87,6 @@ define([
     var go_back = function () {
         var history = storage('history');
         var page = history.pop();
-        going_back = true;
 
         book_scroller.scrollToPage(page, 0, 0);
 
@@ -116,6 +107,7 @@ define([
             }
         });
         pages[page_scrollers.length] = {x: 0, y: 0};
+        storage('pages', pages);
         page_scrollers.push({file: file, scroller: page_scroller});
 
         // Capture clicks so we can update the scroll position.
@@ -258,6 +250,27 @@ define([
         }
     };
 
+    // Classic pub sub, as per http://api.jquery.com/jQuery.Callbacks/
+    var topics = {};
+    var notifications = function( id ) {
+        var callbacks,
+            method,
+            topic = id && topics[ id ];
+
+        if ( !topic ) {
+            callbacks = jQuery.Callbacks();
+            topic = {
+                publish: callbacks.fire,
+                subscribe: callbacks.add,
+                unsubscribe: callbacks.remove
+            };
+            if ( id ) {
+                topics[ id ] = topic;
+            }
+        }
+        return topic;
+    };
+
     return {
         update: update,
         add: add,
@@ -266,6 +279,7 @@ define([
         restore_bookmarks: restore_bookmarks,
         page_scrollers: page_scrollers,
         body: body,
+        notifications: notifications,
         finalise: finalise
     };
 

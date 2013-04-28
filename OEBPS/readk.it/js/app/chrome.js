@@ -13,9 +13,24 @@ define([
 
     /* Register handlers. */
 
+    // Setup our back button
     $('.back').click(function(){
         layout.go_back();
+        check_backbutton();
     });
+
+    function check_backbutton() {
+        var status = layout.storage('history').length ? 'active' : 'inactive';
+
+        if (status == 'active') {
+            $('.back').removeClass('inactive');
+        } else {
+            $('.back').removeClass('active');
+        }
+        $('.back').addClass(status);
+    }
+
+    layout.notifications('history_changed').subscribe(check_backbutton);
 
     // Font style handlers
     $('.serif').click(function(){
@@ -113,4 +128,7 @@ define([
 
     // Check online status on a regular interval
     setInterval( check_status, 1000);
+
+    // Check the backbutton status
+    check_backbutton();
 });

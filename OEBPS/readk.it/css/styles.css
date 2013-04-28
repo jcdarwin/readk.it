@@ -128,11 +128,11 @@ body {
     cursor: default;
 }
 
-.online {
+.online, .active {
     background-color: #56A2D3;
 }
 
-.offline {
+.offline, .inactive {
     background-color: #BCBEC0;
 }
 

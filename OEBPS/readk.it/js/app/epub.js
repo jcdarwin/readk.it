@@ -19,6 +19,7 @@ define([
         this.opf_file = '';
         this.ncx_file = '';
         this.toc_entries = [];
+        this.css_entries = [];
         $.get(d + f, {}, function(data){container(data, self, callback);});
         return this;
     }
@@ -76,7 +77,14 @@ define([
             epub.toc_entries.push({id: $(this).attr('idref'), file: file, href: '/' + epub.epub_dir + epub.oebps_dir + '/' + href, path: href.replace(/[^\/]*?$/, '')});
         });
 
-        callback(epub.toc_entries);
+        // Read the css entries
+        $(f).find('manifest ' + opf_item_tag + '[media-type="text/css"]').each(function() {
+            var href = $(this).attr('href');
+            var file = href.replace(/\//g, '_');
+            epub.css_entries.push({id: $(this).attr('id'), file: file, href: '/' + epub.epub_dir + epub.oebps_dir + '/' + href, path: href.replace(/[^\/]*?$/, '')});
+        });
+
+        callback(epub.toc_entries, epub.css_entries);
     };
 
     return (Epub);

@@ -6,7 +6,6 @@ var client = {
     },
     // The required modules for our EPUB assets
     required: [
-    'client_js/script',
-        'css!client_css/epub.css'
+        'client_js/script'
     ]
 };

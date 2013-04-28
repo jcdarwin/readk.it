@@ -17,6 +17,7 @@ define([
 ], function($, $storage, jbum, config, Epub, layout, chrome){
 
     var pages = [];
+    var stylesheets = [];
     var load_publication_callback;
     var publication;
     var item;
@@ -55,7 +56,7 @@ define([
         }
     };
 
-    var load_publication = function (toc) {
+    var load_publication = function (toc, css) {
         // require.js text plugin fires asynchronously, so we'll use
         // deferreds to work out when all texts have been retrieved.
         var deferreds = [];
@@ -72,6 +73,19 @@ define([
                     // it's possible that we receive the pages back
                     // out of order.
                     pages[value.id] = html;
+                    deferred.resolve();
+                }
+            );
+        });
+
+        $.each(css, function(index, value){
+            var deferred = new $.Deferred();
+            deferreds.push(deferred);
+
+            // Use the requirejs/css plugin to load our html resources.
+            require(["css!" + value.href],
+                function(html) {
+                    stylesheets[value.id] = html;
                     deferred.resolve();
                 }
             );

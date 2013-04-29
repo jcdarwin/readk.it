@@ -21,7 +21,6 @@
         <item id='_readme.txt' href='_readme.txt'  media-type='text/plain' />
     <!-- './css'  -->
         <item id='css_base.css' href='css/base.css'  media-type='text/css' />
-        <item id='css_demo_bar.css' href='css/demo_bar.css'  media-type='text/css' />
     <!-- './css/slider_assets'  -->
         <item id='css_slider_assets_grab.cur' href='css/slider_assets/grab.cur'  media-type='image/vnd.microsoft.icon' />
         <item id='css_slider_assets_grab.gif' href='css/slider_assets/grab.gif'  media-type='image/gif' />
@@ -30,7 +29,8 @@
         <item id='css_slider_assets_preloader.gif' href='css/slider_assets/preloader.gif'  media-type='image/gif' />
     <!-- './css/themes'  -->
         <item id='css_themes_color_07.css' href='css/themes/color_07.css'  media-type='text/css' />
-        <item id='css_themes_type_05.css' href='css/themes/type_05.css'  media-type='text/css' />
+        <item id='css_themes_type_sans.css' href='css/themes/type_sans.css'  media-type='text/css' />
+        <item id='css_themes_type_serif.css' href='css/themes/type_serif.css'  media-type='text/css' />
     <!-- './fonts'  -->
     <!-- './fonts/Lora'  -->
         <item id='fonts_Lora_Lora-Bold.woff' href='fonts/Lora/Lora-Bold.woff'  media-type='application/vnd.ms-opentype' />

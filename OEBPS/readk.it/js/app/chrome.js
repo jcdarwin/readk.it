@@ -37,13 +37,13 @@ define([
         // Switch stylesheet from sans to serif (i.e. body text)
         // The trick here is to disable both stylesheets first,
         // and then enable the one we want.
-        $.each($('link[title=sans]'), function(i, link) {
+        $.each($('link[href$="sans.css"]'), function(i, link) {
             link.disabled=true;
         });
-        $.each($('link[title=serif]'), function(i, link) {
+        $.each($('link[href$="serif.css"]'), function(i, link) {
             link.disabled=true;
         });
-        $.each($('link[title=serif]'), function(i, link) {
+        $.each($('link[href$="serif.css"]'), function(i, link) {
             link.disabled=false;
         });
         setTimeout(function () {
@@ -58,13 +58,13 @@ define([
         // Switch stylesheet from serif to sans (i.e. body text)
         // The trick here is to disable both stylesheets first,
         // and then enable the one we want.
-        $.each($('link[title=serif]'), function(i, link) {
+        $.each($('link[href$="serif.css"]'), function(i, link) {
             link.disabled=true;
         });
-        $.each($('link[title=sans]'), function(i, link) {
+        $.each($('link[href$="sans.css"]'), function(i, link) {
             link.disabled=true;
         });
-        $.each($('link[title=sans]'), function(i, link) {
+        $.each($('link[href$="sans.css"]'), function(i, link) {
             link.disabled=false;
         });
         setTimeout(function () {
@@ -89,6 +89,7 @@ define([
         var value = $(this).val();
         $('html').css('font-size', value + 'px');
         $(this).next('span.value').text(value);
+        layout.storage('font-size', value);
     });
 
     $('#psize').on('mouseup touchend', function() {
@@ -99,12 +100,20 @@ define([
         }, 0);
     });
 
+    // Checked for stored font-size preference and apply accordingly.
+    var fontsize = layout.storage('font-size');
+    if (fontsize) {
+        $('html').css('font-size', fontsize + 'px');
+        $('#psize').next('span.value').text(fontsize);
+    }
+
     // Line-height event handlers
     $('#plh').on('change', function() {
         var elem = $(this).attr('id').split('lh')[0];
         var value = parseFloat($(this).val()).toFixed(2); // keeps the range to outputing two decimal places
         $('p,li,h1,h2,h3,h4,h5,button').css('line-height', $(this).val());
         $(this).next('span.value').text(value);
+        layout.storage('line-height', value);
     });
 
     $('#plh').on('mouseup touchend', function() {
@@ -114,6 +123,13 @@ define([
             });
         }, 0);
     });
+
+    // Checked for stored line-height preference and apply accordingly.
+    var lineheight = layout.storage('line-height');
+    if (lineheight) {
+        $('p,li,h1,h2,h3,h4,h5,button').css('line-height', lineheight);
+        $('#plh').next('span.value').text(lineheight);
+    }
 
     // Initialise online status indicator
     function check_status() {

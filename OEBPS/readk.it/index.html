@@ -27,48 +27,6 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">    
         <link rel="apple-touch-startup-image" href="images/splash.png">
 
-        <style>
-            /* iPhone 2G-4S in portrait & landscape */
-            @media only screen 
-            and (min-device-width : 320px) 
-            and (max-device-width : 480px) {
-                .header {
-                    top: 0;
-                }                
-                .slider{
-                    display: none;
-                }
-            }
-
-            /* iPhone 5 in portrait & landscape */
-            @media only screen 
-            and (min-device-width : 320px) 
-            and (max-device-width : 568px) {
-                .header {
-                    top: 0;
-                }
-                .slider{
-                    display: none;
-                }
-            }
-
-            /* iPad in portrait & landscape */
-            @media only screen 
-            and (min-device-width : 768px) 
-            and (max-device-width : 1024px)  {
-                .header {
-                    top: 0;
-                }                
-            }
-
-            /* Desktop */
-            @media only screen {
-                .header {
-                    top: 0;
-                }                
-            }
-        </style>
-
         <!-- Add to home screen: http://cubiq.org/add-to-home-screen -->
         <link rel="stylesheet" href="js/lib/add-to-homescreen/style/add2home.css">
         <script type="text/javascript">
@@ -83,10 +41,13 @@
     </head>
     <body>
         <script type="text/javascript">
-            // We include the stylesheets here as we want them to override any others 
+            // We include the stylesheets here as we want them to override any others
+            // (containing rules of the same specificity)
             // that are added to the bottom of the <head> by require.js.
-            document.write('<link title="sans"  rel="stylesheet" type="text/css" href="css/sans.css">');
-            document.write('<link title="serif" rel="stylesheet" type="text/css" href="css/serif.css">');
+            // Note that any stylesheets ending in "sans.css" and "serif.css" are treated specially
+            // (enabled  / disabled ) by clicking on the font button.
+            document.write('<link rel="stylesheet" type="text/css" href="css/sans.css">');
+            document.write('<link rel="stylesheet" type="text/css" href="css/serif.css">');
         </script>
 
         <div id='sitePreloader'><div id='preloaderImage'><img src='images/site_preloader.gif' alt='Preloader' /></div></div>

@@ -82,7 +82,7 @@ define([
             var deferred = new $.Deferred();
             deferreds.push(deferred);
 
-            // Use the requirejs/css plugin to load our html resources.
+            // Use the requirejs/css plugin to load our stylesheet resources.
             require(["css!" + value.href],
                 function(html) {
                     stylesheets[value.id] = html;

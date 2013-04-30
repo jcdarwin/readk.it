@@ -11,6 +11,45 @@ define([
     'app/layout'
 ], function($, layout){
 
+    // We wait until the publication is loaded into the layout before
+    // activating the chrome.
+    layout.notifications('publication_loaded').subscribe(initialise);
+
+    var initialise = function () {
+        layout.notifications('history_changed').subscribe(check_backbutton);
+
+        // Check for stored font preference and apply accordingly.
+        var font = layout.storage('font');
+        if (font == 'serif') {
+            $('.serif').click();
+        } else if (font == 'sans') {
+            $('.sans').click();
+        }
+
+        // Check for stored font-size preference and apply accordingly.
+        var fontsize = layout.storage('font-size');
+        if (fontsize) {
+            $('html').css('font-size', fontsize + 'px');
+            $('#psize').next('span.value').text(fontsize);
+        }
+
+        // Check for stored line-height preference and apply accordingly.
+        var lineheight = layout.storage('line-height');
+        if (lineheight) {
+            $('p,li,h1,h2,h3,h4,h5,button').css('line-height', lineheight);
+            $('#plh').next('span.value').text(lineheight);
+        }
+
+        // Check online status immediately, instead of waiting for the first setInterval
+        check_status();
+
+        // Check online status on a regular interval
+        setInterval( check_status, 1000);
+
+        // Check the backbutton status
+        check_backbutton();
+    };
+
     /* Register handlers. */
 
     // Setup our back button
@@ -29,8 +68,6 @@ define([
         }
         $('.back').addClass(status);
     }
-
-    layout.notifications('history_changed').subscribe(check_backbutton);
 
     // Font style handlers
     $('.serif').click(function(){
@@ -75,14 +112,6 @@ define([
         layout.storage('font', 'sans');
     });
 
-    // Checked for stored font preference and apply accordingly.
-    var font = layout.storage('font');
-    if (font == 'serif') {
-        $('.serif').click();
-    } else if (font == 'sans') {
-        $('.sans').click();
-    }
-
     // Fontsize event handlers
     $('#psize').on('change', function() {
         var elem = $(this).attr('id').split('size')[0];
@@ -100,13 +129,6 @@ define([
         }, 0);
     });
 
-    // Checked for stored font-size preference and apply accordingly.
-    var fontsize = layout.storage('font-size');
-    if (fontsize) {
-        $('html').css('font-size', fontsize + 'px');
-        $('#psize').next('span.value').text(fontsize);
-    }
-
     // Line-height event handlers
     $('#plh').on('change', function() {
         var elem = $(this).attr('id').split('lh')[0];
@@ -123,13 +145,6 @@ define([
             });
         }, 0);
     });
-
-    // Checked for stored line-height preference and apply accordingly.
-    var lineheight = layout.storage('line-height');
-    if (lineheight) {
-        $('p,li,h1,h2,h3,h4,h5,button').css('line-height', lineheight);
-        $('#plh').next('span.value').text(lineheight);
-    }
 
     // Initialise online status indicator
     function check_status() {
@@ -151,12 +166,4 @@ define([
         $('#pageWrapper').css('top', '60px');
     }
 
-    // Check online status immediately, instead of waiting for the first setInterval
-    check_status();
-
-    // Check online status on a regular interval
-    setInterval( check_status, 1000);
-
-    // Check the backbutton status
-    check_backbutton();
 });

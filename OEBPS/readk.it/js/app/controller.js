@@ -49,14 +49,11 @@ define([
             return (publication);
         },
         publication_finalise: function () {
-            $.each(publication.getToc(), function(index, value){
-            });
-            layout.update(layout.page_scrollers[0].scroller);
-            layout.restore_bookmarks();
         }
     };
 
     var load_publication = function (toc, css) {
+
         // require.js text plugin fires asynchronously, so we'll use
         // deferreds to work out when all texts have been retrieved.
         var deferreds = [];
@@ -132,8 +129,13 @@ define([
                     results += $(v).html();
                 });
                 pages[value.id] = results;
-                layout.add(value.id, value.file, pages[value.id]);
+                layout.add(value.id, value.file, pages[value.id], publication);
             });
+
+            $.each(publication.getToc(), function(index, value){
+            });
+            layout.update(layout.page_scrollers[0].scroller);
+            layout.restore_bookmarks();
 
             layout.finalise();
 

@@ -25,6 +25,7 @@ define([
     var page_width = 0;
     var currentPage = 0;
     var restoring = true;
+    var publication = {};
     var book_scroller = new iScroll('pageWrapper', {
         snap: true,
         snapThreshold:1,
@@ -57,8 +58,10 @@ define([
             }
 
             storage('page', currentPage);
-            pages[currentPage].x = $(book_scroller)[0].x;
-            storage('pages', pages);
+
+            var pages_previous = storage('pages') || [];
+            pages_previous[currentPage].x = $(book_scroller)[0].x;
+            storage('pages', pages_previous);
         }
     });
 
@@ -80,7 +83,30 @@ define([
 
     // Local / session / cookie storage
     var storage = function (key, value) {
-        return $.localStorage(key, value);
+        var pub = $.localStorage(publication.identifier) || [];
+        if (value) {
+            var entry = {};
+            entry[key] = value;
+            // filter out any existing entries with the supplied key.
+            pub = pub.filter(function (item) {
+                if (!item[key]) {
+                    return true;
+                }
+            });
+            pub.push(entry);
+            return $.localStorage(publication.identifier, pub);
+        } else {
+            pub = pub.filter(function (item) {
+                if (item[key]) {
+                    return true;
+                }
+            });
+            if (pub.length > 0) {
+                return pub[0][key];
+            } else {
+                return null;
+            }
+        }
     };
 
     // Revisit the last entry in the history.
@@ -94,7 +120,9 @@ define([
     };
 
     // Add a page
-    var add = function (id, file, html) {
+    var add = function (id, file, html, pub) {
+        publication = pub;
+
         $('#pageScroller').append('<div class="page" id="' + file + '"><div id="' + id + '" class="wrapper"><div class="scroller">' + html + '</div></div></div>');
 
         var page_scroller = new iScroll(id, {snap: true, momentum: true, hScrollbar: false, vScrollbar: true, lockDirection: true,
@@ -106,8 +134,11 @@ define([
                 }
             }
         });
-        pages[page_scrollers.length] = {x: 0, y: 0};
-        storage('pages', pages);
+        var pages_previous = storage('pages') || [];
+        if (!pages_previous[page_scrollers.length]) {
+            pages_previous[page_scrollers.length] = {x: 0, y: 0};
+        }
+        storage('pages', pages_previous);
         page_scrollers.push({file: file, scroller: page_scroller});
 
         // Capture clicks so we can update the scroll position.
@@ -248,6 +279,9 @@ define([
             // http://www.bennadel.com/blog/1950-Detecting-iPhone-s-App-Mode-Full-Screen-Mode-For-Web-Applications.htm
             $('.header').css({'margin-top': '20px'});
         }
+
+        // Notify any subscribers that the layout has been loaded.
+        notifications('publication_loaded').publish('');
     };
 
     // Classic pub sub, as per http://api.jquery.com/jQuery.Callbacks/
@@ -277,6 +311,7 @@ define([
         storage: storage,
         go_back: go_back,
         restore_bookmarks: restore_bookmarks,
+        publication: publication,
         page_scrollers: page_scrollers,
         body: body,
         notifications: notifications,

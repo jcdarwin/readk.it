@@ -20,6 +20,10 @@ define([
         this.ncx_file = '';
         this.toc_entries = [];
         this.css_entries = [];
+        this.version = '';
+        this.title = '';
+        this.author = '';
+        this.identifier = '';
         $.get(d + f, {}, function(data){container(data, self, callback);});
         return this;
     }
@@ -52,16 +56,23 @@ define([
     var opf = function (f, epub, callback) {
         // Get the document title
         // Depending on the browser, namespaces may or may not be handled here
-        var version = $(f).find('package').attr('version');
-        if ( typeof(version) === 'undefined') {
-            version = $(f).filter(':first').attr('version');
+        epub.version = $(f).find('package').attr('version');
+        if ( typeof(epub.version) === 'undefined') {
+            epub.version = $(f).filter(':first').attr('version');
         }
-        var title = $(f).find('title').text();  // Safari
-        var author = $(f).find('creator').text();
-        $('#content-title').html(title + ' by ' + author);
+
+        epub.title = $(f).find('title').text();  // Safari
         // Firefox
-        if (title === null || title === '') {
-            $('#content-title').html($(f).find('dc\\:title').text() + ' by ' +  $(f).find('dc\\:creator').text());
+        if (epub.title === null || epub.title === '') {
+            epub.title = $(f).find('dc\\:title').text();
+        }
+
+        epub.author = $(f).find('creator').text();
+
+        epub.identifier = $(f).find('identifier').text();  // Safari
+        // Firefox
+        if (epub.identifier === null || epub.identifier === '') {
+            epub.identifier = $(f).find('dc\\:identifier').text();
         }
 
         var opf_item_tag = 'opf\\:item';

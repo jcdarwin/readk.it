@@ -76,8 +76,12 @@ for r, d, files in os.walk("."):
             version = opf.xpath("//opf:package/@version", namespaces=namespaces)
             itemref = opf.xpath("//opf:spine/opf:itemref", namespaces=namespaces)
             pages = len(itemref)
-            path = re.sub(r'^(?:./)?(.*)(META-INF)$', r"\g<1>", r)
+            path = 'OEBPS/readk.it/library/' + re.sub(r'^(?:./)?(.*)(META-INF)$', r"\g<1>", r)
             cover = opf.xpath("//opf:item[contains(@properties, 'cover-image')]/@href", namespaces=namespaces)
+            if not cover:
+                coverid = opf.xpath("//opf:meta[contains(@name, 'cover')]/@content", namespaces=namespaces)
+                if coverid:
+                    cover = opf.xpath("//opf:item[@id='" + coverid[0] + "']/@href", namespaces=namespaces)
             if cover:
                 cover = info["root_folder"] + '/' + cover[0]
             else:

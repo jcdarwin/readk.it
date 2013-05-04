@@ -1,4 +1,4 @@
-<html>
+<html class="js csstransforms csstransforms3d">
     <head>
         <title>readk.it library</title>
         <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
@@ -24,6 +24,8 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">    
         <link rel="apple-touch-startup-image" href="../images/splash.png">
 
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+
         <style>
             body{
                 font-family: sans-serif;
@@ -33,7 +35,7 @@
             }
             .publication{
                 border: 1px solid #000000;
-                width: 120px;
+                /* width: 120px; */
                 height: 180px;
                 margin: 0 20px 20px 0;
                 padding: 10px;
@@ -47,18 +49,144 @@
             }
 
             .publication img {
-                max-width: 100px;
-                max-height:150px;
+                max-width: 190px;
+                min-width: 190px;
+                max-height:240px;
             }
+        </style>
+
+        <style>
+body {margin: 0;}
+/* Header style */
+header.projecttitle { margin: 0 auto; padding: 1px 0 80px; color: #fff; text-shadow: 1px 1px 0 rgba(0,0,0,.3);
+    background-color: #3e404a;
+    background-image: -webkit-linear-gradient(rgba(255,255,255,.05) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 2px, transparent 2px),
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(0,0,0,.3) 0, transparent 100px);
+    background-image: -moz-linear-gradient(rgba(255,255,255,.05) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 2px, transparent 2px),
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(0,0,0,.3) 0, transparent 100px);
+    background-image: linear-gradient(rgba(255,255,255,.05) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 2px, transparent 2px),
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(0,0,0,.3) 0, transparent 100px);
+    background-size:100px 100px, 100px 100px, 20px 20px, 20px 20px, 100% 100%;
+    background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px, center bottom;
+}
+
+/* Header */
+.library { margin: 80px auto 40px; }
+
+.library button, .library button { background: transparent; border: 0; color: #fff; opacity: .5; cursor: hand;}
+.library button:hover, .library button:hover { opacity: 1; }
+.library button:disabled, .library button:disabled { opacity: .2; }
+
+.library .forward, .library .backward { float: left; width: 50px; height: 250px; font-size: 60px; }
+.library .forward { float: right; }
+
+.library .frame { margin: 0 auto; max-width: 940px; height: 250px; line-height: 250px; overflow: hidden; text-shadow: none; }
+.library .frame div.ul { margin: 0; padding: 0; height: 100%; font-size: 50px; display: inline-block;}
+.library .frame div.ul h2 { display: inline;}
+
+.library .frame div.ul div.li { float: left; width: 190px; height: 240px; margin: 0 1px 0 0; padding: 0; background: #eee; color: #3a3c47; text-align: center; cursor: pointer; display:inline;}
+.library .frame div.ul div.li.active { color: #fff; background: #82bf4c; }
+
+.library .scrollbar { margin: 0 auto 30px; max-width: 940px; height: 10px; line-height: 0;}
+.library .scrollbar .handle { width: 100px; height: 100%; cursor: pointer; }
+.library .scrollbar .handle .mousearea { width: 100%; height: 10px; background: #fff; opacity: .5; border: 1px solid #fff; border-radius: 5px; }
+
+.library .controls { margin: 50px 0 0; text-align: center; }
+.library .controls .divider { display: inline-block; margin: 0 0; }
+.library .controls button { line-height: 32px; vertical-align: middle; font-family: Novecento, sans-serif; }
+.library .controls button i { position: relative; top: -2px; margin: 5px; padding: 0; font-size: 32px; vertical-align: middle; }
+
+.publication img {border: 1px solid #3a3c47; border-radius: 5px; box-sizing:border-box; -moz-box-shadow: 0 0 5px 2px #888;
+-webkit-box-shadow: 0 0 5px 2px #888;
+box-shadow: 0 0 5px 2px #888;}
+
+/* 3D shenanigans */
+.csstransforms3d .frame {
+    height: 250px;
+    line-height: 250px;
+    -webkit-perspective: 800px;
+    -ms-perspective: 800px;
+    perspective: 800px;
+    -webkit-perspective-origin: 50% 50%;
+    -ms-perspective-origin: 50% 50%;
+    perspective-origin: 50% 50%;
+}
+.csstransforms3d .frame div.ul {
+    -webkit-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+.csstransforms3d .frame div.ul div.li {
+    position: relative;
+    margin: 2px -25px;
+    border: 1px solid #3e404a;
+    -webkit-transform: rotateY(60deg) scale(0.9);
+    -ms-transform: rotateY(60deg) scale(0.9);
+    transform: rotateY(60deg) scale(0.9);
+    -webkit-transition: -webkit-transform 300ms ease-out;
+    transition: transform 300ms ease-out;
+}
+.csstransforms3d .frame div.ul div.li.active {
+    z-index: 10;
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+}
+.csstransforms3d .frame div.ul div.li.active ~ div.li {
+    -webkit-transform: rotateY(-60deg) scale(0.9);
+    -ms-transform: rotateY(-60deg) scale(0.9);
+    transform: rotateY(-60deg) scale(0.9);
+}
         </style>
     </head>
     <body>
 
-        <div id="library">
+    <header class="projecttitle">
+        <div id="library" class="library pagespan">
+            <div class="scrollbar">
+                    <div class="handle">
+                    <div class="mousearea"></div>
+                </div>
+            </div>
+            <button class="backward">
+                <i class="icon-angle-left"></i>
+            </button>
+            <button class="forward">
+                <i class="icon-angle-right"></i>
+            </button>
+            <div class="frame" style="overflow:hidden;">
+                <div class="ul">
+                </div>
+            </div>
+            <div class="controls">
+                <button data-action="toStart"><i class="icon-double-angle-left"></i> Start</button>
+                <span class="divider"></span>
+                <button class="prev"><i class="icon-angle-left"></i> Prev</button>
+                <span class="divider"></span>
+                <span class="divider"></span>
+                <button class="next">Next <i class="icon-angle-right"></i></button>
+                <span class="divider"></span>
+                <button data-action="toEnd">End <i class="icon-double-angle-right"></i></button>
+            </div>
         </div>
+    </header>
 
         <!-- Require.js bootstraps all our other js dependencies. -->
         <script src="js/require.config.js"></script>
         <script data-main="js/main" src="js/require-jquery.js"></script>
+
+        <!-- <script src="js/lib/jquery-1.8.3.min.js"></script> -->
+        <!-- <script src="js/lib/sly.min.js"></script> -->
+
+
     </body>
 </html>

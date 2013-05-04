@@ -2,5 +2,33 @@
 
 {"name": "Accessible EPUB 3", "version": "3.0", "identifier": "urn:isbn:9781449328030", "path": "OEBPS/readk.it/library/html/accessible_epub_3/", "total_pages": 22, "cover": "./html/accessible_epub_3/META-INF/../EPUB/covers/9781449328030_lrg.jpg"}
 ,
-{"name": "At the Bay", "version": "2.0", "identifier": "84ba3092-022a-460d-bb4f-fa558a022793", "path": "OEBPS/readk.it/library/html/mansfield_at_the_bay/", "total_pages": 13, "cover": ""}
+{"name": "Pride and Prejudice", "version": "2.0", "identifier": "urn:uuid:af27173e-ad1a-11e2-beff-001cc0a62c0b", "path": "OEBPS/readk.it/library/html/austen_pride_and_prejudice/", "total_pages": 69, "cover": "./html/austen_pride_and_prejudice/META-INF/../OPS/images/cover.png"}
+,
+{"name": "The Tell-Tale Heart", "version": "2.0", "identifier": "urn:uuid:c38d0808-a9f7-11e2-b806-001cc0a62c0b", "path": "OEBPS/readk.it/library/html/edgar_allan_poe_the_tell_tale_heart/", "total_pages": 6, "cover": "./html/edgar_allan_poe_the_tell_tale_heart/META-INF/../OPS/images/cover.png"}
+,
+{"name": "The Curious Case of Benjamin Button", "version": "2.0", "identifier": "urn:uuid:2326e09a-aabb-11e2-a67d-001cc0a62c0b", "path": "OEBPS/readk.it/library/html/francis_scott_fitzgerald_the_curious_case_of_benjamin_button/", "total_pages": 16, "cover": "./html/francis_scott_fitzgerald_the_curious_case_of_benjamin_button/META-INF/../OPS/images/cover.png"}
+,
+{"name": "Diary Of A Madman", "version": "2.0", "identifier": "urn:uuid:2a781f84-a5f8-11e2-94db-001cc0a62c0b", "path": "OEBPS/readk.it/library/html/gogol_diary_of_a_madman/", "total_pages": 24, "cover": "./html/gogol_diary_of_a_madman/META-INF/../OPS/images/cover.png"}
+,
+{"name": "Of Money, and Other Economic Essays", "version": "2.0", "identifier": "urn:uuid:167756ea-b1e6-11e2-8f74-001cc0a62c0b", "path": "OEBPS/readk.it/library/html/hume_of_money_and_other_economic_essays/", "total_pages": 17, "cover": "./html/hume_of_money_and_other_economic_essays/META-INF/../OPS/images/cover.png"}
+,
+{"name": "First Love", "version": "2.0", "identifier": "urn:uuid:5fc58334-b1e2-11e2-8f74-001cc0a62c0b", "path": "OEBPS/readk.it/library/html/ivan_sergeyevich_turgenev_first_love/", "total_pages": 28, "cover": "./html/ivan_sergeyevich_turgenev_first_love/META-INF/../OPS/images/cover.png"}
+,
+{"name": "The Metamorphosis", "version": "2.0", "identifier": "urn:uuid:f4f6a666-aeb0-11e2-a5c2-001cc0a62c0b", "path": "OEBPS/readk.it/library/html/kafka_the_metamorphosis/", "total_pages": 8, "cover": "./html/kafka_the_metamorphosis/META-INF/../OPS/images/cover.png"}
+,
+{"name": "2 B R O 2 B", "version": "2.0", "identifier": "urn:uuid:f31961a4-aa0e-11e2-9b97-001cc0a62c0b", "path": "OEBPS/readk.it/library/html/kurt_vonnegut_2_b_r_o_2_b/", "total_pages": 6, "cover": "./html/kurt_vonnegut_2_b_r_o_2_b/META-INF/../OPS/images/cover.png"}
+,
+{"name": "At the Bay", "version": "2.0", "identifier": "84ba3092-022a-460d-bb4f-fa558a022793", "path": "OEBPS/readk.it/library/html/mansfield_at_the_bay/", "total_pages": 13, "cover": "./html/mansfield_at_the_bay/META-INF/../OEBPS/Images/cover.jpg"}
+,
+{"name": "Moby-Dick", "version": "2.0", "identifier": "urn:uuid:65842f04-b044-11e2-80f8-001cc0a62c0b", "path": "OEBPS/readk.it/library/html/melville_moby_dick/", "total_pages": 144, "cover": "./html/melville_moby_dick/META-INF/../OPS/images/cover.png"}
+,
+{"name": "A House of Pomegranates", "version": "2.0", "identifier": "urn:uuid:22f0eb6c-aa33-11e2-96f7-001cc0a62c0b", "path": "OEBPS/readk.it/library/html/oscar_wilde_a_house_of_pomegranates/", "total_pages": 9, "cover": "./html/oscar_wilde_a_house_of_pomegranates/META-INF/../OPS/images/cover.png"}
+,
+{"name": "The Nightingale and the Rose", "version": "2.0", "identifier": "urn:uuid:23faa63e-a956-11e2-aad1-001cc0a62c0b", "path": "OEBPS/readk.it/library/html/oscar_wilde_the_nightingale_and_the_rose/", "total_pages": 6, "cover": "./html/oscar_wilde_the_nightingale_and_the_rose/META-INF/../OPS/images/cover.png"}
+,
+{"name": "The Fall of the House of Usher", "version": "2.0", "identifier": "urn:uuid:1cef4538-ad1c-11e2-922d-001cc0a62c0b", "path": "OEBPS/readk.it/library/html/poe_the_fall_of_the_house_of_usher/", "total_pages": 6, "cover": "./html/poe_the_fall_of_the_house_of_usher/META-INF/../OPS/images/cover.png"}
+,
+{"name": "A Haunted House", "version": "2.0", "identifier": "urn:uuid:faa08742-afb1-11e2-92b5-001cc0a62c0b", "path": "OEBPS/readk.it/library/html/virginia_woolf_a_haunted_house/", "total_pages": 6, "cover": "./html/virginia_woolf_a_haunted_house/META-INF/../OPS/images/cover.png"}
+,
+{"name": "A Room of One's Own", "version": "2.0", "identifier": "urn:uuid:fec04522-a7c0-11e2-8a72-001cc0a62c0b", "path": "OEBPS/readk.it/library/html/woolf_a_room_of_ones_own/", "total_pages": 13, "cover": "./html/woolf_a_room_of_ones_own/META-INF/../OPS/images/cover.png"}
 ]

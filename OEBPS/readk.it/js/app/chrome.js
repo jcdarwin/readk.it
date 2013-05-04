@@ -13,9 +13,10 @@ define([
 
     // We wait until the publication is loaded into the layout before
     // activating the chrome.
-    layout.notifications('publication_loaded').subscribe(initialise);
+    layout.notifications('publication_loaded').subscribe(initialiser);
+    layout.notifications('publication_loaded').publish();
 
-    var initialise = function () {
+    var initialiser = function () {
         layout.notifications('history_changed').subscribe(check_backbutton);
 
         // Check for stored font preference and apply accordingly.

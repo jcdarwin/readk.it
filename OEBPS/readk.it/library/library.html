@@ -114,11 +114,17 @@ header.projecttitle { margin: 0 auto; padding: 1px 0 80px; color: #fff; text-sha
     background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px, center bottom;
 }
 
+/* Desktop */
+@media only screen {
+    .library { margin: 80px auto 40px; }
+}
+
 /* iPhone 2G-4S in portrait & landscape */
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 480px) {
     .library { margin: 20px auto 20px; }
+    .library .forward, .library .backward {display: none;}
 }
 
 /* iPhone 5 in portrait & landscape */
@@ -126,17 +132,13 @@ and (max-device-width : 480px) {
 and (min-device-width : 320px) 
 and (max-device-width : 568px) {
     .library { margin: 20px auto 20px; }
+    .library .forward, .library .backward {display: none;}
 }
 
 /* iPad in portrait & landscape */
 @media only screen 
 and (min-device-width : 768px) 
 and (max-device-width : 1024px)  {
-    .library { margin: 80px auto 40px; }
-}
-
-/* Desktop */
-@media only screen {
     .library { margin: 80px auto 40px; }
 }
 
@@ -160,10 +162,10 @@ and (max-device-width : 1024px)  {
 .library .scrollbar .handle .mousearea { width: 100%; height: 20px; background: #fff; opacity: .5; border: 1px solid #fff; border-radius: 5px; }
 .library .scrollbar .handle .mousearea:hover { opacity: 1; }
 
-.library .readbar { margin: 10px auto 30px; max-width: 940px; height: 30px; line-height: 0;}
+.library .readbar { margin: 10px auto 20px; max-width: 940px; height: 30px; line-height: 0;}
 .library .read { margin: auto; text-align: center; font-size: 20px; width: 100px; height: 30px; line-height: 1.4; background: #82bf4c;  border-radius: 5px; cursor: hand;}
 
-.library .controls { margin: 20px 0 0; text-align: center;}
+.library .controls { margin: 10px 0 0; text-align: center;}
 .library .controls .divider { display: inline-block; margin: 0 5px; }
 .library .controls button { line-height: 32px; vertical-align: middle; font-size: 18px; text-transform: uppercase; padding: 1px;
 height: 50px; width: 50px; border-radius: 25px; background-color: #fff;

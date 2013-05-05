@@ -73,8 +73,17 @@ define([
                     var url = $('.active').data('url');
                     window.location = url;
                 });
-            });
+
+                // Update our page layout after an orientation change
+                $(function() {
+                    $(window).bind("orientationchange", update);
                 });
+
+                function update () {
+                    sly.reload();
+                }
+            });
+         });
 
         callback();
     };

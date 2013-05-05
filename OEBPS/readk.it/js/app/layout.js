@@ -123,7 +123,7 @@ define([
     var add = function (id, file, html, pub) {
         publication = pub;
 
-        $('#pageScroller').append('<div class="page" id="' + file + '"><div id="' + id + '" class="wrapper"><div class="scroller">' + html + '</div></div></div>');
+        $('#pageScroller').append('<div class="page" id="' + file + '"><div id="' + id + '" class="wrapper"><div class="scroller"><div class="margins">' + html + '</div></div></div></div>');
 
         var page_scroller = new iScroll(id, {snap: true, momentum: true, hScrollbar: false, vScrollbar: true, lockDirection: true,
             onAnimationEnd: function(){

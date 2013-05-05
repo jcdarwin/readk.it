@@ -240,16 +240,19 @@ define([
             var page = storage('page'),
                 y = 0;
 
-            book_scroller.scrollToPage(page, 0, 0);
+            if (page) {
+                book_scroller.scrollToPage(page, 0, 0);
+            }
 
             for (var i=0; i < pages.length; i++) {
                 y = (pages[i]).y;
                 (page_scrollers[i]).scroller.scrollTo(0, y, 0, 0);
             }
 
-            y = (pages[page]).y;
-            (page_scrollers[page]).scroller.scrollTo(0, y, 0, 0);
-
+            if (page) {
+                y = (pages[page]).y;
+                (page_scrollers[page]).scroller.scrollTo(0, y, 0, 0);
+            }
         }
         restoring = false;
     };
@@ -279,6 +282,11 @@ define([
             // http://www.bennadel.com/blog/1950-Detecting-iPhone-s-App-Mode-Full-Screen-Mode-For-Web-Applications.htm
             $('.header').css({'margin-top': '20px'});
         }
+
+        // Remove site preloader after site is loaded
+        $('#sitePreloader').delay(200).fadeOut(500, function() {
+            $(this).remove();
+        });
 
         // Notify any subscribers that the layout has been loaded.
         notifications('publication_loaded').publish('');

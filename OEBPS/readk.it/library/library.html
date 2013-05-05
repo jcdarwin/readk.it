@@ -24,6 +24,18 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">    
         <link rel="apple-touch-startup-image" href="../images/splash.png">
 
+        <!-- Add to home screen: http://cubiq.org/add-to-home-screen -->
+        <link rel="stylesheet" href="js/lib/add-to-homescreen/style/add2home.css">
+        <script type="text/javascript">
+        var addToHomeConfig = {
+            startDelay: 30000,
+            lifespan:10000,
+            touchIcon:true,
+            message:'Install this book on your %device: tap %icon and then <strong>Add to Home Screen</strong>.'
+        };
+        </script>
+        <script type="application/javascript" src="js/lib/add-to-homescreen/src/add2home.js"></script>
+
         <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
 
         <style>
@@ -123,7 +135,7 @@ header.projecttitle { margin: 0 auto; padding: 1px 0 80px; color: #fff; text-sha
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 480px) {
-    .library { margin: 20px auto 20px; }
+    .library { margin: 40px auto 20px; }
     .library .forward, .library .backward {display: none;}
 }
 
@@ -131,7 +143,7 @@ and (max-device-width : 480px) {
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 568px) {
-    .library { margin: 20px auto 20px; }
+    .library { margin: 40px auto 20px; }
     .library .forward, .library .backward {display: none;}
 }
 

@@ -20,9 +20,8 @@ define([
                 console.log(value.name);
 
                 // Load an entry for the publication into the library view
-                //$('#library').append('<div class="publication"><a href="../index.library.html#' + encodeURIComponent(value.path) + '"><img src="' + value.cover + '" /></a><h2><a href="../index.library.html#' + encodeURIComponent(value.path) + '" title="' + value.identifier + '">' + value.name + '</a></h2></div>');
                 //$('.frame .ul').append('<div class="li publication"><a href="../index.library.html#' + encodeURIComponent(value.path) + '"><img src="' + value.cover + '" /></a><h2><a href="../index.library.html#' + encodeURIComponent(value.path) + '" title="' + value.identifier + '">' + value.name + '</a></h2></div>');
-                $('.frame .ul').append('<div class="li publication"><a href="../index.library.html#' + encodeURIComponent(value.path) + '"><img src="' + value.cover + '" /></a></div>');
+                $('.frame .ul').append('<div class="li publication" data-url="../index.library.html#' + encodeURIComponent(value.path) + '"><img src="' + value.cover + '" /></div>');
 
             });
 
@@ -69,6 +68,10 @@ define([
                 $library.on('click', 'button[data-action]', function () {
                     var action = $(this).data('action');
                     sly[action]();
+                });
+                $('#library .read').on('click', function () {
+                    var url = $('.active').data('url');
+                    window.location = url;
                 });
             });
                 });

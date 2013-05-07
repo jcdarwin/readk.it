@@ -31,7 +31,6 @@ define([
         var fontsize = layout.storage('font-size');
         if (fontsize) {
             $('html').css('font-size', fontsize + 'px');
-            $('#psize').next('span.value').text(fontsize);
             $('.strength-size[data-size="' + fontsize + '"]').removeClass('inactive').addClass('active');
         }
 
@@ -39,7 +38,6 @@ define([
         var lineheight = layout.storage('line-height');
         if (lineheight) {
             $('p,li,h1,h2,h3,h4,h5,button').css('line-height', lineheight);
-            $('#plh').next('span.value').text(lineheight);
             $('.strength-line-height[data-size="' + lineheight + '"]').removeClass('inactive').addClass('active');
         }
 
@@ -117,10 +115,8 @@ define([
 
     // Fontsize event handlers
     $('#psize').on('change', function() {
-        var elem = $(this).attr('id').split('size')[0];
         var value = $(this).val();
         $('html').css('font-size', value + 'px');
-        $(this).next('span.value').text(value);
         layout.storage('font-size', value);
     });
 
@@ -139,6 +135,9 @@ define([
         } else {
             var value = layout.storage('font-size');
             $('.strength-size[data-size="' + value + '"]').removeClass('inactive').addClass('active');
+            if ( $('#dropdown-plh').is(':visible') ) {
+                $('#dropdown-plh').slideUp();
+            }
             $('#dropdown-psize').slideDown('slow');
         }
     });
@@ -166,10 +165,8 @@ define([
 
     // Line-height event handlers
     $('#plh').on('change', function() {
-        var elem = $(this).attr('id').split('lh')[0];
         var value = parseFloat($(this).val()).toFixed(2); // keeps the range to outputing two decimal places
         $('p,li,h1,h2,h3,h4,h5,button').css('line-height', $(this).val());
-        $(this).next('span.value').text(value);
         layout.storage('line-height', value);
     });
 
@@ -186,6 +183,9 @@ define([
         if ( $('#dropdown-plh').is(':visible') ) {
             $('#dropdown-plh').slideUp('slow');
         } else {
+            if ( $('#dropdown-psize').is(':visible') ) {
+                $('#dropdown-psize').slideUp();
+            }
             var value = layout.storage('line-height');
             $('.strength-line-height[data-size="' + value + '"]').removeClass('inactive').addClass('active');
             $('#dropdown-plh').slideDown('slow');

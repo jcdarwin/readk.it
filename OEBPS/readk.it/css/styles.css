@@ -96,7 +96,9 @@
 }
 
 .dropdown {
-    position:relative;
+    position:absolute;
+    top:35px;
+    left:30px;
     height:60px;
     width:116px;
     margin-top: 5px;
@@ -159,9 +161,6 @@ and (max-device-width : 480px) {
         top: 0;
         -webkit-user-select: none;
     }                
-    .slider-bar {
-        display: none;
-    }
     .slider {
         width:30px;
     }
@@ -174,9 +173,6 @@ and (max-device-width : 568px) {
     .header {
         top: 0;
         -webkit-user-select: none;
-    }
-    .slider-bar {
-        display: none;
     }
     .slider {
         width:30px;

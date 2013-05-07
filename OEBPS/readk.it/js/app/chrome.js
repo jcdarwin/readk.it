@@ -32,6 +32,7 @@ define([
         if (fontsize) {
             $('html').css('font-size', fontsize + 'px');
             $('#psize').next('span.value').text(fontsize);
+            $('.strength-size[data-size="' + fontsize + '"]').removeClass('inactive').addClass('active');
         }
 
         // Check for stored line-height preference and apply accordingly.
@@ -39,6 +40,7 @@ define([
         if (lineheight) {
             $('p,li,h1,h2,h3,h4,h5,button').css('line-height', lineheight);
             $('#plh').next('span.value').text(lineheight);
+            $('.strength-line-height[data-size="' + lineheight + '"]').removeClass('inactive').addClass('active');
         }
 
         // Check online status immediately, instead of waiting for the first setInterval
@@ -130,6 +132,38 @@ define([
         }, 0);
     });
 
+    // Size strength dropdown handlers
+    $('#for-psize').on('click', function(){
+        if ( $('#dropdown-psize').is(':visible') ) {
+            $('#dropdown-psize').slideUp('slow');
+        } else {
+            var value = layout.storage('font-size');
+            $('.strength-size[data-size="' + value + '"]').removeClass('inactive').addClass('active');
+            $('#dropdown-psize').slideDown('slow');
+        }
+    });
+
+    $('.strength-size').on('click', function(){
+        $('.strength-size').removeClass('active').addClass('inactive');
+        $(this).removeClass('inactive').addClass('active');
+
+        var value = $(this).data('size');
+        $('html').css('font-size', value + 'px');
+
+        setTimeout(function () {
+            $.each(layout.page_scrollers, function() {
+                this.scroller.refresh();
+            });
+        }, 0);
+
+        layout.storage('font-size', value);
+
+        setTimeout(function () {
+            $('#dropdown-psize').slideUp('slow');
+        }, 700);
+
+    });
+
     // Line-height event handlers
     $('#plh').on('change', function() {
         var elem = $(this).attr('id').split('lh')[0];
@@ -145,6 +179,37 @@ define([
                 this.scroller.refresh();
             });
         }, 0);
+    });
+
+    // Line-height strength dropdown handlers
+    $('#for-plh').on('click', function(){
+        if ( $('#dropdown-plh').is(':visible') ) {
+            $('#dropdown-plh').slideUp('slow');
+        } else {
+            var value = layout.storage('line-height');
+            $('.strength-line-height[data-size="' + value + '"]').removeClass('inactive').addClass('active');
+            $('#dropdown-plh').slideDown('slow');
+        }
+    });
+
+    $('.strength-line-height').on('click', function(){
+        $('.strength-line-height').removeClass('active').addClass('inactive');
+        $(this).removeClass('inactive').addClass('active');
+
+        var value = $(this).data('size');
+        $('p,li,h1,h2,h3,h4,h5,button').css('line-height', value);
+
+        setTimeout(function () {
+            $.each(layout.page_scrollers, function() {
+                this.scroller.refresh();
+            });
+        }, 0);
+
+        layout.storage('line-height', value);
+
+        setTimeout(function () {
+            $('#dropdown-plh').slideUp('slow');
+        }, 700);
     });
 
     // Initialise online status indicator

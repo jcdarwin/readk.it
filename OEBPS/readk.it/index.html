@@ -57,14 +57,28 @@
             <span class="icon back inactive"><i class="icon-reply"></i></span>
             <div class="controls">
                 <div class="size slider">
-                    <label for="psize" class="icon" title="font size"><i class="icon-text-height"></i></label>
-                    <input type="range" name="psize" value="16" min="12" max="24" id="psize" />
-                    <span class="value">16</span>px
+                    <label id="for-psize" for="psize" class="icon" title="font size"><i class="icon-text-height"></i></label>
+                    <div class="slider-bar" style="display:none;">
+                        <input type="range" name="psize" value="16" min="12" max="24" id="psize" />
+                        <span class="value">16</span>px
+                    </div>
+                    <div id="dropdown-psize" class="dropdown" style="display:none;">
+                        <span class="strength-size inactive" data-size="16" style="width:18px;height:18px;border-radius:9px;left:10px;margin-top:-13px;"></span>
+                        <span class="strength-size inactive" data-size="20" style="width:24px;height:24px;border-radius:12px;left:39px;margin-top:-13px;"></span>
+                        <span class="strength-size inactive" data-size="24" style="width:30px;height:30px;border-radius:15px;left:74px;margin-top:-13px;"></span>
+                    </div>
                 </div>
                 <div class="lh slider">
-                    <label for="plh" class="icon" title="line height"><i class="icon-align-justify"></i></label>
-                    <input type="range" name="plh" value="1.4" id="plh" step="0.01" min="1" max="2" />
-                    <span class="value">1.4</span>
+                    <label id="for-plh" for="plh" class="icon" title="line height"><i class="icon-align-justify"></i></label>
+                    <div class="slider-bar" style="display:none;">
+                        <input type="range" name="plh" value="1.4" id="plh" step="0.01" min="1" max="2" />
+                        <span class="value">1.4</span>
+                    </div>
+                    <div id="dropdown-plh" class="dropdown" style="display:none;">
+                        <span class="strength-line-height inactive" data-size="1.42" style="width:18px;height:18px;border-radius:9px;left:10px;margin-top:-13px;"></span>
+                        <span class="strength-line-height inactive" data-size="1.7" style="width:24px;height:24px;border-radius:12px;left:39px;margin-top:-13px;"></span>
+                        <span class="strength-line-height inactive" data-size="2" style="width:30px;height:30px;border-radius:15px;left:74px;margin-top:-13px;"></span>
+                    </div>
                 </div>
                 <span class="icon status offline"><i class="icon-signal"></i></span>
                 <span class="icon serif" title="serif font"><span class="font">A</span></span>

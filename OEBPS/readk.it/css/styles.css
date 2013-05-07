@@ -69,7 +69,7 @@
 }
 
 .slider, .slider span, label i, span.icon, span i {
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .size, .lh {
@@ -85,9 +85,31 @@
     color: #ffffff;
     margin-top:5px;
     display:inline-block;
-    width:36px;height:26px;border-radius:15px;text-align:center;background:#000;padding-top:6px;
+    width:30px;height:24px;border-radius:15px;text-align:center;background:#000;padding-top:6px;
     line-height: 30px;
     cursor: hand; cursor: pointer; 
+}
+
+.icon.serif, .icon.sans {
+    padding-top:3px;
+    padding-bottom:3px;
+}
+
+.dropdown {
+    position:relative;
+    height:60px;
+    width:116px;
+    margin-top: 5px;
+    background-color:#444;
+    opacity:0.8;
+    border-radius: 10px;    
+}
+
+[class^="strength-"], [class*=" strength-"] {
+    float:left;
+    margin-right: 0;
+    position:absolute;top:50%;
+    cursor:hand; cursor:pointer;
 }
 
 .font {
@@ -104,7 +126,6 @@
 
 .status {
     float:right;
-    margin-right: 10px;
     cursor: default;
 }
 
@@ -138,8 +159,11 @@ and (max-device-width : 480px) {
         top: 0;
         -webkit-user-select: none;
     }                
-    .slider{
+    .slider-bar {
         display: none;
+    }
+    .slider {
+        width:30px;
     }
 }
 
@@ -151,8 +175,11 @@ and (max-device-width : 568px) {
         top: 0;
         -webkit-user-select: none;
     }
-    .slider{
+    .slider-bar {
         display: none;
+    }
+    .slider {
+        width:30px;
     }
 }
 

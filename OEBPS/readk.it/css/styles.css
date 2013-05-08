@@ -77,10 +77,6 @@
     margin-right: 10px;
 }
 
-.size label, .lh label {
-/*    display: block; */
-}
-
 .icon {
     color: #ffffff;
     margin-top:5px;
@@ -98,12 +94,21 @@
 .dropdown {
     position:absolute;
     top:35px;
-    left:30px;
     height:60px;
-    width:116px;
     margin-top: 5px;
     background-color:#444;
     border-radius: 10px;    
+}
+
+#dropdown-size, #dropdown-lineheight {
+    left:30px;
+    width:116px;
+}
+
+#dropdown-bookmark {
+    right:30px;
+    color: #fff;
+    width:280px;
 }
 
 .small {
@@ -153,6 +158,11 @@
 .status {
     float:right;
     cursor: default;
+}
+
+.bookmark {
+    float:right;
+    cursor: hand; cursor: pointer;
 }
 
 .online, .active {

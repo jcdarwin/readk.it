@@ -182,6 +182,45 @@ define([
         }, 700);
     });
 
+    // Bookmark event handlers
+    $('#for-bookmark').on('click', function(){
+        if ( $('#dropdown-bookmark').is(':visible') ) {
+            $('#dropdown-bookmark').slideUp('slow');
+        } else {
+            var value = layout.storage('font-bookmark');
+            $('.strength-bookmark[data-size="' + value + '"]').removeClass('inactive').addClass('active');
+            if ( $('#dropdown-size').is(':visible') ) {
+                $('#dropdown-size').slideUp();
+            }
+            if ( $('#dropdown-lineheight').is(':visible') ) {
+                $('#dropdown-lineheight').slideUp();
+            }
+            $('#dropdown-bookmark').html('');
+            $('#dropdown-bookmark').append('<p style="width:260px;display:inline-block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">The text-overflow declaration allows you to deal with clipped text: that is, text that does not fit into its box.</p><span class="icon inactive" style="inline-block;width:24px;height:24px;border-radius:12px;margin-top:-20px;padding-top:0;"><i class="icon-plus"></i></span>');
+            $('#dropdown-bookmark').slideDown('slow');
+        }
+    });
+
+    $('.strength-bookmark').on('click', function(){
+        $('.strength-bookmark').removeClass('active').addClass('inactive');
+        $(this).removeClass('inactive').addClass('active');
+
+        var value = '???';
+
+        setTimeout(function () {
+            $.each(layout.page_scrollers, function() {
+                this.scroller.refresh();
+            });
+        }, 0);
+
+        layout.storage('bookmark', value);
+
+        setTimeout(function () {
+            $('#dropdown-bookmark').slideUp('slow');
+        }, 700);
+
+    });
+
     // Initialise online status indicator
     function check_status() {
         var status = navigator.onLine ? 'online' : 'offline';

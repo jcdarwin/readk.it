@@ -53,7 +53,7 @@ define([
                         storage('history', [storage('page')]);
                     }
                     // Notify any subscribers that the history has changed.
-                    notifications('history_changed').publish('');
+                    publish('history_changed');
                 }
             }
 
@@ -289,28 +289,22 @@ define([
         });
 
         // Notify any subscribers that the layout has been loaded.
-        notifications('publication_loaded').publish('');
+        publish('publication_loaded');
     };
 
-    // Classic pub sub, as per http://api.jquery.com/jQuery.Callbacks/
-    var topics = {};
-    var notifications = function( id ) {
-        var callbacks,
-            method,
-            topic = id && topics[ id ];
+    // Classic pubsub, as per https://gist.github.com/addyosmani/1321768
+    var queue = $({});
 
-        if ( !topic ) {
-            callbacks = jQuery.Callbacks();
-            topic = {
-                publish: callbacks.fire,
-                subscribe: callbacks.add,
-                unsubscribe: callbacks.remove
-            };
-            if ( id ) {
-                topics[ id ] = topic;
-            }
-        }
-        return topic;
+    subscribe = function() {
+        queue.on.apply(queue, arguments);
+    };
+
+    unsubscribe = function() {
+        queue.off.apply(queue, arguments);
+    };
+
+    publish = function() {
+        queue.trigger.apply(queue, arguments);
     };
 
     return {
@@ -322,7 +316,9 @@ define([
         publication: publication,
         page_scrollers: page_scrollers,
         body: body,
-        notifications: notifications,
+        subscribe: subscribe,
+        unsubscribe: unsubscribe,
+        publish: publish,
         finalise: finalise
     };
 

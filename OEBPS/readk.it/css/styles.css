@@ -103,8 +103,31 @@
     width:116px;
     margin-top: 5px;
     background-color:#444;
-    opacity:0.8;
     border-radius: 10px;    
+}
+
+.small {
+    width:18px;height:18px;border-radius:9px;left:10px;margin-top:-13px;
+}
+
+.small i {
+    font-size: 12px;line-height: 1.6;
+}
+
+.medium {
+    width:24px;height:24px;border-radius:12px;left:39px;margin-top:-13px;
+}
+
+.medium i {
+    font-size: 16px;line-height: 1.6;
+}
+
+.large{
+    width:30px;height:30px;border-radius:15px;left:74px;margin-top:-13px;
+}
+
+.large i {
+    font-size: 20px;line-height: 1.6;
 }
 
 [class^="strength-"], [class*=" strength-"] {
@@ -112,6 +135,7 @@
     margin-right: 0;
     position:absolute;top:50%;
     cursor:hand; cursor:pointer;
+    text-align: center;
 }
 
 .font {

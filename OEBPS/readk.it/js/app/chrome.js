@@ -13,11 +13,10 @@ define([
 
     // We wait until the publication is loaded into the layout before
     // activating the chrome.
-    layout.notifications('publication_loaded').subscribe(initialiser);
-    layout.notifications('publication_loaded').publish();
+    layout.subscribe('publication_loaded', initialiser);
 
-    var initialiser = function () {
-        layout.notifications('history_changed').subscribe(check_backbutton);
+    function initialiser() {
+        layout.subscribe('history_changed', check_backbutton);
 
         // Check for stored font preference and apply accordingly.
         var font = layout.storage('font');
@@ -45,11 +44,11 @@ define([
         check_status();
 
         // Check online status on a regular interval
-        setInterval( check_status, 1000);
+        setInterval( check_status, 5000);
 
         // Check the backbutton status
         check_backbutton();
-    };
+    }
 
     /* Register handlers. */
 
@@ -60,7 +59,8 @@ define([
     });
 
     function check_backbutton() {
-        var status = layout.storage('history').length ? 'active' : 'inactive';
+        var history = layout.storage('history');
+        var status = history && history.length ? 'active' : 'inactive';
 
         if (status == 'active') {
             $('.back').removeClass('inactive');
@@ -114,31 +114,16 @@ define([
     });
 
     // Fontsize event handlers
-    $('#psize').on('change', function() {
-        var value = $(this).val();
-        $('html').css('font-size', value + 'px');
-        layout.storage('font-size', value);
-    });
-
-    $('#psize').on('mouseup touchend', function() {
-        setTimeout(function () {
-            $.each(layout.page_scrollers, function() {
-                this.scroller.refresh();
-            });
-        }, 0);
-    });
-
-    // Size strength dropdown handlers
-    $('#for-psize').on('click', function(){
-        if ( $('#dropdown-psize').is(':visible') ) {
-            $('#dropdown-psize').slideUp('slow');
+    $('#for-size').on('click', function(){
+        if ( $('#dropdown-size').is(':visible') ) {
+            $('#dropdown-size').slideUp('slow');
         } else {
             var value = layout.storage('font-size');
             $('.strength-size[data-size="' + value + '"]').removeClass('inactive').addClass('active');
-            if ( $('#dropdown-plh').is(':visible') ) {
-                $('#dropdown-plh').slideUp();
+            if ( $('#dropdown-lineheight').is(':visible') ) {
+                $('#dropdown-lineheight').slideUp();
             }
-            $('#dropdown-psize').slideDown('slow');
+            $('#dropdown-size').slideDown('slow');
         }
     });
 
@@ -158,37 +143,22 @@ define([
         layout.storage('font-size', value);
 
         setTimeout(function () {
-            $('#dropdown-psize').slideUp('slow');
+            $('#dropdown-size').slideUp('slow');
         }, 700);
 
     });
 
     // Line-height event handlers
-    $('#plh').on('change', function() {
-        var value = parseFloat($(this).val()).toFixed(2); // keeps the range to outputing two decimal places
-        $('p,li,h1,h2,h3,h4,h5,button').css('line-height', $(this).val());
-        layout.storage('line-height', value);
-    });
-
-    $('#plh').on('mouseup touchend', function() {
-        setTimeout(function () {
-            $.each(layout.page_scrollers, function() {
-                this.scroller.refresh();
-            });
-        }, 0);
-    });
-
-    // Line-height strength dropdown handlers
-    $('#for-plh').on('click', function(){
-        if ( $('#dropdown-plh').is(':visible') ) {
-            $('#dropdown-plh').slideUp('slow');
+    $('#for-lineheight').on('click', function(){
+        if ( $('#dropdown-lineheight').is(':visible') ) {
+            $('#dropdown-lineheight').slideUp('slow');
         } else {
-            if ( $('#dropdown-psize').is(':visible') ) {
-                $('#dropdown-psize').slideUp();
+            if ( $('#dropdown-size').is(':visible') ) {
+                $('#dropdown-size').slideUp();
             }
             var value = layout.storage('line-height');
             $('.strength-line-height[data-size="' + value + '"]').removeClass('inactive').addClass('active');
-            $('#dropdown-plh').slideDown('slow');
+            $('#dropdown-lineheight').slideDown('slow');
         }
     });
 
@@ -208,7 +178,7 @@ define([
         layout.storage('line-height', value);
 
         setTimeout(function () {
-            $('#dropdown-plh').slideUp('slow');
+            $('#dropdown-lineheight').slideUp('slow');
         }, 700);
     });
 

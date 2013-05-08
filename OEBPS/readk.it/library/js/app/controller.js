@@ -20,7 +20,6 @@ define([
                 console.log(value.name);
 
                 // Load an entry for the publication into the library view
-                //$('.frame .ul').append('<div class="li publication"><a href="../index.library.html#' + encodeURIComponent(value.path) + '"><img src="' + value.cover + '" /></a><h2><a href="../index.library.html#' + encodeURIComponent(value.path) + '" title="' + value.identifier + '">' + value.name + '</a></h2></div>');
                 $('.frame .ul').append('<div class="li publication" data-url="../index.library.html#' + encodeURIComponent(value.path) + '"><img src="' + value.cover + '" /></div>');
 
             });

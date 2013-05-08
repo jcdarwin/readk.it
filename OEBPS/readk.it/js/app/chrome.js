@@ -202,7 +202,7 @@ define([
                 $('#dropdown-lineheight').slideUp();
             }
             $('#dropdown-bookmark').html('');
-            $('#dropdown-bookmark').append('<p style="width:260px;display:inline-block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">The text-overflow declaration allows you to deal with clipped text: that is, text that does not fit into its box.</p><span class="icon inactive" style="inline-block;width:24px;height:24px;border-radius:12px;margin-top:-20px;padding-top:0;"><i class="icon-plus"></i></span>');
+            $('#dropdown-bookmark').append('<p style="width:310px;display:inline-block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">The text-overflow declaration allows you to deal with clipped text: that is, text that does not fit into its box.</p><span class="icon inactive" style="inline-block;width:24px;height:24px;border-radius:12px;margin-top:-20px;padding-top:0;"><i class="icon-plus"></i></span>');
             $('#dropdown-bookmark').slideDown('slow');
         }
     });

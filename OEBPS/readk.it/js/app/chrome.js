@@ -31,6 +31,8 @@ define([
         if (fontsize) {
             $('html').css('font-size', fontsize + 'px');
             $('.strength-size[data-size="' + fontsize + '"]').removeClass('inactive').addClass('active');
+
+            layout.refresh();
         }
 
         // Check for stored line-height preference and apply accordingly.
@@ -38,6 +40,8 @@ define([
         if (lineheight) {
             $('p,li,h1,h2,h3,h4,h5,button').css('line-height', lineheight);
             $('.strength-line-height[data-size="' + lineheight + '"]').removeClass('inactive').addClass('active');
+
+            layout.refresh();
         }
 
         // Check online status immediately, instead of waiting for the first setInterval
@@ -84,11 +88,8 @@ define([
         $.each($('link[href$="serif.css"]'), function(i, link) {
             link.disabled=false;
         });
-        setTimeout(function () {
-            $.each(layout.page_scrollers, function() {
-                this.scroller.refresh();
-            });
-        }, 0);
+
+        layout.refresh();
         layout.storage('font', 'serif');
     });
 
@@ -105,11 +106,8 @@ define([
         $.each($('link[href$="sans.css"]'), function(i, link) {
             link.disabled=false;
         });
-        setTimeout(function () {
-            $.each(layout.page_scrollers, function() {
-                this.scroller.refresh();
-            });
-        }, 0);
+
+        layout.refresh();
         layout.storage('font', 'sans');
     });
 
@@ -137,12 +135,7 @@ define([
         var value = $(this).data('size');
         $('html').css('font-size', value + 'px');
 
-        setTimeout(function () {
-            $.each(layout.page_scrollers, function() {
-                this.scroller.refresh();
-            });
-        }, 0);
-
+        layout.refresh();
         layout.storage('font-size', value);
 
         setTimeout(function () {
@@ -175,12 +168,7 @@ define([
         var value = $(this).data('size');
         $('p,li,h1,h2,h3,h4,h5,button').css('line-height', value);
 
-        setTimeout(function () {
-            $.each(layout.page_scrollers, function() {
-                this.scroller.refresh();
-            });
-        }, 0);
-
+        layout.refresh();
         layout.storage('line-height', value);
 
         setTimeout(function () {
@@ -202,28 +190,48 @@ define([
                 $('#dropdown-lineheight').slideUp();
             }
             $('#dropdown-bookmark').html('');
-            $('#dropdown-bookmark').append('<p style="width:300px;display:inline-block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">The text-overflow declaration allows you to deal with clipped text: that is, text that does not fit into its box.</p><span class="icon inactive" style="inline-block;width:24px;height:24px;border-radius:12px;margin-top:-20px;padding-top:0;"><i class="icon-plus"></i></span>');
+            $('#dropdown-bookmark').append('<div><input id="bookmark-text" type="text" value="' + layout.location().title + '" style="width:250px;display:inline-block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><span class="icon inactive" style="inline-block;float:right;width:24px;height:24px;border-radius:12px;padding-top:0;"><i class="icon-plus active add-bookmark"></i></span></div>');
+
+            var bookmarks = layout.storage('bookmarks') || [];
+            $.each(bookmarks, function(i, bookmark) {
+                $('#dropdown-bookmark').append('<div><p>' + bookmark.title + '</p><i class="icon-minus active remove-bookmark" data-index="' + i + '"></i></span></div>');
+            });
+
             $('#dropdown-bookmark').slideDown('slow');
         }
     });
 
-    $('.strength-bookmark').on('click', function(){
-        $('.strength-bookmark').removeClass('active').addClass('inactive');
-        $(this).removeClass('inactive').addClass('active');
+    $('.remove-bookmark').live('click', function(){
+        var index = $(this).data('index');
 
-        var value = '???';
+        var bookmarks = layout.storage('bookmarks') || [];
 
-        setTimeout(function () {
-            $.each(layout.page_scrollers, function() {
-                this.scroller.refresh();
-            });
-        }, 0);
+        bookmarks.splice(index,1);
 
-        layout.storage('bookmark', value);
+        layout.storage('bookmarks', bookmarks);
+
+        $(this).parent().remove();
+    });
+
+    $('.add-bookmark').live('click', function(){
+        $(this).removeClass('active').addClass('inactive');
+
+        var value = $('#bookmark-text').attr('value');
+        var bookmarks = layout.storage('bookmarks') || [];
+
+        var bookmark = {
+            title: value,
+            x: layout.location().x,
+            y: layout.location().y
+        };
+
+        bookmarks.push(bookmark);
+
+        layout.storage('bookmarks', bookmarks);
 
         setTimeout(function () {
             $('#dropdown-bookmark').slideUp('slow');
-        }, 700);
+        }, 500);
 
     });
 

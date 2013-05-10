@@ -109,6 +109,8 @@
     right:10px;
     color: #fff;
     width:300px;
+    padding: 10px;
+    height: auto;
 }
 
 .small {

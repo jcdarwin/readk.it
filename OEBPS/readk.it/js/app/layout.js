@@ -66,6 +66,14 @@ define([
     });
 
     // Function to redraw the layout after DOM changes.
+    var refresh = function () {
+        setTimeout(function () {
+            $.each(page_scrollers, function() {
+                this.scroller.refresh();
+            });
+        }, 0);
+    };
+
     var update = function (page_scroller) {
         page_width = $('#pageWrapper').width();
         var pages = $('.page').length;
@@ -307,7 +315,17 @@ define([
         queue.trigger.apply(queue, arguments);
     };
 
+    var location = function() {
+        return {
+            page:   currentPage,
+            title:  publication.toc_entries[currentPage].title,
+            x:      $(book_scroller)[0].x,
+            y:      (page_scrollers[currentPage]).scroller.y
+        };
+    };
+
     return {
+        refresh: refresh,
         update: update,
         add: add,
         storage: storage,
@@ -319,6 +337,7 @@ define([
         subscribe: subscribe,
         unsubscribe: unsubscribe,
         publish: publish,
+        location: location,
         finalise: finalise
     };
 

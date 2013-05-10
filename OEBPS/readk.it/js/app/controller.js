@@ -22,6 +22,13 @@ define([
     var publication;
     var item;
 
+    /* Constructor */
+    var Controller = function (book, callback) {
+        load_publication_callback = callback;
+        // Parse the EPUB
+        publication = new Epub(book, 'META-INF/container.xml', load_publication);
+    };
+
     // tiny plugin to allow us to modify attribute values
     $.fn.prependAttr = function(attrName, prefix) {
         if (typeof this.attr(attrName) !== 'undefined') {
@@ -35,13 +42,6 @@ define([
     var url_selectors = $.map($.elemUrlAttr(), function(i, v){
         return v + '[' + i + ']';
     }).join(',');
-
-    /* Constructor */
-    var Controller = function (book, callback) {
-        load_publication_callback = callback;
-        // Parse the EPUB
-        publication = new Epub(book, 'META-INF/container.xml', load_publication);
-    };
 
     /* Define the instance methods */
     Controller.prototype = {
@@ -67,8 +67,7 @@ define([
             require(["text!" + value.href + "!strip"],
                 function(html) {
                     // Because our calls to retreive the pages are async,
-                    // it's possible that we receive the pages back
-                    // out of order.
+                    // it's possible that we receive the pages back out of order.
                     pages[value.id] = html;
                     deferred.resolve();
                 }

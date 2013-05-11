@@ -20,7 +20,7 @@ define([
         this.ncx_file = '';
         this.nav_file = '';
         this.nav_entries = [];
-        this.toc_entries = [];
+        this.spine_entries = [];
         this.css_entries = [];
         this.version = '';
         this.title = '';
@@ -33,11 +33,11 @@ define([
     // Define the instance methods.
     Epub.prototype.getToc = function(id){
         if (!id) {
-            return (this.toc_entries);
+            return (this.spine_entries);
         } else {
-            for(var i = 0; i < toc_entries.length; i++) {
-                if (toc_entries[i].id == id) {
-                    return toc_entries[i];
+            for(var i = 0; i < spine_entries.length; i++) {
+                if (spine_entries[i].id == id) {
+                    return spine_entries[i];
                 }
             }
         }
@@ -87,7 +87,7 @@ define([
             var idref = $(this).attr('idref');
             var href = $(f).find('manifest ' + opf_item_tag + '[id="' + idref + '"]').attr('href');
             var file = href.replace(/\//g, '_');
-            epub.toc_entries.push({id: $(this).attr('idref'), file: file, title: '', href: '/' + epub.epub_dir + epub.oebps_dir + '/' + href, url: href, path: href.replace(/[^\/]*?$/, '')});
+            epub.spine_entries.push({id: $(this).attr('idref'), file: file, title: '', href: '/' + epub.epub_dir + epub.oebps_dir + '/' + href, url: href, path: href.replace(/[^\/]*?$/, '')});
         });
 
         // Read the css entries
@@ -120,17 +120,27 @@ define([
             var text = $(this).find('navLabel text').text();
             var src = $(this).find('content').attr('src');
             var file = src.replace(/\//g, '_');
-            var filtered_toc_entries = epub.toc_entries.filter(function (item) {
+            var filtered_spine_entries = epub.spine_entries.filter(function (item) {
                 return item.file == file;
             });
-            if (filtered_toc_entries[0]) {
-                filtered_toc_entries[0]['title'] = text;
+            if (filtered_spine_entries[0]) {
+                filtered_spine_entries[0]['title'] = text;
+            }
+
+            if (/#/.test(src)) {
+                if (src.substr(0,1) == '#') {
+                    // We must have something like '#milestone1'; convert to '#chapter1_milestone1'
+                    src = publication.file + '_' + src.substr(1);
+                } else {
+                    // We must have something like 'text/chapter2#milestone1'; convert to '#text_chapter2#milestone1'
+                    src = src.replace(/\//g, '_').replace(/#/g, '_');
+                }
             }
 
             epub.nav_entries.push({id: id, file: file, title: text, href: '/' + epub.epub_dir + epub.oebps_dir + '/' + src, url: src, path: src.replace(/[^\/]*?$/, '')});
         });
 
-        callback(epub.toc_entries, epub.css_entries);
+        callback(epub.spine_entries, epub.css_entries);
     };
 
     var nav = function (f, epub, callback) {
@@ -138,17 +148,27 @@ define([
             var href = $(this).attr('href');
             var file = href.replace(/\//g, '_');
             file = file.replace(/#.*/g, '');
-            var filtered_toc_entries = epub.toc_entries.filter(function (item) {
+            var filtered_spine_entries = epub.spine_entries.filter(function (item) {
                 return item.file == file;
             });
-            if (filtered_toc_entries[0]) {
-                filtered_toc_entries[0]['title'] = $(this).text();
+            if (filtered_spine_entries[0]) {
+                filtered_spine_entries[0]['title'] = $(this).text();
+            }
+
+            if (/#/.test(href)) {
+                if (href.substr(0,1) == '#') {
+                    // We must have something like '#milestone1'; convert to '#chapter1_milestone1'
+                    href = publication.file + '_' + href.substr(1);
+                } else {
+                    // We must have something like 'text/chapter2#milestone1'; convert to '#text_chapter2#milestone1'
+                    href = href.replace(/\//g, '_').replace(/#/g, '_');
+                }
             }
 
             epub.nav_entries.push({id: href, file: file, title: $(this).text(), href: '/' + epub.epub_dir + epub.oebps_dir + '/' + href, url: href, path: href.replace(/[^\/]*?$/, '')});
         });
 
-        callback(epub.toc_entries, epub.css_entries);
+        callback(epub.spine_entries, epub.css_entries);
     };
 
 

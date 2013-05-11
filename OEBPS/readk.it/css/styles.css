@@ -100,6 +100,14 @@
     border-radius: 10px;    
 }
 
+.dropdown a:link {
+    color: #fff;
+}
+
+.dropdown a:visited {
+    color: #bbb;
+}
+
 #dropdown-size, #dropdown-lineheight {
     left:30px;
     width:116px;
@@ -110,7 +118,11 @@
     color: #fff;
     width:300px;
     padding: 10px;
-    /* height: auto */;
+    overflow:hidden;
+}
+
+#dropdown-bookmark a {
+    font-size: 0.85em;
 }
 
 .small {

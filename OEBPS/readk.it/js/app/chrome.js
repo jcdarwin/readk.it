@@ -190,8 +190,9 @@ define([
                 $('#dropdown-lineheight').slideUp();
             }
 
-            var html = '<div><input id="bookmark-text" type="text" value="' + layout.location().title + '" style="width:250px;display:inline-block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><span class="icon inactive" style="inline-block;float:right;width:24px;height:24px;border-radius:12px;padding-top:0;"><i class="icon-plus active add-bookmark"></i></span></div>';
+            var input = '<div><input id="bookmark-text" type="text" value="' + layout.location().title + '" style="width:250px;display:inline-block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><span class="icon inactive" style="inline-block;float:right;width:24px;height:24px;border-radius:12px;padding-top:0;"><i class="icon-plus active add-bookmark"></i></span></div>';
 
+            var html = '';
             var bookmarks = layout.storage('bookmarks') || [];
             $.each(bookmarks, function(i, bookmark) {
                 html += '<div><p>' + bookmark.title + '</p><i class="icon-minus active remove-bookmark" data-index="' + i + '"></i></span></div>';
@@ -206,14 +207,19 @@ define([
             });
             html += toc;
 
-            html = '<div id="bookmark-widget" class="wrapper"><div class="scroller"><div class="margins">' + html + '</div></div></div>';
+            html = input + '<div id="bookmark-widget"><div class="scroller"><div class="margins">' + html + '</div></div></div>';
 
             $('#dropdown-bookmark').html('');
             $('#dropdown-bookmark').append(html);
 
-            var bookmark_scroller = new iScroll('bookmark-widget', {snap: true, momentum: true, hScrollbar: false, vScrollbar: false, lockDirection: true,
+            var bookmark_scroller = new iScroll('bookmark-widget', {snap: true, momentum: true, hScroll: false, hScrollbar: false, vScrollbar: false, lockDirection: true,
                 onAnimationEnd: function(){
                 }
+            });
+
+            // Capture clicks on anchors so we can update the scroll position.
+            $('#bookmark-widget a').on('click', function(event) {
+                layout.trap_anchor(this, event);
             });
 
             $('#dropdown-bookmark').slideDown('slow', function() {

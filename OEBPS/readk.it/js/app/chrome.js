@@ -194,6 +194,11 @@ define([
 
             var html = '';
             var bookmarks = layout.storage('bookmarks') || [];
+
+            if (bookmarks.length) {
+                $('#for-bookmark').removeClass('inactive').addClass('active');
+            }
+
             $.each(bookmarks, function(i, bookmark) {
                 html += '<div><p>' + bookmark.title + '</p><i class="icon-minus active remove-bookmark" data-index="' + i + '"></i></span></div>';
             });
@@ -239,10 +244,15 @@ define([
         layout.storage('bookmarks', bookmarks);
 
         $(this).parent().remove();
+
+        if (!bookmarks.length) {
+            $('#for-bookmark').removeClass('active').addClass('inactive');
+        }
+
     });
 
     $('.add-bookmark').live('click', function(){
-        $(this).removeClass('active').addClass('inactive');
+        $('#for-bookmark').removeClass('inactive').addClass('active');
 
         var value = $('#bookmark-text').attr('value');
         var bookmarks = layout.storage('bookmarks') || [];
@@ -260,7 +270,6 @@ define([
         setTimeout(function () {
             $('#dropdown-bookmark').slideUp('slow');
         }, 500);
-
     });
 
     // Initialise online status indicator

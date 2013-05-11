@@ -94,7 +94,6 @@
 .dropdown {
     position:absolute;
     top:35px;
-    height:400px;
     margin-top: 5px;
     background-color:#444;
     border-radius: 10px;    
@@ -111,14 +110,16 @@
 #dropdown-size, #dropdown-lineheight {
     left:30px;
     width:116px;
+    height: 60px;
 }
 
 #dropdown-bookmark {
     right:10px;
     color: #fff;
-    width:280px;
     padding: 10px;
     overflow:hidden;
+    height:380px;
+    width:280px;
 }
 
 #dropdown-bookmark a {

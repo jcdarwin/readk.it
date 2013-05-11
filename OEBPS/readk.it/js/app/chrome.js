@@ -190,7 +190,7 @@ define([
                 $('#dropdown-lineheight').slideUp();
             }
 
-            var input = '<div><input id="bookmark-text" type="text" value="' + layout.location().title + '" style="width:250px;display:inline-block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><span class="icon inactive" style="inline-block;float:right;width:24px;height:24px;border-radius:12px;padding-top:0;"><i class="icon-plus active add-bookmark"></i></span></div>';
+            var input = '<div><input id="bookmark-text" type="text" value="' + layout.location().title + '" style="width:200px;display:inline-block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><span class="icon inactive" style="inline-block;float:right;width:24px;height:24px;border-radius:12px;padding-top:0;"><i class="icon-plus active add-bookmark"></i></span></div>';
 
             var html = '';
             var bookmarks = layout.storage('bookmarks') || [];

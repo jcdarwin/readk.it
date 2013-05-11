@@ -220,6 +220,7 @@ define([
             // Capture clicks on anchors so we can update the scroll position.
             $('#bookmark-widget a').on('click', function(event) {
                 layout.trap_anchor(this, event);
+                $('#dropdown-bookmark').slideUp('slow');
             });
 
             $('#dropdown-bookmark').slideDown('slow', function() {

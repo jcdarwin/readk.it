@@ -324,6 +324,10 @@ define([
         };
     };
 
+    var nav = function () {
+        return publication.nav_entries;
+    };
+
     return {
         refresh: refresh,
         update: update,
@@ -338,6 +342,7 @@ define([
         unsubscribe: unsubscribe,
         publish: publish,
         location: location,
+        nav: nav,
         finalise: finalise
     };
 

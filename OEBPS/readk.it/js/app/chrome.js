@@ -189,15 +189,36 @@ define([
             if ( $('#dropdown-lineheight').is(':visible') ) {
                 $('#dropdown-lineheight').slideUp();
             }
-            $('#dropdown-bookmark').html('');
-            $('#dropdown-bookmark').append('<div><input id="bookmark-text" type="text" value="' + layout.location().title + '" style="width:250px;display:inline-block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><span class="icon inactive" style="inline-block;float:right;width:24px;height:24px;border-radius:12px;padding-top:0;"><i class="icon-plus active add-bookmark"></i></span></div>');
+
+            var html = '<div><input id="bookmark-text" type="text" value="' + layout.location().title + '" style="width:250px;display:inline-block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><span class="icon inactive" style="inline-block;float:right;width:24px;height:24px;border-radius:12px;padding-top:0;"><i class="icon-plus active add-bookmark"></i></span></div>';
 
             var bookmarks = layout.storage('bookmarks') || [];
             $.each(bookmarks, function(i, bookmark) {
-                $('#dropdown-bookmark').append('<div><p>' + bookmark.title + '</p><i class="icon-minus active remove-bookmark" data-index="' + i + '"></i></span></div>');
+                html += '<div><p>' + bookmark.title + '</p><i class="icon-minus active remove-bookmark" data-index="' + i + '"></i></span></div>';
             });
 
-            $('#dropdown-bookmark').slideDown('slow');
+            html += '<hr/>';
+            var toc = '';
+            $.each(layout.nav(), function(i, item) {
+                if (item.title) {
+                    toc += '<li><a href="#' + item.url + '">' + item.title + '</a></li>';
+                }
+            });
+            html += toc;
+
+            html = '<div id="bookmark-widget" class="wrapper"><div class="scroller"><div class="margins">' + html + '</div></div></div>';
+
+            $('#dropdown-bookmark').html('');
+            $('#dropdown-bookmark').append(html);
+
+            var bookmark_scroller = new iScroll('bookmark-widget', {snap: true, momentum: true, hScrollbar: false, vScrollbar: false, lockDirection: true,
+                onAnimationEnd: function(){
+                }
+            });
+
+            $('#dropdown-bookmark').slideDown('slow', function() {
+                bookmark_scroller.refresh();
+            });
         }
     });
 

@@ -19,6 +19,7 @@ define([
         this.opf_file = '';
         this.ncx_file = '';
         this.nav_file = '';
+        this.nav_entries = [];
         this.toc_entries = [];
         this.css_entries = [];
         this.version = '';
@@ -86,14 +87,14 @@ define([
             var idref = $(this).attr('idref');
             var href = $(f).find('manifest ' + opf_item_tag + '[id="' + idref + '"]').attr('href');
             var file = href.replace(/\//g, '_');
-            epub.toc_entries.push({id: $(this).attr('idref'), file: file, title: '', href: '/' + epub.epub_dir + epub.oebps_dir + '/' + href, path: href.replace(/[^\/]*?$/, '')});
+            epub.toc_entries.push({id: $(this).attr('idref'), file: file, title: '', href: '/' + epub.epub_dir + epub.oebps_dir + '/' + href, url: href, path: href.replace(/[^\/]*?$/, '')});
         });
 
         // Read the css entries
         $(f).find('manifest ' + opf_item_tag + '[media-type="text/css"]').each(function() {
             var href = $(this).attr('href');
             var file = href.replace(/\//g, '_');
-            epub.css_entries.push({id: $(this).attr('id'), file: file, title: '', href: '/' + epub.epub_dir + epub.oebps_dir + '/' + href, path: href.replace(/[^\/]*?$/, '')});
+            epub.css_entries.push({id: $(this).attr('id'), file: file, title: '', href: '/' + epub.epub_dir + epub.oebps_dir + '/' + href, url: href, path: href.replace(/[^\/]*?$/, '')});
         });
 
         // processs the ncx or nav file
@@ -115,13 +116,18 @@ define([
     /* Open the ncx file and read some useful metadata from it */
     var ncx = function (f, epub, callback) {
         $(f).find('navMap navPoint').each(function() {
+            var id = $(this).attr('id');
             var text = $(this).find('navLabel text').text();
             var src = $(this).find('content').attr('src');
             var file = src.replace(/\//g, '_');
             var filtered_toc_entries = epub.toc_entries.filter(function (item) {
                 return item.file == file;
             });
-            filtered_toc_entries[0]['title'] = text;
+            if (filtered_toc_entries[0]) {
+                filtered_toc_entries[0]['title'] = text;
+            }
+
+            epub.nav_entries.push({id: id, file: file, title: text, href: '/' + epub.epub_dir + epub.oebps_dir + '/' + src, url: src, path: src.replace(/[^\/]*?$/, '')});
         });
 
         callback(epub.toc_entries, epub.css_entries);
@@ -135,7 +141,11 @@ define([
             var filtered_toc_entries = epub.toc_entries.filter(function (item) {
                 return item.file == file;
             });
-            filtered_toc_entries[0]['title'] = $(this).text();
+            if (filtered_toc_entries[0]) {
+                filtered_toc_entries[0]['title'] = $(this).text();
+            }
+
+            epub.nav_entries.push({id: href, file: file, title: $(this).text(), href: '/' + epub.epub_dir + epub.oebps_dir + '/' + href, url: href, path: href.replace(/[^\/]*?$/, '')});
         });
 
         callback(epub.toc_entries, epub.css_entries);

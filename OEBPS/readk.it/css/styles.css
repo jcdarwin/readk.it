@@ -94,7 +94,7 @@
 .dropdown {
     position:absolute;
     top:35px;
-    height:60px;
+    height:400px;
     margin-top: 5px;
     background-color:#444;
     border-radius: 10px;    
@@ -110,7 +110,7 @@
     color: #fff;
     width:300px;
     padding: 10px;
-    height: auto;
+    /* height: auto */;
 }
 
 .small {

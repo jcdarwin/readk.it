@@ -255,7 +255,7 @@ define([
     $('.add-bookmark').live('click', function(){
         $('#for-bookmark').removeClass('inactive').addClass('active');
 
-        var value = $('#bookmark-text').attr('value');
+        var value = $('#bookmark-input').attr('value');
         var bookmarks = layout.storage('bookmarks') || [];
 
         var bookmark = {
@@ -264,7 +264,8 @@ define([
             y: layout.location().y
         };
 
-        html = '<div><p>' + bookmark.title + '</p><i class="icon-minus active remove-bookmark" data-index="' + bookmarks.length + '"></i></span></div>';
+        html = '<div><span class="icon bookmark-icon bookmark-icon-remove active remove-bookmark"><i class="icon-minus active" data-index="' + bookmarks.length + '"></i></span><p class="bookmark-title">' + bookmark.title + '</p></div>';
+
         $('#bookmark-list').append(html);
 
         bookmarks.push(bookmark);

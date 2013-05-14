@@ -192,25 +192,26 @@ define([
 
             var input = '<div><input id="bookmark-text" type="text" value="' + layout.location().title + '" style="width:200px;display:inline-block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><span class="icon inactive" style="inline-block;float:right;width:24px;height:24px;border-radius:12px;padding-top:0;"><i class="icon-plus active add-bookmark"></i></span></div>';
 
-            var html = '';
             var bookmarks = layout.storage('bookmarks') || [];
 
             if (bookmarks.length) {
                 $('#for-bookmark').removeClass('inactive').addClass('active');
             }
 
+            var html = '<div id="bookmark-list">';
+
             $.each(bookmarks, function(i, bookmark) {
                 html += '<div><p>' + bookmark.title + '</p><i class="icon-minus active remove-bookmark" data-index="' + i + '"></i></span></div>';
             });
 
-            html += '<hr/>';
-            var toc = '';
+            html += '</div><hr/>';
+            var nav = '';
             $.each(layout.nav(), function(i, item) {
                 if (item.title) {
-                    toc += '<li><a href="#' + item.url + '">' + item.title + '</a></li>';
+                    nav += '<li><a href="#' + item.url + '">' + item.title + '</a></li>';
                 }
             });
-            html += toc;
+            html += nav;
 
             html = input + '<div id="bookmark-widget"><div class="scroller"><div class="margins">' + html + '</div></div></div>';
 
@@ -262,6 +263,9 @@ define([
             x: layout.location().x,
             y: layout.location().y
         };
+
+        html = '<div><p>' + bookmark.title + '</p><i class="icon-minus active remove-bookmark" data-index="' + bookmarks.length + '"></i></span></div>';
+        $('#bookmark-list').append(html);
 
         bookmarks.push(bookmark);
 

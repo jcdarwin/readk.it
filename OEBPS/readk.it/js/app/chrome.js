@@ -235,7 +235,8 @@ define([
         }
     });
 
-    $('.remove-bookmark').live('click', function(){
+    $('.remove-bookmark').live('click', function(e){
+        e.preventDefault();
         var index = $(this).data('index');
 
         var bookmarks = layout.storage('bookmarks') || [];
@@ -252,7 +253,8 @@ define([
 
     });
 
-    $('.add-bookmark').live('click', function(){
+    $('.add-bookmark').live('click', function(e){
+        e.preventDefault();
         $('#for-bookmark').removeClass('inactive').addClass('active');
 
         var value = $('#bookmark-input').attr('value');

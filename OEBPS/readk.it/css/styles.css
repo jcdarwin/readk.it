@@ -180,6 +180,39 @@
     cursor: hand; cursor: pointer;
 }
 
+#bookmark-input {
+    width:250px;
+    display:inline-block;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+.bookmark-icon {
+    /* display:inline-block; */
+    width:24px;
+    height:24px;
+    border-radius:12px;
+    padding-top:0;
+}
+.bookmark-icon i {
+    line-height:1.5;
+}
+.bookmark-icon-add {
+    float:right;
+    margin-top:2px;
+}
+
+.bookmark-icon-remove {
+    float:left;
+    margin-top:0.5em;
+    margin-right:8px;
+}
+.bookmark-title {
+    float:left;
+    width:248px;
+    margin-top:5px;
+}
+
 .online, .active {
     background-color: #56A2D3;
 }

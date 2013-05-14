@@ -190,8 +190,7 @@ define([
                 $('#dropdown-lineheight').slideUp();
             }
 
-            var input = '<div><input id="bookmark-text" type="text" value="' + layout.location().title + '" style="width:200px;display:inline-block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><span class="icon inactive" style="inline-block;float:right;width:24px;height:24px;border-radius:12px;padding-top:0;"><i class="icon-plus active add-bookmark"></i></span></div>';
-
+            var input = '<div style="margin-bottom:5px;"><input id="bookmark-input" type="text" value="' + layout.location().title + '"><span class="icon bookmark-icon bookmark-icon-add active add-bookmark"><i class="icon-plus active"></i></span></div>';
             var bookmarks = layout.storage('bookmarks') || [];
 
             if (bookmarks.length) {
@@ -201,19 +200,20 @@ define([
             var html = '<div id="bookmark-list">';
 
             $.each(bookmarks, function(i, bookmark) {
-                html += '<div><p>' + bookmark.title + '</p><i class="icon-minus active remove-bookmark" data-index="' + i + '"></i></span></div>';
+                html += '<div><span class="icon bookmark-icon bookmark-icon-remove active remove-bookmark"><i class="icon-minus active" data-index="' + i + '"></i></span><p class="bookmark-title">' + bookmark.title + '</p></div>';
             });
 
-            html += '</div><hr/>';
-            var nav = '';
+            html += '</div><hr style="clear:both;" />';
+            var nav = '<ul>';
             $.each(layout.nav(), function(i, item) {
                 if (item.title) {
                     nav += '<li><a href="#' + item.url + '">' + item.title + '</a></li>';
                 }
             });
+            nav += '</ul>';
             html += nav;
 
-            html = input + '<div id="bookmark-widget"><div class="scroller"><div class="margins">' + html + '</div></div></div>';
+            html = input + '<div id="bookmark-widget"><div class="scroller">' + html + '</div></div>';
 
             $('#dropdown-bookmark').html('');
             $('#dropdown-bookmark').append(html);

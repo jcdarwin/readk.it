@@ -108,16 +108,20 @@ define([
                                 // We must have something like '#milestone1'; convert to '#chapter1_milestone1'
                                 $(v).attr('href', '#' + publication.file + '_' + $(v).attr('href').substr(1));
                             } else {
-                                // We must have something like 'text/chapter2#milestone1'; convert to '#text_chapter2#milestone1'
-                                $(v).attr('href', '#' + $(v).attr('href').replace(/\//g, '_').replace(/#/g, '_'));
+                                // We must have something like 'text/chapter2.xhtml#milestone1'; convert to '#text_chapter2_xhtml_milestone1'
+                                $(v).attr('href', '#' + $(v).attr('href').replace(/\//g, '_').replace(/\./g, '_').replace(/#/g, '_'));
                             }
                         }
                     }
                     return $(v);
                 });
+
+                // convert 'chapter2.xhtml' to 'chapter2_xhtml'
+                value.file = value.file.replace(/\./, '_');
+
                 $.each(page.find('[id]'), function(i, v){
                     // We want to change something like 'milestone1' to 'chapter1#milestone1'
-//                    $(v).attr('id', value.file + '_' + $(v).attr('id'));
+                    $(v).attr('id', value.file + '_' + $(v).attr('id'));
                     return $(v);
                 });
 

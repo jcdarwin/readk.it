@@ -40,7 +40,7 @@ define([
             }
 
             if (this.options['page_scroller_waiting']) {
-                this.options['page_scroller_waiting'].scroller.scrollToElement($('[href="#' + this.options['page_scroller_anchor'] + '"]')[0], 0);
+                this.options['page_scroller_waiting'].scroller.scrollToElement($('#' + this.options['page_scroller_anchor'])[0], 0);
                 this.options['page_scroller_waiting'] = undefined;
                 this.options['page_scroller_anchor'] = undefined;
 
@@ -322,6 +322,7 @@ define([
         return {
             page:   currentPage,
             title:  publication.spine_entries[currentPage].title,
+            file:   publication.spine_entries[currentPage].file,
             x:      $(book_scroller)[0].x,
             y:      (page_scrollers[currentPage]).scroller.y
         };

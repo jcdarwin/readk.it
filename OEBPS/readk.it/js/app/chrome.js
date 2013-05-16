@@ -190,7 +190,7 @@ define([
                 $('#dropdown-lineheight').slideUp();
             }
 
-            var input = '<div style="margin-bottom:5px;"><input id="bookmark-input" type="text" value="' + layout.location().title + '"><span class="icon bookmark-icon bookmark-icon-add active add-bookmark"><i class="icon-plus active"></i></span></div>';
+            var input = '<div style="margin-bottom:5px;"><input id="bookmark-input" type="text" data-file="' + layout.location().file + '" value="' + layout.location().title + '"><span class="icon bookmark-icon bookmark-icon-add active add-bookmark"><i class="icon-plus active"></i></span></div>';
             var bookmarks = layout.storage('bookmarks') || [];
 
             if (bookmarks.length) {
@@ -200,14 +200,14 @@ define([
             var html = '<div id="bookmark-list">';
 
             $.each(bookmarks, function(i, bookmark) {
-                html += '<div><span class="icon bookmark-icon bookmark-icon-remove active remove-bookmark"><i class="icon-minus active" data-index="' + i + '"></i></span><p class="bookmark-title">' + bookmark.title + '</p></div>';
+                html += '<div><span class="icon bookmark-icon bookmark-icon-remove active remove-bookmark"><i class="icon-minus active" data-index="' + i + '"></i></span><p class="bookmark-title"><a href="#' + bookmark.file + '">' + bookmark.title + '</a></p></div>';
             });
 
             html += '</div><hr style="clear:both;" />';
             var nav = '<ul>';
             $.each(layout.nav(), function(i, item) {
                 if (item.title) {
-                    nav += '<li><a href="#' + item.url + '">' + item.title + '</a></li>';
+                    nav += '<li><a href="#' + item.url.replace(/\./, '_') + '">' + item.title + '</a></li>';
                 }
             });
             nav += '</ul>';
@@ -258,25 +258,28 @@ define([
         $('#for-bookmark').removeClass('inactive').addClass('active');
 
         var value = $('#bookmark-input').attr('value');
+        var file = $('#bookmark-input').attr('data-file');
         var bookmarks = layout.storage('bookmarks') || [];
 
         var bookmark = {
             title: value,
+            file: file,
             x: layout.location().x,
             y: layout.location().y
         };
 
-        html = '<div><span class="icon bookmark-icon bookmark-icon-remove active remove-bookmark"><i class="icon-minus active" data-index="' + bookmarks.length + '"></i></span><p class="bookmark-title">' + bookmark.title + '</p></div>';
+        html = '<div><span class="icon bookmark-icon bookmark-icon-remove active remove-bookmark"><i class="icon-minus active" data-index="' + bookmarks.length + '"></i></span><p class="bookmark-title"><a href="#' + bookmark.file + '">' + bookmark.title + '</a></p></div>';
 
         $('#bookmark-list').append(html);
 
         bookmarks.push(bookmark);
 
         layout.storage('bookmarks', bookmarks);
+    });
 
-        setTimeout(function () {
-            $('#dropdown-bookmark').slideUp('slow');
-        }, 500);
+    // close any open dropdowns if the user clicks elsewhere
+    $('#pageWrapper').on('click', function(){
+        $('.dropdown').slideUp('slow');
     });
 
     // Initialise online status indicator

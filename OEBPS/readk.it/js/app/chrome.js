@@ -18,6 +18,48 @@ define([
     function initialiser() {
         layout.subscribe('history_changed', check_backbutton);
 
+        // plugin to eliminate click delay on iOS
+        // http://cubiq.org/remove-onclick-delay-on-webkit-for-iphone
+        $.fn.noClickDelay = function() {
+            var $wrapper = this;
+            var $target = this;
+            var moved = false;
+            $wrapper.bind('touchstart mousedown',function(e) {
+                e.preventDefault();
+                moved = false;
+                $target = $(e.target);
+                if($target.nodeType == 3) {
+                    $target = $($target.parent());
+                }
+                $target.addClass('pressed');
+                $wrapper.bind('touchmove mousemove',function(e) {
+                    moved = true;
+                    $target.removeClass('pressed');
+                });
+                $wrapper.bind('touchend mouseup',function(e) {
+                    $wrapper.unbind('mousemove touchmove');
+                    $wrapper.unbind('mouseup touchend');
+                    if(!moved && $target.length) {
+                        $target.removeClass('pressed');
+                        $target.trigger('click');
+                        $target.focus();
+                    }
+                });
+            });
+        };
+
+        $('.back').noClickDelay();
+        $('.serif').noClickDelay();
+        $('.sans').noClickDelay();
+        $('#for-size').noClickDelay();
+        $('.strength-size').noClickDelay();
+        $('#for-lineheight').noClickDelay();
+        $('.strength-line-height').noClickDelay();
+        $('#for-bookmark').noClickDelay();
+        $('#bookmark-widget a').noClickDelay();
+        $('#pageWrapper').noClickDelay();
+
+
         // Check for stored font preference and apply accordingly.
         var font = layout.storage('font');
         if (font == 'serif') {
@@ -33,6 +75,8 @@ define([
             $('.strength-size[data-size="' + fontsize + '"]').removeClass('inactive').addClass('active');
 
             layout.refresh();
+        } else {
+            $('.strength-size.small').removeClass('inactive').addClass('active');
         }
 
         // Check for stored line-height preference and apply accordingly.
@@ -42,6 +86,8 @@ define([
             $('.strength-line-height[data-size="' + lineheight + '"]').removeClass('inactive').addClass('active');
 
             layout.refresh();
+        } else {
+            $('.strength-line-height.small').removeClass('inactive').addClass('active');
         }
 
         // Check online status immediately, instead of waiting for the first setInterval

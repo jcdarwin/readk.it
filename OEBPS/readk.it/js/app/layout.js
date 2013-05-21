@@ -19,13 +19,37 @@ define([
     'underscore'
 ], function($, $storage, iScroll, _){
 
-    // Global vars
     var page_scrollers = [];
     var pages = [];
     var page_width = 0;
     var currentPage = 0;
     var restoring = true;
     var publication = {};
+    var controller;
+
+    /* Constructor */
+    var Layout = function (caller, pub) {
+        controller = caller;
+        publication = pub;
+console.log(publication.identifier);
+storage('pages', []);
+        return {
+            refresh: refresh,
+            update: update,
+            add: add,
+            trap_anchor: trap_anchor,
+            storage: storage,
+            go_back: go_back,
+            restore_bookmarks: restore_bookmarks,
+            publication: publication,
+            page_scrollers: page_scrollers,
+            body: body,
+            location: location,
+            nav: nav,
+            finalise: finalise
+        };
+    };
+
     var book_scroller = new iScroll('pageWrapper', {
         snap: true,
         snapThreshold:1,
@@ -53,7 +77,7 @@ define([
                         storage('history', [storage('page')]);
                     }
                     // Notify any subscribers that the history has changed.
-                    publish('history_changed');
+                    controller.publish('history_changed');
                 }
             }
 
@@ -92,6 +116,7 @@ define([
     // Local / session / cookie storage
     var storage = function (key, value) {
         var pub = $.localStorage(publication.identifier) || [];
+
         if (value) {
             var entry = {};
             entry[key] = value;
@@ -128,17 +153,17 @@ define([
     };
 
     // Add a page
-    var add = function (id, file, html, pub) {
-        publication = pub;
-
+    var add = function (id, file, html) {
         $('#pageScroller').append('<div class="page" id="' + file + '"><div id="' + id + '" class="wrapper"><div class="scroller"><div class="margins">' + html + '</div></div></div></div>');
 
         var page_scroller = new iScroll(id, {snap: true, momentum: true, hScrollbar: false, vScrollbar: true, lockDirection: true,
             onAnimationEnd: function(){
                 if (!restoring) {
                     // Store details of the current position on the page.
-                    pages[currentPage].y = (page_scrollers[currentPage]).scroller.y;
-                    storage('pages', pages);
+                    if (pages[currentPage]) {
+                        pages[currentPage].y = (page_scrollers[currentPage]).scroller.y;
+                        storage('pages', pages);
+                    }
                 }
             }
         });
@@ -256,12 +281,12 @@ define([
             }
 
             for (var i=0; i < pages.length; i++) {
-                y = (pages[i]).y;
+                y = pages[i] ? (pages[i]).y : 0;
                 (page_scrollers[i]).scroller.scrollTo(0, y, 0, 0);
             }
 
             if (page) {
-                y = (pages[page]).y;
+                y = pages[page] ? (pages[page]).y : 0;
                 (page_scrollers[page]).scroller.scrollTo(0, y, 0, 0);
             }
         }
@@ -300,22 +325,7 @@ define([
         });
 
         // Notify any subscribers that the layout has been loaded.
-        publish('publication_loaded');
-    };
-
-    // Classic pubsub, as per https://gist.github.com/addyosmani/1321768
-    var queue = $({});
-
-    subscribe = function() {
-        queue.on.apply(queue, arguments);
-    };
-
-    unsubscribe = function() {
-        queue.off.apply(queue, arguments);
-    };
-
-    publish = function() {
-        queue.trigger.apply(queue, arguments);
+        controller.publish('publication_loaded');
     };
 
     var location = function() {
@@ -332,23 +342,5 @@ define([
         return publication.nav_entries;
     };
 
-    return {
-        refresh: refresh,
-        update: update,
-        add: add,
-        trap_anchor: trap_anchor,
-        storage: storage,
-        go_back: go_back,
-        restore_bookmarks: restore_bookmarks,
-        publication: publication,
-        page_scrollers: page_scrollers,
-        body: body,
-        subscribe: subscribe,
-        unsubscribe: unsubscribe,
-        publish: publish,
-        location: location,
-        nav: nav,
-        finalise: finalise
-    };
-
+    return (Layout);
 });

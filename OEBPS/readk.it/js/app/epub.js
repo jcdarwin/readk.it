@@ -171,8 +171,6 @@ define([
         callback(epub.spine_entries, epub.css_entries);
     };
 
-
-
     return (Epub);
 
 });

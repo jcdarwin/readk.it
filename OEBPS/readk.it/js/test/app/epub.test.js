@@ -14,15 +14,18 @@ define(function (require) {
             console.log((result ? "log" : "error" ) + (message ? message : ''));
         };
 
+        var counter = 0;
         var data;
         var epub_directory = config.epub_directory;
-        $.getJSON(epub_directory + 'manifest.json', function(d) {
+        $.getJSON(epub_directory + 'library/manifest.json', function(d) {
             data = d;
         })
         .success(function() {
             $.each(data, function(index, book) {
-                book.epub_directory = epub_directory;
-                perform_tests(book);
+//                if (! counter++) {
+                    book.epub_directory = epub_directory;
+                    perform_tests(book);
+//               }
             });
         })
         .error(function() { alert("error"); });
@@ -35,14 +38,14 @@ define(function (require) {
                 }
             });
 
-            var initialized = function (item, publication) {
+            var initialized = function (publication) {
 
-                test("epub: number and order of pages correct, returns " + item.total_pages + " and array", function () {
+                test("epub: number and order of spine entries correct, returns " + $(publication.spine_entries).size() + " and array", function () {
                     expect(3);
                     equal(
                         $(testController.getPublication().getToc()).size(),
-                        item.total_pages,
-                        'total number of pages in epub = ' + $(publication.getToc()).size()
+                        $(publication.spine_entries).size(),
+                        'total number of spine entries in epub = ' + $(publication.spine_entries).size()
                     );
                     equal(
                         $(layout.body()).find('.page').size(),
@@ -64,7 +67,7 @@ define(function (require) {
             };
 
             // Now we need to wait for the asynchronous callback to initialized
-            var testController = new Controller(book, initialized);
+            var testController = new Controller(book.epub_directory + '../../' + book.path, initialized);
 
         }
 

@@ -7,16 +7,24 @@
 */
 
 define([
-    'jquery',
-    'app/layout'
-], function($, layout){
+    'jquery'
+], function($){
 
-    // We wait until the publication is loaded into the layout before
-    // activating the chrome.
-    layout.subscribe('publication_loaded', initialiser);
+    var controller;
+    var layout;
+
+    /* Constructor */
+    var Chrome = function (caller, surface) {
+        controller = caller;
+        layout = surface;
+
+        // We wait until the publication is loaded into the layout before
+        // activating the chrome.
+        controller.subscribe('publication_loaded', initialiser);
+    };
 
     function initialiser() {
-        layout.subscribe('history_changed', check_backbutton);
+        controller.subscribe('history_changed', check_backbutton);
 
         // plugin to eliminate click delay on iOS
         // http://cubiq.org/remove-onclick-delay-on-webkit-for-iphone
@@ -348,4 +356,5 @@ define([
         $('#pageWrapper').css('top', '60px');
     }
 
+    return (Chrome);
 });

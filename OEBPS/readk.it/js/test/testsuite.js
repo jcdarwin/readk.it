@@ -12,7 +12,13 @@
         //except, if the module ID starts with "app",
         //load it from the js/app directory.
         paths: {
-            app: '../app'
+            app: '../app',
+            underscore: 'underscore-min.amd'
+        },
+        map: {
+          '*': {
+            'css': 'require-css/css'
+          }
         }
     });
 

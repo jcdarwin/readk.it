@@ -14,19 +14,53 @@ define([
     'app/epub',
     'app/layout',
     'app/chrome'
-], function($, $storage, jbum, config, Epub, layout, chrome){
+], function($, $storage, jbum, config, Epub, Layout, Chrome){
 
     var pages = [];
     var stylesheets = [];
     var load_publication_callback;
     var publication;
     var item;
+    var queue = $({});
+    var layout;
+    var chrome;
+    var self;
+
+    // Classic pubsub, as per https://gist.github.com/addyosmani/1321768
+    var subscribe = function() {
+        queue.on.apply(queue, arguments);
+    };
+    var unsubscribe = function() {
+        queue.off.apply(queue, arguments);
+    };
+    var publish = function() {
+        queue.trigger.apply(queue, arguments);
+    };
 
     /* Constructor */
-    var Controller = function (book, callback) {
+     function Controller (book, callback) {
+        self = this;
+
         load_publication_callback = callback;
+
         // Parse the EPUB
         publication = new Epub(book, 'META-INF/container.xml', load_publication);
+
+        this.publication = publication;
+        this.subscribe = subscribe;
+        this.unsubscribe = unsubscribe;
+        this.publish = publish;
+
+        return this;
+    }
+
+    /* Define the instance methods */
+    Controller.prototype = {
+        getPublication: function(){
+            return (publication);
+        },
+        publication_finalise: function () {
+        }
     };
 
     // tiny plugin to allow us to modify attribute values
@@ -42,15 +76,6 @@ define([
     var url_selectors = $.map($.elemUrlAttr(), function(i, v){
         return v + '[' + i + ']';
     }).join(',');
-
-    /* Define the instance methods */
-    Controller.prototype = {
-        getPublication: function(){
-            return (publication);
-        },
-        publication_finalise: function () {
-        }
-    };
 
     var load_publication = function (toc, css) {
 
@@ -91,6 +116,13 @@ define([
             // All deferreds have been resolved.
             // We can now load the retrieved pages into our
             // publication according to the order specified.
+
+            // Create our layout for this publication.
+            layout = new Layout(self, publication);
+
+            // Create our chrome for this layout 
+            chrome = new Chrome(self, layout);
+
             $.each(publication.getToc(), function(index, value){
 
                 // Ensure internal image urls have the correct path prepended.
@@ -132,11 +164,12 @@ define([
                     results += $(v).html();
                 });
                 pages[value.id] = results;
-                layout.add(value.id, value.file, pages[value.id], publication);
+                layout.add(value.id, value.file, pages[value.id]);
             });
 
             $.each(publication.getToc(), function(index, value){
             });
+
             layout.update(layout.page_scrollers[0].scroller);
             layout.restore_bookmarks();
 

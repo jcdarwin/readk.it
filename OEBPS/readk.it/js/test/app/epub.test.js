@@ -1,17 +1,16 @@
 /*
 ** QUnit test file.
-** Tests are driven by ../../html/mainfest.json
+** Tests are driven by ../../../library/mainfest.json
 */
 
 define(function (require) {
 
-    require(['./controller', './config', './epub', './layout'], function(Controller, config, epub, layout){
-
-        // Refer http://benalman.com/talks/unit-testing-qunit.html for userful pointers
+    // Refer http://benalman.com/talks/unit-testing-qunit.html for userful pointers
+    require(['./controller', './config'], function(Controller, config){
 
         // Runs once after each assertion.
         QUnit.log = function( result, message){
-            console.log((result ? "log" : "error" ) + (message ? message : ''));
+            //console.log((result ? "log" : "error" ) + (message ? message : ''));
         };
 
         var counter = 0;
@@ -22,10 +21,8 @@ define(function (require) {
         })
         .success(function() {
             $.each(data, function(index, book) {
-//                if (! counter++) {
-                    book.epub_directory = epub_directory;
-                    perform_tests(book);
-//               }
+                book.epub_directory = epub_directory;
+                perform_tests(book);
             });
         })
         .error(function() { alert("error"); });
@@ -33,23 +30,31 @@ define(function (require) {
 
         function perform_tests(book) {
 
-            module(book.name + " (EPUB " + book.version + ")", {
-                setup: function() {
-                }
-            });
+            var initialized = function (publication, layout) {
+                // Note that, because of the asynchronous nature of the loading of pages, 
+                // the actual order of the publications in terms of calling this callback routine
+                // is likely to differ from the order they are listed in the manifest.
 
-            var initialized = function (publication) {
+                module(publication.title + " (EPUB " + publication.version + ")", {
+                    setup: function() {
+                    }
+                });
 
-                test("epub: number and order of spine entries correct, returns " + $(publication.spine_entries).size() + " and array", function () {
+                // Retrieve the appropriate publication from the mainfest based on the identifier.
+                var pub = $(data).filter(function(index) {
+                    return data[index].identifier == publication.identifier;
+                })[0];
+
+                test("Number of pages and order correct, returns " + $(publication.spine_entries).size() + " and array", function () {
                     expect(3);
                     equal(
-                        $(testController.getPublication().getToc()).size(),
+                        pub.total_pages,
                         $(publication.spine_entries).size(),
                         'total number of spine entries in epub = ' + $(publication.spine_entries).size()
                     );
                     equal(
                         $(layout.body()).find('.page').size(),
-                        $(testController.getPublication().getToc()).size(),
+                        pub.total_pages,
                         'total number of pages added to layout = ' + $(layout.body()).find('.page').size()
                     );
                     deepEqual(
@@ -66,8 +71,8 @@ define(function (require) {
                 });
             };
 
-            // Now we need to wait for the asynchronous callback to initialized
-            var testController = new Controller(book.epub_directory + '../../' + book.path, initialized);
+            // Now we need to wait for the asynchronous callback to function initialized
+            var testController = new Controller('../../' + book.epub_directory + book.path, initialized);
 
         }
 

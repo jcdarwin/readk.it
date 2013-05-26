@@ -116,7 +116,7 @@
 #dropdown-bookmark {
     right:10px;
     color: #fff;
-    padding: 10px;
+    padding: 0 10px 10px 10px;
     overflow:hidden;
     height:380px;
     width:280px;
@@ -211,6 +211,18 @@
     float:left;
     width:248px;
     margin-top:5px;
+}
+
+.bookmark-input {
+    padding-top: 10px;
+    padding-bottom: 5px;
+    margin-bottom:5px;
+    position:relative;
+    z-index: 2;
+    background-color: #444;
+}
+.bookmark-list-item {
+    float:left;
 }
 
 .online, .active {

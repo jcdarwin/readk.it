@@ -71,10 +71,10 @@ define([
 
         epub.author = $(f).find('creator').text();
 
-        epub.identifier = $(f).find('identifier').text();  // Safari
+        epub.identifier = $($(f).find('identifier')[0]).text();  // Safari
         // Firefox
         if (epub.identifier === null || epub.identifier === '') {
-            epub.identifier = $(f).find('dc\\:identifier').text();
+            epub.identifier = $($(f).find('dc\\:identifier')[0]).text();
         }
 
         var opf_item_tag = 'opf\\:item';
@@ -137,10 +137,18 @@ define([
                 }
             }
 
-            epub.nav_entries.push({id: id, file: file, title: text, href: '/' + epub.epub_dir + epub.oebps_dir + '/' + src, url: src, path: src.replace(/[^\/]*?$/, '')});
+            epub.nav_entries.push({
+                id:    id,
+                file:  file,
+                title: text,
+                href:  '/' + epub.epub_dir + epub.oebps_dir + '/' + src,
+                url:   src,
+                path:  src.replace(/[^\/]*?$/, ''),
+                depth: $(this).parents('navPoint').length
+            });
         });
 
-        callback(epub.spine_entries, epub.css_entries);
+        callback(epub);
     };
 
     var nav = function (f, epub, callback) {
@@ -165,10 +173,18 @@ define([
                 }
             }
 
-            epub.nav_entries.push({id: href, file: file, title: $(this).text(), href: '/' + epub.epub_dir + epub.oebps_dir + '/' + href, url: href, path: href.replace(/[^\/]*?$/, '')});
+            epub.nav_entries.push({
+                id:    href,
+                file:  file,
+                title: $(this).text(),
+                href:  '/' + epub.epub_dir + epub.oebps_dir + '/' + href,
+                url:   href,
+                path:  href.replace(/[^\/]*?$/, ''),
+                depth: $(this).parents('ul,ol').length - 1
+            });
         });
 
-        callback(epub.spine_entries, epub.css_entries);
+        callback(epub);
     };
 
     return (Epub);

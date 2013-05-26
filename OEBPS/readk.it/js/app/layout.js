@@ -31,8 +31,7 @@ define([
     var Layout = function (caller, pub) {
         controller = caller;
         publication = pub;
-console.log(publication.identifier);
-storage('pages', []);
+//storage('pages', []);
         return {
             refresh: refresh,
             update: update,
@@ -84,7 +83,9 @@ storage('pages', []);
             storage('page', currentPage);
 
             var pages_previous = storage('pages') || [];
-            pages_previous[currentPage].x = $(book_scroller)[0].x;
+            if (pages_previous[currentPage]) {
+                pages_previous[currentPage].x = $(book_scroller)[0].x;
+            }
             storage('pages', pages_previous);
         }
     });
@@ -145,11 +146,14 @@ storage('pages', []);
     // Revisit the last entry in the history.
     var go_back = function () {
         var history = storage('history');
-        var page = history.pop();
 
-        book_scroller.scrollToPage(page, 0, 0);
+        if (history.length) {
+            var page = history.pop();
 
-        storage('history', history);
+            book_scroller.scrollToPage(page, 0, 0);
+
+            storage('history', history);
+        }
     };
 
     // Add a page
@@ -259,12 +263,19 @@ storage('pages', []);
             // Book_scroller will callback to the function in the 'onAnimationEnd' option.
             book_scroller.scrollToElement($('[id="' + page_anchor + '"]')[0], 0);
 
-            // Redraw the page scroller layout, as the click may have resulted in
-            // the size of the page changing.
-            // We leave this a second to let any animations complete.
-            setTimeout(function(){
-                update((filtered_page_scrollers[0]).scroller);
-            }, 1000);
+            var x = $(that).attr('data-x') || 0;
+            var y = $(that).attr('data-y') || 0;
+
+            if (y) {
+                (filtered_page_scrollers[0]).scroller.scrollTo(0, y, 0, 0);
+            } else {
+                // Redraw the page scroller layout, as the click may have resulted in
+                // the size of the page changing.
+                // We leave this a second to let any animations complete.
+                setTimeout(function(){
+                    update((filtered_page_scrollers[0]).scroller);
+                }, 1000);
+            }
         }
     };
 
@@ -276,13 +287,15 @@ storage('pages', []);
             var page = storage('page'),
                 y = 0;
 
-            if (page) {
+            if (page && book_scroller.pagesX.length > page) {
                 book_scroller.scrollToPage(page, 0, 0);
             }
 
             for (var i=0; i < pages.length; i++) {
                 y = pages[i] ? (pages[i]).y : 0;
-                (page_scrollers[i]).scroller.scrollTo(0, y, 0, 0);
+                if (page_scrollers[i]) {
+                    (page_scrollers[i]).scroller.scrollTo(0, y, 0, 0);
+                }
             }
 
             if (page) {

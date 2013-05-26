@@ -106,6 +106,9 @@ define([
 
         // Check the backbutton status
         check_backbutton();
+
+        // Check the bookmarks status
+        check_bookmarks();
     }
 
     /* Register handlers. */
@@ -230,7 +233,24 @@ define([
         }, 700);
     });
 
+    var repeat = function(value, times) {
+        times = times || 1;
+        return (new Array(times + 1)).join(value);
+    };
+
     // Bookmark event handlers
+    function check_bookmarks() {
+        var bookmarks = layout.storage('bookmarks');
+        var status = bookmarks && bookmarks.length ? 'active' : 'inactive';
+
+        if (status == 'active') {
+            $('#for-bookmark').removeClass('inactive');
+        } else {
+            $('#for-bookmark').removeClass('active');
+        }
+        $('#for-bookmark').addClass(status);
+    }
+
     $('#for-bookmark').on('click', function(){
         if ( $('#dropdown-bookmark').is(':visible') ) {
             $('#dropdown-bookmark').slideUp('slow');
@@ -244,7 +264,7 @@ define([
                 $('#dropdown-lineheight').slideUp();
             }
 
-            var input = '<div style="margin-bottom:5px;"><input id="bookmark-input" type="text" data-file="' + layout.location().file + '" value="' + layout.location().title + '"><span class="icon bookmark-icon bookmark-icon-add active add-bookmark"><i class="icon-plus active"></i></span></div>';
+            var input = '<div class="bookmark-input"><input id="bookmark-input" type="text" data-file="' + layout.location().file + '" value="' + layout.location().title + '"><span class="icon bookmark-icon bookmark-icon-add active add-bookmark"><i class="icon-plus active"></i></span></div>';
             var bookmarks = layout.storage('bookmarks') || [];
 
             if (bookmarks.length) {
@@ -254,20 +274,21 @@ define([
             var html = '<div id="bookmark-list">';
 
             $.each(bookmarks, function(i, bookmark) {
-                html += '<div><span class="icon bookmark-icon bookmark-icon-remove active remove-bookmark"><i class="icon-minus active" data-index="' + i + '"></i></span><p class="bookmark-title"><a href="#' + bookmark.file + '">' + bookmark.title + '</a></p></div>';
+                html += '<div class="bookmark-list-item"><span class="icon bookmark-icon bookmark-icon-remove active remove-bookmark"><i class="icon-minus active" data-index="' + i + '"></i></span><p class="bookmark-title"><a href="#' + bookmark.file + '" data-x="' + bookmark.x + '" data-y="' + bookmark.y + '">' + bookmark.title + '</a></p></div>';
             });
 
             html += '</div><hr style="clear:both;" />';
-            var nav = '<ul>';
+            nav = '';
             $.each(layout.nav(), function(i, item) {
                 if (item.title) {
+                    nav += repeat('<ul>', item.depth + 1);
                     nav += '<li><a href="#' + item.url.replace(/\./, '_') + '">' + item.title + '</a></li>';
+                    nav += repeat('</ul>', item.depth + 1);
                 }
             });
-            nav += '</ul>';
             html += nav;
 
-            html = input + '<div id="bookmark-widget"><div class="scroller">' + html + '</div></div>';
+            html = input + '<div id="bookmark-widget"><div class="scroller" style="width:280px;">' + html + '</div></div>';
 
             $('#dropdown-bookmark').html('');
             $('#dropdown-bookmark').append(html);
@@ -294,9 +315,7 @@ define([
         var index = $(this).data('index');
 
         var bookmarks = layout.storage('bookmarks') || [];
-
         bookmarks.splice(index,1);
-
         layout.storage('bookmarks', bookmarks);
 
         $(this).parent().remove();
@@ -351,8 +370,7 @@ define([
     // http://www.bennadel.com/blog/1950-Detecting-iPhone-s-App-Mode-Full-Screen-Mode-For-Web-Applications.htm
     if (
     ("standalone" in window.navigator) &&
-     window.navigator.standalone
-    ){
+     window.navigator.standalone){
         $('#pageWrapper').css('top', '60px');
     }
 

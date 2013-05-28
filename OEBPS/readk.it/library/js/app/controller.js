@@ -9,7 +9,7 @@
 define([
     'jquery',
     'app/config',
-    'sly.min'
+    'sly'
 ], function($, config, sly){
 
     /* Constructor */

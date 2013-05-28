@@ -254,14 +254,29 @@ define([
                 return scroller.file == page_anchor;
             });
 
-            // Next, set the options in the book_scroller indicating that there is
+            if (filtered_page_scrollers.length === 0) {
+                filtered_page_scrollers = _.filter(page_scrollers, function(scroller) {
+                    // Find the pagescroller with the page containing the id matching our anchor.
+                    return scroller.file == $('[id="' + page_anchor + '"]').parents('.page').attr('id');
+                });
+            }
+
+            var newPage;
+            page_scrollers.every(function(page_scroller, i){
+                if (page_scroller.file == filtered_page_scrollers[0].file){
+                    newPage = i;
+                }
+                return newPage != i;
+            });
+
+            // Set the options in the book_scroller indicating that there is
             // a page-scroller waiting to be processed.
             book_scroller.options['page_scroller_waiting'] = filtered_page_scrollers[0];
             book_scroller.options['page_scroller_anchor'] = anchor;
 
-            // Call the book_scroller to in case we have to scroll horizontally to the page.
-            // Book_scroller will callback to the function in the 'onAnimationEnd' option.
-            book_scroller.scrollToElement($('[id="' + page_anchor + '"]')[0], 0);
+            // Call the book_scroller to scroll horizontally to the page.
+            // Remember that book_scroller processes the options in the 'onAnimationEnd' callback.
+            book_scroller.scrollToPage(newPage, 0, 0);
 
             var x = $(that).attr('data-x') || 0;
             var y = $(that).attr('data-y') || 0;

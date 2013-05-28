@@ -56,7 +56,7 @@ define([
             });
         };
 
-        $('.back').noClickDelay();
+        //$('.back').noClickDelay();
         $('.serif').noClickDelay();
         $('.sans').noClickDelay();
         $('#for-size').noClickDelay();
@@ -65,8 +65,7 @@ define([
         $('.strength-line-height').noClickDelay();
         $('#for-bookmark').noClickDelay();
         $('#bookmark-widget a').noClickDelay();
-        $('#pageWrapper').noClickDelay();
-
+        //$('#pageWrapper').noClickDelay();
 
         // Check for stored font preference and apply accordingly.
         var font = layout.storage('font');

@@ -4,6 +4,18 @@
   "css_use_suffix": false,
   "glyphs": [
     {
+      "uid": "44e04715aecbca7f266a17d5a7863c68",
+      "css": "plus",
+      "code": 59402,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "861ab06e455e2de3232ebef67d60d708",
+      "css": "minus",
+      "code": 59403,
+      "src": "fontawesome"
+    },
+    {
       "uid": "f04a5d24e9e659145b966739c4fde82a",
       "css": "bookmark",
       "code": 59401,
@@ -41,13 +53,13 @@
     },
     {
       "uid": "745f12abe1472d14f8f658de7e5aba66",
-      "css": "angle-double-left",
+      "css": "double-angle-left",
       "code": 59394,
       "src": "fontawesome"
     },
     {
       "uid": "fdfbd1fcbd4cb229716a810801a5f207",
-      "css": "angle-double-right",
+      "css": "double-angle-right",
       "code": 59395,
       "src": "fontawesome"
     },

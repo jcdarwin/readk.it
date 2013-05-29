@@ -1,6 +1,7 @@
 <html>
     <head>
         <title>readk.it</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
 
         <link rel="stylesheet" type="text/css" href="fonts/fontello/css/fontello.css">
@@ -78,7 +79,10 @@
     <body>
         <script type="text/javascript">
             // We include the stylesheets here as we want them to override any others 
+            // (containing rules of the same specificity)
             // that are added to the bottom of the <head> by require.js.
+            // Note that any stylesheets ending in "sans.css" and "serif.css" are treated specially
+            // (enabled  / disabled ) by clicking on the font button.
             document.write('<link title="sans"  rel="stylesheet" type="text/css" href="css/sans.css">');
             document.write('<link title="serif" rel="stylesheet" type="text/css" href="css/serif.css">');
         </script>

@@ -131,6 +131,10 @@ define([
         $('.back').addClass(status);
     }
 
+    $('.status').click(function(){
+        document.location = $('.status a').attr('href');
+    });
+
     // Font style handlers
     $('.serif').click(function(){
         // Switch stylesheet from sans to serif (i.e. body text)

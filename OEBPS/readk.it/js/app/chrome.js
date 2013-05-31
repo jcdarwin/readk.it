@@ -57,6 +57,7 @@ define([
         };
 
         //$('.back').noClickDelay();
+        $('.status').noClickDelay();
         $('.serif').noClickDelay();
         $('.sans').noClickDelay();
         $('#for-size').noClickDelay();

@@ -286,7 +286,8 @@ define([
             $.each(layout.nav(), function(i, item) {
                 if (item.title) {
                     nav += repeat('<ul style="margin-top:0; margin-bottom:0;">', item.depth + 1);
-                    nav += '<li><a href="#' + item.url.replace(/\./, '_') + '">' + item.title + '</a></li>';
+                    //nav += '<li><a href="#' + item.url.replace(/\./, '_') + '">' + item.title + '</a></li>';
+                    nav += '<li><a href="#' + item.url + '">' + item.title + '</a></li>';
                     nav += repeat('</ul>', item.depth + 1);
                 }
             });

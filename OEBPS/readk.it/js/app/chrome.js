@@ -278,21 +278,21 @@ define([
             var html = '<div id="bookmark-list">';
 
             $.each(bookmarks, function(i, bookmark) {
-                html += '<div class="bookmark-list-item"><span class="icon bookmark-icon bookmark-icon-remove active remove-bookmark"><i class="icon-minus active" data-index="' + i + '"></i></span><p class="bookmark-title"><a href="#' + bookmark.file + '" data-x="' + bookmark.x + '" data-y="' + bookmark.y + '">' + bookmark.title + '</a></p></div>';
+                html += '<div class="bookmark-list-item" style="margin-bottom:5px;"><span class="icon bookmark-icon bookmark-icon-remove active remove-bookmark"><i class="icon-minus active" data-index="' + i + '"></i></span><p class="bookmark-title"><a href="#' + bookmark.file + '" data-x="' + bookmark.x + '" data-y="' + bookmark.y + '">' + bookmark.title + '</a></p></div>';
             });
 
             html += '</div><hr style="clear:both;" />';
             nav = '';
             $.each(layout.nav(), function(i, item) {
                 if (item.title) {
-                    nav += repeat('<ul>', item.depth + 1);
+                    nav += repeat('<ul style="margin-top:0; margin-bottom:0;">', item.depth + 1);
                     nav += '<li><a href="#' + item.url.replace(/\./, '_') + '">' + item.title + '</a></li>';
                     nav += repeat('</ul>', item.depth + 1);
                 }
             });
             html += nav;
 
-            html = input + '<div id="bookmark-widget"><div class="scroller" style="width:280px;">' + html + '</div></div>';
+            html = input + '<div id="bookmark-widget" class="wrapper-bookmarks"><div class="scroller" style="width:280px;">' + html + '</div></div>';
 
             $('#dropdown-bookmark').html('');
             $('#dropdown-bookmark').append(html);
@@ -309,7 +309,9 @@ define([
             });
 
             $('#dropdown-bookmark').slideDown('slow', function() {
-                bookmark_scroller.refresh();
+                setTimeout(function () {
+                    bookmark_scroller.refresh();
+                }, 0);
             });
         }
     });

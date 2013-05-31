@@ -177,7 +177,7 @@ define([
             });
 
             // convert 'chapter2.xhtml' to 'chapter2_xhtml'
-            value.file = value.file.replace(/\./, '_');
+            //value.file = value.file.replace(/\./, '_');
 
             $.each(page.find('[id]'), function(i, v){
                 // We want to change something like 'milestone1' to 'chapter1#milestone1'

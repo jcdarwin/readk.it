@@ -347,7 +347,7 @@ define([
             y: layout.location().y
         };
 
-        html = '<div><span class="icon bookmark-icon bookmark-icon-remove active remove-bookmark"><i class="icon-minus active" data-index="' + bookmarks.length + '"></i></span><p class="bookmark-title"><a href="#' + bookmark.file + '">' + bookmark.title + '</a></p></div>';
+        html = '<div class="bookmark-list-item" style="margin-bottom:5px;"><span class="icon bookmark-icon bookmark-icon-remove active remove-bookmark"><i class="icon-minus active" data-index="' + bookmarks.length + '"></i></span><p class="bookmark-title"><a href="#' + bookmark.file + '">' + bookmark.title + '</a></p></div>';
 
         $('#bookmark-list').append(html);
 

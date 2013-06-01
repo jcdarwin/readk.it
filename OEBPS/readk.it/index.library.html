@@ -83,8 +83,8 @@
             // that are added to the bottom of the <head> by require.js.
             // Note that any stylesheets ending in "sans.css" and "serif.css" are treated specially
             // (enabled  / disabled ) by clicking on the font button.
-            document.write('<link title="sans"  rel="stylesheet" type="text/css" href="css/sans.css">');
-            document.write('<link title="serif" rel="stylesheet" type="text/css" href="css/serif.css">');
+            document.write('<link title="sans"  rel="stylesheet" type="text/css" href="css/sans.css" disabled="disabled">');
+            document.write('<link title="serif" rel="stylesheet" type="text/css" href="css/serif.css" disabled="disabled">');
         </script>
 
         <div id='sitePreloader'><div id='preloaderImage'><img src='images/site_preloader.gif' alt='Preloader' /></div></div>
@@ -109,7 +109,7 @@
                     </div>
                 </div>
                 <div class="bookmark slider">
-                    <label id="for-bookmark" for="dropdown-bookmark" class="icon bookmark inactive" title="bookmark"><i class="icon-bookmark"></i></label>
+                    <label id="for-bookmark" for="dropdown-bookmark" class="icon bookmark" title="bookmark"><i class="icon-bookmark"></i></label>
                     <div id="dropdown-bookmark" class="dropdown" style="display:none;overflow:hidden;">
                     </div>
                 </div>

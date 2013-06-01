@@ -136,40 +136,67 @@ define([
     });
 
     // Font style handlers
-    $('.serif').click(function(){
-        // Switch stylesheet from sans to serif (i.e. body text)
-        // The trick here is to disable both stylesheets first,
-        // and then enable the one we want.
-        $.each($('link[href$="sans.css"]'), function(i, link) {
-            link.disabled=true;
-        });
-        $.each($('link[href$="serif.css"]'), function(i, link) {
-            link.disabled=true;
-        });
-        $.each($('link[href$="serif.css"]'), function(i, link) {
-            link.disabled=false;
-        });
+    $('.sans').click(function(){
+        if ( $('.sans').hasClass('active') ) {
+            $.each($('link[href$="sans.css"]'), function(i, link) {
+                link.disabled=true;
+            });
+
+            $('.sans').removeClass('active');
+
+            layout.storage('font', []);
+        } else {
+            // Switch stylesheet from serif to sans (i.e. body text)
+            // The trick here is to disable both stylesheets first,
+            // and then enable the one we want.
+            $.each($('link[href$="serif.css"]'), function(i, link) {
+                link.disabled=true;
+            });
+            $.each($('link[href$="sans.css"]'), function(i, link) {
+                link.disabled=true;
+            });
+            $.each($('link[href$="sans.css"]'), function(i, link) {
+                link.disabled=false;
+            });
+            $('.serif').removeClass('active');
+            $('.sans').addClass('active');
+
+            layout.storage('font', 'sans');
+        }
 
         layout.refresh();
-        layout.storage('font', 'serif');
     });
 
-    $('.sans').click(function(){
-        // Switch stylesheet from serif to sans (i.e. body text)
-        // The trick here is to disable both stylesheets first,
-        // and then enable the one we want.
-        $.each($('link[href$="serif.css"]'), function(i, link) {
-            link.disabled=true;
-        });
-        $.each($('link[href$="sans.css"]'), function(i, link) {
-            link.disabled=true;
-        });
-        $.each($('link[href$="sans.css"]'), function(i, link) {
-            link.disabled=false;
-        });
+    $('.serif').click(function(){
+        if ( $('.serif').hasClass('active') ) {
+            $.each($('link[href$="serif.css"]'), function(i, link) {
+                link.disabled=true;
+            });
+
+            $('.serif').removeClass('active');
+
+            layout.storage('font', []);
+        } else {
+            // Switch stylesheet from sans to serif (i.e. body text)
+            // The trick here is to disable both stylesheets first,
+            // and then enable the one we want.
+            $.each($('link[href$="sans.css"]'), function(i, link) {
+                link.disabled=true;
+            });
+            $.each($('link[href$="serif.css"]'), function(i, link) {
+                link.disabled=true;
+            });
+            $.each($('link[href$="serif.css"]'), function(i, link) {
+                link.disabled=false;
+            });
+
+            $('.sans').removeClass('active');
+            $('.serif').addClass('active');
+
+            layout.storage('font', 'serif');
+        }
 
         layout.refresh();
-        layout.storage('font', 'sans');
     });
 
     // Fontsize event handlers
@@ -245,14 +272,12 @@ define([
     // Bookmark event handlers
     function check_bookmarks() {
         var bookmarks = layout.storage('bookmarks');
-        var status = bookmarks && bookmarks.length ? 'active' : 'inactive';
 
-        if (status == 'active') {
-            $('#for-bookmark').removeClass('inactive');
+        if (bookmarks && bookmarks.length) {
+            $('#for-bookmark').addClass('active');
         } else {
             $('#for-bookmark').removeClass('active');
         }
-        $('#for-bookmark').addClass(status);
     }
 
     $('#for-bookmark').on('click', function(){
@@ -260,7 +285,7 @@ define([
             $('#dropdown-bookmark').slideUp('slow');
         } else {
             var value = layout.storage('font-bookmark');
-            $('.strength-bookmark[data-size="' + value + '"]').removeClass('inactive').addClass('active');
+            $('.strength-bookmark[data-size="' + value + '"]').addClass('active');
             if ( $('#dropdown-size').is(':visible') ) {
                 $('#dropdown-size').slideUp();
             }
@@ -272,7 +297,7 @@ define([
             var bookmarks = layout.storage('bookmarks') || [];
 
             if (bookmarks.length) {
-                $('#for-bookmark').removeClass('inactive').addClass('active');
+                $('#for-bookmark').addClass('active');
             }
 
             var html = '<div id="bookmark-list">';
@@ -328,14 +353,14 @@ define([
         $(this).parent().remove();
 
         if (!bookmarks.length) {
-            $('#for-bookmark').removeClass('active').addClass('inactive');
+            $('#for-bookmark').removeClass('active');
         }
 
     });
 
     $('.add-bookmark').live('click', function(e){
         e.preventDefault();
-        $('#for-bookmark').removeClass('inactive').addClass('active');
+        $('#for-bookmark').addClass('active');
 
         var value = $('#bookmark-input').attr('value');
         var file = $('#bookmark-input').attr('data-file');

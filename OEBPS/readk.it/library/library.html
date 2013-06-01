@@ -103,33 +103,17 @@ body, .controls button {
     font-family: 'Aleo';
     font-style: normal;
     font-weight: 400;
+    overflow: hidden;
 }
 
 /* Header style */
 header.projecttitle { height: 100%; margin: 0 auto; padding: 1px 0 0; color: #fff; text-shadow: 1px 1px 0 rgba(0,0,0,.3);
     background-color: #3e404a;
-    background-image: -webkit-linear-gradient(rgba(255,255,255,.05) 2px, transparent 2px),
-        linear-gradient(90deg, rgba(255,255,255,.04) 2px, transparent 2px),
-        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px),
-        linear-gradient(0deg, rgba(0,0,0,.3) 0, transparent 100px);
-    background-image: -moz-linear-gradient(rgba(255,255,255,.05) 2px, transparent 2px),
-        linear-gradient(90deg, rgba(255,255,255,.04) 2px, transparent 2px),
-        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px),
-        linear-gradient(0deg, rgba(0,0,0,.3) 0, transparent 100px);
-    background-image: linear-gradient(rgba(255,255,255,.05) 2px, transparent 2px),
-        linear-gradient(90deg, rgba(255,255,255,.04) 2px, transparent 2px),
-        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px),
-        linear-gradient(0deg, rgba(0,0,0,.3) 0, transparent 100px);
-    background-size:100px 100px, 100px 100px, 20px 20px, 20px 20px, 100% 100%;
-    background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px, center bottom;
 }
 
 /* Desktop */
 @media only screen {
-    .library { margin: 80px auto 40px; }
+    .library { margin: 80px auto 40px;}
     .library .forward, .library .backward { height: 250px; }
     .library .frame { height: 250px; line-height: 250px; }
     .library .scrollbar { margin: 20px auto 10px; }
@@ -230,7 +214,8 @@ and (max-device-width : 1024px)  {
 .library button:hover, .library button:hover { opacity: 1; }
 .library button:disabled, .library button:disabled { opacity: .2; }
 
-.library .forward, .library .backward { float: left; width: 50px; font-size: 60px; }
+.library .forward, .library .backward { float: left; width: 50px; font-size: 60px; text-align: left;}
+.library .forward i[class^="icon-"]:before, .library .backward i[class^="icon-"]:before { width: 0; }
 .library .forward { float: right; }
 
 .library .frame { margin: 0 auto; max-width: 940px; overflow: hidden; text-shadow: none; }
@@ -314,13 +299,13 @@ box-shadow: 0 0 5px 2px #888;}
                 <div class="read">Read</div>
             </div>
             <div class="controls">
-                <button data-action="toStart"><i class="icon-double-angle-left"></i></button>
+                <button class="first" data-action="toStart"><i class="icon-double-angle-left"></i></button>
                 <span class="divider"></span>
                 <button class="prev"><i class="icon-angle-left"></i></button>
                 <span class="divider"></span>
                 <button class="next"><i class="icon-angle-right"></i></button>
                 <span class="divider"></span>
-                <button data-action="toEnd"><i class="icon-double-angle-right"></i></button>
+                <button class="last" data-action="toEnd"><i class="icon-double-angle-right"></i></button>
             </div>
             <div class="scrollbar">
                     <div class="handle">

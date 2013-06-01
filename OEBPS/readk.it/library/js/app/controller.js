@@ -15,6 +15,38 @@ define([
     /* Constructor */
     var Controller = function (options, callback) {
 
+        // plugin to eliminate click delay on iOS
+        // http://cubiq.org/remove-onclick-delay-on-webkit-for-iphone
+        $.fn.noClickDelay = function() {
+            var $wrapper = this;
+            var $target = this;
+            var moved = false;
+            $wrapper.bind('touchstart mousedown',function(e) {
+                e.preventDefault();
+                moved = false;
+                $target = $(e.target);
+                if($target.nodeType == 3) {
+                    $target = $($target.parent());
+                }
+                $target.addClass('pressed');
+                $wrapper.bind('touchmove mousemove',function(e) {
+                    moved = true;
+                    $target.removeClass('pressed');
+                });
+                $wrapper.bind('touchend mouseup',function(e) {
+                    $wrapper.unbind('mousemove touchmove');
+                    $wrapper.unbind('mouseup touchend');
+                    if(!moved && $target.length) {
+                        $target.removeClass('pressed');
+                        $target.trigger('click');
+                        $target.focus();
+                    }
+                });
+            });
+        };
+
+        $('button').noClickDelay();
+
         $.getJSON(options.manifest, function(data){
             $.each(data, function(index, value){
                 console.log(value.name);
@@ -71,6 +103,20 @@ define([
                 $('#library .read').on('click', function () {
                     var url = $('.active').data('url');
                     window.location = url;
+                });
+
+                sly.on('change', function () {
+                    var $buttonFirst = $library.find('.first');
+                    var $buttonLast  = $library.find('.last');
+
+                    var isStart = this.pos.dest <= this.pos.start;
+                    var isEnd = this.pos.dest >= this.pos.end;
+
+                    // Check whether Sly is at the start
+                    $buttonFirst.prop('disabled', isStart);
+
+                    // Check whether Sly is at the end
+                    $buttonLast.prop('disabled', isEnd);
                 });
 
                 // Update our page layout after an orientation change

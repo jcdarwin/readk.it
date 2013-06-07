@@ -16,8 +16,9 @@ define([
     'jquery',
     'jquery.storage',
     'iscroll',
-    'underscore'
-], function($, $storage, iScroll, _){
+    'underscore',
+    'jquery.hotkeys'
+], function($, $storage, iScroll, _, $hotkeys){
 
     var page_scrollers = [];
     var pages = [];
@@ -48,6 +49,59 @@ define([
             finalise: finalise
         };
     };
+
+    // Ensure that we can scroll using keyboard in desktop browsers
+    $(document).bind('keydown', 'home', function(){
+        if (currentPage !== undefined) {
+            (page_scrollers[currentPage]).scroller.scrollTo(0, 0, 200);
+        }
+    });
+
+    $(document).bind('keydown', 'end', function(){
+        if (currentPage !== undefined) {
+            (page_scrollers[currentPage]).scroller.scrollTo(0, (page_scrollers[currentPage]).scroller.maxScrollY, 200);
+        }
+    });
+
+    $(document).bind('keydown', 'pageup', function(){
+        if (currentPage !== undefined) {
+            var y = ( document.documentElement.clientHeight < $((page_scrollers[currentPage]).scroller.wrapper).height() ) ? document.documentElement.clientHeight : $((page_scrollers[currentPage]).scroller.wrapper).height();
+            (page_scrollers[currentPage]).scroller.scrollTo(0, (page_scrollers[currentPage]).scroller.y + y, 200);
+        }
+    });
+
+    $(document).bind('keydown', 'pagedown', function(){
+        if (currentPage !== undefined) {
+            var y = ( document.documentElement.clientHeight < $((page_scrollers[currentPage]).scroller.wrapper).height() ) ? document.documentElement.clientHeight : $((page_scrollers[currentPage]).scroller.wrapper).height();
+            (page_scrollers[currentPage]).scroller.scrollTo(0, (page_scrollers[currentPage]).scroller.y - y, 200);
+        }
+    });
+
+    $(document).bind('keydown', 'up', function(){
+        if (currentPage !== undefined) {
+            (page_scrollers[currentPage]).scroller.scrollTo(0, (page_scrollers[currentPage]).scroller.y + 40, 200);
+        }
+    });
+
+    $(document).bind('keydown', 'down', function(){
+        if (currentPage !== undefined) {
+            (page_scrollers[currentPage]).scroller.scrollTo(0, (page_scrollers[currentPage]).scroller.y - 40, 200);
+        }
+    });
+
+    $(document).bind('keydown', 'left', function(){
+        //if (currentPage > 0) {
+            var x = page_width;
+            book_scroller.scrollTo(book_scroller.x + page_width, book_scroller.y, 200);
+        //}
+    });
+
+    $(document).bind('keydown', 'right', function(){
+        //if (currentPage < pages.length) {
+            var x = page_width;
+            book_scroller.scrollTo(book_scroller.x - page_width, book_scroller.y, 200);
+        //}
+    });
 
     var book_scroller = new iScroll('pageWrapper', {
         snap: true,
@@ -313,7 +367,7 @@ define([
                 }
             }
 
-            if (page) {
+            if (page && page > 0) {
                 y = pages[page] ? (pages[page]).y : 0;
                 (page_scrollers[page]).scroller.scrollTo(0, y, 0, 0);
             }

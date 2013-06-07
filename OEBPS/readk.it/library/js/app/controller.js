@@ -46,6 +46,7 @@ define([
         };
 
         $('button').noClickDelay();
+        $('.read').noClickDelay();
 
         $.getJSON(options.manifest, function(data){
             $.each(data, function(index, value){

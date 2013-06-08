@@ -92,10 +92,19 @@ define([
     });
 
     // Function to redraw the layout after DOM changes.
-    var refresh = function () {
+    var refresh = function (y_percent, page) {
         setTimeout(function () {
-            $.each(page_scrollers, function() {
-                this.scroller.refresh();
+            $.each(page_scrollers, function(i) {
+
+                if ( ! (y_percent === undefined && page === undefined) ) {
+                    if (i == page) {
+                        var y = this.scroller.maxScrollY * y_percent;
+                        this.scroller.scrollTo(0, y);
+                    }
+                } else {
+                    this.scroller.refresh();
+                }
+
             });
         }, 0);
     };

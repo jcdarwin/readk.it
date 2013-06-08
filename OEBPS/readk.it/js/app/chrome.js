@@ -81,8 +81,6 @@ define([
         if (fontsize) {
             $('html').css('font-size', fontsize + 'px');
             $('.strength-size[data-size="' + fontsize + '"]').removeClass('inactive').addClass('active');
-
-            layout.refresh();
         } else {
             $('.strength-size.small').removeClass('inactive').addClass('active');
         }
@@ -92,8 +90,6 @@ define([
         if (lineheight) {
             $('p,li,h1,h2,h3,h4,h5,button').css('line-height', lineheight);
             $('.strength-line-height[data-size="' + lineheight + '"]').removeClass('inactive').addClass('active');
-
-            layout.refresh();
         } else {
             $('.strength-line-height.small').removeClass('inactive').addClass('active');
         }

@@ -102,8 +102,14 @@ define([
                     sly[action]();
                 });
                 $('#library .read').on('click', function () {
-                    var url = $('.active').data('url');
-                    window.location = url;
+
+                    $(this).css('opacity', '0.3');
+
+                    $('#library .controls, #library .scrollbar').delay(200).fadeOut(500, function() {
+                        var url = $('.active').data('url');
+                        window.location = url;
+                    });
+
                 });
 
                 sly.on('change', function () {

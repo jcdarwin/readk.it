@@ -133,8 +133,7 @@ define([
 
     // Font style handlers
     $('.sans').click(function(){
-
-        var y_percent = (layout.page_scrollers[layout.location().page]).scroller.y / (layout.page_scrollers[layout.location().page]).scroller.maxScrollY;
+        var y_percent = layout.location().y / layout.location().height;
 
         if ( $('.sans').hasClass('active') ) {
             $.each($('link[href$="sans.css"]'), function(i, link) {
@@ -167,9 +166,7 @@ define([
     });
 
     $('.serif').click(function(){
-
-        var y_percent = (layout.page_scrollers[layout.location().page]).scroller.y / (layout.page_scrollers[layout.location().page]).scroller.maxScrollY;
-
+        var y_percent = layout.location().y / layout.location().height;
         if ( $('.serif').hasClass('active') ) {
             $.each($('link[href$="serif.css"]'), function(i, link) {
                 link.disabled=true;
@@ -225,7 +222,7 @@ define([
         var value = $(this).data('size');
         $('html').css('font-size', value + 'px');
 
-        var y_percent = (layout.page_scrollers[layout.location().page]).scroller.y / (layout.page_scrollers[layout.location().page]).scroller.maxScrollY;
+        var y_percent = layout.location().y / layout.location().height;
 
         layout.refresh(y_percent, layout.location().page);
         layout.storage('font-size', value);
@@ -260,7 +257,7 @@ define([
         var value = $(this).data('size');
         $('p,li,h1,h2,h3,h4,h5,button').css('line-height', value);
 
-        var y_percent = (layout.page_scrollers[layout.location().page]).scroller.y / (layout.page_scrollers[layout.location().page]).scroller.maxScrollY;
+        var y_percent = layout.location().y / layout.location().height;
 
         layout.refresh(y_percent, layout.location().page);
         layout.storage('line-height', value);

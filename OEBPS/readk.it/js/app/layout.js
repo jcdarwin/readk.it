@@ -95,17 +95,20 @@ define([
     var refresh = function (y_percent, page) {
         setTimeout(function () {
             $.each(page_scrollers, function(i) {
-
+                this.scroller.refresh();
                 if ( ! (y_percent === undefined && page === undefined) ) {
                     if (i == page) {
-                        var y = this.scroller.maxScrollY * y_percent;
+                        var y = this.scroller.scrollerH * y_percent;
                         this.scroller.scrollTo(0, y);
                     }
-                } else {
-                    this.scroller.refresh();
                 }
-
             });
+
+            if (y_percent === undefined && page === undefined) {
+                // By now we must have restored our publication if settings
+                // had been previously saved.
+                restoring = false;
+            }
         }, 0);
     };
 
@@ -176,6 +179,7 @@ define([
                     // Store details of the current position on the page.
                     if (pages[currentPage]) {
                         pages[currentPage].y = (page_scrollers[currentPage]).scroller.y;
+                        pages[currentPage].height = (page_scrollers[currentPage]).scroller.scrollerH;
                         storage('pages', pages);
                     }
                 }
@@ -328,7 +332,6 @@ define([
                 (page_scrollers[page]).scroller.scrollTo(0, y, 0, 0);
             }
         }
-        restoring = false;
     };
 
     var body = function() {
@@ -421,12 +424,15 @@ define([
     };
 
     var location = function() {
+        pages = storage('pages');
+
         return {
             page:   currentPage,
             title:  publication.spine_entries[currentPage].title,
             file:   publication.spine_entries[currentPage].file,
+            height: pages[currentPage] ? pages[currentPage].height : (page_scrollers[currentPage]).scroller.scrollerH,
             x:      $(book_scroller)[0].x,
-            y:      (page_scrollers[currentPage]).scroller.y
+            y:      pages[currentPage] ? pages[currentPage].y : (page_scrollers[currentPage]).scroller.y
         };
     };
 

@@ -11,8 +11,10 @@
 **    }
 **
 **    required: [
-**        'css!client_css/base.css',
-**        'css!client_css/themes/color_07.css'
+**        'css!client_css/normalize.css',
+**        'css!client_css/screen.css',
+**        'css!client_css/pure/pure-grids.css',
+**        'css!client_css/pure/pure-min.css'
 **    ]
 **
 */

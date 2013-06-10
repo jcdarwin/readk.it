@@ -1,0 +1,127 @@
+@charset "UTF-8";
+
+/*!
++---------------------------------------------------------------------+
+|                                                                     |
+| READK.IT MANIFESTO                                                  |
+|                                                                     |
+| URL:                                                                |
+| VERSION: 0.0.1                                                      |
+| Github:                                                             |
+| AUTHOR: Jason Darwin (@nzmebooks)                                   |
+| LICENSE: Creative Commmons                                          |
+| http://creativecommons.org/licenses/by/3.0                          |
+|                                                                     |
++---------------------------------------------------------------------+
+*/
+
+@import "compass";
+@import "vendor/normalize";
+@import "vendor/typeplate";
+@import 'vendor/bourbon/bourbon';
+
+@import 'mixins';
+@import 'color';
+@import 'callout';
+
+
+// ==========================================================================//
+//
+// $BaseStyles
+//
+// ==========================================================================//
+
+// $Typography
+// -------------------------------------//
+
+@include font-face(SourceSansPro, '../fonts/SourceSansPro/SourceSansPro-Regular', normal);
+@include font-face(SourceSansPro, '../fonts/SourceSansPro/SourceSansPro-Bold', bold);
+@include font-face(SourceSansPro, '../fonts/SourceSansPro/SourceSansPro-Italic', normal, italic);
+
+body {
+    background-color: $background-color;
+    font-family: "SourceSansPro";
+    margin: 0 1em 1em 1em;
+}
+
+
+// ==========================================================================//
+//
+// $LayoutStyles
+//
+// ==========================================================================//
+
+// $Grids
+// -------------------------------------//
+
+.pure-g-r > div {
+    box-sizing: border-box; 
+}
+
+.pure-g-r > div:first-child {
+    padding-right: 1em;
+}
+
+
+// ==========================================================================//
+//
+// $ModuleStyles
+//
+// ==========================================================================//
+
+.header {
+    @include callout-border(top, 3);
+    padding-top: 5rem;
+}
+
+.blurb {
+    font-weight: normal;
+}
+
+nav {
+    display: block;
+    float: right;
+    padding-top: 3.2rem;
+    margin-bottom: -2.1rem;
+    padding-bottom: 1.4rem;
+}
+
+nav ul {
+    list-style: none outside;
+    margin-bottom: 20px;
+
+    li {
+        display: inline;
+        padding-left: 1.625rem;
+
+        button, a {
+            @include button();
+        }
+    }
+}
+
+nav ul li:first-child {
+    padding-left: 0;
+}
+
+article {
+    float: left;
+}
+
+hr {
+    border: solid $border-color;
+    border-width: 1px 0 0;
+    clear: both;
+    margin: 0.625rem 0 1.875rem;
+    height: 0;
+}
+
+
+// ==========================================================================//
+//
+// $StateStyles
+//
+// ==========================================================================//
+
+a, a:visited { color: $link-visited; }
+a:hover, a:active, a:focus { color: $link-unvisited; }

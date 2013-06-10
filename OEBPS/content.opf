@@ -6,100 +6,52 @@
         <dc:language>en</dc:language>
         <dc:rights>&#169; Jason Darwin, 2013</dc:rights>
         <dc:publisher>meBooks</dc:publisher>
-        <dc:identifier id="bookid">epub_type_and_grids</dc:identifier>
+        <dc:identifier id="bookid">readk.it_a_manifesto</dc:identifier>
         <meta property="dcterms:modified">2012-08-20T03:18:06Z</meta>
         <meta name="cover" content="cover_front.png"/>
-<!-- <x-metadata><EmbeddedCover>images\cover_front.jpg</EmbeddedCover></x-metadata> -->
+<!-- <x-metadata><EmbeddedCover>images\cover_front.png</EmbeddedCover></x-metadata> -->
     </metadata>
     <manifest>
     <!-- '.'  -->
-        <item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml"/>
-        <item id='index_html' href='index.html' properties="scripted svg" media-type='application/xhtml+xml' />
-        <item id='why_html' href='why.html' media-type='application/xhtml+xml' />
-        <item id='what_html' href='what.html' media-type='application/xhtml+xml' />
-        <item id='how_html' href='how.html' media-type='application/xhtml+xml' />
-        <item id='_readme.txt' href='_readme.txt'  media-type='text/plain' />
+        <item id='index_html' href='index.html'  media-type='text/html' />
+        <item id='what_html' href='what.html'  media-type='text/html' />
+        <item id='allow_html' href='allow.html'  media-type='text/html' />
     <!-- './css'  -->
-        <item id='css_base.css' href='css/base.css'  media-type='text/css' />
-    <!-- './css/slider_assets'  -->
-        <item id='css_slider_assets_grab.cur' href='css/slider_assets/grab.cur'  media-type='image/vnd.microsoft.icon' />
-        <item id='css_slider_assets_grab.gif' href='css/slider_assets/grab.gif'  media-type='image/gif' />
-        <item id='css_slider_assets_grabbing.cur' href='css/slider_assets/grabbing.cur'  media-type='image/vnd.microsoft.icon' />
-        <item id='css_slider_assets_grabbing.png' href='css/slider_assets/grabbing.png'  media-type='image/png' />
-        <item id='css_slider_assets_preloader.gif' href='css/slider_assets/preloader.gif'  media-type='image/gif' />
-    <!-- './css/themes'  -->
-        <item id='css_themes_color_07.css' href='css/themes/color_07.css'  media-type='text/css' />
-        <item id='css_themes_type_sans.css' href='css/themes/type_sans.css'  media-type='text/css' />
-        <item id='css_themes_type_serif.css' href='css/themes/type_serif.css'  media-type='text/css' />
+        <item id='css_ie_css' href='css/ie.css'  media-type='text/css' />
+        <item id='css_normalize_css' href='css/normalize.css'  media-type='text/css' />
+        <item id='css_print_css' href='css/print.css'  media-type='text/css' />
+        <item id='css_screen_css' href='css/screen.css'  media-type='text/css' />
+    <!-- './css/pure'  -->
+        <item id='css_pure_pure-grids_css' href='css/pure/pure-grids.css'  media-type='text/css' />
+        <item id='css_pure_pure-min_css' href='css/pure/pure-min.css'  media-type='text/css' />
     <!-- './fonts'  -->
-    <!-- './fonts/Lora'  -->
-        <item id='fonts_Lora_Lora-Bold.woff' href='fonts/Lora/Lora-Bold.woff'  media-type='application/vnd.ms-opentype' />
-        <item id='fonts_Lora_Lora-BoldItalic.woff' href='fonts/Lora/Lora-BoldItalic.woff'  media-type='application/vnd.ms-opentype' />
-        <item id='fonts_Lora_Lora-Italic.woff' href='fonts/Lora/Lora-Italic.woff'  media-type='application/vnd.ms-opentype' />
-        <item id='fonts_Lora_Lora.woff' href='fonts/Lora/Lora.woff'  media-type='application/vnd.ms-opentype' />
     <!-- './fonts/SourceSansPro'  -->
-        <item id='fonts_SourceSansPro_SourceSansPro-Bold.woff' href='fonts/SourceSansPro/SourceSansPro-Bold.woff'  media-type='application/vnd.ms-opentype' />
-        <item id='fonts_SourceSansPro_SourceSansPro-BoldIt.woff' href='fonts/SourceSansPro/SourceSansPro-BoldIt.woff'  media-type='application/vnd.ms-opentype' />
-        <item id='fonts_SourceSansPro_SourceSansPro-It.woff' href='fonts/SourceSansPro/SourceSansPro-It.woff'  media-type='application/vnd.ms-opentype' />
-        <item id='fonts_SourceSansPro_SourceSansPro-Light.woff' href='fonts/SourceSansPro/SourceSansPro-Light.woff'  media-type='application/vnd.ms-opentype' />
-        <item id='fonts_SourceSansPro_SourceSansPro-Regular.woff' href='fonts/SourceSansPro/SourceSansPro-Regular.woff'  media-type='application/vnd.ms-opentype' />
-        <item id='fonts_SourceSansPro_SourceSansPro-Semibold.woff' href='fonts/SourceSansPro/SourceSansPro-Semibold.woff'  media-type='application/vnd.ms-opentype' />
+        <item id='fonts_SourceSansPro_SourceSansPro-Bold_woff' href='fonts/SourceSansPro/SourceSansPro-Bold.woff'  media-type='application/vnd.ms-opentype' />
+        <item id='fonts_SourceSansPro_SourceSansPro-BoldIt_woff' href='fonts/SourceSansPro/SourceSansPro-BoldIt.woff'  media-type='application/vnd.ms-opentype' />
+        <item id='fonts_SourceSansPro_SourceSansPro-It_woff' href='fonts/SourceSansPro/SourceSansPro-It.woff'  media-type='application/vnd.ms-opentype' />
+        <item id='fonts_SourceSansPro_SourceSansPro-Light_woff' href='fonts/SourceSansPro/SourceSansPro-Light.woff'  media-type='application/vnd.ms-opentype' />
+        <item id='fonts_SourceSansPro_SourceSansPro-Regular_woff' href='fonts/SourceSansPro/SourceSansPro-Regular.woff'  media-type='application/vnd.ms-opentype' />
+        <item id='fonts_SourceSansPro_SourceSansPro-Semibold_woff' href='fonts/SourceSansPro/SourceSansPro-Semibold.woff'  media-type='application/vnd.ms-opentype' />
     <!-- './images'  -->
-        <item id='images_about.jpg' href='images/about.jpg'  media-type='image/jpeg' />
-        <item id='images_close_button.gif' href='images/close_button.gif'  media-type='image/gif' />
-        <item id='images_cover_front.png' href='images/cover_front.png'  media-type='image/png' />
-        <item id='images_site_preloader.gif' href='images/site_preloader.gif'  media-type='image/gif' />
-    <!-- './images/backgrounds'  -->
-        <item id='images_backgrounds_bg_06.png' href='images/backgrounds/bg_06.png'  media-type='image/png' />
-    <!-- './images/favicons'  -->
-        <item id='images_favicons_apple-touch-icon-114x114.png' href='images/favicons/apple-touch-icon-114x114.png'  media-type='image/png' />
-        <item id='images_favicons_apple-touch-icon-72x72.png' href='images/favicons/apple-touch-icon-72x72.png'  media-type='image/png' />
-        <item id='images_favicons_apple-touch-icon.png' href='images/favicons/apple-touch-icon.png'  media-type='image/png' />
-        <item id='images_favicons_favicon.ico' href='images/favicons/favicon.ico'  media-type='image/vnd.microsoft.icon' />
-    <!-- './images/masks'  -->
-        <item id='images_masks_f2f2f2_01.png' href='images/masks/f2f2f2_01.png'  media-type='image/png' />
-    <!-- './images/other'  -->
-        <item id='images_other_project_02_a.jpg' href='images/other/project_02_a.jpg'  media-type='image/jpeg' />
-        <item id='images_other_project_03_a.jpg' href='images/other/project_03_a.jpg'  media-type='image/jpeg' />
-        <item id='images_other_project_04_a.jpg' href='images/other/project_04_a.jpg'  media-type='image/jpeg' />
-        <item id='images_other_project_06_a.png' href='images/other/project_06_a.png'  media-type='image/png' />
-    <!-- './images/projects'  -->
-        <item id='images_projects_project_01_a.png' href='images/projects/project_01_a.png'  media-type='image/png' />
-        <item id='images_projects_project_01_b.jpg' href='images/projects/project_01_b.jpg'  media-type='image/jpeg' />
-        <item id='images_projects_project_01_c.jpg' href='images/projects/project_01_c.jpg'  media-type='image/jpeg' />
-        <item id='images_projects_project_01_d.jpg' href='images/projects/project_01_d.jpg'  media-type='image/jpeg' />
-        <item id='images_projects_project_01_desaturated.jpg' href='images/projects/project_01_desaturated.jpg'  media-type='image/jpeg' />
-        <item id='images_projects_project_02_desaturated.jpg' href='images/projects/project_02_desaturated.jpg'  media-type='image/jpeg' />
-        <item id='images_projects_project_03_desaturated.jpg' href='images/projects/project_03_desaturated.jpg'  media-type='image/jpeg' />
-        <item id='images_projects_project_04_desaturated.jpg' href='images/projects/project_04_desaturated.jpg'  media-type='image/jpeg' />
-        <item id='images_projects_project_05_desaturated.jpg' href='images/projects/project_05_desaturated.jpg'  media-type='image/jpeg' />
-        <item id='images_projects_project_06_desaturated.jpg' href='images/projects/project_06_desaturated.jpg'  media-type='image/jpeg' />
+        <item id='images_callout_01_jpg' href='images/callout_01.jpg'  media-type='image/jpeg' />
+        <item id='images_callout_02_jpg' href='images/callout_02.jpg'  media-type='image/jpeg' />
+        <item id='images_callout_03_jpg' href='images/callout_03.jpg'  media-type='image/jpeg' />
+        <item id='images_callout_04_jpg' href='images/callout_04.jpg'  media-type='image/jpeg' />
+        <item id='images_callout_05_jpg' href='images/callout_05.jpg'  media-type='image/jpeg' />
+        <item id='images_cover_front_png' href='images/cover_front.png'  media-type='image/png' />
     <!-- './js'  -->
-        <item id='js_script.js' href='js/script.js'  media-type='text/javascript' />
+        <item id='js_script_js' href='js/script.js'  media-type='text/javascript' />
     <!-- './js/libs'  -->
-        <item id='js_libs_jquery-1.8.3.min.js' href='js/libs/jquery-1.8.3.min.js'  media-type='text/javascript' />
-        <item id='js_libs_jquery.easing.1.3.min.js' href='js/libs/jquery.easing.1.3.min.js'  media-type='text/javascript' />
-        <item id='js_libs_jquery.fitvids.js' href='js/libs/jquery.fitvids.js'  media-type='text/javascript' />
-        <item id='js_libs_modernizr.min.js' href='js/libs/modernizr.min.js'  media-type='text/javascript' />
-    <!-- './projects'  -->
-    <!-- './projects/project_01'  -->
-        <item id='projects_project_01_index_html' href='projects/project_01/index.html' properties="scripted" media-type='application/xhtml+xml' />
-    <!-- './projects/project_01/images'  -->
-        <item id='projects_project_01_images_project_01_large_a.jpg' href='projects/project_01/images/project_01_large_a.jpg'  media-type='image/jpeg' />
-        <item id='projects_project_01_images_project_01_large_b.jpg' href='projects/project_01/images/project_01_large_b.jpg'  media-type='image/jpeg' />
-        <item id='projects_project_01_images_project_01_large_c.jpg' href='projects/project_01/images/project_01_large_c.jpg'  media-type='image/jpeg' />
-    <!-- './projects/project_02'  -->
-        <item id='projects_project_02_index_html' href='projects/project_02/index.html' properties="scripted" media-type='application/xhtml+xml' />
-        <item id='projects_project_02_DidYouKnow_512kb.mp4' href='projects/project_02/DidYouKnow_512kb.mp4' media-type='video/mp4' />
+        <item id='js_libs_jquery-1_8_3_min_js' href='js/libs/jquery-1.8.3.min.js'  media-type='text/javascript' />
+        <item id='js_libs_jquery_easing_1_3_min_js' href='js/libs/jquery.easing.1.3.min.js'  media-type='text/javascript' />
+        <item id='js_libs_jquery_fitvids_js' href='js/libs/jquery.fitvids.js'  media-type='text/javascript' />
+        <item id='js_libs_modernizr_min_js' href='js/libs/modernizr.min.js'  media-type='text/javascript' />
         <item id="toc" properties="nav" href="toc.html" media-type="application/xhtml+xml"/>
     </manifest>
-    <spine page-progression-direction="ltr" toc="ncx">
+    <spine page-progression-direction="ltr">
         <itemref idref="index_html"/>
-        <itemref idref="why_html"/>
         <itemref idref="what_html"/>
-        <itemref idref="how_html"/>
-        <itemref idref="projects_project_01_index_html"/>
-        <itemref idref="projects_project_02_index_html"/>
+        <itemref idref="allow_html"/>
     </spine>
   <guide>
       <reference type="toc" title="Table of Contents" href="toc.html%23toc"></reference>

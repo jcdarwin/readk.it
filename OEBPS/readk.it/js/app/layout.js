@@ -50,7 +50,7 @@ define([
         };
     };
 
-    var book_scroller = new iScroll('pageWrapper', {
+    var book_scroller = new iScroll('readkit-pageWrapper', {
         snap: true,
         snapThreshold:1,
         momentum: false,
@@ -60,7 +60,7 @@ define([
         onAnimationEnd: function(){
             // Store details of the page we're on
             if (page_width > 0) {
-                currentPage = - Math.ceil( $('#pageScroller').position().left / page_width);
+                currentPage = - Math.ceil( $('#readkit-pageScroller').position().left / page_width);
             }
 
             if (this.options['page_scroller_waiting']) {
@@ -113,11 +113,11 @@ define([
     };
 
     var update = function (page_scroller) {
-        page_width = $('#pageWrapper').width();
-        var pages = $('.page').length;
-        $('#pageScroller').css('width', page_width * pages);
-//        $('.page').css('width', page_width - 40);
-        $('.page').css('width', page_width);
+        page_width = $('#readkit-pageWrapper').width();
+        var pages = $('.readkit-page').length;
+        $('#readkit-pageScroller').css('width', page_width * pages);
+//        $('.readkit-page').css('width', page_width - 40);
+        $('.readkit-page').css('width', page_width);
         book_scroller.refresh();
         if (page_scroller) {
             page_scroller.refresh();
@@ -171,7 +171,7 @@ define([
 
     // Add a page
     var add = function (id, file, html) {
-        $('#pageScroller').append('<div class="page" id="' + file + '"><div id="' + id + '" class="wrapper"><div class="scroller"><div class="margins">' + html + '</div></div></div></div>');
+        $('#readkit-pageScroller').append('<div class="readkit-page" id="' + file + '"><div id="' + id + '" class="readkit-wrapper"><div class="readkit-scroller"><div class="readkit-margins">' + html + '</div></div></div></div>');
 
         var page_scroller = new iScroll(id, {snap: true, momentum: true, hScrollbar: false, vScrollbar: true, lockDirection: true,
             onAnimationEnd: function(){
@@ -215,7 +215,7 @@ define([
 
         // Capture clicks on buttons so we can update the scroll position.
         $('#' + id + ' button').on('click', function(event) {
-            file = $(this).parents('.page').attr('id').replace(/_/, '.');
+            file = $(this).parents('.readkit-page').attr('id').replace(/_/, '.');
 
             // Firstly, find the page scroller from our collection that is keyed to our page.
             var filtered_page_scrollers = _.filter(page_scrollers, function(scroller) {
@@ -271,7 +271,7 @@ define([
             if (filtered_page_scrollers.length === 0) {
                 filtered_page_scrollers = _.filter(page_scrollers, function(scroller) {
                     // Find the pagescroller with the page containing the id matching our anchor.
-                    return scroller.file == $('[id="' + page_anchor + '"]').parents('.page').attr('id');
+                    return scroller.file == $('[id="' + page_anchor + '"]').parents('.readkit-page').attr('id');
                 });
             }
 
@@ -357,7 +357,7 @@ define([
         ){
             // Account for the status bar on iOS when in stand-alone mode.
             // http://www.bennadel.com/blog/1950-Detecting-iPhone-s-App-Mode-Full-Screen-Mode-For-Web-Applications.htm
-            $('.header').css({'margin-top': '20px'});
+            $('.readkit-header').css({'margin-top': '20px'});
         }
 
         // Ensure that we can scroll using keyboard in desktop browsers
@@ -414,7 +414,7 @@ define([
         });
 
         // Remove site preloader after site is loaded
-        $('#sitePreloader').delay(200).fadeOut(500, function() {
+        $('#readkit-sitePreloader').delay(200).fadeOut(500, function() {
             refresh();
             $(this).remove();
         });

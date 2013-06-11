@@ -23,7 +23,6 @@
         <item id='css_screen_css' href='css/screen.css'  media-type='text/css' />
     <!-- './css/pure'  -->
         <item id='css_pure_pure-grids_css' href='css/pure/pure-grids.css'  media-type='text/css' />
-        <item id='css_pure_pure-min_css' href='css/pure/pure-min.css'  media-type='text/css' />
     <!-- './fonts'  -->
     <!-- './fonts/SourceSansPro'  -->
         <item id='fonts_SourceSansPro_SourceSansPro-Bold_woff' href='fonts/SourceSansPro/SourceSansPro-Bold.woff'  media-type='application/vnd.ms-opentype' />

@@ -1,0 +1,426 @@
+@charset "UTF-8";
+
+/*!
++---------------------------------------------------------------------+
+|                                                                     |
+| READK.IT                                                            |
+|                                                                     |
+| URL:                                                                |
+| VERSION: 0.0.1                                                      |
+| Github:                                                             |
+| AUTHOR: Jason Darwin (@nzmebooks)                                   |
+| LICENSE: Creative Commmons                                          |
+| http://creativecommons.org/licenses/by/3.0                          |
+|                                                                     |
++---------------------------------------------------------------------+
+*/
+
+@import "compass";
+
+@import 'color';
+
+
+// ==========================================================================//
+//
+// $Variables
+//
+// ==========================================================================//
+
+// Our namespace -- sass will soon have namespaces, and make this a bit easier
+$namespace:     'readkit';
+
+$padding:       10px;
+$margin:        $padding * 2;
+$header-height: $padding * 4;
+
+$small:         18px;
+$medium:        24px;
+$large:         30px;
+
+$font-small:    12px;
+$font-medium:   16px;
+$font-large:    18px;
+
+$line-height:   1.6em;
+$border-radius: 12px;
+
+$slider-width: 30px;
+
+// ==========================================================================//
+//
+// $BaseStyles
+//
+// ==========================================================================//
+
+.#{$namespace}-margins {
+    margin: 0 $margin;
+}
+
+// ==========================================================================//
+//
+// $Media Queries
+//
+// ==========================================================================//
+
+/* iPhone 2G-4S in portrait & landscape */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+    .#{$namespace}-header {
+        top: 0;
+        -webkit-user-select: none;
+    }
+    .#{$namespace}-slider {
+        width: $slider-width;
+    }
+}
+
+/* iPhone 5 in portrait & landscape */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px) {
+    .#{$namespace}-header {
+        top: 0;
+        -webkit-user-select: none;
+    }
+    .#{$namespace}-slider {
+        width: $slider-width;
+    }
+}
+
+/* iPad in portrait & landscape */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)  {
+    /* Accomodate status bar */
+    .#{$namespace}-header {
+        top: 0;
+        -webkit-user-select: none; 
+    }                
+}
+
+/* Desktop */
+@media only screen {
+    .#{$namespace}-header {
+        top: 0;
+    }                
+}
+
+
+// ==========================================================================//
+//
+// $LayoutStyles
+//
+// ==========================================================================//
+
+.#{$namespace}-page {
+    float: left;
+    -webkit-transform: translate3d(0,0,0);
+    height: 100%;
+}
+
+##{$namespace}-pageWrapper {
+    position: absolute;
+    top: $header-height;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding-bottom: $margin;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.#{$namespace}-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    z-index: 1;
+}
+
+.#{$namespace}-wrapper-bookmarks {
+    position: absolute;
+    top: $header-height;
+    left: $padding;
+    right: $padding;
+    bottom: 0;
+    overflow: auto;
+    z-index: 1;
+}
+
+.#{$namespace}-scroller {
+    position: absolute;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    width: 100%;
+    padding: 0;
+    z-index: 1;
+}
+
+// ==========================================================================//
+//
+// $ModuleStyles
+//
+// ==========================================================================//
+
+.#{$namespace}-header {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: $header-height;
+    width: 100%;
+    margin-top: 0;
+    background-color: $header-color;
+    z-index: 2;
+}
+
+.#{$namespace}-controls {
+    padding-left: $padding;
+    padding-right: $padding;
+    font-size: $font-large;
+    -webkit-user-select: none;
+}
+
+.#{$namespace}-slider, .#{$namespace}-slider span, label i, span.icon, span i {
+    font-size: $font-medium;
+}
+
+.#{$namespace}-size, .#{$namespace}-lh {
+    float: left;
+    margin-right: $padding;
+}
+
+.#{$namespace}-dropdown {
+    position: absolute;
+    top: 35px;
+    margin-top: $padding / 2;
+    background-color: $dropdown-color;
+    border-radius: $border-radius;
+
+    a: link {
+        color: $link-unvisited;
+    }
+
+    a: visited {
+        color: $link-visited;
+    }
+}
+
+##{$namespace}-dropdown-size, ##{$namespace}-dropdown-lineheight {
+    left: $padding * 3;
+    height: 60px;
+    width: 116px;
+}
+
+##{$namespace}-dropdown-bookmark {
+    height: 380px;
+    width: 280px;
+    right: $padding;
+    color: $light-color;
+    padding: 0 $padding $padding $padding;
+    overflow: hidden;
+
+    a {
+        font-size: $font-small;
+    }
+}
+
+.#{$namespace}-small {
+    left: $padding;
+    height: $small;
+    width: $small;
+    border-radius: $small / 2;
+    margin-top: -13px;
+
+    i: before {
+        font-size: $font-small;
+        line-height: $line-height;
+    }
+}
+
+.#{$namespace}-medium {
+    left: $padding + $small + $padding;
+    height: $medium;
+    width: $medium;
+    border-radius: $medium / 2;
+    margin-top: -13px;
+
+    i: before {
+        font-size: $font-medium;
+        line-height: $line-height;
+    }
+}
+
+
+.#{$namespace}-large{
+    left: $padding + $small + $padding + $medium + $padding;
+    height: $large;
+    width: $large;
+    border-radius: $large / 2;
+    margin-top: -13px;
+
+    i: before {
+        font-size: 20px;
+        line-height: $line-height;
+    }
+}
+
+
+.#{$namespace}-font {
+    display: inline-block;
+    margin-top: -4px;
+    font-size: $font-large;
+}
+
+.#{$namespace}-back {
+    float: left;
+    margin-left: $padding;
+    margin-right: $padding;
+}
+
+.#{$namespace}-status {
+    float: right;
+    cursor: default;
+}
+
+.#{$namespace}-bookmark {
+    float: right;
+    cursor: hand;
+    cursor: pointer;
+}
+
+##{$namespace}-bookmark-input {
+    width: 250px;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.#{$namespace}-bookmark-icon {
+    height: $medium;
+    width: $medium;
+    border-radius: $medium / 2;
+    padding-top: 0;
+}
+
+.#{$namespace}-bookmark-icon {
+    i[class^="icon-"] {
+        border-radius: $border-radius;
+    }
+
+    i[class^="icon-"]:before {
+        line-height: $line-height;
+    }    
+}
+
+.#{$namespace}-bookmark-icon-add {
+    float: right;
+    margin-top: 2px;
+}
+
+.#{$namespace}-bookmark-icon-remove {
+    float: left;
+}
+
+.#{$namespace}-bookmark-title {
+    float: left;
+    width: 248px;
+    margin-top: 5px;
+}
+
+.#{$namespace}-bookmark-input {
+    position: relative;
+    padding-top: $padding;
+    padding-bottom: $padding / 2;
+    margin-bottom: $padding / 2;
+    background-color: $dropdown-color;
+    z-index: 2;
+}
+
+.#{$namespace}-bookmark-list-item {
+    float: left;
+}
+
+img {
+    max-width: 100%;
+}
+
+pre {
+    overflow: auto;
+}
+
+##{$namespace}-sitePreloader { 
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: $dark-color;
+    z-index: 2;
+} /* Preloader GIF created with http://preloaders.net */
+
+
+##{$namespace}-preloaderImage {
+    width: 30px;
+    margin: 100px auto;
+}
+
+// ==========================================================================//
+//
+// $StateStyles
+//
+// ==========================================================================//
+
+[class^="#{$namespace}-strength-"], [class*=" #{$namespace}-strength-"] {
+    position: absolute;
+    top: 50%;
+    float: left;
+    margin-right: 0;
+    cursor: hand;
+    cursor: pointer;
+    text-align: center;
+}
+
+.#{$namespace}-icon {
+    color: #ffffff;
+    margin-top: 5px;
+    display: inline-block;
+    height: $medium;
+    width: $large;
+    border-radius: $large / 2;
+    text-align: center;
+    background: $dark-color;
+    padding-top: 6px;
+    line-height: $large;
+    cursor: hand;
+    cursor: pointer; 
+
+    .#{$namespace}-serif, .#{$namespace}-sans {
+        padding-top: 3px;
+        padding-bottom: 3px;
+    }
+}
+
+.#{$namespace}-online, .#{$namespace}-active {
+    background-color: $online-color;
+}
+
+.#{$namespace}-offline, .#{$namespace}-inactive {
+    background-color: $offline-color;
+}
+
+.#{$namespace}-sans {
+    font-family: Arial;
+    font-weight: bold;
+    float: right;
+    margin-right: $margin / 2;
+}
+
+.#{$namespace}-serif {
+    font-family: Georgia;
+    font-weight: bold;
+    float: right;
+    margin-right: $margin / 2;
+}

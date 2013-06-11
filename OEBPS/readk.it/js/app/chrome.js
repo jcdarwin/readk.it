@@ -56,42 +56,42 @@ define([
             });
         };
 
-        //$('.back').noClickDelay();
-        $('.status').noClickDelay();
-        $('.serif').noClickDelay();
-        $('.sans').noClickDelay();
-        $('#for-size').noClickDelay();
-        $('.strength-size').noClickDelay();
-        $('#for-lineheight').noClickDelay();
-        $('.strength-line-height').noClickDelay();
-        $('#for-bookmark').noClickDelay();
-        $('#bookmark-widget a').noClickDelay();
-        //$('#pageWrapper').noClickDelay();
+        //$('.readkit-back').noClickDelay();
+        $('.readkit-status').noClickDelay();
+        $('.readkit-serif').noClickDelay();
+        $('.readkit-sans').noClickDelay();
+        $('#readkit-for-size').noClickDelay();
+        $('.readkit-strength-size').noClickDelay();
+        $('#readkit-for-lineheight').noClickDelay();
+        $('.readkit-strength-line-height').noClickDelay();
+        $('#readkit-for-bookmark').noClickDelay();
+        $('#readkit-bookmark-widget a').noClickDelay();
+        //$('#readkit-pageWrapper').noClickDelay();
 
         // Check for stored font preference and apply accordingly.
         var font = layout.storage('font');
         if (font == 'serif') {
-            $('.serif').click();
+            $('.readkit-serif').click();
         } else if (font == 'sans') {
-            $('.sans').click();
+            $('.readkit-sans').click();
         }
 
         // Check for stored font-size preference and apply accordingly.
         var fontsize = layout.storage('font-size');
         if (fontsize) {
             $('html').css('font-size', fontsize + 'px');
-            $('.strength-size[data-size="' + fontsize + '"]').removeClass('inactive').addClass('active');
+            $('.readkit-strength-size[data-size="' + fontsize + '"]').removeClass('readkit-inactive').addClass('readkit-active');
         } else {
-            $('.strength-size.small').removeClass('inactive').addClass('active');
+            $('.readkit-strength-size.readkit-small').removeClass('readkit-inactive').addClass('readkit-active');
         }
 
         // Check for stored line-height preference and apply accordingly.
         var lineheight = layout.storage('line-height');
         if (lineheight) {
             $('p,li,h1,h2,h3,h4,h5,button').css('line-height', lineheight);
-            $('.strength-line-height[data-size="' + lineheight + '"]').removeClass('inactive').addClass('active');
+            $('.readkit-strength-line-height[data-size="' + lineheight + '"]').removeClass('readkit-inactive').addClass('readkit-active');
         } else {
-            $('.strength-line-height.small').removeClass('inactive').addClass('active');
+            $('.readkit-strength-line-height.readkit-small').removeClass('readkit-inactive').addClass('readkit-active');
         }
 
         // Check online status immediately, instead of waiting for the first setInterval
@@ -110,37 +110,37 @@ define([
     /* Register handlers. */
 
     // Setup our back button
-    $('.back').click(function(){
+    $('.readkit-back').click(function(){
         layout.go_back();
         check_backbutton();
     });
 
     function check_backbutton() {
         var history = layout.storage('history');
-        var status = history && history.length ? 'active' : 'inactive';
+        var status = history && history.length ? 'readkit-active' : 'readkit-inactive';
 
-        if (status == 'active') {
-            $('.back').removeClass('inactive');
+        if (status == 'readkit-active') {
+            $('.readkit-back').removeClass('readkit-inactive');
         } else {
-            $('.back').removeClass('active');
+            $('.readkit-back').removeClass('readkit-active');
         }
-        $('.back').addClass(status);
+        $('.readkit-back').addClass(status);
     }
 
-    $('.status').click(function(){
-        document.location = $('.status a').attr('href');
+    $('.readkit-status').click(function(){
+        document.location = $('.readkit-status a').attr('href');
     });
 
     // Font style handlers
-    $('.sans').click(function(){
+    $('.readkit-sans').click(function(){
         var y_percent = layout.location().y / layout.location().height;
 
-        if ( $('.sans').hasClass('active') ) {
+        if ( $('.readkit-sans').hasClass('readkit-active') ) {
             $.each($('link[href$="sans.css"]'), function(i, link) {
                 link.disabled=true;
             });
 
-            $('.sans').removeClass('active');
+            $('.readkit-sans').removeClass('readkit-active');
 
             layout.storage('font', []);
         } else {
@@ -156,8 +156,8 @@ define([
             $.each($('link[href$="sans.css"]'), function(i, link) {
                 link.disabled=false;
             });
-            $('.serif').removeClass('active');
-            $('.sans').addClass('active');
+            $('.readkit-serif').removeClass('readkit-active');
+            $('.readkit-sans').addClass('readkit-active');
 
             layout.storage('font', 'sans');
         }
@@ -165,14 +165,14 @@ define([
         layout.refresh(y_percent, layout.location().page);
     });
 
-    $('.serif').click(function(){
+    $('.readkit-serif').click(function(){
         var y_percent = layout.location().y / layout.location().height;
-        if ( $('.serif').hasClass('active') ) {
+        if ( $('.readkit-serif').hasClass('readkit-active') ) {
             $.each($('link[href$="serif.css"]'), function(i, link) {
                 link.disabled=true;
             });
 
-            $('.serif').removeClass('active');
+            $('.readkit-serif').removeClass('readkit-active');
 
             layout.storage('font', []);
         } else {
@@ -189,8 +189,8 @@ define([
                 link.disabled=false;
             });
 
-            $('.sans').removeClass('active');
-            $('.serif').addClass('active');
+            $('.readkit-sans').removeClass('readkit-active');
+            $('.readkit-serif').addClass('readkit-active');
 
             layout.storage('font', 'serif');
         }
@@ -199,25 +199,25 @@ define([
     });
 
     // Fontsize event handlers
-    $('#for-size').on('click', function(){
-        if ( $('#dropdown-size').is(':visible') ) {
-            $('#dropdown-size').slideUp('slow');
+    $('#readkit-for-size').on('click', function(){
+        if ( $('#readkit-dropdown-size').is(':visible') ) {
+            $('#readkit-dropdown-size').slideUp('slow');
         } else {
             var value = layout.storage('font-size');
-            $('.strength-size[data-size="' + value + '"]').removeClass('inactive').addClass('active');
-            if ( $('#dropdown-lineheight').is(':visible') ) {
-                $('#dropdown-lineheight').slideUp();
+            $('.readkit-strength-size[data-size="' + value + '"]').removeClass('readkit-inactive').addClass('readkit-active');
+            if ( $('#readkit-dropdown-lineheight').is(':visible') ) {
+                $('#readkit-dropdown-lineheight').slideUp();
             }
-            if ( $('#dropdown-bookmark').is(':visible') ) {
-                $('#dropdown-bookmark').slideUp();
+            if ( $('#readkit-dropdown-bookmark').is(':visible') ) {
+                $('#readkit-dropdown-bookmark').slideUp();
             }
-            $('#dropdown-size').slideDown('slow');
+            $('#readkit-dropdown-size').slideDown('slow');
         }
     });
 
-    $('.strength-size').on('click', function(){
-        $('.strength-size').removeClass('active').addClass('inactive');
-        $(this).removeClass('inactive').addClass('active');
+    $('.readkit-strength-size').on('click', function(){
+        $('.readkit-strength-size').removeClass('readkit-active').addClass('readkit-inactive');
+        $(this).removeClass('readkit-inactive').addClass('readkit-active');
 
         var value = $(this).data('size');
         $('html').css('font-size', value + 'px');
@@ -228,31 +228,31 @@ define([
         layout.storage('font-size', value);
 
         setTimeout(function () {
-            $('#dropdown-size').slideUp('slow');
+            $('#readkit-dropdown-size').slideUp('slow');
         }, 700);
 
     });
 
     // Line-height event handlers
-    $('#for-lineheight').on('click', function(){
-        if ( $('#dropdown-lineheight').is(':visible') ) {
-            $('#dropdown-lineheight').slideUp('slow');
+    $('#readkit-for-lineheight').on('click', function(){
+        if ( $('#readkit-dropdown-lineheight').is(':visible') ) {
+            $('#readkit-dropdown-lineheight').slideUp('slow');
         } else {
-            if ( $('#dropdown-size').is(':visible') ) {
-                $('#dropdown-size').slideUp();
+            if ( $('#readkit-dropdown-size').is(':visible') ) {
+                $('#readkit-dropdown-size').slideUp();
             }
-            if ( $('#dropdown-bookmark').is(':visible') ) {
-                $('#dropdown-bookmark').slideUp();
+            if ( $('#readkit-dropdown-bookmark').is(':visible') ) {
+                $('#readkit-dropdown-bookmark').slideUp();
             }
             var value = layout.storage('line-height');
-            $('.strength-line-height[data-size="' + value + '"]').removeClass('inactive').addClass('active');
-            $('#dropdown-lineheight').slideDown('slow');
+            $('.readkit-strength-line-height[data-size="' + value + '"]').removeClass('readkit-inactive').addClass('readkit-active');
+            $('#readkit-dropdown-lineheight').slideDown('slow');
         }
     });
 
-    $('.strength-line-height').on('click', function(){
-        $('.strength-line-height').removeClass('active').addClass('inactive');
-        $(this).removeClass('inactive').addClass('active');
+    $('.readkit-strength-line-height').on('click', function(){
+        $('.readkit-strength-line-height').removeClass('readkit-active').addClass('readkit-inactive');
+        $(this).removeClass('readkit-inactive').addClass('readkit-active');
 
         var value = $(this).data('size');
         $('p,li,h1,h2,h3,h4,h5,button').css('line-height', value);
@@ -263,7 +263,7 @@ define([
         layout.storage('line-height', value);
 
         setTimeout(function () {
-            $('#dropdown-lineheight').slideUp('slow');
+            $('#readkit-dropdown-lineheight').slideUp('slow');
         }, 700);
     });
 
@@ -277,36 +277,36 @@ define([
         var bookmarks = layout.storage('bookmarks');
 
         if (bookmarks && bookmarks.length) {
-            $('#for-bookmark').addClass('active');
+            $('#readkit-for-bookmark').addClass('readkit-active');
         } else {
-            $('#for-bookmark').removeClass('active');
+            $('#readkit-for-bookmark').removeClass('readkit-active');
         }
     }
 
-    $('#for-bookmark').on('click', function(){
-        if ( $('#dropdown-bookmark').is(':visible') ) {
-            $('#dropdown-bookmark').slideUp('slow');
+    $('#readkit-for-bookmark').on('click', function(){
+        if ( $('#readkit-dropdown-bookmark').is(':visible') ) {
+            $('#readkit-dropdown-bookmark').slideUp('slow');
         } else {
             var value = layout.storage('font-bookmark');
-            $('.strength-bookmark[data-size="' + value + '"]').addClass('active');
-            if ( $('#dropdown-size').is(':visible') ) {
-                $('#dropdown-size').slideUp();
+            $('.readkit-strength-bookmark[data-size="' + value + '"]').addClass('readkit-active');
+            if ( $('#readkit-dropdown-size').is(':visible') ) {
+                $('#readkit-dropdown-size').slideUp();
             }
-            if ( $('#dropdown-lineheight').is(':visible') ) {
-                $('#dropdown-lineheight').slideUp();
+            if ( $('#readkit-dropdown-lineheight').is(':visible') ) {
+                $('#readkit-dropdown-lineheight').slideUp();
             }
 
-            var input = '<div class="bookmark-input"><input id="bookmark-input" type="text" data-file="' + layout.location().file + '" value="' + layout.location().title + '"><span class="icon bookmark-icon bookmark-icon-add active add-bookmark"><i class="icon-plus active"></i></span></div>';
+            var input = '<div class="readkit-bookmark-input"><input id="readkit-bookmark-input" type="text" data-file="' + layout.location().file + '" value="' + layout.location().title + '"><span class="readkit-icon readkit-bookmark-icon readkit-bookmark-icon-add readkit-active readkit-add-bookmark"><i class="icon-plus readkit-active"></i></span></div>';
             var bookmarks = layout.storage('bookmarks') || [];
 
             if (bookmarks.length) {
-                $('#for-bookmark').addClass('active');
+                $('#readkit-for-bookmark').addClass('active');
             }
 
-            var html = '<div id="bookmark-list">';
+            var html = '<div id="readkit-bookmark-list">';
 
             $.each(bookmarks, function(i, bookmark) {
-                html += '<div class="bookmark-list-item" style="margin-bottom:5px;"><span class="icon bookmark-icon bookmark-icon-remove active remove-bookmark"><i class="icon-minus active" data-index="' + i + '"></i></span><p class="bookmark-title"><a href="#' + bookmark.file + '" data-x="' + bookmark.x + '" data-y="' + bookmark.y + '">' + bookmark.title + '</a></p></div>';
+                html += '<div class="readkit-bookmark-list-item" style="margin-bottom:5px;"><span class="readkit-icon readkit-bookmark-icon readkit-bookmark-icon-remove readkit-active readkit-remove-bookmark"><i class="icon-minus readkit-active" data-index="' + i + '"></i></span><p class="readkit-bookmark-title"><a href="#' + bookmark.file + '" data-x="' + bookmark.x + '" data-y="' + bookmark.y + '">' + bookmark.title + '</a></p></div>';
             });
 
             html += '</div><hr style="clear:both;" />';
@@ -321,23 +321,23 @@ define([
             });
             html += nav;
 
-            html = input + '<div id="bookmark-widget" class="wrapper-bookmarks"><div class="scroller" style="width:280px;">' + html + '</div></div>';
+            html = input + '<div id="readkit-bookmark-widget" class="readkit-wrapper-bookmarks"><div class="readkit-scroller" style="width:280px;">' + html + '</div></div>';
 
-            $('#dropdown-bookmark').html('');
-            $('#dropdown-bookmark').append(html);
+            $('#readkit-dropdown-bookmark').html('');
+            $('#readkit-dropdown-bookmark').append(html);
 
-            var bookmark_scroller = new iScroll('bookmark-widget', {snap: true, momentum: true, hScroll: false, hScrollbar: false, vScrollbar: false, lockDirection: true,
+            var bookmark_scroller = new iScroll('readkit-bookmark-widget', {snap: true, momentum: true, hScroll: false, hScrollbar: false, vScrollbar: false, lockDirection: true,
                 onAnimationEnd: function(){
                 }
             });
 
             // Capture clicks on anchors so we can update the scroll position.
-            $('#bookmark-widget a').on('click', function(event) {
+            $('#readkit-bookmark-widget a').on('click', function(event) {
                 layout.trap_anchor(this, event);
-                $('#dropdown-bookmark').slideUp('slow');
+                $('#readkit-dropdown-bookmark').slideUp('slow');
             });
 
-            $('#dropdown-bookmark').slideDown('slow', function() {
+            $('#readkit-dropdown-bookmark').slideDown('slow', function() {
                 setTimeout(function () {
                     bookmark_scroller.refresh();
                 }, 0);
@@ -345,7 +345,7 @@ define([
         }
     });
 
-    $('.remove-bookmark').live('click', function(e){
+    $('.readkit-remove-bookmark').live('click', function(e){
         e.preventDefault();
         var index = $(this).data('index');
 
@@ -356,17 +356,17 @@ define([
         $(this).parent().remove();
 
         if (!bookmarks.length) {
-            $('#for-bookmark').removeClass('active');
+            $('#readkit-for-bookmark').removeClass('readkit-active');
         }
 
     });
 
-    $('.add-bookmark').live('click', function(e){
+    $('.readkit-add-bookmark').live('click', function(e){
         e.preventDefault();
-        $('#for-bookmark').addClass('active');
+        $('#readkit-for-bookmark').addClass('readkit-active');
 
-        var value = $('#bookmark-input').attr('value');
-        var file = $('#bookmark-input').attr('data-file');
+        var value = $('#readkit-bookmark-input').attr('value');
+        var file = $('#readkit-bookmark-input').attr('data-file');
         var bookmarks = layout.storage('bookmarks') || [];
 
         var bookmark = {
@@ -376,9 +376,9 @@ define([
             y: layout.location().y
         };
 
-        html = '<div class="bookmark-list-item" style="margin-bottom:5px;"><span class="icon bookmark-icon bookmark-icon-remove active remove-bookmark"><i class="icon-minus active" data-index="' + bookmarks.length + '"></i></span><p class="bookmark-title"><a href="#' + bookmark.file + '">' + bookmark.title + '</a></p></div>';
+        html = '<div class="readkit-bookmark-list-item" style="margin-bottom:5px;"><span class="readkit-icon readkit-bookmark-icon readkit-bookmark-icon-remove readkit-active readkit-remove-bookmark"><i class="icon-minus readkit-active" data-index="' + bookmarks.length + '"></i></span><p class="readkit-bookmark-title"><a href="#' + bookmark.file + '">' + bookmark.title + '</a></p></div>';
 
-        $('#bookmark-list').append(html);
+        $('#readkit-bookmark-list').append(html);
 
         bookmarks.push(bookmark);
 
@@ -386,19 +386,19 @@ define([
     });
 
     // close any open dropdowns if the user clicks elsewhere
-    $('#pageWrapper').on('click', function(){
-        $('.dropdown').slideUp('slow');
+    $('#readkit-pageWrapper').on('click', function(){
+        $('.readkit-dropdown').slideUp('slow');
     });
 
     // Initialise online status indicator
     function check_status() {
-        var status = navigator.onLine ? 'online' : 'offline';
-        if ( status === 'online' ) {
-            $('.status').removeClass('offline');
+        var status = navigator.onLine ? 'readkit-online' : 'readkit-offline';
+        if ( status === 'readkit-online' ) {
+            $('.readkit-status').removeClass('readkit-offline');
         } else {
-            $('.status').removeClass('online');
+            $('.readkit-status').removeClass('readkit-online');
         }
-        $('.status').addClass(status);
+        $('.readkit-status').addClass(status);
     }
 
     // Determine whether we're running in webapp mode on iOS
@@ -406,7 +406,7 @@ define([
     if (
     ("standalone" in window.navigator) &&
      window.navigator.standalone){
-        $('#pageWrapper').css('top', '60px');
+        $('#readkit-pageWrapper').css('top', '60px');
     }
 
     return (Chrome);

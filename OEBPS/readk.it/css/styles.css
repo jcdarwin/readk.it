@@ -1,354 +1,383 @@
-.page {
-    float: left;
-    -webkit-transform:translate3d(0,0,0);
-    height: 100%;
 /*
-    padding: 20px;
++---------------------------------------------------------------------+
+|                                                                     |
+| READK.IT                                                            |
+|                                                                     |
+| URL:                                                                |
+| VERSION: 0.0.1                                                      |
+| Github:                                                             |
+| AUTHOR: Jason Darwin (@nzmebooks)                                   |
+| LICENSE: Creative Commmons                                          |
+| http://creativecommons.org/licenses/by/3.0                          |
+|                                                                     |
++---------------------------------------------------------------------+
 */
-}
-
-#pageWrapper {
-    position:absolute;
-    z-index:1;
-    overflow:hidden;
-    top:40px;
-/*
-    left:20px;
-    right:20px;
-*/
-    left:0;
-    right:0;
-    bottom:0;
-    padding-bottom: 20px;
-}
-
-.wrapper {
-    position:absolute;
-    z-index:1;
-    top:0px;
-    bottom:0px;
-/*
-    left:20px;
-    right:20px;
-*/
-    left:0;
-    right:0;
-    overflow:auto;
-}
-
-.wrapper-bookmarks {
-    position:absolute;
-    z-index:1;
-    top:40px;
-    bottom:0px;
-    left:10px;
-    right:10px;
-    overflow:auto;
-}
-
-.scroller {
-	position:absolute; z-index:1;
-	-webkit-tap-highlight-color:rgba(0,0,0,0);
-	width:100%;
-	padding:0;
-}
-
-.margins {
-    margin: 0 20px;
-}
-
-.header {
-    height: 40px;
-    width: 100%;
-    background-color: #E6E7E8;
-    z-index: 2;
-}
-
-.header {
-    position:absolute;
-    bottom: 0;
-    left: 0;
-    margin-top: 0;
-}
-
-.controls {
-    padding-left: 10px;
-    padding-right: 10px;
-    font-size: 18px;
-    -webkit-user-select: none;
-}
-
-.slider, .slider span, label i, span.icon, span i {
-    font-size: 16px;
-}
-
-.size, .lh {
-    float: left;
-    margin-right: 10px;
-}
-
-.icon {
-    color: #ffffff;
-    margin-top:5px;
-    display:inline-block;
-    width:30px;height:24px;border-radius:15px;text-align:center;background:#000;padding-top:6px;
-    line-height: 30px;
-    cursor: hand; cursor: pointer; 
-}
-
-.icon.serif, .icon.sans {
-    padding-top:3px;
-    padding-bottom:3px;
-}
-
-.dropdown {
-    position:absolute;
-    top:35px;
-    margin-top: 5px;
-    background-color:#444;
-    border-radius: 10px;    
-}
-
-.dropdown a:link {
-    color: #fff;
-}
-
-.dropdown a:visited {
-    color: #bbb;
-}
-
-#dropdown-size, #dropdown-lineheight {
-    left:30px;
-    width:116px;
-    height: 60px;
-}
-
-#dropdown-bookmark {
-    right:10px;
-    color: #fff;
-    padding: 0 10px 10px 10px;
-    overflow:hidden;
-    height:380px;
-    width:280px;
-}
-
-#dropdown-bookmark a {
-    font-size: 0.85em;
-}
-
-.small {
-    width:18px;height:18px;border-radius:9px;left:10px;margin-top:-13px;
-}
-
-.small i:before {
-    font-size: 12px;
-    line-height: 1.6em;
-}
-
-
-.medium {
-    width:24px;height:24px;border-radius:12px;left:39px;margin-top:-13px;
-}
-
-.medium i:before {
-    font-size: 16px;line-height: 1.6;
-}
-
-.large{
-    width:30px;height:30px;border-radius:15px;left:74px;margin-top:-13px;
-}
-
-.large i:before {
-    font-size: 20px;line-height: 1.6;
-}
-
-[class^="strength-"], [class*=" strength-"] {
-    float:left;
-    margin-right: 0;
-    position:absolute;top:50%;
-    cursor:hand; cursor:pointer;
-    text-align: center;
-}
-
-.font {
-    display: inline-block;
-    margin-top: -4px;
-    font-size: 18px;
-}
-
-.back {
-    float:left;
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-.status {
-    float:right;
-    cursor: default;
-}
-
-.bookmark {
-    float:right;
-    cursor: hand; cursor: pointer;
-}
-
-#bookmark-input {
-    width:250px;
-    display:inline-block;
-    overflow:hidden;
-    white-space:nowrap;
-    text-overflow:ellipsis;
-}
-.bookmark-icon {
-    /* display:inline-block; */
-    width:24px;
-    height:24px;
-    border-radius:12px;
-    padding-top:0;
-}
-.bookmark-icon i[class^="icon-"] {
-    border-radius:12px;
-}
-
-.bookmark-icon i[class^="icon-"]:before {
-    line-height:1.5;
-}
-
-.bookmark-icon-add {
-    float:right;
-    margin-top:2px;
-}
-
-.bookmark-icon-remove {
-    float:left;
-/*
-    margin-top:0.5em;
-    margin-right:8px;
-*/
-}
-.bookmark-title {
-    float:left;
-    width:248px;
-    margin-top:5px;
-}
-
-.bookmark-input {
-    padding-top: 10px;
-    padding-bottom: 5px;
-    margin-bottom:5px;
-    position:relative;
-    z-index: 2;
-    background-color: #444;
-}
-.bookmark-list-item {
-    float:left;
-}
-
-.online, .active {
-    background-color: #56A2D3;
-}
-
-.offline, .inactive {
-    background-color: #BCBEC0;
-}
-
-.sans {
-    font-family: Arial;
-    font-weight: bold;
-    float:right;
-    margin-right: 10px;
-}
-
-.serif {
-    font-family: Georgia;
-    font-weight: bold;
-    float:right;
-    margin-right: 10px;
+/* line 56, ../sass/styles.scss */
+.readkit-margins {
+  margin: 0 20px;
 }
 
 /* iPhone 2G-4S in portrait & landscape */
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 480px) {
-    .header {
-        top: 0;
-        -webkit-user-select: none;
-    }                
-    .slider {
-        width:30px;
-    }
-}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  /* line 70, ../sass/styles.scss */
+  .readkit-header {
+    top: 0;
+    -webkit-user-select: none;
+  }
 
+  /* line 74, ../sass/styles.scss */
+  .readkit-slider {
+    width: 30px;
+  }
+}
 /* iPhone 5 in portrait & landscape */
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 568px) {
-    .header {
-        top: 0;
-        -webkit-user-select: none;
-    }
-    .slider {
-        width:30px;
-    }
-}
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+  /* line 83, ../sass/styles.scss */
+  .readkit-header {
+    top: 0;
+    -webkit-user-select: none;
+  }
 
+  /* line 87, ../sass/styles.scss */
+  .readkit-slider {
+    width: 30px;
+  }
+}
 /* iPad in portrait & landscape */
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px)  {
-    /* Accomodate status bar */
-    .header {
-        top: 0;
-        -webkit-user-select: none; 
-    }                
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  /* Accomodate status bar */
+  /* line 97, ../sass/styles.scss */
+  .readkit-header {
+    top: 0;
+    -webkit-user-select: none;
+  }
 }
-
 /* Desktop */
 @media only screen {
-    .header {
-        top: 0;
-    }                
-}
-
-img {
-    max-width: 100%;
-}
-
-pre {
-    overflow: auto;
-}
-
-#sitePreloader { background-color: #000000; } /* Preloader GIF created with http://preloaders.net */
-
-#sitePreloader {
-    position: absolute;
+  /* line 105, ../sass/styles.scss */
+  .readkit-header {
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    z-index: 2;
+  }
+}
+/* line 117, ../sass/styles.scss */
+.readkit-page {
+  float: left;
+  -webkit-transform: translate3d(0, 0, 0);
+  height: 100%;
 }
 
-#preloaderImage {
-    width: 30px;
-    margin: 100px auto;
+/* line 123, ../sass/styles.scss */
+#readkit-pageWrapper {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding-bottom: 20px;
+  overflow: hidden;
+  z-index: 1;
 }
 
-input[type=range] {
-    -webkit-appearance: none;
-    background-color: silver;
-    width: 160px;
-    height:20px;
-    border-radius: 5px;
+/* line 134, ../sass/styles.scss */
+.readkit-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  z-index: 1;
 }
 
-input[type="range"]::-webkit-slider-thumb {
-     -webkit-appearance: none;
-    background-color: #666;
-    opacity: 0.8;
-    width: 20px;
-    height: 26px;
-    border-radius: 5px;
-    cursor: hand; cursor: pointer; 
+/* line 144, ../sass/styles.scss */
+.readkit-wrapper-bookmarks {
+  position: absolute;
+  top: 40px;
+  left: 10px;
+  right: 10px;
+  bottom: 0;
+  overflow: auto;
+  z-index: 1;
+}
+
+/* line 154, ../sass/styles.scss */
+.readkit-scroller {
+  position: absolute;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  width: 100%;
+  padding: 0;
+  z-index: 1;
+}
+
+/* line 168, ../sass/styles.scss */
+.readkit-header {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 40px;
+  width: 100%;
+  margin-top: 0;
+  background-color: #e6e7e8;
+  z-index: 2;
+}
+
+/* line 179, ../sass/styles.scss */
+.readkit-controls {
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 18px;
+  -webkit-user-select: none;
+}
+
+/* line 186, ../sass/styles.scss */
+.readkit-slider, .readkit-slider span, label i, span.icon, span i {
+  font-size: 16px;
+}
+
+/* line 190, ../sass/styles.scss */
+.readkit-size, .readkit-lh {
+  float: left;
+  margin-right: 10px;
+}
+
+/* line 195, ../sass/styles.scss */
+.readkit-dropdown {
+  position: absolute;
+  top: 35px;
+  margin-top: 5px;
+  background-color: #444444;
+  border-radius: 12px;
+  a: link;
+  a-color: white;
+  a: visited;
+  a-color: #bbbbbb;
+}
+
+/* line 211, ../sass/styles.scss */
+#readkit-dropdown-size, #readkit-dropdown-lineheight {
+  left: 30px;
+  height: 60px;
+  width: 116px;
+}
+
+/* line 217, ../sass/styles.scss */
+#readkit-dropdown-bookmark {
+  height: 380px;
+  width: 280px;
+  right: 10px;
+  color: white;
+  padding: 0 10px 10px 10px;
+  overflow: hidden;
+}
+/* line 225, ../sass/styles.scss */
+#readkit-dropdown-bookmark a {
+  font-size: 12px;
+}
+
+/* line 230, ../sass/styles.scss */
+.readkit-small {
+  left: 10px;
+  height: 18px;
+  width: 18px;
+  border-radius: 9px;
+  margin-top: -13px;
+  i: before;
+  i-font-size: 12px;
+  i-line-height: 1.6em;
+}
+
+/* line 243, ../sass/styles.scss */
+.readkit-medium {
+  left: 38px;
+  height: 24px;
+  width: 24px;
+  border-radius: 12px;
+  margin-top: -13px;
+  i: before;
+  i-font-size: 16px;
+  i-line-height: 1.6em;
+}
+
+/* line 257, ../sass/styles.scss */
+.readkit-large {
+  left: 72px;
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  margin-top: -13px;
+  i: before;
+  i-font-size: 20px;
+  i-line-height: 1.6em;
+}
+
+/* line 271, ../sass/styles.scss */
+.readkit-font {
+  display: inline-block;
+  margin-top: -4px;
+  font-size: 18px;
+}
+
+/* line 277, ../sass/styles.scss */
+.readkit-back {
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/* line 283, ../sass/styles.scss */
+.readkit-status {
+  float: right;
+  cursor: default;
+}
+
+/* line 288, ../sass/styles.scss */
+.readkit-bookmark {
+  float: right;
+  cursor: hand;
+  cursor: pointer;
+}
+
+/* line 294, ../sass/styles.scss */
+#readkit-bookmark-input {
+  width: 250px;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* line 302, ../sass/styles.scss */
+.readkit-bookmark-icon {
+  height: 24px;
+  width: 24px;
+  border-radius: 12px;
+  padding-top: 0;
+}
+
+/* line 310, ../sass/styles.scss */
+.readkit-bookmark-icon i[class^="icon-"] {
+  border-radius: 12px;
+}
+/* line 314, ../sass/styles.scss */
+.readkit-bookmark-icon i[class^="icon-"]:before {
+  line-height: 1.6em;
+}
+
+/* line 319, ../sass/styles.scss */
+.readkit-bookmark-icon-add {
+  float: right;
+  margin-top: 2px;
+}
+
+/* line 324, ../sass/styles.scss */
+.readkit-bookmark-icon-remove {
+  float: left;
+}
+
+/* line 328, ../sass/styles.scss */
+.readkit-bookmark-title {
+  float: left;
+  width: 248px;
+  margin-top: 5px;
+}
+
+/* line 334, ../sass/styles.scss */
+.readkit-bookmark-input {
+  position: relative;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  background-color: #444444;
+  z-index: 2;
+}
+
+/* line 343, ../sass/styles.scss */
+.readkit-bookmark-list-item {
+  float: left;
+}
+
+/* line 347, ../sass/styles.scss */
+img {
+  max-width: 100%;
+}
+
+/* line 351, ../sass/styles.scss */
+pre {
+  overflow: auto;
+}
+
+/* line 355, ../sass/styles.scss */
+#readkit-sitePreloader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  z-index: 2;
+}
+
+/* Preloader GIF created with http://preloaders.net */
+/* line 366, ../sass/styles.scss */
+#readkit-preloaderImage {
+  width: 30px;
+  margin: 100px auto;
+}
+
+/* line 377, ../sass/styles.scss */
+[class^="readkit-strength-"], [class*=" readkit-strength-"] {
+  position: absolute;
+  top: 50%;
+  float: left;
+  margin-right: 0;
+  cursor: hand;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* line 387, ../sass/styles.scss */
+.readkit-icon {
+  color: #ffffff;
+  margin-top: 5px;
+  display: inline-block;
+  height: 24px;
+  width: 30px;
+  border-radius: 15px;
+  text-align: center;
+  background: black;
+  padding-top: 6px;
+  line-height: 30px;
+  cursor: hand;
+  cursor: pointer;
+}
+/* line 401, ../sass/styles.scss */
+.readkit-icon .readkit-serif, .readkit-icon .readkit-sans {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+/* line 407, ../sass/styles.scss */
+.readkit-online, .readkit-active {
+  background-color: #56a2d3;
+}
+
+/* line 411, ../sass/styles.scss */
+.readkit-offline, .readkit-inactive {
+  background-color: #bcbec0;
+}
+
+/* line 415, ../sass/styles.scss */
+.readkit-sans {
+  font-family: Arial;
+  font-weight: bold;
+  float: right;
+  margin-right: 10px;
+}
+
+/* line 422, ../sass/styles.scss */
+.readkit-serif {
+  font-family: Georgia;
+  font-weight: bold;
+  float: right;
+  margin-right: 10px;
 }

@@ -105,7 +105,7 @@ define([
 
                     $(this).css('opacity', '0.3');
 
-                    $('#library .controls, #library .scrollbar').animate({opacity: '0'}, 500, function() {
+                    $('#library .frame, #library .controls, #library .scrollbar').animate({opacity: '0'}, 500, function() {
                         var url = $('.active').data('url');
                         window.location = url;
                     });

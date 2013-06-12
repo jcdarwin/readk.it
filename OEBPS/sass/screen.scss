@@ -16,6 +16,7 @@
 */
 
 @import "compass";
+@import "compass/css3/hyphenation";
 @import "vendor/normalize";
 @import "vendor/typeplate";
 @import 'vendor/bourbon/bourbon';
@@ -44,6 +45,9 @@ body {
     margin: 0 1em 1em 1em;
 }
 
+h1, h2, h3, h4 {
+    @include hyphens(none);    
+}
 
 // ==========================================================================//
 //

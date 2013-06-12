@@ -1145,35 +1145,35 @@ a {
   src: url("../fonts/SourceSansPro/SourceSansPro-Italic.eot?#iefix") format("embedded-opentype"), url("../fonts/SourceSansPro/SourceSansPro-Italic.woff") format("woff"), url("../fonts/SourceSansPro/SourceSansPro-Italic.ttf") format("truetype"), url("../fonts/SourceSansPro/SourceSansPro-Italic.svg#SourceSansPro") format("svg");
 }
 
-/* line 41, ../sass/screen.scss */
+/* line 42, ../sass/screen.scss */
 body {
   background-color: #f2f2f2;
   font-family: "SourceSansPro";
   margin: 0 1em 1em 1em;
 }
 
-/* line 57, ../sass/screen.scss */
+/* line 61, ../sass/screen.scss */
 .pure-g-r > div {
   box-sizing: border-box;
 }
 
-/* line 61, ../sass/screen.scss */
+/* line 65, ../sass/screen.scss */
 .pure-g-r > div:first-child {
   padding-right: 1em;
 }
 
-/* line 72, ../sass/screen.scss */
+/* line 76, ../sass/screen.scss */
 .header {
   border-top: 3px solid #a9c3f9;
   padding-top: 5rem;
 }
 
-/* line 77, ../sass/screen.scss */
+/* line 81, ../sass/screen.scss */
 .blurb {
   font-weight: normal;
 }
 
-/* line 81, ../sass/screen.scss */
+/* line 85, ../sass/screen.scss */
 nav {
   display: block;
   float: right;
@@ -1182,17 +1182,17 @@ nav {
   padding-bottom: 1.4rem;
 }
 
-/* line 89, ../sass/screen.scss */
+/* line 93, ../sass/screen.scss */
 nav ul {
   list-style: none outside;
   margin-bottom: 20px;
 }
-/* line 93, ../sass/screen.scss */
+/* line 97, ../sass/screen.scss */
 nav ul li {
   display: inline;
   padding-left: 1.625rem;
 }
-/* line 97, ../sass/screen.scss */
+/* line 101, ../sass/screen.scss */
 nav ul li button, nav ul li a {
   font-weight: 600;
   font-style: normal;
@@ -1213,17 +1213,17 @@ nav ul li button, nav ul li a {
   transition: color 0.2s ease-out;
 }
 
-/* line 103, ../sass/screen.scss */
+/* line 107, ../sass/screen.scss */
 nav ul li:first-child {
   padding-left: 0;
 }
 
-/* line 107, ../sass/screen.scss */
+/* line 111, ../sass/screen.scss */
 article {
   float: left;
 }
 
-/* line 111, ../sass/screen.scss */
+/* line 115, ../sass/screen.scss */
 hr {
   border: solid #a9c3f9;
   border-width: 1px 0 0;
@@ -1232,12 +1232,12 @@ hr {
   height: 0;
 }
 
-/* line 126, ../sass/screen.scss */
+/* line 130, ../sass/screen.scss */
 a, a:visited {
   color: #6194ff;
 }
 
-/* line 127, ../sass/screen.scss */
+/* line 131, ../sass/screen.scss */
 a:hover, a:active, a:focus {
   color: #3a5999;
 }

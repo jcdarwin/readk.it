@@ -1,44 +1,48 @@
 /*
 +---------------------------------------------------------------------+
 |                                                                     |
-| READK.IT                                                            |
-|                                                                     |
+|                ____                _ _      _ _                     |
+|               |  _ \ ___  __ _  __| | | __ (_) |_                   |
+|               | |_) / _ \/ _` |/ _` | |/ / | | __|                  |
+|               |  _ <  __/ (_| | (_| |   < _| | |_                   |
+|               |_| \_\___|\__,_|\__,_|_|\_(_)_|\__|                  |
+|                                                                     |                                     
 | URL:                                                                |
 | VERSION: 0.0.1                                                      |
-| Github:                                                             |
+| GITHUB:                                                             |
 | AUTHOR: Jason Darwin (@nzmebooks)                                   |
 | LICENSE: Creative Commmons                                          |
 | http://creativecommons.org/licenses/by/3.0                          |
 |                                                                     |
 +---------------------------------------------------------------------+
 */
-/* line 56, ../sass/styles.scss */
+/* line 58, ../sass/styles.scss */
 .readkit-margins {
   margin: 0 20px;
 }
 
 /* iPhone 2G-4S in portrait & landscape */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-  /* line 70, ../sass/styles.scss */
+  /* line 72, ../sass/styles.scss */
   .readkit-header {
     top: 0;
     -webkit-user-select: none;
   }
 
-  /* line 74, ../sass/styles.scss */
+  /* line 76, ../sass/styles.scss */
   .readkit-slider {
     width: 30px;
   }
 }
 /* iPhone 5 in portrait & landscape */
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
-  /* line 83, ../sass/styles.scss */
+  /* line 85, ../sass/styles.scss */
   .readkit-header {
     top: 0;
     -webkit-user-select: none;
   }
 
-  /* line 87, ../sass/styles.scss */
+  /* line 89, ../sass/styles.scss */
   .readkit-slider {
     width: 30px;
   }
@@ -46,7 +50,7 @@
 /* iPad in portrait & landscape */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   /* Accomodate status bar */
-  /* line 97, ../sass/styles.scss */
+  /* line 99, ../sass/styles.scss */
   .readkit-header {
     top: 0;
     -webkit-user-select: none;
@@ -54,19 +58,19 @@
 }
 /* Desktop */
 @media only screen {
-  /* line 105, ../sass/styles.scss */
+  /* line 107, ../sass/styles.scss */
   .readkit-header {
     top: 0;
   }
 }
-/* line 117, ../sass/styles.scss */
+/* line 119, ../sass/styles.scss */
 .readkit-page {
   float: left;
   -webkit-transform: translate3d(0, 0, 0);
   height: 100%;
 }
 
-/* line 123, ../sass/styles.scss */
+/* line 125, ../sass/styles.scss */
 #readkit-pageWrapper {
   position: absolute;
   top: 40px;
@@ -78,7 +82,7 @@
   z-index: 1;
 }
 
-/* line 134, ../sass/styles.scss */
+/* line 136, ../sass/styles.scss */
 .readkit-wrapper {
   position: absolute;
   top: 0;
@@ -89,7 +93,7 @@
   z-index: 1;
 }
 
-/* line 144, ../sass/styles.scss */
+/* line 146, ../sass/styles.scss */
 .readkit-wrapper-bookmarks {
   position: absolute;
   top: 40px;
@@ -100,7 +104,7 @@
   z-index: 1;
 }
 
-/* line 154, ../sass/styles.scss */
+/* line 156, ../sass/styles.scss */
 .readkit-scroller {
   position: absolute;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -109,7 +113,7 @@
   z-index: 1;
 }
 
-/* line 168, ../sass/styles.scss */
+/* line 170, ../sass/styles.scss */
 .readkit-header {
   position: absolute;
   left: 0;
@@ -121,7 +125,7 @@
   z-index: 2;
 }
 
-/* line 179, ../sass/styles.scss */
+/* line 181, ../sass/styles.scss */
 .readkit-controls {
   padding-left: 10px;
   padding-right: 10px;
@@ -129,18 +133,18 @@
   -webkit-user-select: none;
 }
 
-/* line 186, ../sass/styles.scss */
+/* line 188, ../sass/styles.scss */
 .readkit-slider, .readkit-slider span, label i, span.icon, span i {
   font-size: 16px;
 }
 
-/* line 190, ../sass/styles.scss */
+/* line 192, ../sass/styles.scss */
 .readkit-size, .readkit-lh {
   float: left;
   margin-right: 10px;
 }
 
-/* line 195, ../sass/styles.scss */
+/* line 197, ../sass/styles.scss */
 .readkit-dropdown {
   position: absolute;
   top: 35px;
@@ -153,14 +157,14 @@
   a-color: #bbbbbb;
 }
 
-/* line 211, ../sass/styles.scss */
+/* line 213, ../sass/styles.scss */
 #readkit-dropdown-size, #readkit-dropdown-lineheight {
   left: 30px;
   height: 60px;
   width: 116px;
 }
 
-/* line 217, ../sass/styles.scss */
+/* line 219, ../sass/styles.scss */
 #readkit-dropdown-bookmark {
   height: 380px;
   width: 280px;
@@ -169,75 +173,81 @@
   padding: 0 10px 10px 10px;
   overflow: hidden;
 }
-/* line 225, ../sass/styles.scss */
+/* line 227, ../sass/styles.scss */
 #readkit-dropdown-bookmark a {
   font-size: 12px;
 }
 
-/* line 230, ../sass/styles.scss */
+/* line 232, ../sass/styles.scss */
 .readkit-small {
   left: 10px;
   height: 18px;
   width: 18px;
   border-radius: 9px;
   margin-top: -13px;
-  i: before;
-  i-font-size: 12px;
-  i-line-height: 1.6em;
+}
+/* line 239, ../sass/styles.scss */
+.readkit-small i:before {
+  font-size: 12px;
+  line-height: 1.6em;
 }
 
-/* line 243, ../sass/styles.scss */
+/* line 245, ../sass/styles.scss */
 .readkit-medium {
   left: 38px;
   height: 24px;
   width: 24px;
   border-radius: 12px;
   margin-top: -13px;
-  i: before;
-  i-font-size: 16px;
-  i-line-height: 1.6em;
+}
+/* line 252, ../sass/styles.scss */
+.readkit-medium i:before {
+  font-size: 16px;
+  line-height: 1.6em;
 }
 
-/* line 257, ../sass/styles.scss */
+/* line 259, ../sass/styles.scss */
 .readkit-large {
   left: 72px;
   height: 30px;
   width: 30px;
   border-radius: 15px;
   margin-top: -13px;
-  i: before;
-  i-font-size: 20px;
-  i-line-height: 1.6em;
+}
+/* line 266, ../sass/styles.scss */
+.readkit-large i:before {
+  font-size: 20px;
+  line-height: 1.6em;
 }
 
-/* line 271, ../sass/styles.scss */
+/* line 273, ../sass/styles.scss */
 .readkit-font {
   display: inline-block;
-  margin-top: -4px;
+  margin-top: -6px;
   font-size: 18px;
 }
 
-/* line 277, ../sass/styles.scss */
+/* line 279, ../sass/styles.scss */
 .readkit-back {
   float: left;
   margin-left: 10px;
   margin-right: 10px;
 }
 
-/* line 283, ../sass/styles.scss */
+/* line 285, ../sass/styles.scss */
 .readkit-status {
   float: right;
   cursor: default;
 }
 
-/* line 288, ../sass/styles.scss */
+/* line 290, ../sass/styles.scss */
 .readkit-bookmark {
   float: right;
   cursor: hand;
   cursor: pointer;
 }
 
-/* line 294, ../sass/styles.scss */
+/* line 296, ../sass/styles.scss */
 #readkit-bookmark-input {
   width: 250px;
   display: inline-block;
@@ -246,7 +256,7 @@
   text-overflow: ellipsis;
 }
 
-/* line 302, ../sass/styles.scss */
+/* line 304, ../sass/styles.scss */
 .readkit-bookmark-icon {
   height: 24px;
   width: 24px;
@@ -254,34 +264,34 @@
   padding-top: 0;
 }
 
-/* line 310, ../sass/styles.scss */
+/* line 312, ../sass/styles.scss */
 .readkit-bookmark-icon i[class^="icon-"] {
   border-radius: 12px;
 }
-/* line 314, ../sass/styles.scss */
+/* line 316, ../sass/styles.scss */
 .readkit-bookmark-icon i[class^="icon-"]:before {
   line-height: 1.6em;
 }
 
-/* line 319, ../sass/styles.scss */
+/* line 321, ../sass/styles.scss */
 .readkit-bookmark-icon-add {
   float: right;
   margin-top: 2px;
 }
 
-/* line 324, ../sass/styles.scss */
+/* line 326, ../sass/styles.scss */
 .readkit-bookmark-icon-remove {
   float: left;
 }
 
-/* line 328, ../sass/styles.scss */
+/* line 330, ../sass/styles.scss */
 .readkit-bookmark-title {
   float: left;
   width: 248px;
   margin-top: 5px;
 }
 
-/* line 334, ../sass/styles.scss */
+/* line 336, ../sass/styles.scss */
 .readkit-bookmark-input {
   position: relative;
   padding-top: 10px;
@@ -291,22 +301,22 @@
   z-index: 2;
 }
 
-/* line 343, ../sass/styles.scss */
+/* line 345, ../sass/styles.scss */
 .readkit-bookmark-list-item {
   float: left;
 }
 
-/* line 347, ../sass/styles.scss */
+/* line 349, ../sass/styles.scss */
 img {
   max-width: 100%;
 }
 
-/* line 351, ../sass/styles.scss */
+/* line 353, ../sass/styles.scss */
 pre {
   overflow: auto;
 }
 
-/* line 355, ../sass/styles.scss */
+/* line 357, ../sass/styles.scss */
 #readkit-sitePreloader {
   position: absolute;
   top: 0;
@@ -318,13 +328,13 @@ pre {
 }
 
 /* Preloader GIF created with http://preloaders.net */
-/* line 366, ../sass/styles.scss */
+/* line 368, ../sass/styles.scss */
 #readkit-preloaderImage {
   width: 30px;
   margin: 100px auto;
 }
 
-/* line 377, ../sass/styles.scss */
+/* line 379, ../sass/styles.scss */
 [class^="readkit-strength-"], [class*=" readkit-strength-"] {
   position: absolute;
   top: 50%;
@@ -335,7 +345,7 @@ pre {
   text-align: center;
 }
 
-/* line 387, ../sass/styles.scss */
+/* line 389, ../sass/styles.scss */
 .readkit-icon {
   color: #ffffff;
   margin-top: 5px;
@@ -350,23 +360,23 @@ pre {
   cursor: hand;
   cursor: pointer;
 }
-/* line 401, ../sass/styles.scss */
+/* line 403, ../sass/styles.scss */
 .readkit-icon .readkit-serif, .readkit-icon .readkit-sans {
   padding-top: 3px;
   padding-bottom: 3px;
 }
 
-/* line 407, ../sass/styles.scss */
+/* line 409, ../sass/styles.scss */
 .readkit-online, .readkit-active {
   background-color: #56a2d3;
 }
 
-/* line 411, ../sass/styles.scss */
+/* line 413, ../sass/styles.scss */
 .readkit-offline, .readkit-inactive {
   background-color: #bcbec0;
 }
 
-/* line 415, ../sass/styles.scss */
+/* line 417, ../sass/styles.scss */
 .readkit-sans {
   font-family: Arial;
   font-weight: bold;
@@ -374,7 +384,7 @@ pre {
   margin-right: 10px;
 }
 
-/* line 422, ../sass/styles.scss */
+/* line 424, ../sass/styles.scss */
 .readkit-serif {
   font-family: Georgia;
   font-weight: bold;

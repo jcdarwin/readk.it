@@ -61,9 +61,9 @@ define([
         $('.readkit-serif').noClickDelay();
         $('.readkit-sans').noClickDelay();
         $('#readkit-for-size').noClickDelay();
-        $('.readkit-strength-size').noClickDelay();
+        //$('.readkit-strength-size').noClickDelay();
         $('#readkit-for-lineheight').noClickDelay();
-        $('.readkit-strength-line-height').noClickDelay();
+        //$('.readkit-strength-line-height').noClickDelay();
         $('#readkit-for-bookmark').noClickDelay();
         $('#readkit-bookmark-widget a').noClickDelay();
         //$('#readkit-pageWrapper').noClickDelay();
@@ -215,15 +215,20 @@ define([
         }
     });
 
-    $('.readkit-strength-size').on('click', function(){
-        $('.readkit-strength-size').removeClass('readkit-active').addClass('readkit-inactive');
-        $(this).removeClass('readkit-inactive').addClass('readkit-active');
-
-        var value = $(this).data('size');
-        $('html').css('font-size', value + 'px');
+    $('.readkit-strength-size').on('click', function(e){
+        e.stopPropagation();
+        var value = [];
+        if ( $(this).hasClass('readkit-active') ) {
+            $('.readkit-strength-size').removeClass('readkit-active').addClass('readkit-inactive');
+            $('html').css('font-size', '');
+        } else {
+            $('.readkit-strength-size').removeClass('readkit-active').addClass('readkit-inactive');
+            $(this).removeClass('readkit-inactive').addClass('readkit-active');
+            value = $(this).data('size');
+            $('html').css('font-size', value + 'px');
+        }
 
         var y_percent = layout.location().y / layout.location().height;
-
         layout.refresh(y_percent, layout.location().page);
         layout.storage('font-size', value);
 
@@ -250,15 +255,20 @@ define([
         }
     });
 
-    $('.readkit-strength-line-height').on('click', function(){
-        $('.readkit-strength-line-height').removeClass('readkit-active').addClass('readkit-inactive');
-        $(this).removeClass('readkit-inactive').addClass('readkit-active');
-
-        var value = $(this).data('size');
-        $('p,li,h1,h2,h3,h4,h5,button').css('line-height', value);
+    $('.readkit-strength-line-height').on('click', function(e){
+       e.stopPropagation();
+       var value = [];
+        if ( $(this).hasClass('readkit-active') ) {
+            $('.readkit-strength-line-height').removeClass('readkit-active').addClass('readkit-inactive');
+            $('p,li,h1,h2,h3,h4,h5,button').css('line-height', '');
+        } else {
+            $('.readkit-strength-line-height').removeClass('readkit-active').addClass('readkit-inactive');
+            $(this).removeClass('readkit-inactive').addClass('readkit-active');
+            value = $(this).data('size');
+            $('p,li,h1,h2,h3,h4,h5,button').css('line-height', value);
+        }
 
         var y_percent = layout.location().y / layout.location().height;
-
         layout.refresh(y_percent, layout.location().page);
         layout.storage('line-height', value);
 

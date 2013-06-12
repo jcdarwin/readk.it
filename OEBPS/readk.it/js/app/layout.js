@@ -33,7 +33,7 @@ define([
         controller = caller;
         publication = pub;
 //storage('pages', []);
-storage('font-size', []);
+//storage('font-size', []);
         return {
             refresh: refresh,
             update: update,

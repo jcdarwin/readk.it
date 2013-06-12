@@ -1,5 +1,7 @@
 [
 
+{"name": "Wrecked on a Reef", "version": "2.0", "identifier": "http://www.nzetc.org/tm/scholarly/tei-RayWrec.html", "path": "OEBPS/readk.it/library/html/raynal_wrecked_on_a_reef/", "total_pages": 61, "cover": "./html/raynal_wrecked_on_a_reef/META-INF/../cover.jpg"}
+,
 {"name": "Accessible EPUB 3", "version": "3.0", "identifier": "urn:isbn:9781449328030", "path": "OEBPS/readk.it/library/html/accessible_epub_3/", "total_pages": 22, "cover": "./html/accessible_epub_3/META-INF/../EPUB/covers/9781449328030_lrg.jpg"}
 ,
 {"name": "Pride and Prejudice", "version": "2.0", "identifier": "urn:uuid:af27173e-ad1a-11e2-beff-001cc0a62c0b", "path": "OEBPS/readk.it/library/html/austen_pride_and_prejudice/", "total_pages": 69, "cover": "./html/austen_pride_and_prejudice/META-INF/../OPS/images/cover.jpg"}
@@ -31,4 +33,5 @@
 {"name": "A Haunted House", "version": "2.0", "identifier": "urn:uuid:faa08742-afb1-11e2-92b5-001cc0a62c0b", "path": "OEBPS/readk.it/library/html/virginia_woolf_a_haunted_house/", "total_pages": 6, "cover": "./html/virginia_woolf_a_haunted_house/META-INF/../OPS/images/cover.jpg"}
 ,
 {"name": "A Room of One's Own", "version": "2.0", "identifier": "urn:uuid:fec04522-a7c0-11e2-8a72-001cc0a62c0b", "path": "OEBPS/readk.it/library/html/woolf_a_room_of_ones_own/", "total_pages": 13, "cover": "./html/woolf_a_room_of_ones_own/META-INF/../OPS/images/cover.jpg"}
+
 ]

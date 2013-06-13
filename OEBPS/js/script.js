@@ -89,8 +89,8 @@ $(document).on('kickoff', function() {
         if(openedCalloutInfo) {
             if(newOpenCalloutInfo.is(openedCalloutInfo)) {
                 // The following is/was deactivated as it causes a problem on iOS
-                closeOpenedCallout(currOpenCallout.find(".thumbnailImage"));
-                currOpenCallout.find(".calloutThumbnailHover").fadeOut(800, function(){currOpenCallout.find(".calloutThumbnailHover").css("visibility", "visible");});
+                // closeOpenedCallout(currOpenCallout.find(".thumbnailImage"));
+                // currOpenCallout.find(".calloutThumbnailHover").fadeOut(800, function(){currOpenCallout.find(".calloutThumbnailHover").css("visibility", "visible");});
                 return false;
             } else {
                 closeOpenedCallout(currOpenCallout.find(".thumbnailImage"));

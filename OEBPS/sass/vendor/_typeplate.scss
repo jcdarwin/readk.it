@@ -81,7 +81,6 @@ $delta: 24; // 24 = 18 × 1.3333
 $epsilon: 21; // 21 = 18 × 1.1667
 $zeta: 18; // 18 = 18 × 1
 
-
 // $TypeScale Unit
 // -------------------------------------//
 
@@ -161,7 +160,7 @@ $stats-border-style: 0.125rem solid #ccc;
 
 @function measure-margin($scale, $measure, $value) {
 	// divide 1 unit of measure by given font-size & return a relative em value
-	@return ($measure/$scale)#{$value};
+	@return ($scale/$measure)#{$value};
 }
 
 
@@ -447,6 +446,33 @@ h6 {
 	@extend .zeta;
 	@extend %hN;
 }
+
+@mixin media-query($h, $size) {
+	/* iPhone 2G-4S in portrait & landscape */
+	@media only screen 
+	and (min-device-width : 320px) 
+	and (max-device-width : 480px) {
+		#{$h} {
+			@include modular-scale($size, $font-base, '#{$type-scale-unit-value}', $measure);
+		}
+	}
+
+	/* iPhone 5 in portrait & landscape */
+	@media only screen 
+	and (min-device-width : 320px) 
+	and (max-device-width : 568px) {
+		#{$h} {
+			@include modular-scale($size, $font-base, '#{$type-scale-unit-value}', $measure);
+		}
+	}
+}
+
+// Our media queries override the heading sizes
+@include media-query(h1, $beta) {};
+@include media-query(h2, $gamma) {};
+@include media-query(h3, $delta) {};
+@include media-query(h4, $epsilon) {};
+@include media-query(h5, $zeta) {};
 
 
 // $Parargraphs

@@ -24,10 +24,6 @@ $(document).on('kickoff', function() {
         $(this).children(".calloutThumbnailHover").find("h5").css("display", "block");
         $(this).children(".calloutThumbnailHover").find("h5").css("opacity", "0");
         $(this).children(".calloutThumbnailHover").find("h5").delay(350).animate({left: '30', opacity: 1}, 200);
-
-        if(!openedCalloutInfo) {
-            $(this).children(".calloutThumbnailHover").css("visibility", "visible");
-        }
     });
 
     $(".calloutThumbnail").on("mouseleave", function(e) {
@@ -55,13 +51,12 @@ $(document).on('kickoff', function() {
         directionNavEnabled: false,
         startSlideIndex: 0,
         imageScaleMode: 'fill' },
-        openedCalloutInfo = false,
         isAnimating = false,
         currOpenCallout;
 
     function closeOpenedCallout(el) {
-        openedCalloutInfo.slideUp(900);
-        openedCalloutInfo = false;
+        currOpenCalloutInfo = currOpenCallout.find(".calloutInfo");
+        currOpenCalloutInfo.slideUp(900);
         if(el && el.length) {
             el.css('visibility', 'visible');
         }
@@ -86,33 +81,18 @@ $(document).on('kickoff', function() {
 
         isAnimating = false;
 
-        if(openedCalloutInfo) {
-            if(newOpenCalloutInfo.is(openedCalloutInfo)) {
-                // The following is/was deactivated as it causes a problem on iOS
-                // closeOpenedCallout(currOpenCallout.find(".thumbnailImage"));
-                // currOpenCallout.find(".calloutThumbnailHover").fadeOut(800, function(){currOpenCallout.find(".calloutThumbnailHover").css("visibility", "visible");});
-                return false;
-            } else {
-                closeOpenedCallout(currOpenCallout.find(".thumbnailImage"));
-                currOpenCallout.find(".calloutThumbnailHover").fadeOut(800, function(){currOpenCallout.find(".calloutThumbnailHover").css("visibility", "visible");});
-            }
-        }
         currOpenCallout = calloutEl;
-        openedCalloutInfo = newOpenCalloutInfo.stop().delay(200).slideDown(900).data('callout-open', true);
+        newOpenCalloutInfo.stop().delay(200).slideDown(900).data('callout-open', true);
         currOpenCallout.find(".calloutThumbnailHover").fadeOut(200, function(){currOpenCallout.find(".calloutThumbnailHover").css("visibility", "hidden");});
     });
 
     $(".closeButton, #aboutPage, #logo").click(function() {
-        // Add a delay to fix weird issue with resizing About page
-        function closeSlider() {
-            if(openedCalloutInfo && currOpenCallout) {
-                closeOpenedCallout(currOpenCallout.find(".thumbnailImage"));
-                currOpenCallout.find(".calloutThumbnailHover").css("visibility", "visible");
-            }
+        currOpenCallout = $(this).closest('.callout');
+        if(currOpenCallout) {
+            closeOpenedCallout(currOpenCallout.find(".thumbnailImage"));
+            currOpenCallout.find(".calloutThumbnailHover").css("visibility", "visible");
+            currOpenCallout = false;
         }
-        //setTimeout(closeSlider, 400);
-        setTimeout(closeSlider, 1);
-
     });
 
 });

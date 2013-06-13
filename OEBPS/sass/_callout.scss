@@ -10,10 +10,11 @@
 // -------------------------------------//
 
 $info-background-color: #a9c3f9;
-$border-color: #3a5999;
+$callout-border-color: #3a5999;
 $callout-background-color: rgba(97, 148, 255, 0.95);
 $link-visited: #6194ff;
 $link-unvisited: #3a5999;
+$callout-button-color: $link-unvisited;
 
 // $Dimension
 // -------------------------------------//
@@ -26,7 +27,7 @@ $line-height: 1.2;
 // ==========================================================================//
 
 @mixin callout-border($pos, $size) {
-    border-#{$pos}: #{$size}px solid $border-color;
+    border-#{$pos}: #{$size}px solid $callout-border-color;
 }
 
 .callout {
@@ -91,8 +92,8 @@ $line-height: 1.2;
     background-color: $info-background-color;
     padding: 0 10;
     @include callout-border(bottom, 2);
-    a, a:visited { color: $link-visited; }
-    a:hover, a:active, a:focus { color: $link-unvisited; }
+    a:visited { color: $link-visited; }
+    a, a:hover, a:active, a:focus { color: $link-unvisited; }
 }
 .calloutNav {
     font-weight: 700;
@@ -106,7 +107,7 @@ $line-height: 1.2;
     @include callout-border(bottom, 1);
 }
 .calloutNav button {
-    @include button();
+    @include button($callout-button-color);
     letter-spacing: 0.09rem;
 }
 a {

@@ -73,7 +73,7 @@ h1, h2, h3, h4 {
 // ==========================================================================//
 
 .header {
-    @include callout-border(top, 3);
+    @include border(top, 3);
     padding-top: 5rem;
 }
 
@@ -98,7 +98,7 @@ nav ul {
         padding-left: 1.625rem;
 
         button, a {
-            @include button();
+            @include button($button-color);
         }
     }
 }

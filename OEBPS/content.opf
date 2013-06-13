@@ -38,6 +38,7 @@
         <item id='images_callout_04_jpg' href='images/callout_04.jpg'  media-type='image/jpeg' />
         <item id='images_callout_05_jpg' href='images/callout_05.jpg'  media-type='image/jpeg' />
         <item id='images_cover_front_png' href='images/cover_front.png'  media-type='image/png' />
+        <item id='images_icon-114x114_png' href='images/icon-114x114.png'  media-type='image/png' />
     <!-- './js'  -->
         <item id='js_script_js' href='js/script.js'  media-type='text/javascript' />
     <!-- './js/libs'  -->

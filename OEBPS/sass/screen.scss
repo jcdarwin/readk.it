@@ -74,7 +74,15 @@ h1, h2, h3, h4 {
 
 .header {
     @include border(top, 3);
-    padding-top: 5rem;
+    padding-top: 3rem;
+}
+
+.header-icon {
+    padding-bottom: 1rem;        
+}
+
+.header-icon img {
+    width: 100px;
 }
 
 .blurb {

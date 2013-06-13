@@ -74,11 +74,12 @@ h1, h2, h3, h4 {
 
 .header {
     @include border(top, 3);
-    padding-top: 3rem;
+    padding-top: 2.5rem;
 }
 
 .header-icon {
-    padding-bottom: 1rem;        
+    text-align: center;
+    padding-bottom: 1rem;
 }
 
 .header-icon img {

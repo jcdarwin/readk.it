@@ -447,6 +447,8 @@ h6 {
 	@extend %hN;
 }
 
+// Our media queries override the heading sizes defined above,
+// as they're too big for mobile devices.
 @mixin media-query($h, $size) {
 	/* iPhone 2G-4S in portrait & landscape */
 	@media only screen 
@@ -467,7 +469,6 @@ h6 {
 	}
 }
 
-// Our media queries override the heading sizes
 @include media-query(h1, $beta) {};
 @include media-query(h2, $gamma) {};
 @include media-query(h3, $delta) {};

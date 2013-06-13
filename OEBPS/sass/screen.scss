@@ -21,9 +21,9 @@
 @import "vendor/typeplate";
 
 @import 'mixins';
+@import 'font-face';
 @import 'color';
 @import 'callout';
-@import 'font-face';
 
 
 // ==========================================================================//
@@ -37,7 +37,7 @@
 
 @include font-face(SourceSansPro, font-files("../../OEBPS/fonts/SourceSansPro/SourceSansPro-Regular.woff", woff), false, normal, normal, false, SourceSansPro-Regular);
 @include font-face(SourceSansPro, font-files("../../OEBPS/fonts/SourceSansPro/SourceSansPro-Bold.woff", woff), false, bold, false, false, SourceSansPro-Bold);
-@include font-face(SourceSansPro, font-files("../../OEBPS/fonts/SourceSansPro/SourceSansPro-Italic.woff", woff), false, normal, italic, false, SourceSansPro-Italic);
+@include font-face(SourceSansPro, font-files("../../OEBPS/fonts/SourceSansPro/SourceSansPro-It.woff", woff), false, normal, italic, false, SourceSansPro-Italic);
 
 body {
     background-color: $background-color;

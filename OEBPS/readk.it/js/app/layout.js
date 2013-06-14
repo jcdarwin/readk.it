@@ -24,6 +24,7 @@ define([
     var pages = [];
     var page_width = 0;
     var currentPage = 0;
+    var previousPage = 0;
     var restoring = true;
     var publication = {};
     var controller;
@@ -61,7 +62,13 @@ define([
         onAnimationEnd: function(){
             // Store details of the page we're on
             if (page_width > 0) {
+                previousPage = currentPage;
                 currentPage = - Math.ceil( $('#readkit-pageScroller').position().left / page_width);
+
+                // Ensure we align nicely on a page boundary
+                if (currentPage != previousPage) {
+                    book_scroller.scrollToPage(currentPage, 0, 0);
+                }
             }
 
             if (this.options['page_scroller_waiting']) {

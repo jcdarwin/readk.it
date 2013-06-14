@@ -74,7 +74,7 @@ h1, h2, h3, h4 {
 
 .header {
     @include border(top, 3);
-    padding-top: 2.5rem;
+    padding-top: 2rem;
 }
 
 .header-icon {

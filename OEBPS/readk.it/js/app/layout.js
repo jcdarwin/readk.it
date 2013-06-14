@@ -174,7 +174,7 @@ define([
     var add = function (id, file, html) {
         $('#readkit-pageScroller').append('<div class="readkit-page" id="' + file + '"><div id="' + id + '" class="readkit-wrapper"><div class="readkit-scroller"><div class="readkit-margins">' + html + '</div></div></div></div>');
 
-        var page_scroller = new iScroll(id, {snap: true, momentum: true, hScrollbar: false, vScrollbar: true, lockDirection: true,
+        var page_scroller = new iScroll(id, {snap: true, momentum: false, hScrollbar: false, vScrollbar: true, lockDirection: true,
             onAnimationEnd: function(){
                 if (!restoring) {
                     // Store details of the current position on the page.

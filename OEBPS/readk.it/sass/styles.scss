@@ -136,11 +136,13 @@ and (max-device-width : 1024px)  {
 .#{$namespace}-wrapper {
     /* Firefox *almost* works if we comment out the next line  and use height: 100%; instead */
     position: absolute;
+    /* The next two lines allow for an "overlap" when scrolling a page vertically */
+    top: 20px;
+    overflow: visible !important;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    overflow: auto;
     z-index: 1;
 }
 

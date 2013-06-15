@@ -68,8 +68,8 @@ module.exports = function(grunt) {
         dest: 'build/uncompressed/<%= concat.options.path_js_libs %>/jquery-1.8.3.min.js'
       },
       jquery_fitvids: {
-        src: ['<%= concat.options.path_js_libs %>/jquery.fitvids.js'],
-        dest: 'build/uncompressed/<%= concat.options.path_js_libs %>/jquery.fitvids.js'
+        src: ['<%= concat.options.path_js_libs %>/jquery.fitvids.min.js'],
+        dest: 'build/uncompressed/<%= concat.options.path_js_libs %>/jquery.fitvids.min.js'
       },
       jquery_easing: {
         src: ['<%= concat.options.path_js_libs %>/jquery.easing.1.3.min.js'],
@@ -140,7 +140,7 @@ module.exports = function(grunt) {
     copy: {
       main: {
         options: {
-          processContentExclude: ['OEBPS/readk.it/.gitignore', 'OEBPS/readk.it/index.library.html']
+          processContentExclude: ['OEBPS/readk.it/.gitignore', 'OEBPS/readk.it/index.library.html', 'OEBPS/readk.it/offline.manifest']
         },
         files: [
           {expand: true, src: ['mimetype'], dest: 'dist/uncompressed/'},

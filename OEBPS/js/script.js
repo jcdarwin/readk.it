@@ -1,3 +1,5 @@
+/*global $:false */
+
 jQuery.easing.def = "easeOutQuad";
 
 $(document).ready(function() {
@@ -14,7 +16,7 @@ $(document).on('kickoff', function() {
     $(".videoInfo").css("display", "inline");
 
     // Callout thumbnail hover
-    $(".calloutThumbnail").on("mouseenter", function(e) {
+    $(".calloutThumbnail").on("mouseenter", function() {
         $(this).children(".calloutThumbnailHover").fadeIn(300);
 
         $(this).children(".calloutThumbnailHover").find("h4").css("display", "block");
@@ -26,7 +28,7 @@ $(document).on('kickoff', function() {
         $(this).children(".calloutThumbnailHover").find("h5").delay(350).animate({left: '30', opacity: 1}, 200);
     });
 
-    $(".calloutThumbnail").on("mouseleave", function(e) {
+    $(".calloutThumbnail").on("mouseleave", function() {
         $(this).children(".calloutThumbnailHover").fadeOut(200);
         $(this).children(".calloutThumbnailHover").find("h4").animate({left: '0', opacity: 0}, 0);
         $(this).children(".calloutThumbnailHover").find("h5").animate({left: '0', opacity: 0}, 0);
@@ -41,43 +43,25 @@ $(document).on('kickoff', function() {
     }
 
     // Slider setup
-    var sliderProps = {
-        autoScaleSlider: true,
-        autoScaleSliderWidth: 460,
-        autoScaleSliderHeight: 284,
-        captionShowEffects: '',
-        controlNavEnabled: false,
-        keyboardNavEnabled: true,
-        directionNavEnabled: false,
-        startSlideIndex: 0,
-        imageScaleMode: 'fill' },
-        isAnimating = false,
+    var isAnimating = false,
         currOpenCallout;
 
     function closeOpenedCallout(el) {
-        currOpenCalloutInfo = currOpenCallout.find(".calloutInfo");
+        var currOpenCalloutInfo = currOpenCallout.find(".calloutInfo");
         currOpenCalloutInfo.slideUp(900);
         if(el && el.length) {
             el.css('visibility', 'visible');
         }
     }
 
-    $(".calloutThumbnail").click(function(e) {
+    $(".calloutThumbnail").click(function() {
         if(isAnimating) {
             return;
         }
         isAnimating = true;
 
-        var firstImgLoaded = false,
-            calloutEl = $(this).parent('.callout'),
-            calloutNav = calloutEl.find('.calloutNav'),
-
-            //
-            calloutInfo = calloutEl.find('.calloutInfo'),
-            //
-
-            newOpenCalloutInfo = calloutEl.find(".calloutInfo"),
-            currEl = $(this).find(".thumbnailImage");
+        var calloutEl = $(this).parent('.callout'),
+            newOpenCalloutInfo = calloutEl.find(".calloutInfo");
 
         isAnimating = false;
 

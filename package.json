@@ -1,0 +1,25 @@
+{
+  "name": "readk.it_manifesto",
+  "version": "0.0.1",
+  "description": "Readk.it Manifesto",
+  "main": "Gruntfile.js",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-clean": "~0.4.1",
+    "grunt-contrib-compass": "~0.2.0",
+    "grunt-contrib-watch": "~0.4.4",
+    "grunt-contrib-nodeunit": "~0.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@mebooks.co.nz:/var/lib/git/readk.it_manifesto"
+  },
+  "author": "Jason Darwin",
+  "license": "BSD",
+  "readmeFilename": "README.md"
+}

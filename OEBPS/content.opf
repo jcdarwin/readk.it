@@ -13,9 +13,10 @@
     </metadata>
     <manifest>
     <!-- '.'  -->
-        <item id='index_html' href='index.html'  media-type='text/html' />
-        <item id='what_html' href='what.html'  media-type='text/html' />
         <item id='allow_html' href='allow.html'  media-type='text/html' />
+        <item id='index_html' href='index.html'  media-type='text/html' />
+        <item id='toc_html' href='toc.html'  media-type='text/html' />
+        <item id='what_html' href='what.html'  media-type='text/html' />
     <!-- './css'  -->
         <item id='css_ie_css' href='css/ie.css'  media-type='text/css' />
         <item id='css_normalize_css' href='css/normalize.css'  media-type='text/css' />
@@ -44,8 +45,72 @@
     <!-- './js/libs'  -->
         <item id='js_libs_jquery-1_8_3_min_js' href='js/libs/jquery-1.8.3.min.js'  media-type='text/javascript' />
         <item id='js_libs_jquery_easing_1_3_min_js' href='js/libs/jquery.easing.1.3.min.js'  media-type='text/javascript' />
-        <item id='js_libs_jquery_fitvids_js' href='js/libs/jquery.fitvids.js'  media-type='text/javascript' />
+        <item id='js_libs_jquery_fitvids_min_js' href='js/libs/jquery.fitvids.min.js'  media-type='text/javascript' />
         <item id='js_libs_modernizr_min_js' href='js/libs/modernizr.min.js'  media-type='text/javascript' />
+
+    <!-- './readk.it'  -->
+        <item id='readk_it_favicon_ico' href='readk.it/favicon.ico'  media-type='image/vnd.microsoft.icon' />
+        <item id='readk_it_index_html' href='readk.it/index.html'  media-type='text/html' />
+    <!-- './readk.it/css'  -->
+        <item id='readk_it_css_sans_css' href='readk.it/css/sans.css'  media-type='text/css' />
+        <item id='readk_it_css_serif_css' href='readk.it/css/serif.css'  media-type='text/css' />
+        <item id='readk_it_css_styles_css' href='readk.it/css/styles.css'  media-type='text/css' />
+    <!-- './readk.it/fonts'  -->
+    <!-- './readk.it/fonts/fontello'  -->
+    <!-- './readk.it/fonts/fontello/css'  -->
+        <item id='readk_it_fonts_fontello_css_fontello_css' href='readk.it/fonts/fontello/css/fontello.css'  media-type='text/css' />
+    <!-- './readk.it/fonts/fontello/font'  -->
+        <item id='readk_it_fonts_fontello_font_fontello_eot' href='readk.it/fonts/fontello/font/fontello.eot'  media-type='application/vnd.ms-fontobject' />
+        <item id='readk_it_fonts_fontello_font_fontello_svg' href='readk.it/fonts/fontello/font/fontello.svg'  media-type='image/svg+xml' />
+        <item id='readk_it_fonts_fontello_font_fontello_ttf' href='readk.it/fonts/fontello/font/fontello.ttf'  media-type='application/vnd.ms-opentype' />
+        <item id='readk_it_fonts_fontello_font_fontello_woff' href='readk.it/fonts/fontello/font/fontello.woff'  media-type='application/vnd.ms-opentype' />
+    <!-- './readk.it/fonts/Lora'  -->
+        <item id='readk_it_fonts_Lora_Lora-Bold_woff' href='readk.it/fonts/Lora/Lora-Bold.woff'  media-type='application/vnd.ms-opentype' />
+        <item id='readk_it_fonts_Lora_Lora-BoldItalic_woff' href='readk.it/fonts/Lora/Lora-BoldItalic.woff'  media-type='application/vnd.ms-opentype' />
+        <item id='readk_it_fonts_Lora_Lora-Italic_woff' href='readk.it/fonts/Lora/Lora-Italic.woff'  media-type='application/vnd.ms-opentype' />
+        <item id='readk_it_fonts_Lora_Lora_woff' href='readk.it/fonts/Lora/Lora.woff'  media-type='application/vnd.ms-opentype' />
+    <!-- './readk.it/fonts/SourceSansPro'  -->
+        <item id='readk_it_fonts_SourceSansPro_SourceSansPro-Bold_woff' href='readk.it/fonts/SourceSansPro/SourceSansPro-Bold.woff'  media-type='application/vnd.ms-opentype' />
+        <item id='readk_it_fonts_SourceSansPro_SourceSansPro-BoldIt_woff' href='readk.it/fonts/SourceSansPro/SourceSansPro-BoldIt.woff'  media-type='application/vnd.ms-opentype' />
+        <item id='readk_it_fonts_SourceSansPro_SourceSansPro-It_woff' href='readk.it/fonts/SourceSansPro/SourceSansPro-It.woff'  media-type='application/vnd.ms-opentype' />
+        <item id='readk_it_fonts_SourceSansPro_SourceSansPro-Light_woff' href='readk.it/fonts/SourceSansPro/SourceSansPro-Light.woff'  media-type='application/vnd.ms-opentype' />
+        <item id='readk_it_fonts_SourceSansPro_SourceSansPro-Regular_woff' href='readk.it/fonts/SourceSansPro/SourceSansPro-Regular.woff'  media-type='application/vnd.ms-opentype' />
+        <item id='readk_it_fonts_SourceSansPro_SourceSansPro-Semibold_woff' href='readk.it/fonts/SourceSansPro/SourceSansPro-Semibold.woff'  media-type='application/vnd.ms-opentype' />
+    <!-- './readk.it/images'  -->
+        <item id='readk_it_images_apple-touch-icon-114x114_png' href='readk.it/images/apple-touch-icon-114x114.png'  media-type='image/png' />
+        <item id='readk_it_images_apple-touch-icon-57x57-precomposed_png' href='readk.it/images/apple-touch-icon-57x57-precomposed.png'  media-type='image/png' />
+        <item id='readk_it_images_apple-touch-icon-57x57_png' href='readk.it/images/apple-touch-icon-57x57.png'  media-type='image/png' />
+        <item id='readk_it_images_apple-touch-icon-72x72_png' href='readk.it/images/apple-touch-icon-72x72.png'  media-type='image/png' />
+        <item id='readk_it_images_site_preloader_gif' href='readk.it/images/site_preloader.gif'  media-type='image/gif' />
+        <item id='readk_it_images_splash_png' href='readk.it/images/splash.png'  media-type='image/png' />
+    <!-- './readk.it/js'  -->
+        <item id='readk_it_js_client_config_js' href='readk.it/js/client.config.js'  media-type='text/javascript' />
+        <item id='readk_it_js_main_js' href='readk.it/js/main.js'  media-type='text/javascript' />
+        <item id='readk_it_js_require-jquery_js' href='readk.it/js/require-jquery.js'  media-type='text/javascript' />
+        <item id='readk_it_js_require_config_js' href='readk.it/js/require.config.js'  media-type='text/javascript' />
+    <!-- './readk.it/js/app'  -->
+        <item id='readk_it_js_app_chrome_js' href='readk.it/js/app/chrome.js'  media-type='text/javascript' />
+        <item id='readk_it_js_app_config_js' href='readk.it/js/app/config.js'  media-type='text/javascript' />
+        <item id='readk_it_js_app_controller_js' href='readk.it/js/app/controller.js'  media-type='text/javascript' />
+        <item id='readk_it_js_app_epub_js' href='readk.it/js/app/epub.js'  media-type='text/javascript' />
+        <item id='readk_it_js_app_layout_js' href='readk.it/js/app/layout.js'  media-type='text/javascript' />
+    <!-- './readk.it/js/lib'  -->
+        <item id='readk_it_js_lib_iscroll-mit-license_txt' href='readk.it/js/lib/iscroll-mit-license.txt'  media-type='text/plain' />
+        <item id='readk_it_js_lib_iscroll_js' href='readk.it/js/lib/iscroll.js'  media-type='text/javascript' />
+        <item id='readk_it_js_lib_jquery_ba-urlinternal_min_js' href='readk.it/js/lib/jquery.ba-urlinternal.min.js'  media-type='text/javascript' />
+        <item id='readk_it_js_lib_jquery_hotkeys_js' href='readk.it/js/lib/jquery.hotkeys.js'  media-type='text/javascript' />
+        <item id='readk_it_js_lib_jquery_storage_js' href='readk.it/js/lib/jquery.storage.js'  media-type='text/javascript' />
+        <item id='readk_it_js_lib_text_js' href='readk.it/js/lib/text.js'  media-type='text/javascript' />
+        <item id='readk_it_js_lib_underscore-min_amd_js' href='readk.it/js/lib/underscore-min.amd.js'  media-type='text/javascript' />
+    <!-- './readk.it/js/lib/add-to-homescreen'  -->
+    <!-- './readk.it/js/lib/add-to-homescreen/src'  -->
+        <item id='readk_it_js_lib_add-to-homescreen_src_add2home_js' href='readk.it/js/lib/add-to-homescreen/src/add2home.js'  media-type='text/javascript' />
+    <!-- './readk.it/js/lib/add-to-homescreen/style'  -->
+        <item id='readk_it_js_lib_add-to-homescreen_style_add2home_css' href='readk.it/js/lib/add-to-homescreen/style/add2home.css'  media-type='text/css' />
+    <!-- './readk.it/js/lib/require-css'  -->
+        <item id='readk_it_js_lib_require-css_css_js' href='readk.it/js/lib/require-css/css.js'  media-type='text/javascript' />
+        <item id='readk_it_js_lib_require-css_normalize_js' href='readk.it/js/lib/require-css/normalize.js'  media-type='text/javascript' />
+        <item id='readk_it_js_lib_require-css_LICENSE_txt' href='readk.it/js/lib/require-css/LICENSE.txt'  media-type='text/plain' />
         <item id="toc" properties="nav" href="toc.html" media-type="application/xhtml+xml"/>
     </manifest>
     <spine page-progression-direction="ltr">

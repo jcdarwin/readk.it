@@ -391,7 +391,6 @@ body {
 	color: $body-copy-color;
 }
 
-
 // $Headings
 // -------------------------------------//
 
@@ -447,8 +446,8 @@ h6 {
 	@extend %hN;
 }
 
-// Our media queries override the heading sizes defined above,
-// as they're too big for mobile devices.
+// Our media queries shift the heading sizes defined above
+// down a notch, as they're too big for mobile devices.
 @mixin media-query($h, $size) {
 	/* iPhone 2G-4S in portrait & landscape */
 	@media only screen 
@@ -526,6 +525,10 @@ tt,
 var,
 xmp {
 	@include css-hyphens(none);
+}
+
+.lede {
+	@include css-hyphens(none);	
 }
 
 

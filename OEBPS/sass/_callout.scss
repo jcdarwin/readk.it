@@ -79,7 +79,8 @@ $line-height: 1.2;
     font-size: 1.4rem;
     line-height: $line-height;
     color: $body-copy-color;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
+    @include callout-border(bottom, 1);
 }
 .calloutInfo ul {
     margin-top: 1rem;
@@ -91,7 +92,6 @@ $line-height: 1.2;
 .calloutInfo {
     background-color: $info-background-color;
     padding: 0 10;
-    @include callout-border(bottom, 2);
     a:visited { color: $link-visited; }
     a, a:hover, a:active, a:focus { color: $link-unvisited; }
 }
@@ -100,11 +100,10 @@ $line-height: 1.2;
     font-style: normal;
     line-height: $line-height;
     color: $body-copy-color;
-    height: 1.4rem;
-    margin-bottom: 0.6rem;
+    height: 1.8rem;
+    margin-bottom: 0.4rem;
     padding-top: 0.25rem;
     @include callout-border(top, 1);
-    @include callout-border(bottom, 1);
 }
 .calloutNav button {
     @include button($callout-button-color);

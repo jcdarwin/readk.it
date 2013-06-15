@@ -84,15 +84,16 @@ module.exports = function(grunt) {
 
     uglify: {
       options: {
-        banner: '<%= banner %>',
         // mangle: false
         report: 'min'
       },
       // Our scripts, unconcatenated and uglified
+      /*
       script: {
         src: ['<%= concat.script.dest %>'],
         dest: 'dist/uncompressed/<%= concat.options.path_js %>/script.min.js'
       },
+      */
       modernizr: {
         src: ['<%= concat.modernizr.dest %>'],
         dest: 'dist/uncompressed/<%= concat.options.path_js_libs %>/modernizr.min.js'
@@ -103,11 +104,11 @@ module.exports = function(grunt) {
       },
 
       jquery_fitvids: {
-        src: ['<%= concat.modernizr.dest %>'],
+        src: ['<%= concat.jquery_fitvids.dest %>'],
         dest: 'dist/uncompressed/<%= concat.options.path_js_libs %>/jquery.fitvids.min.js'
       },
       jquery_easing: {
-        src: ['<%= concat.modernizr.dest %>'],
+        src: ['<%= concat.jquery_easing.dest %>'],
         dest: 'dist/uncompressed/<%= concat.options.path_js_libs %>/jquery.easing.1.3.min.js'
       },
       // Our scripts, concatenated and uglified
@@ -121,21 +122,49 @@ module.exports = function(grunt) {
       compile_uncompressed: {
         options: {
           sassDir: 'OEBPS/sass',
-          cssDir: 'dist/uncompressed/OEBPS/css'
+          cssDir: 'OEBPS/css'
         }
       },
       compile_compressed: {
         options: {
           sassDir: 'OEBPS/sass',
-          cssDir: 'dist/compressed/OEBPS/css'
+          cssDir: 'OEBPS/css'
         }
       }
-    }
-    //,
+    },
 
     //nodeunit: {
     //  files: ['test/**/*_test.js']
     //},
+
+    copy: {
+      main: {
+        options: {
+          processContentExclude: ['OEBPS/readk.it/.gitignore', 'OEBPS/readk.it/index.library.html']
+        },
+        files: [
+          {expand: true, src: ['mimetype'], dest: 'dist/uncompressed/'},
+          {expand: true, src: ['META-INF/**'], dest: 'dist/uncompressed/'}, // includes files in path and its subdirs
+          {expand: true, src: ['OEBPS/*'], dest: 'dist/uncompressed/', filter: 'isFile'}, // includes files in path
+          {expand: true, src: ['OEBPS/css/**', 'OEBPS/fonts/**', 'OEBPS/images/**'], dest: 'dist/uncompressed/'}, // includes files in path and its subdirs
+          {expand: true, flatten: true, src: ['<%= concat.script.dest %>'], dest: 'dist/uncompressed/OEBPS/js', filter: 'isFile'}, // includes files in path
+          {expand: true, src: ['OEBPS/readk.it/*'], dest: 'dist/uncompressed/', filter: 'isFile'}, // includes files in path
+          {expand: true, src: ['OEBPS/readk.it/css/**', 'OEBPS/readk.it/images/**'], dest: 'dist/uncompressed/'}, // includes files in path and its subdirs
+          {expand: true, src: ['OEBPS/readk.it/fonts/fontello/css/**', 'OEBPS/readk.it/fonts/fontello/font/**', 'OEBPS/readk.it/fonts/Lora/**', 'OEBPS/readk.it/fonts/SourceSansPro/**'], dest: 'dist/uncompressed/'}, // includes files in path and its subdirs
+          {expand: true, src: ['OEBPS/readk.it/js/*'], dest: 'dist/uncompressed/', filter: 'isFile'}, // includes files in path
+          {expand: true, src: ['OEBPS/readk.it/js/app/**', 'OEBPS/readk.it/js/lib/**'], dest: 'dist/uncompressed/'}, // includes files in path and its subdirs
+          {expand: true, src: ['mimetype'], dest: 'dist/compressed/'},
+          {expand: true, src: ['META-INF/**'], dest: 'dist/compressed/'}, // includes files in path and its subdirs
+          {expand: true, src: ['OEBPS/*'], dest: 'dist/compressed/', filter: 'isFile'}, // includes files in path
+          {expand: true, src: ['OEBPS/css/**', 'OEBPS/fonts/**', 'OEBPS/images/**'], dest: 'dist/compressed/'}, // includes files in path and its subdirs
+          {expand: true, src: ['OEBPS/readk.it/*'], dest: 'dist/compressed/', filter: 'isFile'}, // includes files in path
+          {expand: true, src: ['OEBPS/readk.it/css/**', 'OEBPS/readk.it/images/**'], dest: 'dist/compressed/'}, // includes files in path and its subdirs
+          {expand: true, src: ['OEBPS/readk.it/fonts/fontello/css/**', 'OEBPS/readk.it/fonts/fontello/font/**', 'OEBPS/readk.it/fonts/Lora/**', 'OEBPS/readk.it/fonts/SourceSansPro/**'], dest: 'dist/compressed/'}, // includes files in path and its subdirs
+          {expand: true, src: ['OEBPS/readk.it/js/*'], dest: 'dist/compressed/', filter: 'isFile'}, // includes files in path
+          {expand: true, src: ['OEBPS/readk.it/js/app/**', 'OEBPS/readk.it/js/lib/**'], dest: 'dist/compressed/'} // includes files in path and its subdirs
+        ]
+      }
+    }
 
 /*
     watch: {
@@ -159,9 +188,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-compass');
   /* grunt.loadNpmTasks('grunt-contrib-nodeunit'); */
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task.
-  grunt.registerTask('default', ['clean', 'jshint', 'concat', 'uglify', 'compass', 'clean']);
+  grunt.registerTask('default', ['clean', 'jshint', 'concat', 'uglify', 'compass', 'copy', 'clean']);
 
 };

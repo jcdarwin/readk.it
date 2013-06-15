@@ -47,7 +47,7 @@ Install dependendices:
     npm install grunt-contrib-nodeunit --save-dev
     npm install grunt-contrib-watch --save-dev
 
-Add the following hack into node_modules\grunt-contrib-compass\tasks\compass.js, directly before "compile(args, cb);"
+As we use cygwin, add the following hack into node_modules\grunt-contrib-compass\tasks\compass.js, directly before "compile(args, cb);":
 
       if (args[0] === 'compass.bat') {
         console.log("Our little hack to get 'grunt compass' to work in cygwin -- don't use compass.bat");

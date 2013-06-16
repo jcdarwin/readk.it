@@ -43,7 +43,7 @@ module.exports = function(grunt) {
         src: 'Gruntfile.js'
       },
       js: {
-        src: ['OEBPS/js/script.js']
+        src: ['OEBPS/js/script.js', 'OEBPS/js/queries.js']
       }
     },
 
@@ -58,6 +58,10 @@ module.exports = function(grunt) {
       script: {
         src: ['<%= concat.options.path_js %>/script.js'],
         dest: 'build/uncompressed/<%= concat.options.path_js %>/script.js'
+      },
+      queries: {
+        src: ['<%= concat.options.path_js %>/queries.js'],
+        dest: 'build/uncompressed/<%= concat.options.path_js %>/queries.js'
       },
       modernizr: {
         src: ['<%= concat.options.path_js_libs %>/modernizr.min.js'],
@@ -77,7 +81,7 @@ module.exports = function(grunt) {
       },
       // Our scripts, concatenated
       compressed: {
-        src: ['<%= concat.options.path_js %>/script.js', '<%= concat.options.path_js_libs %>/modernizr.min.js', '<%= concat.options.path_js_libs %>/jquery-1.8.3.min.js', '<%= concat.options.path_js_libs %>/jquery.fitvids.js', '<%= concat.options.path_js_libs %>/jquery.easing.1.3.min.js'],
+        src: ['<%= concat.options.path_js %>/queries.js', '<%= concat.options.path_js %>/script.js', '<%= concat.options.path_js_libs %>/modernizr.min.js', '<%= concat.options.path_js_libs %>/jquery-1.8.3.min.js', '<%= concat.options.path_js_libs %>/jquery.fitvids.min.js', '<%= concat.options.path_js_libs %>/jquery.easing.1.3.min.js'],
         dest: 'build/compressed/<%= concat.options.path_js %>/<%= pkg.title || pkg.name %>.js'
       }
     },
@@ -92,6 +96,10 @@ module.exports = function(grunt) {
       script: {
         src: ['<%= concat.script.dest %>'],
         dest: 'dist/uncompressed/<%= concat.options.path_js %>/script.min.js'
+      },
+      queries: {
+        src: ['<%= concat.queries.dest %>'],
+        dest: 'dist/uncompressed/<%= concat.options.path_js %>/queries.min.js'
       },
       */
       modernizr: {

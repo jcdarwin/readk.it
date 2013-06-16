@@ -7,6 +7,19 @@ $(document).ready(function() {
 });
 
 $(document).on('kickoff', function() {
+
+    Modernizr.load([
+        //first test need for polyfill
+        {
+            test: window.matchMedia,
+            nope: "js/libs/media.match.min.js"
+        },
+
+        //and then load enquire
+        "js/libs/enquire.min.js",
+        "js/queries.js"
+    ]);
+
     // For fluid video embedding
     $(".video").fitVids();
 

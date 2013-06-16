@@ -25,12 +25,13 @@
         <item id='css_pure_pure-grids_css' href='css/pure/pure-grids.css'  media-type='text/css' />
     <!-- './fonts'  -->
     <!-- './fonts/SourceSansPro'  -->
+        <item id='fonts_SourceSansPro_SourceSansPro-Bold_ttf' href='fonts/SourceSansPro/SourceSansPro-Bold.ttf'  media-type='application/vnd.ms-opentype' />
         <item id='fonts_SourceSansPro_SourceSansPro-Bold_woff' href='fonts/SourceSansPro/SourceSansPro-Bold.woff'  media-type='application/vnd.ms-opentype' />
-        <item id='fonts_SourceSansPro_SourceSansPro-BoldIt_woff' href='fonts/SourceSansPro/SourceSansPro-BoldIt.woff'  media-type='application/vnd.ms-opentype' />
+        <item id='fonts_SourceSansPro_SourceSansPro-It_ttf' href='fonts/SourceSansPro/SourceSansPro-It.ttf'  media-type='application/vnd.ms-opentype' />
         <item id='fonts_SourceSansPro_SourceSansPro-It_woff' href='fonts/SourceSansPro/SourceSansPro-It.woff'  media-type='application/vnd.ms-opentype' />
-        <item id='fonts_SourceSansPro_SourceSansPro-Light_woff' href='fonts/SourceSansPro/SourceSansPro-Light.woff'  media-type='application/vnd.ms-opentype' />
+        <item id='fonts_SourceSansPro_SourceSansPro-Regular_ttf' href='fonts/SourceSansPro/SourceSansPro-Regular.ttf'  media-type='application/vnd.ms-opentype' />
         <item id='fonts_SourceSansPro_SourceSansPro-Regular_woff' href='fonts/SourceSansPro/SourceSansPro-Regular.woff'  media-type='application/vnd.ms-opentype' />
-        <item id='fonts_SourceSansPro_SourceSansPro-Semibold_woff' href='fonts/SourceSansPro/SourceSansPro-Semibold.woff'  media-type='application/vnd.ms-opentype' />
+        <item id='ofl_txt' href='fonts/SourceSansPro/OFL.txt'  media-type='text/plain' />
     <!-- './images'  -->
         <item id='images_callout_01_jpg' href='images/callout_01.jpg'  media-type='image/jpeg' />
         <item id='images_callout_02_jpg' href='images/callout_02.jpg'  media-type='image/jpeg' />
@@ -41,6 +42,7 @@
         <item id='images_icon-114x114_png' href='images/icon-114x114.png'  media-type='image/png' />
     <!-- './js'  -->
         <item id='js_script_js' href='js/script.js'  media-type='text/javascript' />
+        <item id='js_queries_min_js' href='js/queries.js'  media-type='text/javascript' />
     <!-- './js/libs'  -->
         <item id='js_libs_enquire_min_js' href='js/libs/enquire.min.js'  media-type='text/javascript' />
         <item id='js_libs_jquery-1_8_3_min_js' href='js/libs/jquery-1.8.3.min.js'  media-type='text/javascript' />
@@ -48,8 +50,6 @@
         <item id='js_libs_jquery_fitvids_min_js' href='js/libs/jquery.fitvids.min.js'  media-type='text/javascript' />
         <item id='js_libs_media_match_min_js' href='js/libs/media.match.min.js'  media-type='text/javascript' />
         <item id='js_libs_modernizr_min_js' href='js/libs/modernizr.min.js'  media-type='text/javascript' />
-        <item id='js_libs_queries_min_js' href='js/libs/queries.js'  media-type='text/javascript' />
-
     <!-- './readk.it'  -->
         <item id='readk_it_favicon_ico' href='readk.it/favicon.ico'  media-type='image/vnd.microsoft.icon' />
         <item id='readk_it_index_html' href='readk.it/index.html'  media-type='text/html' />

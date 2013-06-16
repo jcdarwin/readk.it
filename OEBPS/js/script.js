@@ -1,4 +1,5 @@
 /*global $:false */
+/*global window:false */
 
 jQuery.easing.def = "easeOutQuad";
 
@@ -8,17 +9,21 @@ $(document).ready(function() {
 
 $(document).on('kickoff', function() {
 
-    Modernizr.load([
-        //first test need for polyfill
-        {
-            test: window.matchMedia,
-            nope: "js/libs/media.match.min.js"
-        },
+    // Only load the javascript-based media queries for those eBook reading systems
+    // that we need to cater to differently from web browsers.
+    if ( navigator.epubReadingSystem && navigator.epubReadingSystem.name === 'iBooks') {
+        Modernizr.load([
+            //first test need for polyfill
+            {
+                test: window.matchMedia,
+                nope: "js/libs/media.match.min.js"
+            },
 
-        //and then load enquire
-        "js/libs/enquire.min.js",
-        "js/queries.js"
-    ]);
+            //and then load enquire
+            "js/libs/enquire.min.js",
+            "js/queries.js"
+        ]);
+    }
 
     // For fluid video embedding
     $(".video").fitVids();

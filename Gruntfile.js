@@ -12,9 +12,15 @@ module.exports = function(grunt) {
       ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
     // Task configuration.
 
-    // Before generating any new files, remove any previously-created files.
     clean: {
-      build: [
+      // Before generating any new files, remove any previously-created files.
+      before: [
+        'build',
+        'dist',
+        '.sass-cache'
+      ],
+      // Now that we've finished, remove the build directories.
+      after: [
         'build',
         '.sass-cache'
       ]
@@ -33,10 +39,13 @@ module.exports = function(grunt) {
         unused: true,
         boss: true,
         eqnull: true,
+        browser: true,
         globals: {
+          enquire: true,
           jQuery: true,
           Modernizr: true,
-          document: true
+          document: true,
+          navigator: true
         }
       },
       gruntfile: {
@@ -63,6 +72,14 @@ module.exports = function(grunt) {
         src: ['<%= concat.options.path_js %>/queries.js'],
         dest: 'build/uncompressed/<%= concat.options.path_js %>/queries.js'
       },
+      enquire: {
+        src: ['<%= concat.options.path_js_libs %>/enquire.min.js'],
+        dest: 'build/uncompressed/<%= concat.options.path_js_libs %>/enquire.min.js'
+      },
+      media_match: {
+        src: ['<%= concat.options.path_js_libs %>/media.match.min.js'],
+        dest: 'build/uncompressed/<%= concat.options.path_js_libs %>/media.match.min.js'
+      },
       modernizr: {
         src: ['<%= concat.options.path_js_libs %>/modernizr.min.js'],
         dest: 'build/uncompressed/<%= concat.options.path_js_libs %>/modernizr.min.js'
@@ -81,7 +98,7 @@ module.exports = function(grunt) {
       },
       // Our scripts, concatenated
       compressed: {
-        src: ['<%= concat.options.path_js %>/queries.js', '<%= concat.options.path_js %>/script.js', '<%= concat.options.path_js_libs %>/modernizr.min.js', '<%= concat.options.path_js_libs %>/jquery-1.8.3.min.js', '<%= concat.options.path_js_libs %>/jquery.fitvids.min.js', '<%= concat.options.path_js_libs %>/jquery.easing.1.3.min.js'],
+        src: ['<%= concat.options.path_js %>/queries.js', '<%= concat.options.path_js %>/script.js', '<%= concat.options.path_js_libs %>/enquire.min.js', '<%= concat.options.path_js_libs %>/modernizr.min.js', '<%= concat.options.path_js_libs %>/jquery-1.8.3.min.js', '<%= concat.options.path_js_libs %>/jquery.fitvids.min.js', '<%= concat.options.path_js_libs %>/jquery.easing.1.3.min.js'],
         dest: 'build/compressed/<%= concat.options.path_js %>/<%= pkg.title || pkg.name %>.js'
       }
     },
@@ -102,6 +119,14 @@ module.exports = function(grunt) {
         dest: 'dist/uncompressed/<%= concat.options.path_js %>/queries.min.js'
       },
       */
+      enquire: {
+        src: ['<%= concat.enquire.dest %>'],
+        dest: 'dist/uncompressed/<%= concat.options.path_js_libs %>/enquire.min.js'
+      },
+      media_match: {
+        src: ['<%= concat.media_match.dest %>'],
+        dest: 'dist/uncompressed/<%= concat.options.path_js_libs %>/media.match.min.js'
+      },
       modernizr: {
         src: ['<%= concat.modernizr.dest %>'],
         dest: 'dist/uncompressed/<%= concat.options.path_js_libs %>/modernizr.min.js'
@@ -129,14 +154,14 @@ module.exports = function(grunt) {
     compass: {
       compile_uncompressed: {
         options: {
-          sassDir: 'OEBPS/sass',
-          cssDir: 'OEBPS/css'
+          config: 'OEBPS/sass/config.rb',
+          basePath: 'OEBPS/sass'
         }
       },
       compile_compressed: {
         options: {
-          sassDir: 'OEBPS/sass',
-          cssDir: 'OEBPS/css'
+          config: 'OEBPS/sass/config.rb',
+          basePath: 'OEBPS/sass'
         }
       }
     },
@@ -148,7 +173,7 @@ module.exports = function(grunt) {
     copy: {
       main: {
         options: {
-          processContentExclude: ['OEBPS/readk.it/.gitignore', 'OEBPS/readk.it/index.library.html', 'OEBPS/readk.it/offline.manifest']
+          processContentExclude: ['OEBPS/images/cover_front.psd', 'OEBPS/readk.it/.gitignore', 'OEBPS/readk.it/index.library.html', 'OEBPS/readk.it/offline.manifest']
         },
         files: [
           {expand: true, src: ['mimetype'], dest: 'dist/uncompressed/'},
@@ -156,6 +181,7 @@ module.exports = function(grunt) {
           {expand: true, src: ['OEBPS/*'], dest: 'dist/uncompressed/', filter: 'isFile'}, // includes files in path
           {expand: true, src: ['OEBPS/css/**', 'OEBPS/fonts/**', 'OEBPS/images/**'], dest: 'dist/uncompressed/'}, // includes files in path and its subdirs
           {expand: true, flatten: true, src: ['<%= concat.script.dest %>'], dest: 'dist/uncompressed/OEBPS/js', filter: 'isFile'}, // includes files in path
+          {expand: true, flatten: true, src: ['<%= concat.queries.dest %>'], dest: 'dist/uncompressed/OEBPS/js', filter: 'isFile'}, // includes files in path
           {expand: true, src: ['OEBPS/readk.it/*'], dest: 'dist/uncompressed/', filter: 'isFile'}, // includes files in path
           {expand: true, src: ['OEBPS/readk.it/css/**', 'OEBPS/readk.it/images/**'], dest: 'dist/uncompressed/'}, // includes files in path and its subdirs
           {expand: true, src: ['OEBPS/readk.it/fonts/fontello/css/**', 'OEBPS/readk.it/fonts/fontello/font/**', 'OEBPS/readk.it/fonts/Lora/**', 'OEBPS/readk.it/fonts/SourceSansPro/**'], dest: 'dist/uncompressed/'}, // includes files in path and its subdirs
@@ -200,6 +226,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task.
-  grunt.registerTask('default', ['clean', 'jshint', 'concat', 'uglify', 'compass', 'copy', 'clean']);
+  grunt.registerTask('default', ['clean:before', 'jshint', 'concat', 'uglify', 'compass', 'copy', 'clean:after']);
 
 };

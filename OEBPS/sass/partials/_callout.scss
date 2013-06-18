@@ -100,9 +100,9 @@ $line-height: 1.2;
     font-style: normal;
     line-height: $line-height;
     color: $body-copy-color;
-    height: 1.8rem;
-    margin-bottom: 0.4rem;
-    padding-top: 0.25rem;
+    height: 0;
+    margin-bottom: 0;
+    padding-top: 0;
     @include callout-border(top, 1);
 }
 .calloutNav button {
@@ -116,6 +116,7 @@ a {
     transition: color 0.2s ease-out;
 }
 .calloutNavClose {
+    display: none;
     padding-top: 0.2rem;
     float: right;    
 }

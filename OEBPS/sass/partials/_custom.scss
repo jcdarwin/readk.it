@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+// ==========================================================================//
+//
+// $BaseStyles
+//
+// ==========================================================================//
+
+// $Typography
+// -------------------------------------//
+
+@include font-face(SourceSansPro, font-files(
+    "SourceSansPro/SourceSansPro-Regular.woff", woff, 
+    "SourceSansPro/SourceSansPro-Regular.ttf", truetype), false, normal, normal, false, SourceSansPro-Regular);
+
+@include font-face(SourceSansPro, font-files(
+    "SourceSansPro/SourceSansPro-Bold.woff", woff, 
+    "SourceSansPro/SourceSansPro-Bold.ttf", truetype), false, bold, false, false, SourceSansPro-Bold);
+
+@include font-face(SourceSansPro, font-files(
+    "SourceSansPro/SourceSansPro-It.woff", woff, 
+    "SourceSansPro/SourceSansPro-It.ttf", truetype), false, normal, italic, false, SourceSansPro-Italic);
+
+body {
+    background-color: $background-color;
+    font-family: "SourceSansPro";
+    margin: 0 1em 1em 1em;
+}
+
+// ==========================================================================//
+//
+// $LayoutStyles
+//
+// ==========================================================================//
+
+// ==========================================================================//
+//
+// $ModuleStyles
+//
+// ==========================================================================//
+
+.header {
+    @include border(top, 3);
+    padding-top: 2rem;
+}
+
+.header-icon {
+    text-align: center;
+    padding-bottom: 1rem;
+}
+
+.header-icon img {
+    width: 100px;
+}
+
+.blurb {
+    font-weight: normal;
+}
+
+nav {
+    display: block;
+    float: right;
+    padding-top: 3.2rem;
+    margin-bottom: -2.1rem;
+    padding-bottom: 1.4rem;
+}
+
+nav ul {
+    list-style: none outside;
+    margin-bottom: 20px;
+
+    li {
+        display: inline;
+        padding-left: 1.625rem;
+
+        button, a {
+            @include button($button-color);
+        }
+    }
+}
+
+nav ul li:first-child {
+    padding-left: 0;
+}
+
+article {
+    float: left;
+}
+
+hr {
+    border: solid $border-color;
+    border-width: 1px 0 0;
+    clear: both;
+    margin: 0.625rem 0 1.875rem;
+    height: 0;
+}
+
+
+// ==========================================================================//
+//
+// $StateStyles
+//
+// ==========================================================================//
+
+a, a:visited { color: $link-visited; }
+a:hover, a:active, a:focus { color: $link-unvisited; }

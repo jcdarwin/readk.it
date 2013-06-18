@@ -1,5 +1,5 @@
 /*!
-Pure v0.1.0
+Pure v0.2.0
 Copyright 2013 Yahoo! Inc. All rights reserved.
 Licensed under the BSD License.
 https://github.com/yui/pure/blob/master/LICENSE.md
@@ -22,7 +22,8 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 
 .pure-u {
     display: inline-block;
-    zoom: 1; *display: inline; /* IE < 8: fake inline-block */
+    *display: inline; /* IE < 8: fake inline-block */
+    zoom: 1;
     letter-spacing: normal;
     word-spacing: normal;
     vertical-align: top;
@@ -58,7 +59,8 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 .pure-u-19-24,
 .pure-u-23-24 {
     display: inline-block;
-    zoom: 1; *display: inline; /* IE < 8: fake inline-block */
+    *display: inline; /* IE < 8: fake inline-block */
+    zoom: 1;
     letter-spacing: normal;
     word-spacing: normal;
     vertical-align: top;
@@ -177,6 +179,8 @@ https://github.com/yui/pure/blob/master/LICENSE.md
     width: 95.8333%;
 }
 
+/*csslint regex-selectors:false, unqualified-attributes:false*/
+
 .pure-g-r {
     letter-spacing: -0.31em;
     *letter-spacing: normal;
@@ -196,13 +200,7 @@ https://github.com/yui/pure/blob/master/LICENSE.md
     max-width: 100%;
 }
 
-
-/*===================================================================================================
-Base 960 grid
-===================================================================================================*/
-.container { position: relative; width: 960px;  margin: 0 auto;  padding: 0; }
-
-@media (min-width:980px) {
+@media (min-width: 980px) {
     .pure-visible-phone {
         display: none;
     }
@@ -213,17 +211,17 @@ Base 960 grid
         display: none;
     }
 }
-@media (max-width:480px) {
-    .pure-g-r > [class ^= "pure-u"] {
+
+@media (max-width: 480px) {
+    .pure-g-r > .pure-u,
+    .pure-g-r > [class *= "pure-u-"] {
         width: 100%;
     }
 }
-/*===================================================================================================
-Mobile (Portrait)
-===================================================================================================*/
-@media (max-width:767px) {
-    .container { width: 280px; }
-    .pure-g-r > [class ^= "pure-u"] {
+
+@media (max-width: 767px) {
+    .pure-g-r > .pure-u,
+    .pure-g-r > [class *= "pure-u-"] {
         width: 100%;
     }
     .pure-hidden-phone {
@@ -233,20 +231,8 @@ Mobile (Portrait)
         display: none;
     }
 }
-/*===================================================================================================
-Mobile (Landscape)
-===================================================================================================*/
-@media (min-width: 480px) and (max-width:767px) {
-    .container { width: 400px; }
-    .pure-g-r > [class ^= "pure-u"] {
-        width: 100%;
-    }
-}
-/*===================================================================================================
-Tablet (Portrait)
-===================================================================================================*/
-@media (min-width:768px) and (max-width:979px) {
-    .container { width: 748px; }
+
+@media (min-width: 768px) and (max-width: 979px) {
     .pure-hidden-tablet {
         display: none;
     }

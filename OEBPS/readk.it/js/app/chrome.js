@@ -12,6 +12,7 @@ define([
 
     var controller;
     var layout;
+    var tag_names ='html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed,  figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, button';
 
     /* Constructor */
     var Chrome = function (caller, surface) {
@@ -74,24 +75,34 @@ define([
             $('.readkit-serif').click();
         } else if (font == 'sans') {
             $('.readkit-sans').click();
+        } else {
+            // By default we use the publication styles.
+            $.each($('link[href$="serif.css"]'), function(i, link) {
+                link.disabled=true;
+            });
+            $.each($('link[href$="sans.css"]'), function(i, link) {
+                link.disabled=true;
+            });
         }
 
         // Check for stored font-size preference and apply accordingly.
         var fontsize = layout.storage('font-size');
-        if (fontsize) {
-            $('html').css('font-size', fontsize + 'px');
+        if (fontsize.length) {
+            $('#readkit-pageWrapper').css('font-size', fontsize + 'px');
             $('.readkit-strength-size[data-size="' + fontsize + '"]').removeClass('readkit-inactive').addClass('readkit-active');
         } else {
-            $('.readkit-strength-size.readkit-small').removeClass('readkit-inactive').addClass('readkit-active');
+            // By default we use the publication styles.
+            //$('.readkit-strength-size.readkit-small').removeClass('readkit-inactive').addClass('readkit-active');
         }
 
         // Check for stored line-height preference and apply accordingly.
         var lineheight = layout.storage('line-height');
-        if (lineheight) {
-            $('p,li,h1,h2,h3,h4,h5,button').css('line-height', lineheight);
+        if (lineheight.length) {
+            $('#readkit-pageWrapper').find(tag_names).css('line-height', lineheight);
             $('.readkit-strength-line-height[data-size="' + lineheight + '"]').removeClass('readkit-inactive').addClass('readkit-active');
         } else {
-            $('.readkit-strength-line-height.readkit-small').removeClass('readkit-inactive').addClass('readkit-active');
+            // By default we use the publication styles.
+            //$('.readkit-strength-line-height.readkit-small').removeClass('readkit-inactive').addClass('readkit-active');
         }
 
         // Check online status immediately, instead of waiting for the first setInterval
@@ -117,7 +128,7 @@ define([
 
     function check_backbutton() {
         var history = layout.storage('history');
-        var status = history && history.length ? 'readkit-active' : 'readkit-inactive';
+        var status = history.length ? 'readkit-active' : 'readkit-inactive';
 
         if (status == 'readkit-active') {
             $('.readkit-back').removeClass('readkit-inactive');
@@ -260,12 +271,12 @@ define([
        var value = [];
         if ( $(this).hasClass('readkit-active') ) {
             $('.readkit-strength-line-height').removeClass('readkit-active').addClass('readkit-inactive');
-            $('p,li,h1,h2,h3,h4,h5,button').css('line-height', '');
+            $('#readkit-pageWrapper').find(tag_names).css('line-height', '');
         } else {
             $('.readkit-strength-line-height').removeClass('readkit-active').addClass('readkit-inactive');
             $(this).removeClass('readkit-inactive').addClass('readkit-active');
             value = $(this).data('size');
-            $('p,li,h1,h2,h3,h4,h5,button').css('line-height', value);
+            $('#readkit-pageWrapper').find(tag_names).css('line-height', value);
         }
 
         var y_percent = layout.location().y / layout.location().height;

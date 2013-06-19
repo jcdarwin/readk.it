@@ -22,7 +22,7 @@
         <item id='css_print_css' href='css/print.css'  media-type='text/css' />
         <item id='css_screen_css' href='css/screen.css'  media-type='text/css' />
     <!-- './css/pure'  -->
-        <item id='css_pure_pure-grids_css' href='css/pure/pure-grids.css'  media-type='text/css' />
+        <item id='css_grids_css' href='css/grids.css'  media-type='text/css' />
     <!-- './fonts'  -->
     <!-- './fonts/SourceSansPro'  -->
         <item id='fonts_SourceSansPro_SourceSansPro-Bold_ttf' href='fonts/SourceSansPro/SourceSansPro-Bold.ttf'  media-type='application/vnd.ms-opentype' />

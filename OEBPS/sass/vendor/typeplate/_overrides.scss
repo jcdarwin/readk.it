@@ -20,13 +20,6 @@ $indent-val: 1.0em;
 // down a notch, as they're too big for mobile devices.
 @mixin media-query($h, $size) {
 
-    /* Phone */
-    @media (max-device-width:240px) {
-        #{$h} {
-            @include modular-scale($size / 1.1, $font-base, '#{$type-scale-unit-value}', $measure);
-        }
-    }
-
     /* iPhone 2G-4S in portrait & landscape */
     @media only screen 
     and (min-device-width : 320px) 
@@ -44,6 +37,14 @@ $indent-val: 1.0em;
             @include modular-scale($size, $font-base, '#{$type-scale-unit-value}', $measure);
         }
     }
+
+    /* Phone */
+    @media (max-device-width : 240px) {
+        #{$h} {
+            @include modular-scale($size / 1.1, $font-base, '#{$type-scale-unit-value}', $measure);
+        }
+    }
+
 }
 
 @include media-query(h1, $beta) {};

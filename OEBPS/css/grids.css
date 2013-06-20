@@ -361,16 +361,21 @@ Phone (Portrait)
   nav ul li {
     padding-left: 1rem;
   }
+
+  /* line 47, ../sass/vendor/pure/_overrides.scss */
+  ul {
+    padding-left: 20px;
+  }
 }
 /*===================================================================================================
 General
 ===================================================================================================*/
-/* line 53, ../sass/vendor/pure/_overrides.scss */
+/* line 54, ../sass/vendor/pure/_overrides.scss */
 .pure-g-r > div {
   box-sizing: border-box;
 }
 
-/* line 57, ../sass/vendor/pure/_overrides.scss */
+/* line 58, ../sass/vendor/pure/_overrides.scss */
 .pure-g-r > div:first-child {
   padding-right: 1em;
 }

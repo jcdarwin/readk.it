@@ -431,7 +431,7 @@ and (max-device-width : 1024px)  {
 }
 
 /* Phone */
-@media (max-width:240px) {
+@media (max-device-width:240px) {
     .#{$namespace}-serif, .#{$namespace}-sans {
         display: none;
     }

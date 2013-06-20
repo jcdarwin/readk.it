@@ -87,7 +87,7 @@ define([
 
         // Check for stored font-size preference and apply accordingly.
         var fontsize = layout.storage('font-size');
-        if (fontsize.length) {
+        if (fontsize && fontsize.length) {
             $('#readkit-pageWrapper').css('font-size', fontsize + 'px');
             $('.readkit-strength-size[data-size="' + fontsize + '"]').removeClass('readkit-inactive').addClass('readkit-active');
         } else {
@@ -97,7 +97,7 @@ define([
 
         // Check for stored line-height preference and apply accordingly.
         var lineheight = layout.storage('line-height');
-        if (lineheight.length) {
+        if (lineheight && lineheight.length) {
             $('#readkit-pageWrapper').find(tag_names).css('line-height', lineheight);
             $('.readkit-strength-line-height[data-size="' + lineheight + '"]').removeClass('readkit-inactive').addClass('readkit-active');
         } else {
@@ -128,7 +128,7 @@ define([
 
     function check_backbutton() {
         var history = layout.storage('history');
-        var status = history.length ? 'readkit-active' : 'readkit-inactive';
+        var status = history && history.length ? 'readkit-active' : 'readkit-inactive';
 
         if (status == 'readkit-active') {
             $('.readkit-back').removeClass('readkit-inactive');
@@ -320,7 +320,7 @@ define([
             var input = '<div class="readkit-bookmark-input"><input id="readkit-bookmark-input" type="text" data-file="' + layout.location().file + '" value="' + layout.location().title + '"><span class="readkit-icon readkit-bookmark-icon readkit-bookmark-icon-add readkit-active readkit-add-bookmark"><i class="icon-plus readkit-active"></i></span></div>';
             var bookmarks = layout.storage('bookmarks') || [];
 
-            if (bookmarks.length) {
+            if (bookmarks && bookmarks.length) {
                 $('#readkit-for-bookmark').addClass('active');
             }
 
@@ -376,7 +376,7 @@ define([
 
         $(this).parent().remove();
 
-        if (!bookmarks.length) {
+        if (!(bookmarks && bookmarks.length)) {
             $('#readkit-for-bookmark').removeClass('readkit-active');
         }
 

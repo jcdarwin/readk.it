@@ -9,21 +9,19 @@
 // $Typography
 // -------------------------------------//
 
-@include font-face(SourceSansPro, font-files(
-    "SourceSansPro/SourceSansPro-Regular.woff", woff, 
-    "SourceSansPro/SourceSansPro-Regular.ttf", truetype), false, normal, normal, false, SourceSansPro-Regular);
+@include font-face(Lato, font-files(
+    "Lato/Lato-Reg.ttf", truetype), false, normal, normal, false, Lato-Regular);
 
-@include font-face(SourceSansPro, font-files(
-    "SourceSansPro/SourceSansPro-Bold.woff", woff, 
-    "SourceSansPro/SourceSansPro-Bold.ttf", truetype), false, bold, false, false, SourceSansPro-Bold);
+@include font-face(Lato, font-files(
+    "Lato/Lato-Bol.ttf", truetype), false, bold, false, false, Lato-Bold);
 
-@include font-face(SourceSansPro, font-files(
-    "SourceSansPro/SourceSansPro-It.woff", woff, 
-    "SourceSansPro/SourceSansPro-It.ttf", truetype), false, normal, italic, false, SourceSansPro-Italic);
+@include font-face(Lato, font-files(
+    "Lato/Lato-RegIt.ttf", truetype), false, normal, italic, false, Lato-Italic);
+
 
 body {
     background-color: $background-color;
-    font-family: "SourceSansPro";
+    font-family: "Lato";
     margin: 0 1em 1em 1em;
 }
 

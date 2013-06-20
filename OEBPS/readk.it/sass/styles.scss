@@ -61,57 +61,6 @@ $slider-width: 30px;
 
 // ==========================================================================//
 //
-// $Media Queries
-//
-// ==========================================================================//
-
-/* iPhone 2G-4S in portrait & landscape */
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 480px) {
-    .#{$namespace}-header {
-        top: 0;
-        -webkit-user-select: none;
-    }
-    .#{$namespace}-slider {
-        width: $slider-width;
-    }
-}
-
-/* iPhone 5 in portrait & landscape */
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 568px) {
-    .#{$namespace}-header {
-        top: 0;
-        -webkit-user-select: none;
-    }
-    .#{$namespace}-slider {
-        width: $slider-width;
-    }
-}
-
-/* iPad in portrait & landscape */
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px)  {
-    /* Accomodate status bar */
-    .#{$namespace}-header {
-        top: 0;
-        -webkit-user-select: none; 
-    }                
-}
-
-/* Desktop */
-@media only screen {
-    .#{$namespace}-header {
-        top: 0;
-    }                
-}
-
-
-// ==========================================================================//
-//
 // $LayoutStyles
 //
 // ==========================================================================//
@@ -429,4 +378,61 @@ pre {
     font-weight: bold;
     float: right;
     margin-right: $margin / 2;
+}
+
+// ==========================================================================//
+//
+// $Media Queries
+//
+// ==========================================================================//
+
+/* Phone */
+@media (max-width:240px) {
+    .#{$namespace}-serif, .#{$namespace}-sans {
+        display: none;
+    }
+}
+
+/* iPhone 2G-4S in portrait & landscape */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+    .#{$namespace}-header {
+        top: 0;
+        -webkit-user-select: none;
+    }
+    .#{$namespace}-slider {
+        width: $slider-width;
+    }
+}
+
+/* iPhone 5 in portrait & landscape */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px) {
+    .#{$namespace}-header {
+        top: 0;
+        -webkit-user-select: none;
+    }
+    .#{$namespace}-slider {
+        width: $slider-width;
+    }
+}
+
+/* iPad in portrait & landscape */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)  {
+    /* Accomodate status bar */
+    .#{$namespace}-header {
+        top: 0;
+        -webkit-user-select: none; 
+    }                
+}
+
+/* Desktop */
+@media only screen {
+    .#{$namespace}-header {
+        top: 0;
+    }                
 }

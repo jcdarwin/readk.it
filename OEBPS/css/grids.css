@@ -335,14 +335,37 @@ Tablet (Portrait)
   }
 }
 /*===================================================================================================
+Phone (Landscape)
+===================================================================================================*/
+@media (max-width: 320px) {
+  /* line 35, ../sass/vendor/pure/_overrides.scss */
+  .container {
+    width: 280px;
+  }
+
+  /* line 36, ../sass/vendor/pure/_overrides.scss */
+  .pure-g-r > [class^="pure-u"] {
+    width: 100%;
+  }
+}
+/*===================================================================================================
+Phone (Portrait)
+===================================================================================================*/
+@media (max-width: 240px) {
+  /* line 45, ../sass/vendor/pure/_overrides.scss */
+  .container {
+    width: 200px;
+  }
+}
+/*===================================================================================================
 General
 ===================================================================================================*/
-/* line 35, ../sass/vendor/pure/_overrides.scss */
+/* line 52, ../sass/vendor/pure/_overrides.scss */
 .pure-g-r > div {
   box-sizing: border-box;
 }
 
-/* line 39, ../sass/vendor/pure/_overrides.scss */
+/* line 56, ../sass/vendor/pure/_overrides.scss */
 .pure-g-r > div:first-child {
   padding-right: 1em;
 }

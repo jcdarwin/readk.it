@@ -24,14 +24,14 @@
     <!-- './css/pure'  -->
         <item id='css_grids_css' href='css/grids.css'  media-type='text/css' />
     <!-- './fonts'  -->
-    <!-- './fonts/SourceSansPro'  -->
-        <item id='fonts_SourceSansPro_SourceSansPro-Bold_ttf' href='fonts/SourceSansPro/SourceSansPro-Bold.ttf'  media-type='application/vnd.ms-opentype' />
-        <item id='fonts_SourceSansPro_SourceSansPro-Bold_woff' href='fonts/SourceSansPro/SourceSansPro-Bold.woff'  media-type='application/vnd.ms-opentype' />
-        <item id='fonts_SourceSansPro_SourceSansPro-It_ttf' href='fonts/SourceSansPro/SourceSansPro-It.ttf'  media-type='application/vnd.ms-opentype' />
-        <item id='fonts_SourceSansPro_SourceSansPro-It_woff' href='fonts/SourceSansPro/SourceSansPro-It.woff'  media-type='application/vnd.ms-opentype' />
-        <item id='fonts_SourceSansPro_SourceSansPro-Regular_ttf' href='fonts/SourceSansPro/SourceSansPro-Regular.ttf'  media-type='application/vnd.ms-opentype' />
-        <item id='fonts_SourceSansPro_SourceSansPro-Regular_woff' href='fonts/SourceSansPro/SourceSansPro-Regular.woff'  media-type='application/vnd.ms-opentype' />
-        <item id='ofl_txt' href='fonts/SourceSansPro/OFL.txt'  media-type='text/plain' />
+    <!-- './fonts/Lato'  -->
+        <item id='fonts_Lato_Lato-Bol_ttf' href='fonts/Lato/Lato-Bol.ttf'  media-type='application/vnd.ms-opentype' />
+        <!-- <item id='fonts_Lato_Lato-Bol_ttf' href='fonts/Lato/Lato-Bol.ttf'  media-type='application/vnd.ms-opentype' /> -->
+        <item id='fonts_Lato_Lato-Ita_ttf' href='fonts/Lato/Lato-RegIta.ttf'  media-type='application/vnd.ms-opentype' />
+        <!-- <item id='fonts_Lato_Lato-Ita_ttf' href='fonts/Lato/Lato-RegIta.ttf'  media-type='application/vnd.ms-opentype' /> -->
+        <item id='fonts_Lato_Lato-Reg_ttf' href='fonts/Lato/Lato-Reg.ttf'  media-type='application/vnd.ms-opentype' />
+        <!-- <item id='fonts_Lato_Lato-Reg_ttf' href='fonts/Lato/Lato-Reg.ttf'  media-type='application/vnd.ms-opentype' /> -->
+        <item id='fonts_Lato_SIL_Open_Font_License_1_1_txt' href='fonts/Lato/SIL_Open_Font_License_1.1.txt'  media-type='text/plain' />
     <!-- './images'  -->
         <item id='images_callout_01_jpg' href='images/callout_01.jpg'  media-type='image/jpeg' />
         <item id='images_callout_02_jpg' href='images/callout_02.jpg'  media-type='image/jpeg' />

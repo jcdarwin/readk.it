@@ -356,16 +356,21 @@ Phone (Portrait)
   .container {
     width: 200px;
   }
+
+  /* line 46, ../sass/vendor/pure/_overrides.scss */
+  nav ul li {
+    padding-left: 1rem;
+  }
 }
 /*===================================================================================================
 General
 ===================================================================================================*/
-/* line 52, ../sass/vendor/pure/_overrides.scss */
+/* line 53, ../sass/vendor/pure/_overrides.scss */
 .pure-g-r > div {
   box-sizing: border-box;
 }
 
-/* line 56, ../sass/vendor/pure/_overrides.scss */
+/* line 57, ../sass/vendor/pure/_overrides.scss */
 .pure-g-r > div:first-child {
   padding-right: 1em;
 }

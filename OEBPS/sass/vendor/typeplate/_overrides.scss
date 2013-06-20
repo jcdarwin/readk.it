@@ -39,7 +39,7 @@ $indent-val: 1.0em;
     }
 
     /* Phone */
-    @media (max-device-width : 240px) {
+    @media (max-width : 240px) {
         #{$h} {
             @include modular-scale($size / 1.1, $font-base, '#{$type-scale-unit-value}', $measure);
         }

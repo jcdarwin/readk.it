@@ -354,35 +354,28 @@ pre {
   margin-right: 10px;
 }
 
-/* Phone */
-@media (max-width: 240px) {
-  /* line 391, ../sass/styles.scss */
-  .readkit-serif, .readkit-sans {
-    display: none;
-  }
-}
 /* iPhone 2G-4S in portrait & landscape */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-  /* line 400, ../sass/styles.scss */
+  /* line 393, ../sass/styles.scss */
   .readkit-header {
     top: 0;
     -webkit-user-select: none;
   }
 
-  /* line 404, ../sass/styles.scss */
+  /* line 397, ../sass/styles.scss */
   .readkit-slider {
     width: 30px;
   }
 }
 /* iPhone 5 in portrait & landscape */
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
-  /* line 413, ../sass/styles.scss */
+  /* line 406, ../sass/styles.scss */
   .readkit-header {
     top: 0;
     -webkit-user-select: none;
   }
 
-  /* line 417, ../sass/styles.scss */
+  /* line 410, ../sass/styles.scss */
   .readkit-slider {
     width: 30px;
   }
@@ -390,7 +383,7 @@ pre {
 /* iPad in portrait & landscape */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   /* Accomodate status bar */
-  /* line 427, ../sass/styles.scss */
+  /* line 420, ../sass/styles.scss */
   .readkit-header {
     top: 0;
     -webkit-user-select: none;
@@ -398,8 +391,15 @@ pre {
 }
 /* Desktop */
 @media only screen {
-  /* line 435, ../sass/styles.scss */
+  /* line 428, ../sass/styles.scss */
   .readkit-header {
     top: 0;
+  }
+}
+/* Phone */
+@media (max-width: 240px) {
+  /* line 435, ../sass/styles.scss */
+  .readkit-serif, .readkit-sans {
+    display: none;
   }
 }

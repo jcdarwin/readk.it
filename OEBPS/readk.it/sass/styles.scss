@@ -386,13 +386,6 @@ pre {
 //
 // ==========================================================================//
 
-/* Phone */
-@media (max-width:240px) {
-    .#{$namespace}-serif, .#{$namespace}-sans {
-        display: none;
-    }
-}
-
 /* iPhone 2G-4S in portrait & landscape */
 @media only screen 
 and (min-device-width : 320px) 
@@ -435,4 +428,11 @@ and (max-device-width : 1024px)  {
     .#{$namespace}-header {
         top: 0;
     }                
+}
+
+/* Phone */
+@media (max-width:240px) {
+    .#{$namespace}-serif, .#{$namespace}-sans {
+        display: none;
+    }
 }

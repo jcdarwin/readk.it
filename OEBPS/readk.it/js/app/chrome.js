@@ -210,20 +210,30 @@ define([
     });
 
     // Fontsize event handlers
-    $('#readkit-for-size').on('click', function(){
-        if ( $('#readkit-dropdown-size').is(':visible') ) {
-            $('#readkit-dropdown-size').slideUp('slow');
-        } else {
-            var value = layout.storage('font-size');
-            $('.readkit-strength-size[data-size="' + value + '"]').removeClass('readkit-inactive').addClass('readkit-active');
-            if ( $('#readkit-dropdown-lineheight').is(':visible') ) {
-                $('#readkit-dropdown-lineheight').slideUp();
+    // For some reason this handler always fires twice in certain browsers
+    // (Firefox and Safari, but not Chrome) -- deal with it.
+    var readkit_dropdown_size_ready = 1;
+    $('#readkit-for-size').on('click', function(e){
+        if (readkit_dropdown_size_ready) {
+            readkit_dropdown_size_ready = 0;
+            if ( $('#readkit-dropdown-size').is(':visible') ) {
+                $('#readkit-dropdown-size').slideUp(600);
+            } else {
+                if ( $('#readkit-dropdown-lineheight').is(':visible') ) {
+                    $('#readkit-dropdown-lineheight').slideUp();
+                }
+                if ( $('#readkit-dropdown-bookmark').is(':visible') ) {
+                    $('#readkit-dropdown-bookmark').slideUp();
+                }
+                var value = layout.storage('font-size');
+                $('.readkit-strength-size[data-size="' + value + '"]').removeClass('readkit-inactive').addClass('readkit-active');
+                $('#readkit-dropdown-size').slideDown(600);
             }
-            if ( $('#readkit-dropdown-bookmark').is(':visible') ) {
-                $('#readkit-dropdown-bookmark').slideUp();
-            }
-            $('#readkit-dropdown-size').slideDown('slow');
         }
+
+        setTimeout(function () {
+            readkit_dropdown_size_ready++;
+        }, 700);
     });
 
     $('.readkit-strength-size').on('click', function(e){
@@ -250,20 +260,30 @@ define([
     });
 
     // Line-height event handlers
+    // For some reason this handler always fires twice in certain browsers
+    // (Firefox and Safari, but not Chrome) -- deal with it.
+    var readkit_dropdown_lineheight_ready = 1;
     $('#readkit-for-lineheight').on('click', function(){
-        if ( $('#readkit-dropdown-lineheight').is(':visible') ) {
-            $('#readkit-dropdown-lineheight').slideUp('slow');
-        } else {
-            if ( $('#readkit-dropdown-size').is(':visible') ) {
-                $('#readkit-dropdown-size').slideUp();
+        if (readkit_dropdown_lineheight_ready) {
+            readkit_dropdown_lineheight_ready = 0;
+            if ( $('#readkit-dropdown-lineheight').is(':visible') ) {
+                $('#readkit-dropdown-lineheight').slideUp(600);
+            } else {
+                if ( $('#readkit-dropdown-size').is(':visible') ) {
+                    $('#readkit-dropdown-size').slideUp();
+                }
+                if ( $('#readkit-dropdown-bookmark').is(':visible') ) {
+                    $('#readkit-dropdown-bookmark').slideUp();
+                }
+                var value = layout.storage('line-height');
+                $('.readkit-strength-line-height[data-size="' + value + '"]').removeClass('readkit-inactive').addClass('readkit-active');
+                $('#readkit-dropdown-lineheight').slideDown(600);
             }
-            if ( $('#readkit-dropdown-bookmark').is(':visible') ) {
-                $('#readkit-dropdown-bookmark').slideUp();
-            }
-            var value = layout.storage('line-height');
-            $('.readkit-strength-line-height[data-size="' + value + '"]').removeClass('readkit-inactive').addClass('readkit-active');
-            $('#readkit-dropdown-lineheight').slideDown('slow');
         }
+
+        setTimeout(function () {
+            readkit_dropdown_lineheight_ready++;
+        }, 700);
     });
 
     $('.readkit-strength-line-height').on('click', function(e){

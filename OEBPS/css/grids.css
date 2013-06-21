@@ -376,6 +376,11 @@ General
 }
 
 /* line 58, ../sass/vendor/pure/_overrides.scss */
+.pure-u-1-2 {
+  width: 47.5%;
+}
+
+/* line 61, ../sass/vendor/pure/_overrides.scss */
 .pure-g-r > div:first-child {
-  padding-right: 1em;
+  padding-right: 5%;
 }

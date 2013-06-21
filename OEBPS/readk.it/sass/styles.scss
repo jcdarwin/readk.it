@@ -83,8 +83,8 @@ $slider-width: 30px;
 }
 
 .#{$namespace}-wrapper {
-    /* Firefox *almost* works if we comment out the next line  and use height: 100%; instead */
-    position: absolute;
+    position: relative;
+    height: 100%;
     /* The next two lines allow for an "overlap" when scrolling a page vertically */
     top: 20px;
     overflow: visible !important;
@@ -106,7 +106,6 @@ $slider-width: 30px;
 }
 
 .#{$namespace}-scroller {
-    /* Firefox *almost* works if we comment out the next line */
     position: absolute;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     width: 100%;

@@ -72,9 +72,9 @@ define([
         // Check for stored font preference and apply accordingly.
         var font = layout.storage('font');
         if (font == 'serif') {
-            $('.readkit-serif').click();
+            $('.readkit-icon-serif').click();
         } else if (font == 'sans') {
-            $('.readkit-sans').click();
+            $('.readkit-icon-sans').click();
         } else {
             // By default we use the publication styles.
             $.each($('link[href$="serif.css"]'), function(i, link) {
@@ -143,32 +143,18 @@ define([
     });
 
     // Font style handlers
-    $('.readkit-sans').click(function(){
+    $('.readkit-icon-sans').click(function(){
         var y_percent = layout.location().y / layout.location().height;
 
-        if ( $('.readkit-sans').hasClass('readkit-active') ) {
-            $.each($('link[href$="sans.css"]'), function(i, link) {
-                link.disabled=true;
-            });
-
-            $('.readkit-sans').removeClass('readkit-active');
+        if ( $('.readkit-icon-sans').hasClass('readkit-active') ) {
+            $('#readkit-pageWrapper').find(tag_names).removeClass('readkit-sans');
+            $('.readkit-icon-sans').removeClass('readkit-active');
 
             layout.storage('font', []);
         } else {
-            // Switch stylesheet from serif to sans (i.e. body text)
-            // The trick here is to disable both stylesheets first,
-            // and then enable the one we want.
-            $.each($('link[href$="serif.css"]'), function(i, link) {
-                link.disabled=true;
-            });
-            $.each($('link[href$="sans.css"]'), function(i, link) {
-                link.disabled=true;
-            });
-            $.each($('link[href$="sans.css"]'), function(i, link) {
-                link.disabled=false;
-            });
-            $('.readkit-serif').removeClass('readkit-active');
-            $('.readkit-sans').addClass('readkit-active');
+            $('#readkit-pageWrapper').find(tag_names).addClass('readkit-sans').removeClass('readkit-serif');
+            $('.readkit-icon-serif').removeClass('readkit-active');
+            $('.readkit-icon-sans').addClass('readkit-active');
 
             layout.storage('font', 'sans');
         }
@@ -176,32 +162,17 @@ define([
         layout.refresh(y_percent, layout.location().page);
     });
 
-    $('.readkit-serif').click(function(){
+    $('.readkit-icon-serif').click(function(){
         var y_percent = layout.location().y / layout.location().height;
-        if ( $('.readkit-serif').hasClass('readkit-active') ) {
-            $.each($('link[href$="serif.css"]'), function(i, link) {
-                link.disabled=true;
-            });
-
-            $('.readkit-serif').removeClass('readkit-active');
+        if ( $('.readkit-icon-serif').hasClass('readkit-active') ) {
+            $('#readkit-pageWrapper').find(tag_names).removeClass('readkit-serif');
+            $('.readkit-icon-serif').removeClass('readkit-active');
 
             layout.storage('font', []);
         } else {
-            // Switch stylesheet from sans to serif (i.e. body text)
-            // The trick here is to disable both stylesheets first,
-            // and then enable the one we want.
-            $.each($('link[href$="sans.css"]'), function(i, link) {
-                link.disabled=true;
-            });
-            $.each($('link[href$="serif.css"]'), function(i, link) {
-                link.disabled=true;
-            });
-            $.each($('link[href$="serif.css"]'), function(i, link) {
-                link.disabled=false;
-            });
-
-            $('.readkit-sans').removeClass('readkit-active');
-            $('.readkit-serif').addClass('readkit-active');
+            $('#readkit-pageWrapper').find(tag_names).addClass('readkit-serif').removeClass('readkit-sans');
+            $('.readkit-icon-sans').removeClass('readkit-active');
+            $('.readkit-icon-serif').addClass('readkit-active');
 
             layout.storage('font', 'serif');
         }

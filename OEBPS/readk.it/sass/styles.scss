@@ -20,8 +20,9 @@
 */
 
 @import "compass";
-@import 'color';
-
+@import 'partials/color';
+@import 'partials/font-face';
+@import 'partials/custom';
 
 // ==========================================================================//
 //
@@ -365,18 +366,26 @@ pre {
     background-color: $offline-color;
 }
 
-.#{$namespace}-sans {
+.#{$namespace}-icon-sans {
     font-family: Arial;
     font-weight: bold;
     float: right;
     margin-right: $margin / 2;
 }
 
-.#{$namespace}-serif {
+.#{$namespace}-icon-serif {
     font-family: Georgia;
     font-weight: bold;
     float: right;
     margin-right: $margin / 2;
+}
+
+.#{$namespace}-sans {
+    font-family: "Source Sans Pro", Arial, sans-serif;
+}
+
+.#{$namespace}-serif {
+    font-family: "Lora", Georgia, serif;
 }
 
 // ==========================================================================//

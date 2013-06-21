@@ -54,8 +54,6 @@
         <item id='readk_it_favicon_ico' href='readk.it/favicon.ico'  media-type='image/vnd.microsoft.icon' />
         <item id='readk_it_index_html' href='readk.it/index.html'  media-type='text/html' />
     <!-- './readk.it/css'  -->
-        <item id='readk_it_css_sans_css' href='readk.it/css/sans.css'  media-type='text/css' />
-        <item id='readk_it_css_serif_css' href='readk.it/css/serif.css'  media-type='text/css' />
         <item id='readk_it_css_styles_css' href='readk.it/css/styles.css'  media-type='text/css' />
     <!-- './readk.it/fonts'  -->
     <!-- './readk.it/fonts/fontello'  -->

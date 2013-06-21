@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+// $Typography
+// -------------------------------------//
+
+@include font-face('Source Sans Pro', font-files(
+    "SourceSansPro/SourceSansPro-Light.woff", woff), false, 300, normal, false, SourceSansPro-Light);
+
+@include font-face('Source Sans Pro', font-files(
+    "SourceSansPro/SourceSansPro-Regular.woff", woff), false, 400, normal, false, SourceSansPro-Regular);
+
+@include font-face('Source Sans Pro', font-files(
+    "SourceSansPro/SourceSansPro-Semibold.woff", woff), false, 600, normal, false, SourceSansPro-Bold);
+
+@include font-face('Source Sans Pro', font-files(
+    "SourceSansPro/SourceSansPro-Bold.woff", woff), false, 700, normal, false, SourceSansPro-Bold);
+
+@include font-face('Source Sans Pro', font-files(
+    "SourceSansPro/SourceSansPro-It.woff", truetype), false, 400, italic, false, SourceSansPro-It);
+
+@include font-face('Source Sans Pro', font-files(
+    "SourceSansPro/SourceSansPro-BoldIt.woff", truetype), false, 700, italic, false, SourceSansPro-BoldIt);
+
+
+@include font-face('Lora', font-files(
+    "Lora/Lora.woff", woff), false, 400, normal, false, Lora-Regular);
+
+@include font-face('Lora', font-files(
+    "Lora/Lora-Bold.woff", woff), false, 700, normal, false, Lora-Bold);
+
+@include font-face('Lora', font-files(
+    "Lora/Lora-Italic.woff", truetype), false, 400, italic, false, Lora-Italic);
+
+@include font-face('Lora', font-files(
+    "Lora/Lora-BoldItalic.woff", truetype), false, 700, italic, false, Lora-BoldItalic);

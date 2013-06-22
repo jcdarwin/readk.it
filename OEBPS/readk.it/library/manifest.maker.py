@@ -76,7 +76,15 @@ for r, d, files in os.walk("."):
             version = opf.xpath("//opf:package/@version", namespaces=namespaces)
             itemref = opf.xpath("//opf:spine/opf:itemref", namespaces=namespaces)
             pages = len(itemref)
-            path = 'OEBPS/readk.it/library/' + re.sub(r'^(?:./)?(.*)(META-INF)$', r"\g<1>", r)
+
+            #For our special case, where we want to use Readk.it to both be used embedded in an
+            #EPUB file (http://localhost:8000/OEBPS/readk.it/) and also to serve the library
+            #(http://localhost:8000/OEBPS/readk.it/library/library.html)
+            #path = 'OEBPS/readk.it/library/' + re.sub(r'^(?:./)?(.*)(META-INF)$', r"\g<1>", r)
+
+            #For the normal case, where we only want to serve the library
+            # (http://localhost:8000/readk.it/library/library.html)
+            path = 'readk.it/library/' + re.sub(r'^(?:./)?(.*)(META-INF)$', r"\g<1>", r)
             cover = opf.xpath("//opf:item[contains(@properties, 'cover-image')]/@href", namespaces=namespaces)
             if not cover:
                 coverid = opf.xpath("//opf:meta[contains(@name, 'cover')]/@content", namespaces=namespaces)

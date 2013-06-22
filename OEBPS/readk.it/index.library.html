@@ -28,42 +28,6 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">    
         <link rel="apple-touch-startup-image" href="images/splash.png">
 
-        <style>
-            /* iPhone 2G-4S in portrait & landscape */
-            @media only screen 
-            and (min-device-width : 320px) 
-            and (max-device-width : 480px) {
-                .header {
-                    top: 0;
-                }
-            }
-
-            /* iPhone 5 in portrait & landscape */
-            @media only screen 
-            and (min-device-width : 320px) 
-            and (max-device-width : 568px) {
-                .header {
-                    top: 0;
-                }
-            }
-
-            /* iPad in portrait & landscape */
-            @media only screen 
-            and (min-device-width : 768px) 
-            and (max-device-width : 1024px)  {
-                .header {
-                    top: 0;
-                }                
-            }
-
-            /* Desktop */
-            @media only screen {
-                .header {
-                    top: 0;
-                }                
-            }
-        </style>
-
         <!-- Add to home screen: http://cubiq.org/add-to-home-screen -->
         <link rel="stylesheet" href="js/lib/add-to-homescreen/style/add2home.css">
         <script type="text/javascript">
@@ -77,16 +41,6 @@
         <script type="application/javascript" src="js/lib/add-to-homescreen/src/add2home.js"></script>
     </head>
     <body>
-        <script type="text/javascript">
-            // We include the stylesheets here as we want them to override any others 
-            // (containing rules of the same specificity)
-            // that are added to the bottom of the <head> by require.js.
-            // Note that any stylesheets ending in "sans.css" and "serif.css" are treated specially
-            // (enabled  / disabled ) by clicking on the font button.
-            document.write('<link title="sans"  rel="stylesheet" type="text/css" href="css/sans.css" disabled="disabled">');
-            document.write('<link title="serif" rel="stylesheet" type="text/css" href="css/serif.css" disabled="disabled">');
-        </script>
-
         <div id='readkit-sitePreloader'><div id='readkit-preloaderImage'><img src='images/site_preloader.gif' alt='Preloader' /></div></div>
 
         <div class="readkit-header">
@@ -109,12 +63,12 @@
                     </div>
                 </div>
                 <div class="readkit-bookmark readkit-slider">
-                    <label id="readkit-for-bookmark" for="readkit-dropdown-bookmark" class="readkit-icon readkit-bookmark" title="bookmark"><i class="icon-bookmark"></i></label>
+                    <label id="readkit-for-bookmark" for="readkit-dropdown-bookmark" class="readkit-icon readkit-bookmark readkit-inactive" title="bookmark"><i class="icon-bookmark"></i></label>
                     <div id="readkit-dropdown-bookmark" class="readkit-dropdown" style="display:none;overflow:hidden;">
                     </div>
                 </div>
-                <span class="readkit-icon readkit-serif" title="serif font"><span class="readkit-font">A</span></span>
-                <span class="readkit-icon readkit-sans" title="readkit-sans readkit-serif readkit-font"><span class="readkit-font">A</span></span>
+                <span class="readkit-icon readkit-icon-serif" title="serif font"><span class="readkit-font">A</span></span>
+                <span class="readkit-icon readkit-icon-sans" title="sans serif font"><span class="readkit-font">A</span></span>
                 <div style="text-align:center;">
                     <span class="readkit-icon readkit-status readkit-offline" style="float:none;"><a href="library/library.html"><i class="icon-cloud" style="color: #ffffff;text-decoration:none;"></a></i></span>
                 </div>

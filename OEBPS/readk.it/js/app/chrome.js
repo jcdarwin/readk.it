@@ -3,7 +3,7 @@
 **
 ** Author: Jason Darwin
 **
-** Functions to support readk.it user interface customisation.
+** Functions to support Readk.it user interface customisation.
 */
 
 define([
@@ -27,7 +27,7 @@ define([
     function initialiser() {
         controller.subscribe('history_changed', check_backbutton);
 
-        // plugin to eliminate click delay on iOS
+        // Plugin to eliminate click delay on iOS
         // http://cubiq.org/remove-onclick-delay-on-webkit-for-iphone
         $.fn.noClickDelay = function() {
             var $wrapper = this;
@@ -87,7 +87,7 @@ define([
 
         // Check for stored font-size preference and apply accordingly.
         var fontsize = layout.storage('font-size');
-        if (fontsize && fontsize.length) {
+        if (_.isNumber(fontsize)) {
             $('#readkit-pageWrapper').css('font-size', fontsize + 'px');
             $('.readkit-strength-size[data-size="' + fontsize + '"]').removeClass('readkit-inactive').addClass('readkit-active');
         } else {
@@ -97,7 +97,7 @@ define([
 
         // Check for stored line-height preference and apply accordingly.
         var lineheight = layout.storage('line-height');
-        if (lineheight && lineheight.length) {
+        if (_.isNumber(lineheight)) {
             $('#readkit-pageWrapper').find(tag_names).css('line-height', lineheight);
             $('.readkit-strength-line-height[data-size="' + lineheight + '"]').removeClass('readkit-inactive').addClass('readkit-active');
         } else {
@@ -183,10 +183,10 @@ define([
     // Fontsize event handlers
     // For some reason this handler always fires twice in certain browsers
     // (Firefox and Safari, but not Chrome) -- deal with it.
-    var readkit_dropdown_size_ready = 1;
+    var readkit_dropdown_size_ready = true;
     $('#readkit-for-size').on('click', function(e){
         if (readkit_dropdown_size_ready) {
-            readkit_dropdown_size_ready = 0;
+            readkit_dropdown_size_ready = false;
             if ( $('#readkit-dropdown-size').is(':visible') ) {
                 $('#readkit-dropdown-size').slideUp(600);
             } else {
@@ -203,7 +203,7 @@ define([
         }
 
         setTimeout(function () {
-            readkit_dropdown_size_ready++;
+            readkit_dropdown_size_ready = true;
         }, 700);
     });
 
@@ -212,12 +212,12 @@ define([
         var value = [];
         if ( $(this).hasClass('readkit-active') ) {
             $('.readkit-strength-size').removeClass('readkit-active').addClass('readkit-inactive');
-            $('html').css('font-size', '');
+            $('#readkit-pageWrapper').css('font-size', '');
         } else {
             $('.readkit-strength-size').removeClass('readkit-active').addClass('readkit-inactive');
             $(this).removeClass('readkit-inactive').addClass('readkit-active');
             value = $(this).data('size');
-            $('html').css('font-size', value + 'px');
+            $('#readkit-pageWrapper').css('font-size', value + 'px');
         }
 
         var y_percent = layout.location().y / layout.location().height;
@@ -233,10 +233,10 @@ define([
     // Line-height event handlers
     // For some reason this handler always fires twice in certain browsers
     // (Firefox and Safari, but not Chrome) -- deal with it.
-    var readkit_dropdown_lineheight_ready = 1;
+    var readkit_dropdown_lineheight_ready = true;
     $('#readkit-for-lineheight').on('click', function(){
         if (readkit_dropdown_lineheight_ready) {
-            readkit_dropdown_lineheight_ready = 0;
+            readkit_dropdown_lineheight_ready = false;
             if ( $('#readkit-dropdown-lineheight').is(':visible') ) {
                 $('#readkit-dropdown-lineheight').slideUp(600);
             } else {
@@ -253,7 +253,7 @@ define([
         }
 
         setTimeout(function () {
-            readkit_dropdown_lineheight_ready++;
+            readkit_dropdown_lineheight_ready = true;
         }, 700);
     });
 
@@ -413,11 +413,13 @@ define([
         $('.readkit-status').addClass(status);
     }
 
-    // Determine whether we're running in webapp mode on iOS
-    // http://www.bennadel.com/blog/1950-Detecting-iPhone-s-App-Mode-Full-Screen-Mode-For-Web-Applications.htm
     if (
     ("standalone" in window.navigator) &&
-     window.navigator.standalone){
+    window.navigator.standalone
+    ){
+        // Account for the status bar on iOS when in stand-alone mode.
+        // http://www.bennadel.com/blog/1950-Detecting-iPhone-s-App-Mode-Full-Screen-Mode-For-Web-Applications.htm
+        $('.readkit-header').css({'margin-top': '20px'});
         $('#readkit-pageWrapper').css('top', '60px');
     }
 

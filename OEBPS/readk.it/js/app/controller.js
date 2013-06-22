@@ -63,20 +63,6 @@ define([
         }
     };
 
-    // tiny plugin to allow us to modify attribute values
-    $.fn.prependAttr = function(attrName, prefix) {
-        if (typeof this.attr(attrName) !== 'undefined') {
-            this.attr(attrName, function(i, val) {
-                return prefix + val;
-            });
-        }
-        return this;
-    };
-
-    var url_selectors = $.map($.elemUrlAttr(), function(i, v){
-        return v + '[' + i + ']';
-    }).join(',');
-
     var load_publication = function (epub) {
         // require.js text plugin fires asynchronously, so we'll use
         // deferreds to work out when all texts have been retrieved.
@@ -127,7 +113,7 @@ define([
             $.when.apply(this, $.map(pub.css_entries, function(value) {
                 return $.Deferred(function(deferred_stylesheet){
 
-                    // Use the requirejs/css plugin to load our stylesheet resources.
+                    // Use the require-css plugin to load our stylesheet resources.
                     require(["css!" + value.href],
                         function(css) {
                             deferred_stylesheet.resolve(css);
@@ -150,6 +136,10 @@ define([
 
         // Create our chrome for this layout 
         chrome = new Chrome(self, layout);
+
+        var url_selectors = $.map($.elemUrlAttr(), function(i, v){
+            return v + '[' + i + ']';
+        }).join(',');
 
         $.each(publication.getToc(), function(index, value){
 

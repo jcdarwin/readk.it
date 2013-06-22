@@ -6,10 +6,10 @@
 ** Functions to support readk.it layout and navigation.
 **
 ** Important concepts:
-** * page: a scrolling div containing an entire epub html file (i.e. chapter)
+** * page: a scrolling div containing an entire epub xhtml file (i.e. chapter)
+** * page_scroller: an iScroll container around each page
 ** * book_scroller: an encompassing iScroll container, within which lives all
 **   the pages
-** * page_scroller: an iScroll container around each page
 */
 
 define([
@@ -124,19 +124,22 @@ define([
         page_width = $('#readkit-pageWrapper').width();
         var pages = $('.readkit-page').length;
         $('#readkit-pageScroller').css('width', page_width * pages);
-//        $('.readkit-page').css('width', page_width - 40);
         $('.readkit-page').css('width', page_width);
         book_scroller.refresh();
         if (page_scroller) {
             page_scroller.refresh();
         }
-//        if (scroll && currentPage !== 0) {
-//            book_scroller.scrollToPage(currentPage, 0, 0);
-//        }
+
+        // Ensure we align nicely on a page boundary
+        if (scroll && currentPage !== 0) {
+            book_scroller.scrollToPage(currentPage, 0, 0);
+        }
     };
 
     // Local / session / cookie storage
     var storage = function (key, value) {
+        // If only key is provided, it's a getter,
+        // otherwise it's a setter.
         var pub = $.localStorage(publication.identifier) || [];
 
         if (value) {
@@ -167,12 +170,9 @@ define([
     // Revisit the last entry in the history.
     var go_back = function () {
         var history = storage('history');
-
         if (history.length) {
             var page = history.pop();
-
             book_scroller.scrollToPage(page, 0, 0);
-
             storage('history', history);
         }
     };
@@ -202,20 +202,19 @@ define([
 
         // Capture clicks so we can update the scroll position.
         $('#' + id).on('click', function(event) {
-
             file = this.id.replace(/_/, '.');
 
             // Firstly, find the page scroller from our collection that is keyed to our page.
-            var filtered_page_scrollers = _.filter(page_scrollers, function(scroller) {
+            var page_scroller = (_.filter(page_scrollers, function(scroller) {
                 return scroller.file == file;
-            });
+            }))[0];
 
             // Redraw the page scroller layout, as the click may have resulted in
             // the size of the page changing.
             // We leave this a second to let any animations complete.
             setTimeout(function(){
                 try {
-                    update((filtered_page_scrollers[0]).scroller);
+                    update(page_scroller.scroller);
                 } catch (e) {
                 }
             }, 1000);
@@ -226,15 +225,18 @@ define([
             file = $(this).parents('.readkit-page').attr('id').replace(/_/, '.');
 
             // Firstly, find the page scroller from our collection that is keyed to our page.
-            var filtered_page_scrollers = _.filter(page_scrollers, function(scroller) {
+            var page_scroller = (_.filter(page_scrollers, function(scroller) {
                 return scroller.file == file;
-            });
+            }))[0];
 
             // Redraw the page scroller layout, as the click may have resulted in
             // the size of the page changing.
             // We leave this a second to let any animations complete.
             setTimeout(function(){
-                update((filtered_page_scrollers[0]).scroller);
+                try {
+                    update(page_scroller.scroller);
+                } catch (e) {
+                }
             }, 1000);
         });
 
@@ -248,7 +250,7 @@ define([
 
     var trap_anchor = function(that, event) {
         if ( $(that).attr('rel') == 'external' ) {
-            // Let clicks on anchors with rel="external" act as normal.
+            // Let clicks on anchors with rel="external" resolve as normal.
         } else {
             event.preventDefault();
 
@@ -359,15 +361,6 @@ define([
     });
 
     var finalise = function() {
-        if (
-        ("standalone" in window.navigator) &&
-        window.navigator.standalone
-        ){
-            // Account for the status bar on iOS when in stand-alone mode.
-            // http://www.bennadel.com/blog/1950-Detecting-iPhone-s-App-Mode-Full-Screen-Mode-For-Web-Applications.htm
-            $('.readkit-header').css({'margin-top': '20px'});
-        }
-
         // Ensure that we can scroll using keyboard in desktop browsers
         $(document).bind('keydown', 'home', function(){
             if (currentPage !== undefined) {
@@ -408,17 +401,13 @@ define([
         });
 
         $(document).bind('keydown', 'left', function(){
-            //if (currentPage > 0) {
-                var x = page_width;
-                book_scroller.scrollTo(book_scroller.x + page_width, book_scroller.y, 200);
-            //}
+            var x = page_width;
+            book_scroller.scrollTo(book_scroller.x + page_width, book_scroller.y, 200);
         });
 
         $(document).bind('keydown', 'right', function(){
-            //if (currentPage < pages.length) {
-                var x = page_width;
-                book_scroller.scrollTo(book_scroller.x - page_width, book_scroller.y, 200);
-            //}
+            var x = page_width;
+            book_scroller.scrollTo(book_scroller.x - page_width, book_scroller.y, 200);
         });
 
         // Remove site preloader after site is loaded

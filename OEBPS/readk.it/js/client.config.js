@@ -3,7 +3,8 @@
 **
 ** Author: Jason Darwin
 **
-** The extra resources from our EPUB that we want to load into require.js.
+** The extra resources from our EPUB/s that we want require.js to
+** load into the page.
 ** These are typically js files, but can be css and other, e.g.:
 **
 **    paths: {
@@ -11,10 +12,7 @@
 **    }
 **
 **    required: [
-**        'css!client_css/normalize.css',
-**        'css!client_css/screen.css',
-**        'css!client_css/pure/pure-grids.css',
-**        'css!client_css/pure/pure-min.css'
+**        'css!client_css/normalize.css'
 **    ]
 **
 */

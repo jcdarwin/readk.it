@@ -17,6 +17,18 @@ Readk.it does not aspire to cater for all of the functionality of the EPUB stand
 
 Readk.it builds on the efforts of others, notably Matteo Spinelli's [iScroll4](http://cubiq.org/iscroll-4), as well as [jQuery](http://jquery.com/) and [RequireJs](http://requirejs.org/), while the Readk.it Manifesto provides an example of the use of [enquire.js](http://wicky.nillia.ms/enquire.js/) for JavaScript-based Media Queries.
 
+##Limitations
+
+###Single-page app
+Readk.it chooses a model whereby it loads all EPUB files into a single page. It's smart enough to rewrite internal urls and anchors (preventing collisions), and any JavaScript files specifically required by the EPUB can also be [configured to be loaded](#client.config.js).
+
+The reason Readk.it adopts this behaviour is to allow a simple means of loading the entire EPUB, such that it can then be read without further recourse to the server. With the use of app cache to store all of the EPUB assets client-side and thereby allow reading offline, this approach also makes sense.
+
+However, the main limitation this imposes is one of file size; this approach works well for text-based EPUBs (Moby Dick, anyone?) however, if your EPUB contains lots of media (particularly video), then you may find that it takes a long time for the publication to load (providing the browser doesn't time-out). The solution to this is simple: split your publication up into a series of smaller publications, and consider using the [Readk.it library](#library) to serve them.
+
+###EPUB-lite
+The EPUB standard is verbose and complex ([canonical fragment identifiers](http://www.idpf.org/epub/linking/cfi/), anyone?) and Readk.it makes no attempt to do anything more than provide a mechanism for prising open an EPUB and wrapping it with a basic navigation system. That's not to say that it couldn't be extended to support specific (and ocassionally esoteric) EPUB functionality in the way that [Readium](http://readium.org/) has, however the high majority of users should find that what Readk.it provides is ample. This is somewhat in the spirit of [EPUB Zero](http://epubzero.blogspot.co.nz/2013/02/epub-zero-radically-simpler-e-book.html), if somewhat less heretical in being able to cope with the existing EPUB file structure and metadata layout.
+
 ##Before we begin
 
 ###Technologies
@@ -51,7 +63,7 @@ If you drop the readk.it folder into the OEBPS folder, you won't need to make ch
 
 This path is used by Readk.it to navigate from the readk.it folder up to where the EPUB's <code>META-INF/container.xml</code> lives.
 
-####client.config.js
+####<a id="client.config.js"></a>client.config.js
 As Readk.it operates by compiling all of the EPUB XHTML files into a single HTML page (and thereby ignoring their HEADs), if your publication needs access to JavaScript files/libraries other than those that Readk.it uses, these can be specified in <code>readk.it/js/client.config.js</code>, for example: 
 
     var client = {
@@ -138,7 +150,7 @@ To acheive this, we need to add a bunch of entries to the content.opf to ensure 
         <item id='readk_it_js_lib_require-css_LICENSE_txt' href='readk.it/js/lib/require-css/LICENSE.txt'  media-type='text/plain' />
 
 
-###Library mode
+###<a id="library"></a>Library mode
 Library mode is as easy to setup as single-publication mode:
 
 * Drop your exploded EPUB files into the <code>readk.it/library/html</code> folder

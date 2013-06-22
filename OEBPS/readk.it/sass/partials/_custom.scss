@@ -268,36 +268,11 @@ $slider-width: 30px;
     text-overflow: ellipsis;
 }
 
-.#{$namespace}-bookmark-icon {
-    height: $medium;
-    width: $medium;
-    border-radius: $medium / 2;
-    padding-top: 0;
-}
-
-.#{$namespace}-bookmark-icon {
-    i[class^="icon-"] {
-        border-radius: $border-radius;
-    }
-
-    i[class^="icon-"]:before {
-        line-height: $line-height;
-    }    
-}
-
-.#{$namespace}-bookmark-icon-add {
-    float: right;
-    margin-top: 2px;
-}
-
-.#{$namespace}-bookmark-icon-remove {
-    float: left;
-}
-
 .#{$namespace}-bookmark-title {
     float: left;
-    width: 248px;
+    width: 243px;
     margin-top: 5px;
+    margin-left: 5px;
 }
 
 .#{$namespace}-bookmark-input {
@@ -311,6 +286,24 @@ $slider-width: 30px;
 
 .#{$namespace}-bookmark-list-item {
     float: left;
+}
+
+##{$namespace}-bookmark-widget {
+    a:hover, a:active, a:focus { 
+        color: $link-unvisited;
+    }
+
+    a, a:visited { 
+        color: $link-visited; 
+    }
+
+    li {
+        margin-bottom: 0;
+    }
+
+    hr {
+        margin-bottom: 0.5rem;
+    }
 }
 
 img {
@@ -401,6 +394,32 @@ pre {
 
 .#{$namespace}-serif {
     font-family: "Lora", Georgia, serif;
+}
+
+.#{$namespace}-bookmark-icon {
+    height: $medium;
+    width: $medium;
+    border-radius: $medium / 2;
+    padding-top: 0;
+}
+
+.#{$namespace}-bookmark-icon {
+    i[class^="icon-"] {
+        border-radius: $border-radius;
+    }
+
+    i[class^="icon-"]:before {
+        line-height: $line-height;
+    }    
+}
+
+.#{$namespace}-bookmark-icon-add {
+    float: right;
+    margin-top: 2px;
+}
+
+.#{$namespace}-bookmark-icon-remove {
+    float: left;
 }
 
 // ==========================================================================//

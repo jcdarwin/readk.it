@@ -4,7 +4,6 @@
 
 Readk.it is a lightweight JavaScript reading system that allows EPUB files to be read in modern browsers on practically all devices. It can be used to web-serve EPUB content statically; no server-side code is required.
 
-
 Readk.it can be embedded inside an EPUB file and travel with it, allowing future browser users to view the publication as the publisher intended. Readk.it can also be used to serve up a library of EPUB titles, allowing publishers to easily web-serve their existing EPUB files.
 
 Readk.it has been designed to take advantage of responsive design techniques in order to provide a seamless digital reading experience when the EPUB file is accessed via a browser, but where the EPUB file can also fallback to standard behaviour on dedicated EPUB reading devices (in which case Readk.it is quiesecent).
@@ -24,10 +23,10 @@ Readk.it chooses a model whereby it loads all EPUB files into a single page. It'
 
 The reason Readk.it adopts this behaviour is to allow a simple means of loading the entire EPUB, such that it can then be read without further recourse to the server. With the use of app cache to store all of the EPUB assets client-side and thereby allow reading offline, this approach also makes sense.
 
-However, the main limitation this imposes is one of file size; this approach works well for text-based EPUBs (Moby Dick, anyone?) however, if your EPUB contains lots of media (particularly video), then you may find that it takes a long time for the publication to load (providing the browser doesn't time-out). The solution to this is simple: split your publication up into a series of smaller publications, and consider using the [Readk.it library](#library) to serve them.
+However, the main limitation this imposes is one of file size; this approach works well for text-based EPUBs (for instance, Moby Dick) however, if your EPUB contains lots of media (particularly video), then you may find that it takes a long time for the publication to load (providing the browser doesn't time-out). The solution to this is simple: split your publication up into a series of smaller publications, and consider using the [Readk.it library](#library) to serve them.
 
 ###EPUB-lite
-The EPUB standard is verbose and complex ([canonical fragment identifiers](http://www.idpf.org/epub/linking/cfi/), anyone?) and Readk.it makes no attempt to do anything more than provide a mechanism for prising open an EPUB and wrapping it with a basic navigation system. That's not to say that it couldn't be extended to support specific (and ocassionally esoteric) EPUB functionality in the way that [Readium](http://readium.org/) has, however the high majority of users should find that what Readk.it provides is ample. This is somewhat in the spirit of [EPUB Zero](http://epubzero.blogspot.co.nz/2013/02/epub-zero-radically-simpler-e-book.html), if somewhat less heretical in being able to cope with the existing EPUB file structure and metadata layout.
+The EPUB standard is verbose and complex ([canonical fragment identifiers](http://www.idpf.org/epub/linking/cfi/), anyone?) and Readk.it makes no attempt to do much more than provide a mechanism for prising open an EPUB and wrapping it with a basic navigation system. That's not to say that it couldn't be extended to support specific (and ocassionally esoteric) EPUB functionality in the way that [Readium](http://readium.org/) has, however the high majority of users should find that what Readk.it provides is ample. This is somewhat in the spirit of [EPUB Zero](http://epubzero.blogspot.co.nz/2013/02/epub-zero-radically-simpler-e-book.html), if somewhat less heretical in being able to cope with the existing EPUB file structure and metadata layout.
 
 ##Before we begin
 
@@ -83,7 +82,7 @@ As Readk.it operates by compiling all of the EPUB XHTML files into a single HTML
     };
 
 ####Content-opf
-Readk.it is included in the EPUB file, and travels with the EPUB file.
+In this mode Readk.it is included in the EPUB file, and travels with the EPUB file.
 
 To acheive this, we need to add a bunch of entries to the content.opf to ensure that the EPUB is valid (according to [epubcheck](https://code.google.com/p/epubcheck/)):
 

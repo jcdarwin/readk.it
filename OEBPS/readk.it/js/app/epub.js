@@ -117,7 +117,7 @@ define([
     var ncx = function (f, epub, callback) {
         $(f).find('navMap navPoint').each(function() {
             var id = $(this).attr('id');
-            var text = $(this).find('navLabel text').text();
+            var text = $(this).find('navLabel text').first().text();
             var src = $(this).find('content').attr('src');
             var file = src.replace(/\//g, '_');
             var filtered_spine_entries = epub.spine_entries.filter(function (item) {

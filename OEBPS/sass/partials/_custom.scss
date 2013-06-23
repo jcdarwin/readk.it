@@ -10,13 +10,16 @@
 // -------------------------------------//
 
 @include font-face(Lato, font-files(
-    "Lato/Lato-Reg.ttf", truetype), false, normal, normal, false, Lato-Regular);
+    "Lato/Lato-Reg.ttf", truetype,
+    "Lato/Lato-Reg.woff", woff), false, normal, normal, false, Lato-Regular);
 
 @include font-face(Lato, font-files(
-    "Lato/Lato-Bol.ttf", truetype), false, bold, false, false, Lato-Bold);
+    "Lato/Lato-Bol.ttf", truetype,
+    "Lato/Lato-Bol.woff", woff), false, bold, false, false, Lato-Bold);
 
 @include font-face(Lato, font-files(
-    "Lato/Lato-RegIta.ttf", truetype), false, normal, italic, false, Lato-Italic);
+    "Lato/Lato-RegIta.ttf", truetype,
+    "Lato/Lato-RegIta.woff", woff), false, normal, italic, false, Lato-Italic);
 
 
 body {

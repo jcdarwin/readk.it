@@ -103,9 +103,11 @@ define([
                 });
                 $('#library .read').on('click', function () {
 
+                    $('#library .read .icon-book').hide();
+                    $('#library .read .spinner').show();
                     $(this).css('opacity', '0.3');
 
-                    $('#library .frame, #library .controls, #library .scrollbar').animate({opacity: '0'}, 500, function() {
+                    $('#library .backward, #library .forward, #library .frame, #library .controls, #library .scrollbar').animate({opacity: '0'}, 500, function() {
                         var url = $('.active').data('url');
                         window.location = url;
                     });

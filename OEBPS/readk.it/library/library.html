@@ -1,6 +1,6 @@
 <html class="js csstransforms csstransforms3d">
     <head>
-        <title>readk.it library</title>
+        <title>Readk.it library</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
 
@@ -38,289 +38,48 @@
         <script type="application/javascript" src="js/lib/add-to-homescreen/src/add2home.js"></script>
 
         <link rel="stylesheet" type="text/css" href="fonts/fontello/css/fontello.css">
-
-        <style>
-            body{
-                font-family: sans-serif;
-            }
-            a {
-                text-decoration: none;
-            }
-            .publication{
-                /* border: 1px solid #000000; */
-                /* width: 120px; */
-                height: 180px;
-                margin: 0 20px 20px 0;
-                padding: 10px;
-                float:left;
-                border-radius: 5px;
-            }
-
-            .publication h2 {
-                margin-top: 0;
-                font-size: 12px;
-            }
-
-        </style>
-
-        <style>
-
-/*===================================================================================================
-1) @font-face definitions
-===================================================================================================*/
-/*
-@font-face {
-  font-family: 'Aleo';
-  font-style: normal;
-  font-weight: 300;
-  src: local('Aleo Light'), local('Aleo-Light'), url(fonts/aleo_font_v-1.1.3/Aleo-Light.otf) format('opentype');
-}
-*/
-
-@font-face {
-  font-family: 'Aleo';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Aleo Regular'), local('Aleo-Regular'), url(fonts/aleo_font_v-1.1.3/Aleo-Regular.otf) format('opentype');
-}
-
-/*
-@font-face {
-  font-family: 'Aleo';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Aleo Bold'), local('Aleo-Bold'), url(fonts/aleo_font_v-1.1.3/Aleo-Bold.otf) format('opentype');
-}
-*/
-
-* { -webkit-user-select: none; }
-
-body {
-    margin: 0;
-}
-
-body, .controls button {
-    font-family: 'Aleo';
-    font-style: normal;
-    font-weight: 400;
-    overflow: hidden;
-}
-
-/* Header style */
-header.projecttitle { height: 100%; margin: 0 auto; padding: 1px 0 0; color: #fff; text-shadow: 1px 1px 0 rgba(0,0,0,.3);
-    background-color: #3e404a;
-}
-
-/* Desktop */
-@media only screen {
-    .library { margin: 80px auto 40px;}
-    .library .forward, .library .backward { height: 250px; }
-    .library .frame { height: 250px; line-height: 250px; }
-    .library .scrollbar { margin: 20px auto 10px; }
-    .library .readbar { margin: 10px auto 20px;}
-    .csstransforms3d .frame { height: 250px; line-height: 250px; }
-    .library .frame div.ul div.li { width: 190px; height: 240px; }
-    .publication img {
-        width: 190px;
-        max-height:240px;
-    }
-}
-
-/* iPhone 2G-4S in portrait & landscape */
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 480px) {
-    .library { margin: 40px auto 20px; }
-    .library .forward, .library .backward {display: none;}
-    .library .scrollbar { margin: 20px auto 10px; }
-    .library .readbar { margin: 10px auto 20px;}
-    .library .frame div.ul div.li { width: 190px; height: 240px; }
-    .publication img {
-        width: 190px;
-        max-height:240px;
-    }
-}
-
-/* iPhone 2G-4S in landscape */
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 480px) 
-and (orientation : landscape) {
-    .library .forward, .library .backward { height: 200px; }
-    .library .frame { height: 200px; line-height: 200px; }
-    .csstransforms3d .frame { height: 200px; line-height: 200px; }
-    .library .controls { display: none; }
-    .library .scrollbar { margin: 10px auto 10px; }
-    .library .readbar { margin: 10px auto 10px;}
-    .library .frame div.ul div.li { width: 150px; height: 190px; }
-    .publication img {
-        width: 150px;
-        max-height:190px;
-    }
-}
-
-/* iPhone 5 in portrait & landscape */
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 568px) {
-    .library { margin: 40px auto 20px; }
-    .library .forward, .library .backward {display: none;}
-    .library .scrollbar { margin: 20px auto 10px; }
-    .library .readbar { margin: 10px auto 20px;}
-    .library .frame div.ul div.li { width: 190px; height: 240px; }
-    .publication img {
-        width: 190px;
-        max-height:240px;
-    }
-}
-
-/* iPhone 5 in landscape */
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 568px) 
-and (orientation : landscape) {
-    .library .forward, .library .backward { height: 200px; }
-    .library .frame { height: 200px; line-height: 200px; }
-    .csstransforms3d .frame { height: 200px; line-height: 200px; }
-    .library .controls { display: none; }
-    .library .scrollbar { margin: 10px auto 10px; }
-    .library .readbar { margin: 10px auto 10px;}
-    .library .frame div.ul div.li { width: 150px; height: 190px; }
-    .publication img {
-        width: 150px;
-        max-height:190px;
-    }
-}
-
-/* iPad in portrait & landscape */
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px)  {
-    .library { margin: 80px auto 40px; }
-    .library .forward, .library .backward { height: 250px; }
-    .library .frame { height: 250px; line-height: 250px; }
-    .library .scrollbar { margin: 20px auto 10px; }
-    .library .readbar { margin: 10px auto 20px;}
-    .csstransforms3d .frame { height: 250px; line-height: 250px; }
-    .library .frame div.ul div.li { width: 190px; height: 240px; }
-    .publication img {
-        width: 190px;
-        max-height:240px;
-    }
-}
-
-/* Header */
-.library button, .library button { background: transparent; border: 0; color: #fff; opacity: .5; cursor: pointer;}
-.library button:hover, .library button:hover { opacity: 1; }
-.library button:disabled, .library button:disabled { opacity: .2; }
-
-.library .forward, .library .backward { float: left; width: 50px; font-size: 60px; text-align: left;}
-.library .forward i[class^="icon-"]:before, .library .backward i[class^="icon-"]:before { width: 0; }
-.library .forward { float: right; }
-
-.library .frame { margin: 0 auto; max-width: 940px; overflow: hidden; text-shadow: none; }
-.library .frame div.ul { margin: 0; padding: 0; height: 100%; font-size: 50px; display: inline-block;}
-.library .frame div.ul h2 { display: inline;}
-
-.library .frame div.ul div.li { float: left; margin: 0 1px 0 0; padding: 0; background: #eee; color: #3a3c47; text-align: center; cursor: pointer; display:inline;}
-.library .frame div.ul div.li.active { color: #fff; background: #82bf4c; }
-
-.library .scrollbar { max-width: 940px; height: 20px; line-height: 0;}
-.library .scrollbar .handle { width: 100px; height: 100%; cursor: pointer; }
-.library .scrollbar .handle .mousearea { width: 100%; height: 20px; background: #fff; opacity: .5; border: 1px solid #fff; border-radius: 5px; }
-.library .scrollbar .handle .mousearea:hover { opacity: 1; }
-
-.library .readbar { max-width: 940px; height: 30px; line-height: 0;}
-.library .read { margin: auto; text-align: center; font-size: 20px; width: 100px; height: 30px; line-height: 1.4; background: #82bf4c;  border-radius: 5px; cursor: pointer;}
-
-.library .controls { margin: 10px 0 0; text-align: center;}
-.library .controls .divider { display: inline-block; margin: 0 5px; }
-.library .controls button { line-height: 32px; vertical-align: middle; font-size: 18px; text-transform: uppercase; padding: 1px;
-height: 50px; width: 50px; border-radius: 25px; background-color: #fff;
-}
-.library .controls button i { position: relative; top: -2px; margin: 5px; padding: 0; font-size: 32px; vertical-align: middle; color: #000; }
-
-.publication img {border: 1px solid #3a3c47; border-radius: 5px; box-sizing:border-box; -moz-box-shadow: 0 0 5px 2px #888;
--webkit-box-shadow: 0 0 5px 2px #888;
-box-shadow: 0 0 5px 2px #888;}
-
-/* 3D shenanigans */
-.csstransforms3d .frame {
-    -webkit-perspective: 800px;
-    -ms-perspective: 800px;
-    perspective: 800px;
-    -webkit-perspective-origin: 50% 50%;
-    -ms-perspective-origin: 50% 50%;
-    perspective-origin: 50% 50%;
-}
-.csstransforms3d .frame div.ul {
-    -webkit-transform-style: preserve-3d;
-    -ms-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-}
-.csstransforms3d .frame div.ul div.li {
-    position: relative;
-    margin: 2px -25px;
-    /* border: 1px solid #3e404a; */
-    -webkit-transform: rotateY(60deg) scale(0.9);
-    -ms-transform: rotateY(60deg) scale(0.9);
-    transform: rotateY(60deg) scale(0.9);
-    -webkit-transition: -webkit-transform 300ms ease-out;
-    transition: transform 300ms ease-out;
-}
-.csstransforms3d .frame div.ul div.li.active {
-    z-index: 10;
-    -webkit-transform: scale(1);
-    -ms-transform: scale(1);
-    transform: scale(1);
-}
-.csstransforms3d .frame div.ul div.li.active ~ div.li {
-    -webkit-transform: rotateY(-60deg) scale(0.9);
-    -ms-transform: rotateY(-60deg) scale(0.9);
-    transform: rotateY(-60deg) scale(0.9);
-}
-        </style>
+        <link rel="stylesheet" type="text/css" href="css/styles.css">
     </head>
     <body>
-
-    <header class="projecttitle">
-        <div id="library" class="library pagespan">
-            <button class="backward">
-                <i class="icon-angle-left"></i>
-            </button>
-            <button class="forward">
-                <i class="icon-angle-right"></i>
-            </button>
-            <div class="frame" style="overflow:hidden;">
-                <div class="ul">
+        <header class="projecttitle">
+            <div id="library" class="library pagespan">
+                <button class="backward">
+                    <i class="icon-angle-left"></i>
+                </button>
+                <button class="forward">
+                    <i class="icon-angle-right"></i>
+                </button>
+                <div class="frame" style="overflow:hidden;">
+                    <div class="ul">
+                    </div>
                 </div>
-            </div>
-            <div class="readbar">
-                <div class="read">Read</div>
-            </div>
-            <div class="controls">
-                <button class="first" data-action="toStart"><i class="icon-double-angle-left"></i></button>
-                <span class="divider"></span>
-                <button class="prev"><i class="icon-angle-left"></i></button>
-                <span class="divider"></span>
-                <button class="next"><i class="icon-angle-right"></i></button>
-                <span class="divider"></span>
-                <button class="last" data-action="toEnd"><i class="icon-double-angle-right"></i></button>
-                <div class="scrollbar">
-                        <div class="handle">
-                        <div class="mousearea"></div>
+                <div class="readbar">
+                    <div class="read">
+                        <div class="readtext">Read</div>
+                        <div class="readicon">
+                            <i class="icon-book"></i>
+                            <img class="spinner" style="display:none;" src="images/spinner.gif" />
+                        </div>
+                    </div>
+                </div>
+                <div class="controls">
+                    <button class="first" data-action="toStart"><i class="icon-double-angle-left"></i></button>
+                    <span class="divider"></span>
+                    <button class="prev"><i class="icon-angle-left"></i></button>
+                    <span class="divider"></span>
+                    <button class="next"><i class="icon-angle-right"></i></button>
+                    <span class="divider"></span>
+                    <button class="last" data-action="toEnd"><i class="icon-double-angle-right"></i></button>
+                    <div class="scrollbar">
+                            <div class="handle">
+                            <div class="mousearea"></div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </header>
-
+        </header>
         <!-- Require.js bootstraps all our other js dependencies. -->
         <script src="js/require.config.js"></script>
         <script data-main="js/main" src="js/require-jquery.js"></script>
-
-        <!-- <script src="js/lib/jquery-1.8.3.min.js"></script> -->
-        <!-- <script src="js/lib/sly.min.js"></script> -->
-
     </body>
 </html>

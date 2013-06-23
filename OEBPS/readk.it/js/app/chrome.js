@@ -295,66 +295,76 @@ define([
         }
     }
 
+    // For some reason this handler always fires twice in certain browsers
+    // (Firefox and Safari, but not Chrome) -- deal with it.
+    var readkit_dropdown_bookmark_ready = true;
     $('#readkit-for-bookmark').on('click', function(){
-        if ( $('#readkit-dropdown-bookmark').is(':visible') ) {
-            $('#readkit-dropdown-bookmark').slideUp('slow');
-        } else {
-            var value = layout.storage('font-bookmark');
-            $('.readkit-strength-bookmark[data-size="' + value + '"]').addClass('readkit-active');
-            if ( $('#readkit-dropdown-size').is(':visible') ) {
-                $('#readkit-dropdown-size').slideUp();
-            }
-            if ( $('#readkit-dropdown-lineheight').is(':visible') ) {
-                $('#readkit-dropdown-lineheight').slideUp();
-            }
-
-            var input = '<div class="readkit-bookmark-input"><input id="readkit-bookmark-input" type="text" data-file="' + layout.location().file + '" value="' + layout.location().title + '"><span class="readkit-bookmark-icon-add readkit-add-bookmark"><i class="icon-plus-circle readkit-bookmark-icon"></i></span></div>';
-            var bookmarks = layout.storage('bookmarks') || [];
-
-            if (bookmarks && bookmarks.length) {
-                $('#readkit-for-bookmark').addClass('active');
-            }
-
-            var html = '<div id="readkit-bookmark-list">';
-
-            $.each(bookmarks, function(i, bookmark) {
-                html += '<div class="readkit-bookmark-list-item" style="margin-bottom:5px;"><span class="readkit-bookmark-icon-remove readkit-remove-bookmark"><i class="icon-minus-circle readkit-bookmark-icon" data-index="' + i + '"></i></span><p class="readkit-bookmark-title"><a href="#' + bookmark.file + '" data-x="' + bookmark.x + '" data-y="' + bookmark.y + '">' + bookmark.title + '</a></p></div>';
-            });
-
-            html += '</div><hr style="clear:both;" />';
-            nav = '';
-            $.each(layout.nav(), function(i, item) {
-                if (item.title) {
-                    nav += repeat('<ul style="margin-top:0; margin-bottom:0;">', item.depth + 1);
-                    //nav += '<li><a href="#' + item.url.replace(/\./, '_') + '">' + item.title + '</a></li>';
-                    nav += '<li><a href="#' + item.url + '">' + item.title + '</a></li>';
-                    nav += repeat('</ul>', item.depth + 1);
+        if (readkit_dropdown_bookmark_ready) {
+            readkit_dropdown_bookmark_ready = false;
+            if ( $('#readkit-dropdown-bookmark').is(':visible') ) {
+                $('#readkit-dropdown-bookmark').slideUp(600);
+            } else {
+                var value = layout.storage('font-bookmark');
+                $('.readkit-strength-bookmark[data-size="' + value + '"]').addClass('readkit-active');
+                if ( $('#readkit-dropdown-size').is(':visible') ) {
+                    $('#readkit-dropdown-size').slideUp();
                 }
-            });
-            html += nav;
-
-            html = input + '<div id="readkit-bookmark-widget" class="readkit-wrapper-bookmarks"><div class="readkit-scroller" style="width:280px;">' + html + '</div></div>';
-
-            $('#readkit-dropdown-bookmark').html('');
-            $('#readkit-dropdown-bookmark').append(html);
-
-            var bookmark_scroller = new iScroll('readkit-bookmark-widget', {snap: true, momentum: true, hScroll: false, hScrollbar: false, vScrollbar: false, lockDirection: true,
-                onAnimationEnd: function(){
+                if ( $('#readkit-dropdown-lineheight').is(':visible') ) {
+                    $('#readkit-dropdown-lineheight').slideUp();
                 }
-            });
 
-            // Capture clicks on anchors so we can update the scroll position.
-            $('#readkit-bookmark-widget a').on('click', function(event) {
-                layout.trap_anchor(this, event);
-                $('#readkit-dropdown-bookmark').slideUp('slow');
-            });
+                var input = '<div class="readkit-bookmark-input"><input id="readkit-bookmark-input" type="text" data-file="' + layout.location().file + '" value="' + layout.location().title + '"><span class="readkit-bookmark-icon-add readkit-add-bookmark"><i class="icon-plus-circle readkit-bookmark-icon"></i></span></div>';
+                var bookmarks = layout.storage('bookmarks') || [];
 
-            $('#readkit-dropdown-bookmark').slideDown('slow', function() {
-                setTimeout(function () {
-                    bookmark_scroller.refresh();
-                }, 0);
-            });
+                if (bookmarks && bookmarks.length) {
+                    $('#readkit-for-bookmark').addClass('active');
+                }
+
+                var html = '<div id="readkit-bookmark-list">';
+
+                $.each(bookmarks, function(i, bookmark) {
+                    html += '<div class="readkit-bookmark-list-item" style="margin-bottom:5px;"><span class="readkit-bookmark-icon-remove readkit-remove-bookmark"><i class="icon-minus-circle readkit-bookmark-icon" data-index="' + i + '"></i></span><p class="readkit-bookmark-title"><a href="#' + bookmark.file + '" data-x="' + bookmark.x + '" data-y="' + bookmark.y + '">' + bookmark.title + '</a></p></div>';
+                });
+
+                html += '</div><hr style="clear:both;" />';
+                nav = '';
+                $.each(layout.nav(), function(i, item) {
+                    if (item.title) {
+                        nav += repeat('<ul style="margin-top:0; margin-bottom:0;">', item.depth + 1);
+                        //nav += '<li><a href="#' + item.url.replace(/\./, '_') + '">' + item.title + '</a></li>';
+                        nav += '<li><a href="#' + item.url + '">' + item.title + '</a></li>';
+                        nav += repeat('</ul>', item.depth + 1);
+                    }
+                });
+                html += nav;
+
+                html = input + '<div id="readkit-bookmark-widget" class="readkit-wrapper-bookmarks"><div class="readkit-scroller" style="width:280px;">' + html + '</div></div>';
+
+                $('#readkit-dropdown-bookmark').html('');
+                $('#readkit-dropdown-bookmark').append(html);
+
+                var bookmark_scroller = new iScroll('readkit-bookmark-widget', {snap: true, momentum: true, hScroll: false, hScrollbar: false, vScrollbar: false, lockDirection: true,
+                    onAnimationEnd: function(){
+                    }
+                });
+
+                // Capture clicks on anchors so we can update the scroll position.
+                $('#readkit-bookmark-widget a').on('click', function(event) {
+                    layout.trap_anchor(this, event);
+                    $('#readkit-dropdown-bookmark').slideUp(600);
+                });
+
+                $('#readkit-dropdown-bookmark').slideDown(600, function() {
+                    setTimeout(function () {
+                        bookmark_scroller.refresh();
+                    }, 0);
+                });
+            }
         }
+
+        setTimeout(function () {
+            readkit_dropdown_bookmark_ready = true;
+        }, 700);
     });
 
     $('.readkit-remove-bookmark').live('click', function(e){

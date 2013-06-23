@@ -280,7 +280,7 @@
 
 /* line 263, ../sass/partials/_custom.scss */
 #readkit-bookmark-input {
-  width: 250px;
+  width: 242px;
   display: inline-block;
   overflow: hidden;
   white-space: nowrap;
@@ -290,7 +290,7 @@
 /* line 271, ../sass/partials/_custom.scss */
 .readkit-bookmark-title {
   float: left;
-  width: 243px;
+  width: 240px;
   margin-top: 5px;
   margin-left: 5px;
 }
@@ -431,48 +431,45 @@ pre {
   padding-top: 0;
 }
 
-/* line 407, ../sass/partials/_custom.scss */
-.readkit-bookmark-icon i[class^="icon-"] {
-  border-radius: 12px;
-}
-/* line 411, ../sass/partials/_custom.scss */
-.readkit-bookmark-icon i[class^="icon-"]:before {
-  line-height: 1.6em;
+/* line 406, ../sass/partials/_custom.scss */
+.readkit-bookmark-icon {
+  font-size: 24px;
+  color: #56a2d3;
 }
 
-/* line 416, ../sass/partials/_custom.scss */
+/* line 411, ../sass/partials/_custom.scss */
 .readkit-bookmark-icon-add {
   float: right;
   margin-top: 2px;
 }
 
-/* line 421, ../sass/partials/_custom.scss */
+/* line 416, ../sass/partials/_custom.scss */
 .readkit-bookmark-icon-remove {
   float: left;
 }
 
 /* iPhone 2G-4S in portrait & landscape */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-  /* line 435, ../sass/partials/_custom.scss */
+  /* line 430, ../sass/partials/_custom.scss */
   .readkit-header {
     top: 0;
     -webkit-user-select: none;
   }
 
-  /* line 439, ../sass/partials/_custom.scss */
+  /* line 434, ../sass/partials/_custom.scss */
   .readkit-slider {
     width: 30px;
   }
 }
 /* iPhone 5 in portrait & landscape */
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
-  /* line 448, ../sass/partials/_custom.scss */
+  /* line 443, ../sass/partials/_custom.scss */
   .readkit-header {
     top: 0;
     -webkit-user-select: none;
   }
 
-  /* line 452, ../sass/partials/_custom.scss */
+  /* line 447, ../sass/partials/_custom.scss */
   .readkit-slider {
     width: 30px;
   }
@@ -480,7 +477,7 @@ pre {
 /* iPad in portrait & landscape */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   /* Accomodate status bar */
-  /* line 462, ../sass/partials/_custom.scss */
+  /* line 457, ../sass/partials/_custom.scss */
   .readkit-header {
     top: 0;
     -webkit-user-select: none;
@@ -488,14 +485,14 @@ pre {
 }
 /* Desktop */
 @media only screen {
-  /* line 470, ../sass/partials/_custom.scss */
+  /* line 465, ../sass/partials/_custom.scss */
   .readkit-header {
     top: 0;
   }
 }
 /* Phone */
 @media (max-device-width: 240px) {
-  /* line 477, ../sass/partials/_custom.scss */
+  /* line 472, ../sass/partials/_custom.scss */
   .readkit-serif, .readkit-sans {
     display: none;
   }

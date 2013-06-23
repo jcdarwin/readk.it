@@ -308,7 +308,7 @@ define([
                 $('#readkit-dropdown-lineheight').slideUp();
             }
 
-            var input = '<div class="readkit-bookmark-input"><input id="readkit-bookmark-input" type="text" data-file="' + layout.location().file + '" value="' + layout.location().title + '"><span class="readkit-icon readkit-bookmark-icon readkit-bookmark-icon-add readkit-active readkit-add-bookmark"><i class="icon-plus readkit-active"></i></span></div>';
+            var input = '<div class="readkit-bookmark-input"><input id="readkit-bookmark-input" type="text" data-file="' + layout.location().file + '" value="' + layout.location().title + '"><span class="readkit-bookmark-icon-add readkit-add-bookmark"><i class="icon-plus-circle readkit-bookmark-icon"></i></span></div>';
             var bookmarks = layout.storage('bookmarks') || [];
 
             if (bookmarks && bookmarks.length) {
@@ -318,7 +318,7 @@ define([
             var html = '<div id="readkit-bookmark-list">';
 
             $.each(bookmarks, function(i, bookmark) {
-                html += '<div class="readkit-bookmark-list-item" style="margin-bottom:5px;"><span class="readkit-icon readkit-bookmark-icon readkit-bookmark-icon-remove readkit-active readkit-remove-bookmark"><i class="icon-minus readkit-active" data-index="' + i + '"></i></span><p class="readkit-bookmark-title"><a href="#' + bookmark.file + '" data-x="' + bookmark.x + '" data-y="' + bookmark.y + '">' + bookmark.title + '</a></p></div>';
+                html += '<div class="readkit-bookmark-list-item" style="margin-bottom:5px;"><span class="readkit-bookmark-icon-remove readkit-remove-bookmark"><i class="icon-minus-circle readkit-bookmark-icon" data-index="' + i + '"></i></span><p class="readkit-bookmark-title"><a href="#' + bookmark.file + '" data-x="' + bookmark.x + '" data-y="' + bookmark.y + '">' + bookmark.title + '</a></p></div>';
             });
 
             html += '</div><hr style="clear:both;" />';
@@ -388,7 +388,7 @@ define([
             y: layout.location().y
         };
 
-        html = '<div class="readkit-bookmark-list-item" style="margin-bottom:5px;"><span class="readkit-icon readkit-bookmark-icon readkit-bookmark-icon-remove readkit-active readkit-remove-bookmark"><i class="icon-minus readkit-active" data-index="' + bookmarks.length + '"></i></span><p class="readkit-bookmark-title"><a href="#' + bookmark.file + '">' + bookmark.title + '</a></p></div>';
+        html = '<div class="readkit-bookmark-list-item" style="margin-bottom:5px;"><span class="readkit-bookmark-icon-remove readkit-remove-bookmark"><i class="icon-minus-circle readkit-bookmark-icon" data-index="' + bookmarks.length + '"></i></span><p class="readkit-bookmark-title"><a href="#' + bookmark.file + '">' + bookmark.title + '</a></p></div>';
 
         $('#readkit-bookmark-list').append(html);
 

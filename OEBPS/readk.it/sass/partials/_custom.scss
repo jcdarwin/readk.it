@@ -261,7 +261,7 @@ $slider-width: 30px;
 }
 
 ##{$namespace}-bookmark-input {
-    width: 250px;
+    width: 242px;
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;
@@ -270,7 +270,7 @@ $slider-width: 30px;
 
 .#{$namespace}-bookmark-title {
     float: left;
-    width: 243px;
+    width: 240px;
     margin-top: 5px;
     margin-left: 5px;
 }
@@ -404,13 +404,8 @@ pre {
 }
 
 .#{$namespace}-bookmark-icon {
-    i[class^="icon-"] {
-        border-radius: $border-radius;
-    }
-
-    i[class^="icon-"]:before {
-        line-height: $line-height;
-    }    
+    font-size: 24px;
+    color: $online-color;
 }
 
 .#{$namespace}-bookmark-icon-add {

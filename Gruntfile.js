@@ -5,6 +5,9 @@ module.exports = function(grunt) {
   grunt.initConfig({
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),
+    // readkit_src: 'OEBPS/readk.it', // readk.it source
+    readkit_src: 'OEBPS/readk.it/build/dist', // readk.it compiled
+    readkit_dest: 'OEBPS/readk.it',
     banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
       '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
       '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
@@ -171,9 +174,9 @@ module.exports = function(grunt) {
     //},
 
     copy: {
-      main: {
+      epub: {
         options: {
-          processContentExclude: ['OEBPS/images/cover_front.psd', 'OEBPS/readk.it/.gitignore', 'OEBPS/readk.it/index.library.html', 'OEBPS/readk.it/offline.manifest']
+          processContentExclude: ['OEBPS/images/cover_front.psd']
         },
         files: [
           {expand: true, src: ['mimetype'], dest: 'dist/uncompressed/'},
@@ -182,20 +185,29 @@ module.exports = function(grunt) {
           {expand: true, src: ['OEBPS/css/**', 'OEBPS/fonts/**', 'OEBPS/images/**'], dest: 'dist/uncompressed/'}, // includes files in path and its subdirs
           {expand: true, flatten: true, src: ['<%= concat.script.dest %>'], dest: 'dist/uncompressed/OEBPS/js', filter: 'isFile'}, // includes files in path
           {expand: true, flatten: true, src: ['<%= concat.queries.dest %>'], dest: 'dist/uncompressed/OEBPS/js', filter: 'isFile'}, // includes files in path
-          {expand: true, src: ['OEBPS/readk.it/*'], dest: 'dist/uncompressed/', filter: 'isFile'}, // includes files in path
-          {expand: true, src: ['OEBPS/readk.it/css/**', 'OEBPS/readk.it/images/**'], dest: 'dist/uncompressed/'}, // includes files in path and its subdirs
-          {expand: true, src: ['OEBPS/readk.it/fonts/fontello/css/**', 'OEBPS/readk.it/fonts/fontello/font/**', 'OEBPS/readk.it/fonts/Lora/**', 'OEBPS/readk.it/fonts/SourceSansPro/**'], dest: 'dist/uncompressed/'}, // includes files in path and its subdirs
-          {expand: true, src: ['OEBPS/readk.it/js/*'], dest: 'dist/uncompressed/', filter: 'isFile'}, // includes files in path
-          {expand: true, src: ['OEBPS/readk.it/js/app/**', 'OEBPS/readk.it/js/lib/**'], dest: 'dist/uncompressed/'}, // includes files in path and its subdirs
           {expand: true, src: ['mimetype'], dest: 'dist/compressed/'},
           {expand: true, src: ['META-INF/**'], dest: 'dist/compressed/'}, // includes files in path and its subdirs
           {expand: true, src: ['OEBPS/*'], dest: 'dist/compressed/', filter: 'isFile'}, // includes files in path
-          {expand: true, src: ['OEBPS/css/**', 'OEBPS/fonts/**', 'OEBPS/images/**'], dest: 'dist/compressed/'}, // includes files in path and its subdirs
-          {expand: true, src: ['OEBPS/readk.it/*'], dest: 'dist/compressed/', filter: 'isFile'}, // includes files in path
-          {expand: true, src: ['OEBPS/readk.it/css/**', 'OEBPS/readk.it/images/**'], dest: 'dist/compressed/'}, // includes files in path and its subdirs
-          {expand: true, src: ['OEBPS/readk.it/fonts/fontello/css/**', 'OEBPS/readk.it/fonts/fontello/font/**', 'OEBPS/readk.it/fonts/Lora/**', 'OEBPS/readk.it/fonts/SourceSansPro/**'], dest: 'dist/compressed/'}, // includes files in path and its subdirs
-          {expand: true, src: ['OEBPS/readk.it/js/*'], dest: 'dist/compressed/', filter: 'isFile'}, // includes files in path
-          {expand: true, src: ['OEBPS/readk.it/js/app/**', 'OEBPS/readk.it/js/lib/**'], dest: 'dist/compressed/'} // includes files in path and its subdirs
+          {expand: true, src: ['OEBPS/css/**', 'OEBPS/fonts/**', 'OEBPS/images/**'], dest: 'dist/compressed/'} // includes files in path and its subdirs
+        ]
+      },
+      // Copy across the readk.it files.
+      // <%= readkit_src %> allows us to easily change between source readk.it and built readk.it
+      readkit: {
+        options: {
+          processContentExclude: ['<%= readkit_src %>/.gitignore', '<%= readkit_src %>/build.txt', '<%= readkit_src %>/index.library.html', '<%= readkit_src %>/offline.manifest']
+        },
+        files: [
+          {expand: true, cwd: '<%= readkit_src %>/', src: ['*'], dest: 'dist/uncompressed/<%= readkit_dest %>/', filter: 'isFile'}, // includes files in path
+          {expand: true, cwd: '<%= readkit_src %>/', src: ['css/**', 'images/**'], dest: 'dist/uncompressed/<%= readkit_dest %>/'}, // includes files in path and its subdirs
+          {expand: true, cwd: '<%= readkit_src %>/', src: ['fonts/fontello/css/**', 'fonts/fontello/font/**', 'fonts/Lora/**', 'fonts/SourceSansPro/**'], dest: 'dist/uncompressed/<%= readkit_dest %>/'}, // includes files in path and its subdirs
+          {expand: true, cwd: '<%= readkit_src %>/', src: ['js/*'], dest: 'dist/uncompressed/<%= readkit_dest %>/', filter: 'isFile'}, // includes files in path
+          {expand: true, cwd: '<%= readkit_src %>/', src: ['js/app/**', 'js/lib/**'], dest: 'dist/uncompressed/<%= readkit_dest %>/'}, // includes files in path and its subdirs
+          {expand: true, cwd: '<%= readkit_src %>/', src: ['*'], dest: 'dist/compressed/<%= readkit_dest %>/', filter: 'isFile'}, // includes files in path
+          {expand: true, cwd: '<%= readkit_src %>/', src: ['css/**', 'images/**'], dest: 'dist/compressed/<%= readkit_dest %>/'}, // includes files in path and its subdirs
+          {expand: true, cwd: '<%= readkit_src %>/', src: ['fonts/fontello/css/**', 'fonts/fontello/font/**', 'fonts/Lora/**', 'fonts/SourceSansPro/**'], dest: 'dist/compressed/<%= readkit_dest %>/'}, // includes files in path and its subdirs
+          {expand: true, cwd: '<%= readkit_src %>/', src: ['js/*'], dest: 'dist/compressed/<%= readkit_dest %>/', filter: 'isFile'}, // includes files in path
+          {expand: true, cwd: '<%= readkit_src %>/', src: ['js/app/**', 'js/lib/**'], dest: 'dist/compressed/<%= readkit_dest %>/'} // includes files in path and its subdirs
         ]
       }
     },

@@ -89,6 +89,7 @@ To acheive this, we need to add a bunch of entries to the content.opf to ensure 
     <!-- './readk.it'  -->
         <item id='readk_it_favicon_ico' href='readk.it/favicon.ico'  media-type='image/vnd.microsoft.icon' />
         <item id='readk_it_index_html' href='readk.it/index.html'  media-type='text/html' />
+        <item id='readk_it_offline_manifest' href='readk.it/offline.manifest'  media-type='text/plain' />
     <!-- './readk.it/css'  -->
         <item id='readk_it_css_styles_css' href='readk.it/css/styles.css'  media-type='text/css' />
     <!-- './readk.it/fonts'  -->
@@ -148,6 +149,18 @@ To acheive this, we need to add a bunch of entries to the content.opf to ensure 
         <item id='readk_it_js_lib_require-css_normalize_js' href='readk.it/js/lib/require-css/normalize.js'  media-type='text/javascript' />
         <item id='readk_it_js_lib_require-css_LICENSE_txt' href='readk.it/js/lib/require-css/LICENSE.txt'  media-type='text/plain' />
 
+####Building
+
+If you're looking over the code for the Readk.it Manifesto, you might notice that in the top-level folder, besides the familiar OEBPS and META-INF folders and mimetype file, there's a number of other files in there. This is because the Readk.it Manifesto uses [Grunt](http://gruntjs.com/) (the Javascript build tool) as its build tool. In order to compile the ReadK.it Manifesto, you'll need to [install node](http://nodejs.org/download/), [followed by grunt](http://gruntjs.com/installing-grunt), and then at a command line, navigate to the top-level directory and simply issue the command:
+
+    grunt
+
+This will create a <code>dist</code> directory, inside of which you'll find the Readk.it Manifesto codetree ready to be zipped into an EPUB file.Grunt performs the following tasks:
+
+* compiling the SASS code into CSS
+* assembling only the files that actually needs to be in the EPUB
+* checking for consistency
+
 
 ###<a id="library"></a>Library mode
 Library mode is as easy to setup as single-publication mode:
@@ -185,12 +198,11 @@ Visit the following URLs:
 
 * [The readk.it library](http://localhost:8000/OEBPS/readk.it/library/library.html)
 
-###Grunt
+###<a id="grunt"></a>Grunt
 
 Install grunt:
 
     npm uninstall -g grunt
-    npm install -g grunt-cli
 
 Install grunt-cli (Cygwin under windows):
 
@@ -213,6 +225,8 @@ Install dependendices:
     npm install grunt-contrib-compass --save-dev
     npm install grunt-contrib-nodeunit --save-dev
     npm install grunt-contrib-watch --save-dev
+    npm install grunt-zip --save-dev
+    npm install grunt-shell --save-dev
 
 As we use cygwin, add the following hack into node_modules\grunt-contrib-compass\tasks\compass.js, directly before "compile(args, cb);":
 

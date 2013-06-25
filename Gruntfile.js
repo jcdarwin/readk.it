@@ -198,6 +198,23 @@ module.exports = function(grunt) {
           {expand: true, src: ['OEBPS/readk.it/js/app/**', 'OEBPS/readk.it/js/lib/**'], dest: 'dist/compressed/'} // includes files in path and its subdirs
         ]
       }
+    },
+
+    shell: {
+      zip: {
+        command: [
+          'cd dist/uncompressed',
+          'echo Zipping <%= pkg.title || pkg.name %>.epub...',
+          'zip -X0 <%= pkg.title || pkg.name %>.epub mimetype -x ._',
+          'zip -rDX9 <%= pkg.title || pkg.name %>.epub META-INF -x *.DS_Store -x ._*',
+          'zip -rDX9 <%= pkg.title || pkg.name %>.epub OEBPS -x *.DS_Store -x ._*',
+          'echo Zipped <%= pkg.title || pkg.name %>.epub'
+        ].join('&&'),
+        options: {
+          stdout: true,
+          stderr: true
+        }
+      }
     }
 
 /*
@@ -224,8 +241,9 @@ module.exports = function(grunt) {
   /* grunt.loadNpmTasks('grunt-contrib-nodeunit'); */
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-shell');
 
   // Default task.
-  grunt.registerTask('default', ['clean:before', 'jshint', 'concat', 'uglify', 'compass', 'copy', 'clean:after']);
+  grunt.registerTask('default', ['clean:before', 'jshint', 'concat', 'uglify', 'compass', 'copy', 'shell', 'clean:after']);
 
 };

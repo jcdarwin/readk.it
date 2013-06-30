@@ -227,7 +227,17 @@ module.exports = function(grunt) {
           stderr: true
         }
       }
+    },
+
+  connect: {
+    server: {
+      options: {
+        port: 8000,
+        base: '.',
+        keepalive: true
+      }
     }
+  }
 
 /*
     watch: {
@@ -254,6 +264,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-contrib-connect');
 
   // Default task.
   grunt.registerTask('default', ['clean:before', 'jshint', 'concat', 'uglify', 'compass', 'copy', 'shell', 'clean:after']);

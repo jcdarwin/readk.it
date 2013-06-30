@@ -8,7 +8,7 @@ Readk.it can be embedded inside an EPUB file and travel with it, allowing future
 
 Readk.it has been designed to take advantage of responsive design techniques in order to provide a seamless digital reading experience when the EPUB file is accessed via a browser, but where the EPUB file can also fallback to standard behaviour on dedicated EPUB reading devices (in which case Readk.it is quiesecent).
 
-No modifications to any existing EPUB files should be necessary in order to allow the EPUB to be read using Readk.it, however a better reading experience than is currently possible on most dedicated EPUB reading devices can be acheived by coupling Readk.it with content created using responsive design techniques (see the Readk.it Manifesto for a simple example).
+No modifications to any existing EPUB files should be necessary in order to allow the EPUB to be read using Readk.it. However, a better reading experience than is currently possible on most dedicated EPUB reading devices can be acheived by coupling Readk.it with content created using responsive design techniques (see the Readk.it Manifesto for a simple example).
 
 Readk.it has come about because EPUB, in spite of the potential that the standard allows, is being restricted by a lack of features and standardisation on the part of dedicated vendor reading systems. Given that the modern browser is ubiquitous on mobile devices, it makes sense to provide a reading system that allows EPUB to take advantage of its capabilities.
 
@@ -21,12 +21,12 @@ Readk.it builds on the efforts of others, notably Matteo Spinelli's [iScroll4](h
 ###Single-page app
 Readk.it chooses a model whereby it loads all EPUB files into a single page. It's smart enough to rewrite internal urls and anchors (preventing collisions), and any JavaScript files specifically required by the EPUB can also be [configured to be loaded](#client.config.js).
 
-The reason Readk.it adopts this behaviour is to allow a simple means of loading the entire EPUB, such that it can then be read without further recourse to the server. With the use of app cache to store all of the EPUB assets client-side and thereby allow reading offline, this approach also makes sense.
+The reason Readk.it adopts this behaviour is to allow a simple means of loading the entire EPUB, such that it can then be read without further recourse to the server. With the use of app cache to store all of the EPUB assets client-side and thereby allow further reading offline, this approach also makes sense.
 
-However, the main limitation this imposes is one of file size; this approach works well for text-based EPUBs (for instance, Moby Dick) however, if your EPUB contains lots of media (particularly video), then you may find that it takes a long time for the publication to load (providing the browser doesn't time-out). The solution to this is simple: split your publication up into a series of smaller publications, and consider using the [Readk.it library](#library) to serve them.
+However, the main limitation this imposes is one of file size; this approach works well for text-based EPUBs (for instance, Moby Dick) but if your EPUB contains lots of media (particularly video), then you may find that it takes a long time for the publication to load (providing the browser doesn't time-out). The solution to this is simple: split your publication up into a series of smaller publications, and consider using the [Readk.it library configuration](#library) to serve them.
 
 ###EPUB-lite
-The EPUB standard is verbose and complex ([canonical fragment identifiers](http://www.idpf.org/epub/linking/cfi/), anyone?) and Readk.it makes no attempt to do much more than provide a mechanism for prising open an EPUB and wrapping it with a basic navigation system. That's not to say that it couldn't be extended to support specific (and ocassionally esoteric) EPUB functionality in the way that [Readium](http://readium.org/) has, however the high majority of users should find that what Readk.it provides is ample. This is somewhat in the spirit of [EPUB Zero](http://epubzero.blogspot.co.nz/2013/02/epub-zero-radically-simpler-e-book.html), if somewhat less heretical in being able to cope with the existing EPUB file structure and metadata layout.
+The EPUB standard is verbose and complex ([canonical fragment identifiers](http://www.idpf.org/epub/linking/cfi/), anyone?) and Readk.it makes no attempt to do much more than provide a mechanism for prising open an EPUB and wrapping it with a basic but functional navigation system. That's not to say that it couldn't be extended to support specific (and ocassionally esoteric) EPUB functionality in the way that [Readium](http://readium.org/) has, however the high majority of users should find that what Readk.it provides is ample. This is somewhat in the spirit of [EPUB Zero](http://epubzero.blogspot.co.nz/2013/02/epub-zero-radically-simpler-e-book.html), if somewhat less heretical in being able to cope with the existing EPUB file structure and metadata layout.
 
 ##Before we begin
 
@@ -84,7 +84,7 @@ As Readk.it operates by compiling all of the EPUB XHTML files into a single HTML
 ####Content-opf
 In this mode Readk.it is included in the EPUB file, and travels with the EPUB file.
 
-To acheive this, we need to add a bunch of entries to the content.opf to ensure that the EPUB is valid (according to [epubcheck](https://code.google.com/p/epubcheck/)):
+To acheive this, we need to add a bunch of entries to the content.opf to ensure that the EPUB is valid (according to [epubcheck](https://code.google.com/p/epubcheck/)). This is only needed for compliance with dedicated EPUB reading systems &#8212; web-serving the content using Readk.it will still work without these entries in the content.opf.
 
     <!-- './readk.it'  -->
         <item id='readk_it_favicon_ico' href='readk.it/favicon.ico'  media-type='image/vnd.microsoft.icon' />
@@ -155,12 +155,15 @@ If you're looking over the code for the Readk.it Manifesto, you might notice tha
 
     grunt
 
-This will create a <code>dist</code> directory, inside of which you'll find the Readk.it Manifesto codetree ready to be zipped into an EPUB file.Grunt performs the following tasks:
+This will create a <code>dist</code> directory, inside of which you'll find two versions of the Readk.it Manifesto codetree and EPUB file: a development version with all files unconcatenated and unminified, and a production version which is optimised for performance. Grunt performs the following tasks:
 
 * compiling the SASS code into CSS
 * assembling only the files that actually needs to be in the EPUB
-* checking for consistency
+* checking the JavaScript files for consistency
+* zipping the files up into an EPUB
+* running a web server so that you can view your publication in a browser by navigating to <code>http://localhost:8000/OEBPS/readk.it/</code>
 
+Note that the actual Readk.it Manifesto content is not optimised; this is intentional in order to preserve the sanity of future production staff who have to work with the EPUB content files to produce a new version. Although not ideal, it often happens that production staff only have recourse to the published files when producing the next version of content, say because the original source files have been lost, are not available, or are obsolete.
 
 ###<a id="library"></a>Library mode
 Library mode is as easy to setup as single-publication mode:
@@ -178,25 +181,18 @@ Note that, in this case, the directory containing the readk.it folder is the web
 ##Technical notes
 
 ###<a id="webserver"></a>Setting up a local webserver
-Place the following in <code>~/.bash_profile</code>:
 
-    alias server.python='open http://localhost:8000 && python -m SimpleHTTPServer'
+We use the [grunt-contrib-connect](https://github.com/gruntjs/grunt-contrib-connect) package to provide a simple web server.
 
-Reload <code>.bash_profile</code>:
+If running the entire grunt process (i.e. <code>grunt</code>), then the webserver will be started as the last step in the process. Once the webserver has started, visit the following URLs:
 
-    . ~/.bash_profile
+* [The readk.it manifesto: http://localhost:8000/OEBPS/readk.it/index.html](http://localhost:8000/OEBPS/readk.it/)
 
-Fire up a webserver at the location of this README.md:
+* [The readk.it library: http://localhost:8000/OEBPS/readk.it/library/library.html](http://localhost:8000/OEBPS/readk.it/library/library.html)
 
-    server.python
+* [The readk.it testing framework: http://localhost:8000/OEBPS/readk.it/js/test/](http://localhost:8000/OEBPS/readk.it/js/test/)
 
-Visit the following URLs:
-
-* [The readk.it testing framework](http://localhost:8000/OEBPS/readk.it/js/test/)
-
-* [The readk.it manifesto](http://localhost:8000/OEBPS/readk.it/index.html)
-
-* [The readk.it library](http://localhost:8000/OEBPS/readk.it/library/library.html)
+Note that the <code>Gruntfile.js</code> specifies <code>keepalive: true</code> for the webserver task, so when finished you'll need to <code>CTRL+C</code> to stop it.
 
 ###<a id="grunt"></a>Grunt
 
@@ -227,6 +223,7 @@ Install dependendices:
     npm install grunt-contrib-watch --save-dev
     npm install grunt-zip --save-dev
     npm install grunt-shell --save-dev
+    npm install grunt-contrib-connect --save-dev
 
 As we use cygwin, add the following hack into node_modules\grunt-contrib-compass\tasks\compass.js, directly before "compile(args, cb);":
 

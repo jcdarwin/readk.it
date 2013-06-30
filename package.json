@@ -13,7 +13,8 @@
     "grunt-contrib-nodeunit": "~0.2.0",
     "grunt-contrib-copy": "~0.4.1",
     "grunt-shell": "~0.3.0",
-    "grunt-contrib-jshint": "~0.6.0"
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-connect": "~0.3.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

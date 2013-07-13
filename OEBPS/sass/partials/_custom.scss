@@ -105,3 +105,30 @@ hr {
 
 a, a:visited { color: $link-visited; }
 a:hover, a:active, a:focus { color: $link-unvisited; }
+
+.main_icon {
+    cursor: pointer;
+}
+
+html:-moz-full-screen {
+   background: $background-color;
+}
+
+html:-webkit-full-screen {
+    background: $background-color;
+}
+
+html:fullscreen {
+   background: $background-color;
+}
+
+.tooltip {
+  display:none;
+  position: absolute;
+  background-color: $offline-color;
+  border-radius: 0.2rem;
+  padding: 0.3rem;
+  color: $light-color;
+  font-size:0.85rem;
+  z-index: 1;
+}

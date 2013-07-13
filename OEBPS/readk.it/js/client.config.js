@@ -28,6 +28,7 @@ var client = {
         'client_js/libs/jquery.easing.1.3.min',
         'client_js/libs/jquery.fitvids.min',
         'client_js/libs/enquire.min',
+        'client_js/libs/screenfull.min',
         'client_js/script',
         'client_js/queries'
     ]

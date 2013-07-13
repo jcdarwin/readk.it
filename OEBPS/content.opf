@@ -50,6 +50,7 @@
         <item id='js_libs_jquery_fitvids_min_js' href='js/libs/jquery.fitvids.min.js'  media-type='text/javascript' />
         <item id='js_libs_media_match_min_js' href='js/libs/media.match.min.js'  media-type='text/javascript' />
         <item id='js_libs_modernizr_min_js' href='js/libs/modernizr.min.js'  media-type='text/javascript' />
+        <item id='js_libs_screenfull_min_js' href='js/libs/screenfull.min.js'  media-type='text/javascript' />
     <!-- './readk.it'  -->
         <item id='readk_it_favicon_ico' href='readk.it/favicon.ico'  media-type='image/vnd.microsoft.icon' />
         <item id='readk_it_index_html' href='readk.it/index.html'  media-type='text/html' />

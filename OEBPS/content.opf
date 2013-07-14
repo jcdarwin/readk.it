@@ -17,9 +17,6 @@
         <item id='index_html' href='index.html'  media-type="application/xhtml+xml" properties="scripted" />
         <item id='what_html' href='what.html'  media-type="application/xhtml+xml" properties="scripted" />
     <!-- './css'  -->
-        <item id='css_ie_css' href='css/ie.css'  media-type='text/css' />
-        <item id='css_normalize_css' href='css/normalize.css'  media-type='text/css' />
-        <item id='css_print_css' href='css/print.css'  media-type='text/css' />
         <item id='css_screen_css' href='css/screen.css'  media-type='text/css' />
     <!-- './css/pure'  -->
         <item id='css_grids_css' href='css/grids.css'  media-type='text/css' />

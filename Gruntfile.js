@@ -47,6 +47,7 @@ module.exports = function(grunt) {
           enquire: true,
           jQuery: true,
           Modernizr: true,
+          screenfull: true,
           document: true,
           navigator: true
         }

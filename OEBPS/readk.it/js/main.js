@@ -14,23 +14,25 @@ var extend = function(obj, defaults) {
 };
 extend(paths, client.paths);
 
+// Our main require config
 require.config({
     // By default load any module IDs from js/lib
     baseUrl: 'js/lib',
     // except, if the module ID starts with "app",
     // load it from the js/app directory.
     paths: paths,
-    // Map the require-css library such that consumers only have to specifiy 'css!'
+    // Map the require-css library such that consumers only have to specify 'css!'
     map: {
       '*': {
         'css': 'require-css/css'
       }
     },
-    // shim in our jQuery plugins
     shim: {
+        // Shim in our jQuery plugins etc, as they aren't AMD modules
         'jquery.storage': ['jquery'],
         'jquery.ba-urlinternal.min': ['jquery'],
         'jquery.hotkeys': ['jquery'],
+        // Make non-AMD modules act like AMD modules
         'iscroll': {exports: 'iScroll'}
     }
 });

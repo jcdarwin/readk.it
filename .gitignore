@@ -1,4 +1,4 @@
-build
-dist
+# Ignore only the top-level dist directory
+/dist
 .tern-port
 .sass-cache

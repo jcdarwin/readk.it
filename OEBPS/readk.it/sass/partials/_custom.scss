@@ -34,13 +34,7 @@ $slider-width: 30px;
 // ==========================================================================//
 
 @include font-face('Source Sans Pro', font-files(
-    "SourceSansPro/SourceSansPro-Light.woff", woff), false, 300, normal, false, SourceSansPro-Light);
-
-@include font-face('Source Sans Pro', font-files(
     "SourceSansPro/SourceSansPro-Regular.woff", woff), false, 400, normal, false, SourceSansPro-Regular);
-
-@include font-face('Source Sans Pro', font-files(
-    "SourceSansPro/SourceSansPro-Semibold.woff", woff), false, 600, normal, false, SourceSansPro-Bold);
 
 @include font-face('Source Sans Pro', font-files(
     "SourceSansPro/SourceSansPro-Bold.woff", woff), false, 700, normal, false, SourceSansPro-Bold);

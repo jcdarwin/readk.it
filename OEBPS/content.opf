@@ -75,9 +75,7 @@
         <item id='readk_it_fonts_SourceSansPro_SourceSansPro-Bold_woff' href='readk.it/fonts/SourceSansPro/SourceSansPro-Bold.woff'  media-type='application/vnd.ms-opentype' />
         <item id='readk_it_fonts_SourceSansPro_SourceSansPro-BoldIt_woff' href='readk.it/fonts/SourceSansPro/SourceSansPro-BoldIt.woff'  media-type='application/vnd.ms-opentype' />
         <item id='readk_it_fonts_SourceSansPro_SourceSansPro-It_woff' href='readk.it/fonts/SourceSansPro/SourceSansPro-It.woff'  media-type='application/vnd.ms-opentype' />
-        <item id='readk_it_fonts_SourceSansPro_SourceSansPro-Light_woff' href='readk.it/fonts/SourceSansPro/SourceSansPro-Light.woff'  media-type='application/vnd.ms-opentype' />
         <item id='readk_it_fonts_SourceSansPro_SourceSansPro-Regular_woff' href='readk.it/fonts/SourceSansPro/SourceSansPro-Regular.woff'  media-type='application/vnd.ms-opentype' />
-        <item id='readk_it_fonts_SourceSansPro_SourceSansPro-Semibold_woff' href='readk.it/fonts/SourceSansPro/SourceSansPro-Semibold.woff'  media-type='application/vnd.ms-opentype' />
     <!-- './readk.it/images'  -->
         <item id='readk_it_images_apple-touch-icon-114x114_png' href='readk.it/images/apple-touch-icon-114x114.png'  media-type='image/png' />
         <item id='readk_it_images_apple-touch-icon-57x57-precomposed_png' href='readk.it/images/apple-touch-icon-57x57-precomposed.png'  media-type='image/png' />

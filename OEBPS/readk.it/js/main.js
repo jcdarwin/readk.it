@@ -1,10 +1,10 @@
 // Readk.it paths
 var paths = {
-        app: '../app',
-        underscore: 'underscore-min.amd'
+    app: '../app',
+    underscore: 'underscore-min.amd'
 };
 
-// Add client EPUB paths to the Readk.it paths
+// Mixin any client EPUB paths to the Readk.it paths
 var extend = function(obj, defaults) {
     for (var i in defaults) {
         if (!obj[i]) {
@@ -20,20 +20,36 @@ require.config({
     // except, if the module ID starts with "app",
     // load it from the js/app directory.
     paths: paths,
+    // Map the require-css library such that consumers only have to specifiy 'css!'
     map: {
       '*': {
         'css': 'require-css/css'
       }
+    },
+    // shim in our jQuery plugins
+    shim: {
+        'jquery.storage': ['jquery'],
+        'jquery.ba-urlinternal.min': ['jquery'],
+        'jquery.hotkeys': ['jquery'],
+        'iscroll': {exports: 'iScroll'}
     }
 });
 
-// Readk.it required modules
-var required = ['jquery', 'app/controller', 'app/config'];
+// Add to home screen: http://cubiq.org/add-to-home-screen
+var addToHomeConfig = {
+    startDelay: 30000,
+    lifespan:10000,
+    touchIcon:true,
+    message:'Install this book on your %device: tap %icon and then <strong>Add to Home Screen</strong>.'
+};
 
-// Add any required client EPUB modules to the Readk.it required modules
+// Readk.it required modules
+var required = ['jquery', 'app/controller', 'app/config', 'add-to-homescreen/src/add2home'];
+
+// Mixin any required client EPUB modules to the Readk.it required modules
 required = required.concat(client.required);
 
-require(required, function($, Controller, config){
+require(required, function($, Controller, config, add2home){
     var book;
     var path = window.location.hash.replace(/^#/, '');
 
@@ -51,5 +67,4 @@ require(required, function($, Controller, config){
     $(document).on('kickedoff', function() {
         controller.publication_finalise();
     });
-
 });

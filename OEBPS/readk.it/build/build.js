@@ -9,5 +9,5 @@
     ],
     paths: {
     },
-    fileExclusionRegExp: /^\.|^html|^build|^test|^example|\.orig$|^offline.manifest|\.md$/
+    fileExclusionRegExp: /^\.|^html|^build|^test|^example|\.orig$|^offline.manifest|\.md$|^sass/
 })

@@ -4,17 +4,9 @@
 ** Author: Jason Darwin
 **
 ** The extra resources from our EPUB/s that we want require.js to
-** load into the page.
-** These are typically js files, but can be css and other, e.g.:
-**
-**    paths: {
-**        client_css: '../../../css'
-**    }
-**
-**    required: [
-**        'css!client_css/normalize.css'
-**    ]
-**
+** load into the Readk.it page.
+** This allows us to 'mixin' various javascript libs from our EPUB
+** file that are not native to Readk.it.
 */
 
 var client = {

@@ -19,8 +19,8 @@ define([
         controller = caller;
         layout = surface;
 
-        // We wait until the publication is loaded into the layout before
-        // activating the chrome.
+        // We wait until the publication is loaded into the layout
+        // before activating the chrome.
         controller.subscribe('publication_loaded', initialiser);
     };
 
@@ -88,8 +88,11 @@ define([
         // Check for stored font-size preference and apply accordingly.
         var fontsize = layout.storage('font-size');
         if (_.isNumber(fontsize)) {
+            $('#readkit-for-size').addClass('readkit-active');
             $('#readkit-pageWrapper').css('font-size', fontsize + 'px');
-            $('.readkit-strength-size[data-size="' + fontsize + '"]').removeClass('readkit-inactive').addClass('readkit-active');
+            $('.readkit-strength-size[data-size="' + fontsize + '"]')
+                .removeClass('readkit-inactive')
+                .addClass('readkit-active');
         } else {
             // By default we use the publication styles.
             //$('.readkit-strength-size.readkit-small').removeClass('readkit-inactive').addClass('readkit-active');
@@ -98,8 +101,13 @@ define([
         // Check for stored line-height preference and apply accordingly.
         var lineheight = layout.storage('line-height');
         if (_.isNumber(lineheight)) {
-            $('#readkit-pageWrapper').find(tag_names).css('line-height', lineheight);
-            $('.readkit-strength-line-height[data-size="' + lineheight + '"]').removeClass('readkit-inactive').addClass('readkit-active');
+            $('#readkit-for-lineheight').addClass('readkit-active');
+            $('#readkit-pageWrapper')
+                .find(tag_names)
+                .css('line-height', lineheight);
+            $('.readkit-strength-line-height[data-size="' + lineheight + '"]')
+                .removeClass('readkit-inactive')
+                .addClass('readkit-active');
         } else {
             // By default we use the publication styles.
             //$('.readkit-strength-line-height.readkit-small').removeClass('readkit-inactive').addClass('readkit-active');
@@ -147,12 +155,17 @@ define([
         var y_percent = layout.location().y / layout.location().height;
 
         if ( $('.readkit-icon-sans').hasClass('readkit-active') ) {
-            $('#readkit-pageWrapper').find(tag_names).removeClass('readkit-sans');
+            $('#readkit-pageWrapper')
+                .find(tag_names)
+                .removeClass('readkit-sans');
             $('.readkit-icon-sans').removeClass('readkit-active');
 
             layout.storage('font', []);
         } else {
-            $('#readkit-pageWrapper').find(tag_names).addClass('readkit-sans').removeClass('readkit-serif');
+            $('#readkit-pageWrapper')
+                .find(tag_names)
+                .addClass('readkit-sans')
+                .removeClass('readkit-serif');
             $('.readkit-icon-serif').removeClass('readkit-active');
             $('.readkit-icon-sans').addClass('readkit-active');
 
@@ -165,12 +178,16 @@ define([
     $('.readkit-icon-serif').click(function(){
         var y_percent = layout.location().y / layout.location().height;
         if ( $('.readkit-icon-serif').hasClass('readkit-active') ) {
-            $('#readkit-pageWrapper').find(tag_names).removeClass('readkit-serif');
+            $('#readkit-pageWrapper')
+                .find(tag_names)
+                .removeClass('readkit-serif');
             $('.readkit-icon-serif').removeClass('readkit-active');
 
             layout.storage('font', []);
         } else {
-            $('#readkit-pageWrapper').find(tag_names).addClass('readkit-serif').removeClass('readkit-sans');
+            $('#readkit-pageWrapper').find(tag_names)
+                .addClass('readkit-serif')
+                .removeClass('readkit-sans');
             $('.readkit-icon-sans').removeClass('readkit-active');
             $('.readkit-icon-serif').addClass('readkit-active');
 
@@ -197,7 +214,9 @@ define([
                     $('#readkit-dropdown-bookmark').slideUp();
                 }
                 var value = layout.storage('font-size');
-                $('.readkit-strength-size[data-size="' + value + '"]').removeClass('readkit-inactive').addClass('readkit-active');
+                $('.readkit-strength-size[data-size="' + value + '"]')
+                    .removeClass('readkit-inactive')
+                    .addClass('readkit-active');
                 $('#readkit-dropdown-size').slideDown(600);
             }
         }
@@ -211,13 +230,21 @@ define([
         e.stopPropagation();
         var value = [];
         if ( $(this).hasClass('readkit-active') ) {
-            $('.readkit-strength-size').removeClass('readkit-active').addClass('readkit-inactive');
+            $('.readkit-strength-size')
+                .removeClass('readkit-active')
+                .addClass('readkit-inactive');
             $('#readkit-pageWrapper').css('font-size', '');
+            $('#readkit-for-size').removeClass('readkit-active');
         } else {
-            $('.readkit-strength-size').removeClass('readkit-active').addClass('readkit-inactive');
-            $(this).removeClass('readkit-inactive').addClass('readkit-active');
+            $('.readkit-strength-size')
+                .removeClass('readkit-active')
+                .addClass('readkit-inactive');
+            $(this)
+                .removeClass('readkit-inactive')
+                .addClass('readkit-active');
             value = $(this).data('size');
             $('#readkit-pageWrapper').css('font-size', value + 'px');
+            $('#readkit-for-size').addClass('readkit-active');
         }
 
         var y_percent = layout.location().y / layout.location().height;
@@ -247,7 +274,9 @@ define([
                     $('#readkit-dropdown-bookmark').slideUp();
                 }
                 var value = layout.storage('line-height');
-                $('.readkit-strength-line-height[data-size="' + value + '"]').removeClass('readkit-inactive').addClass('readkit-active');
+                $('.readkit-strength-line-height[data-size="' + value + '"]')
+                    .removeClass('readkit-inactive')
+                    .addClass('readkit-active');
                 $('#readkit-dropdown-lineheight').slideDown(600);
             }
         }
@@ -261,13 +290,25 @@ define([
        e.stopPropagation();
        var value = [];
         if ( $(this).hasClass('readkit-active') ) {
-            $('.readkit-strength-line-height').removeClass('readkit-active').addClass('readkit-inactive');
-            $('#readkit-pageWrapper').find(tag_names).css('line-height', '');
+            $('.readkit-strength-line-height')
+                .removeClass('readkit-active')
+                .addClass('readkit-inactive');
+            $('#readkit-pageWrapper')
+                .find(tag_names)
+                .css('line-height', '');
+            $('#readkit-for-lineheight').removeClass('readkit-active');
         } else {
-            $('.readkit-strength-line-height').removeClass('readkit-active').addClass('readkit-inactive');
-            $(this).removeClass('readkit-inactive').addClass('readkit-active');
+            $('.readkit-strength-line-height')
+                .removeClass('readkit-active')
+                .addClass('readkit-inactive');
+            $(this)
+                .removeClass('readkit-inactive')
+                .addClass('readkit-active');
             value = $(this).data('size');
-            $('#readkit-pageWrapper').find(tag_names).css('line-height', value);
+            $('#readkit-pageWrapper')
+                .find(tag_names)
+                .css('line-height', value);
+            $('#readkit-for-lineheight').addClass('readkit-active');
         }
 
         var y_percent = layout.location().y / layout.location().height;
@@ -367,7 +408,7 @@ define([
         }, 700);
     });
 
-    $('.readkit-remove-bookmark').live('click', function(e){
+    $('#readkit-dropdown-bookmark').on('click', '.readkit-remove-bookmark', function(e){
         e.preventDefault();
         var index = $(this).data('index');
 
@@ -383,7 +424,7 @@ define([
 
     });
 
-    $('.readkit-add-bookmark').live('click', function(e){
+    $('#readkit-dropdown-bookmark').on('click', '.readkit-add-bookmark', function(e){
         e.preventDefault();
         $('#readkit-for-bookmark').addClass('readkit-active');
 

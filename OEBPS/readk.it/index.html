@@ -73,8 +73,11 @@
         <!-- Our client EPUB configuration. -->
         <script src="js/client.config.js"></script>
 
-        <!-- Require.js bootstraps all our other js dependencies. -->
-        <script data-main="js/main" src="js/lib/require.js"></script>
+        <!-- Use this for development - all js is served as separate files, but bootstrapped by main.js -->
+        <!-- <script data-main="js/main" src="js/lib/require.js"></script> -->
+
+        <!-- Use this for production - all js is served as a single file, main.compiled.js -->
+        <script data-main="build/dist/main.compiled" src="js/lib/require.js"></script>
 
     </body>
 </html>

@@ -207,7 +207,7 @@ module.exports = function(grunt) {
           {expand: true, cwd: '<%= readkit_src %>/', src: ['*'], dest: 'dist/compressed/<%= readkit_dest %>/', filter: 'isFile'}, // includes files in path
           {expand: true, cwd: '<%= readkit_src %>/', src: ['css/**', 'images/**'], dest: 'dist/compressed/<%= readkit_dest %>/'}, // includes files in path and its subdirs
           {expand: true, cwd: '<%= readkit_src %>/', src: ['fonts/fontello/css/**', 'fonts/fontello/font/**', 'fonts/Lora/**', 'fonts/SourceSansPro/**'], dest: 'dist/compressed/<%= readkit_dest %>/'}, // includes files in path and its subdirs
-          {expand: true, cwd: '<%= readkit_src %>/', src: ['js/*'], dest: 'dist/compressed/<%= readkit_dest %>/', filter: 'isFile'}, // includes files in path
+          {expand: true, cwd: '<%= readkit_src %>/', src: ['js/*', 'build/dist/*'], dest: 'dist/compressed/<%= readkit_dest %>/', filter: 'isFile'}, // includes files in path
           {expand: true, cwd: '<%= readkit_src %>/', src: ['js/app/**', 'js/lib/**'], dest: 'dist/compressed/<%= readkit_dest %>/'} // includes files in path and its subdirs
         ]
       }

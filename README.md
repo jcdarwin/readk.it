@@ -23,7 +23,7 @@ Readk.it chooses a model whereby it loads all EPUB files into a single page. It'
 
 The reason Readk.it adopts this behaviour is to allow a simple means of loading the entire EPUB, such that it can then be read without further recourse to the server. With the use of app cache to store all of the EPUB assets client-side and thereby allow further reading offline, this approach also makes sense.
 
-However, the main limitation this imposes is one of file size; this approach works well for text-based EPUBs (for instance, Moby Dick) but if your EPUB contains lots of media (particularly video), then you may find that it takes a long time for the publication to load (providing the browser doesn't time-out). The solution to this is simple: split your publication up into a series of smaller publications, and consider using the [Readk.it library configuration](#library) to serve them.
+However, the main limitation this imposes is one of file size; this approach works well for normal-length text-based EPUBs but if your EPUB contains lots of media (particularly video), then you may find that it takes a long time for the publication to load (providing the browser doesn't time-out). Similarly, for large text-based publications such as Moby Dick, your experience will differ depending on the capabilities of your deivce. Moby Dick is not so much large as extensive, with the EPUB in the Readk.it library containing around 150 files, each of which has to be loaded before the publication can be displayed. For instance, my testing has shown that it loads generally well in desktop browsers, will load in my Kindle HD tablet (although taking about two minutes to do so), and I've yet to get it to load in my aging iPhone 3GS. The solution to this is simple: split your publication up into a series of smaller publications, and consider using the [Readk.it library configuration](#library) to serve them.
 
 ###EPUB-lite
 The EPUB standard is verbose and complex ([canonical fragment identifiers](http://www.idpf.org/epub/linking/cfi/), anyone?) and Readk.it makes no attempt to do much more than provide a mechanism for prising open an EPUB and wrapping it with a basic but functional navigation system. That's not to say that it couldn't be extended to support specific (and ocassionally esoteric) EPUB functionality in the way that [Readium](http://readium.org/) has, however the high majority of users should find that what Readk.it provides is ample. This is somewhat in the spirit of [EPUB Zero](http://epubzero.blogspot.co.nz/2013/02/epub-zero-radically-simpler-e-book.html), if somewhat less heretical in being able to cope with the existing EPUB file structure and metadata layout.
@@ -177,6 +177,10 @@ Library mode is as easy to setup as single-publication mode:
 Note that, in this case, the directory containing the readk.it folder is the web server content root.
 
 ##Technical notes
+
+### Design considerations ###
+
+As Readk.it was built to take advantage of the features of modern browsers, it will not work on older browsers such as anything prior to Internet Explorer 10. It makes use of the new <a href="http://blog.jquery.com/2013/04/18/jquery-2-0-released/">jQuery 2.0 build</a>, which is not backwards-compatible with IE 6/7/8.
 
 ###<a id="webserver"></a>Setting up a local webserver
 

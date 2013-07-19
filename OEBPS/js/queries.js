@@ -5,13 +5,11 @@ $(document).ready(function() {
 
     /* ============== Browsers, not dedicated EPUB reading systems ============== */
     enquire.register("screen", {
-
         match : function() {
             if ( !navigator.epubReadingSystem ) {
                 // Readkit mixes in our grids (which make sense in a browser, but not in a dedicated EPUB reading system)
                 // by virtue of the css file entry in the content.opf.
                 //$('head').append('<link href="css/grids.css" media="screen, projection" rel="stylesheet" type="text/css" />');
-
                 $(document).on('kickoff', function() {
                     // Show the close button on callouts
                     $('.calloutNav').css({'height': '1.8rem', 'margin-bottom': '0.4rem', 'padding-top': '0.25rem'});
@@ -22,6 +20,26 @@ $(document).ready(function() {
         unmatch : function() {
         }
 
+    });
+
+    /* ======== Browsers, not mobile, not dedicated EPUB reading systems ======== */
+    enquire.register("screen and (min-width : 1025px)", {
+        match : function() {
+            if ( !navigator.epubReadingSystem ) {
+                $(document).on('kickoff', function() {
+                    // Use Modernizr.Detectizr to detect whether we've got a desktop browser
+                    Modernizr.Detectizr.detect({ detectDeviceModel: false, detectScreen: true, detectOS: false, detectBrowser: false, detectPlugins: false });
+                    if (Modernizr.Detectizr.device.type == 'desktop') {
+                        // We only want our blue-pulse animation for the header icon on desktop browsers.
+                        // This alerts uses that they can go full-screen.
+                        $('.header-icon').css({'-webkit-animation-name': 'bluePulse', '-webkit-animation-duration': '2s', '-webkit-animation-iteration-count': 'infinite'});
+                        $('.header-icon').css({'animation-name': 'bluePulse', 'animation-duration': '2s', 'animation-iteration-count': 'infinite'});
+                    }
+                });
+            }
+        },
+        unmatch : function() {
+        }
     });
 
     /* ========================= Apple iBooks iPad ============================== */

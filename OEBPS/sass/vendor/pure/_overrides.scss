@@ -7,11 +7,21 @@ Base 960 grid
 /*===================================================================================================
 Desktop
 ===================================================================================================*/
-@media (min-width:800px) {
+@media (min-width:1025px) {
     @-webkit-keyframes bluePulse {
       from { background-color: #f2f2f2; -webkit-box-shadow: 0 0 9px #56a2d3; }
       50% { background-color: #f2f2f2; -webkit-box-shadow: 0 0 140px #d9d9d9; }
       to { background-color: #f2f2f2; -webkit-box-shadow: 0 0 9px #56a2d3; }
+    }
+    @-moz-keyframes bluePulse {
+      from { background-color: #f2f2f2; -moz-box-shadow: 0 0 9px #56a2d3; }
+      50% { background-color: #f2f2f2; -moz-box-shadow: 0 0 140px #d9d9d9; }
+      to { background-color: #f2f2f2; -moz-box-shadow: 0 0 9px #56a2d3; }
+    }
+    @keyframes bluePulse {
+      from { background-color: #f2f2f2; box-shadow: 0 0 9px #56a2d3; }
+      50% { background-color: #f2f2f2; box-shadow: 0 0 140px #d9d9d9; }
+      to { background-color: #f2f2f2; box-shadow: 0 0 9px #56a2d3; }
     }
 }
 

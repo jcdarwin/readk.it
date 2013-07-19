@@ -123,6 +123,10 @@ module.exports = function(grunt) {
         dest: 'dist/uncompressed/<%= concat.options.path_js %>/queries.min.js'
       },
       */
+      detectizr: {
+        src: ['<%= concat.detectizr.dest %>'],
+        dest: 'dist/uncompressed/<%= concat.options.path_js_libs %>/detectizr.min.js'
+      },
       enquire: {
         src: ['<%= concat.enquire.dest %>'],
         dest: 'dist/uncompressed/<%= concat.options.path_js_libs %>/enquire.min.js'

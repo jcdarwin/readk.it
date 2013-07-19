@@ -305,7 +305,7 @@ Base 960 grid
 /*===================================================================================================
 Desktop
 ===================================================================================================*/
-@media (min-width: 800px) {
+@media (min-width: 1025px) {
   @-webkit-keyframes bluePulse {
     /* line 12, ../sass/vendor/pure/_overrides.scss */
     from {
@@ -325,12 +325,52 @@ Desktop
       -webkit-box-shadow: 0 0 9px #56a2d3;
     }
 }
+
+  @-moz-keyframes bluePulse {
+    /* line 17, ../sass/vendor/pure/_overrides.scss */
+    from {
+      background-color: #f2f2f2;
+      -moz-box-shadow: 0 0 9px #56a2d3;
+    }
+
+    /* line 18, ../sass/vendor/pure/_overrides.scss */
+    50% {
+      background-color: #f2f2f2;
+      -moz-box-shadow: 0 0 140px #d9d9d9;
+    }
+
+    /* line 19, ../sass/vendor/pure/_overrides.scss */
+    to {
+      background-color: #f2f2f2;
+      -moz-box-shadow: 0 0 9px #56a2d3;
+    }
+}
+
+  @keyframes bluePulse {
+    /* line 22, ../sass/vendor/pure/_overrides.scss */
+    from {
+      background-color: #f2f2f2;
+      box-shadow: 0 0 9px #56a2d3;
+    }
+
+    /* line 23, ../sass/vendor/pure/_overrides.scss */
+    50% {
+      background-color: #f2f2f2;
+      box-shadow: 0 0 140px #d9d9d9;
+    }
+
+    /* line 24, ../sass/vendor/pure/_overrides.scss */
+    to {
+      background-color: #f2f2f2;
+      box-shadow: 0 0 9px #56a2d3;
+    }
+}
 }
 /*===================================================================================================
 Mobile (Portrait)
 ===================================================================================================*/
 @media (max-width: 767px) {
-  /* line 22, ../sass/vendor/pure/_overrides.scss */
+  /* line 32, ../sass/vendor/pure/_overrides.scss */
   .container {
     width: 280px;
   }
@@ -339,12 +379,12 @@ Mobile (Portrait)
 Mobile (Landscape)
 ===================================================================================================*/
 @media (min-width: 480px) and (max-width: 767px) {
-  /* line 29, ../sass/vendor/pure/_overrides.scss */
+  /* line 39, ../sass/vendor/pure/_overrides.scss */
   .container {
     width: 400px;
   }
 
-  /* line 30, ../sass/vendor/pure/_overrides.scss */
+  /* line 40, ../sass/vendor/pure/_overrides.scss */
   .pure-g-r > [class^="pure-u"] {
     width: 100%;
   }
@@ -353,7 +393,7 @@ Mobile (Landscape)
 Tablet (Portrait)
 ===================================================================================================*/
 @media (min-width: 768px) and (max-width: 979px) {
-  /* line 39, ../sass/vendor/pure/_overrides.scss */
+  /* line 49, ../sass/vendor/pure/_overrides.scss */
   .container {
     width: 748px;
   }
@@ -362,12 +402,12 @@ Tablet (Portrait)
 Phone (Landscape)
 ===================================================================================================*/
 @media (max-width: 320px) {
-  /* line 47, ../sass/vendor/pure/_overrides.scss */
+  /* line 57, ../sass/vendor/pure/_overrides.scss */
   .container {
     width: 280px;
   }
 
-  /* line 48, ../sass/vendor/pure/_overrides.scss */
+  /* line 58, ../sass/vendor/pure/_overrides.scss */
   .pure-g-r > [class^="pure-u"] {
     width: 100%;
   }
@@ -376,17 +416,17 @@ Phone (Landscape)
 Phone (Portrait)
 ===================================================================================================*/
 @media (max-width: 240px) {
-  /* line 57, ../sass/vendor/pure/_overrides.scss */
+  /* line 67, ../sass/vendor/pure/_overrides.scss */
   .container {
     width: 200px;
   }
 
-  /* line 58, ../sass/vendor/pure/_overrides.scss */
+  /* line 68, ../sass/vendor/pure/_overrides.scss */
   nav ul li {
     padding-left: 1rem;
   }
 
-  /* line 59, ../sass/vendor/pure/_overrides.scss */
+  /* line 69, ../sass/vendor/pure/_overrides.scss */
   ul {
     padding-left: 20px;
   }
@@ -394,17 +434,17 @@ Phone (Portrait)
 /*===================================================================================================
 General
 ===================================================================================================*/
-/* line 66, ../sass/vendor/pure/_overrides.scss */
+/* line 76, ../sass/vendor/pure/_overrides.scss */
 .pure-g-r > div {
   box-sizing: border-box;
 }
 
-/* line 70, ../sass/vendor/pure/_overrides.scss */
+/* line 80, ../sass/vendor/pure/_overrides.scss */
 .pure-u-1-2 {
   width: 47.5%;
 }
 
-/* line 73, ../sass/vendor/pure/_overrides.scss */
+/* line 83, ../sass/vendor/pure/_overrides.scss */
 .pure-g-r > div:first-child {
   padding-right: 5%;
 }

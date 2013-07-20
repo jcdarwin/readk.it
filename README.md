@@ -181,7 +181,20 @@ Note that, in this case, the directory containing the readk.it folder is the web
 
 ### Design considerations ###
 
+#### Browser compatibility ####
 As Readk.it was built to take advantage of the features of modern browsers, it will not work on older browsers such as anything prior to Internet Explorer 10. It makes use of the new <a href="http://blog.jquery.com/2013/04/18/jquery-2-0-released/">jQuery 2.0 build</a>, which is not backwards-compatible with IE 6/7/8.
+
+Also, in terms of modern browsers we discount Opera Mini, and in some cases the native Android Browser (but not other browsers such as Chrome for Android), as both these browsers don't have support certain features such as WOFF.
+
+#### Fonts ####
+Readk.it use web-fonts, specifically [WOFF](https://developer.mozilla.org/en-US/docs/Web/Guide/WOFF), to allow the user to switch between a standard serif (Lora) and sans-serif (Source Sans Pro) face if they don't want to use the face natively (if any) used by the EPUB. WOFF has good [cross-browser support](http://caniuse.com/woff) these days in recent browser versions, and is compressed. These two fonts have been optimised using the Font Squirrel generator, so together occupy only 310KB of space. Note that, to achieve this we've had to reduce to weights that we use, as well as removing non-latin glyphs. Before doing this, these fonts occupied 650KB (Lora) and 1.4MB (Source Sans Pro) for a total payload of more than 2MB.
+
+Also, we've used to wonderful [Fontello](http://fontello.com/) service to minimise the font icons we use, meaning that our Fontelloed WOFF occupies only 6KB. Notice that, however, for the actual EPUB content, you should provide both WOFFs (for optimal use in browsers) and Truetypes (for use in dedicated eBook reading devices). The Readk.it Manifesto uses [Lato](http://www.google.com/fonts/specimen/Lato), which occupies aroud 450KB.
+
+#### JavaScript ####
+It goes without saying that, without JavaScript support, Readk.it will not function (although the EPUB containing ReadKit will still work fine conventionally in reading systems that don't support JavaScript). Readk.it uses JavaScript to perform the retrieval and layout of the files in the EPUB, as well as linking up the Readk.it navigation controls.
+
+Readk.it uses only CSS for Media Query support for differing device sizes, and not JavaScript. However, if you look into the Readk.it Manifesto EPUB you will find use of a JavaScript library, [enquire.js](http://wicky.nillia.ms/enquire.js/), used to provide JavaScript-based Media Query support for features such as detection of desktop browsers (e.g. for support of full-screen mode, which is not found in mobile browsers or dedicated reading devices).
 
 ###<a id="webserver"></a>Setting up a local webserver
 

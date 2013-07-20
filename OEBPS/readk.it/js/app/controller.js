@@ -134,9 +134,6 @@ define([
         // Create our layout for this publication.
         layout = new Layout(self, publication);
 
-        // Create our chrome for this layout 
-        chrome = new Chrome(self, layout);
-
         var url_selectors = $.map($.elemUrlAttr(), function(i, v){
             return v + '[' + i + ']';
         }).join(',');
@@ -166,11 +163,8 @@ define([
                 return $(v);
             });
 
-            // convert 'chapter2.xhtml' to 'chapter2_xhtml'
-            //value.file = value.file.replace(/\./, '_');
-
             $.each(page.find('[id]'), function(i, v){
-                // We want to change something like 'milestone1' to 'chapter1#milestone1'
+                // We want to change something like 'milestone1' to 'chapter1_milestone1'
                 $(v).attr('id', value.file + '_' + $(v).attr('id'));
                 return $(v);
             });
@@ -185,11 +179,13 @@ define([
             layout.add(value.id, value.file, pages[value.id]);
         });
 
-        $.each(publication.getToc(), function(index, value){
-        });
-
         layout.update(layout.page_scrollers[0].scroller);
         layout.restore_bookmarks();
+
+        // Create our chrome for this layout 
+        // Note that our chrome won't actually be initialised
+        // until our layout has been finalised.
+        chrome = new Chrome(self, layout);
 
         layout.finalise();
 

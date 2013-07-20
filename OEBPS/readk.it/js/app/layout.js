@@ -410,12 +410,6 @@ define([
             book_scroller.scrollTo(book_scroller.x - page_width, book_scroller.y, 200);
         });
 
-        // Remove site preloader after site is loaded
-        $('#readkit-sitePreloader').delay(200).fadeOut(500, function() {
-            refresh();
-            $(this).remove();
-        });
-
         // Notify any subscribers that the layout has been loaded.
         controller.publish('publication_loaded');
     };

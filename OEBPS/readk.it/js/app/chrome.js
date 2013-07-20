@@ -124,6 +124,12 @@ define([
 
         // Check the bookmarks status
         check_bookmarks();
+
+        // Remove site preloader
+        $('#readkit-sitePreloader').delay(200).fadeOut(500, function() {
+            refresh();
+            $(this).remove();
+        });
     }
 
     /* Register handlers. */

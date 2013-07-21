@@ -7,8 +7,9 @@
 */
 
 define([
-    'jquery'
-], function($){
+    'jquery',
+    'zip/zip'
+], function($, zip){
 
     var controller;
     var layout;
@@ -127,7 +128,7 @@ define([
 
         // Remove site preloader
         $('#readkit-sitePreloader').delay(200).fadeOut(500, function() {
-            refresh();
+            /* refresh(); */
             $(this).remove();
         });
     }
@@ -468,6 +469,106 @@ define([
             $('.readkit-status').removeClass('readkit-online');
         }
         $('.readkit-status').addClass(status);
+    }
+
+    $('.readkit-cancel_upload').on('click', function(e){
+        e.stopPropagation();
+        $('.greybox').slideUp('slow');
+    });
+
+    // The following more or less pinched from ibis.reader
+    // At least some traces live on...
+    var upload = {};
+    upload.handle_drag_enter = function (e) {
+        e.stopPropagation();
+        e.preventDefault();
+/*        greybox.hide("file-upload-window"); */
+        $("#epub-drag-upload-status").text("");
+        $("progress").attr("value", '0');
+        $("#drag-upload-spinner").removeClass('loading').hide();
+
+        $('.greybox').slideDown("drag-upload-window");
+        var epub_drag_upload = $("#epub-drag-upload")[0];
+        epub_drag_upload.addEventListener("drop", upload.prep_dropped_files_for_upload, false);
+        epub_drag_upload.addEventListener("dragover", function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+        }, false);
+    };
+
+    upload.prep_dropped_files_for_upload = function (e) {
+        e.stopPropagation();
+        e.preventDefault();
+        var filelist = e.dataTransfer.files;
+        upload.upload_files(e, filelist);
+        return false;
+    };
+
+    upload.upload_files = function (e, filelist) {
+        filelist = filelist || $("#id_epub")[0].files;
+        if (filelist && FormData) {
+            var formdata = new FormData();
+            $.each(filelist, function (i, f) {
+                    zip.createReader(new zip.BlobReader(f), function(zipReader){
+                        zipReader.getEntries(function(entries){
+                            entries.forEach(function(entry){
+                                upload.progress(f, entry);
+                                console.log(entry.filename);
+                            });
+                            upload.complete(100);
+                        });
+                    }, upload.failed);
+            });
+            $("#epub-drag-upload-label").css("opacity", "0.2");
+            $("#epub-drag-upload-status").text("Uploading EPUB...");
+            $("#drag-upload-spinner").show().addClass("loading");
+            return false;
+        }
+    };
+
+    var progress_total = 0;
+    upload.progress = function (f, entry) {
+        if (entry.compressedSize) {
+            var progress_file = Math.round(entry.compressedSize * 100 / f.size);
+            progress_total += progress_file;
+            $("progress").attr("value", progress_total.toString());
+            if (progress_total <= 99) {
+                $("#epub-drag-upload-status").html("Unpacking EPUB...");
+            }
+        }
+    };
+
+    upload.complete = function (a) {
+        $("progress").attr("value", a.toString());
+        $("#epub-drag-upload-status").text("Opening EPUB...");
+        $("#drag-upload-spinner").removeClass('loading').hide();
+    };
+
+    upload.failed = function (a) {
+        upload.show_error_message(a.toString());
+    };
+
+    upload.cancelled = function (e) {
+        h.debug("The upload has been canceled by the user or the browser dropped the connection.");
+    };
+/*    $("#id_epub").bind("change", upload.file_was_selected); */
+    $("#epub-upload").bind("submit", upload.upload_files);
+/*     if ("FileReader" in window && Modernizr.draganddrop) { */
+    if ("FileReader" in window) {
+        $("#epub-upload p").show();
+        var drag_zone = $("#readkit-pageWrapper")[0];
+        drag_zone.addEventListener("dragenter", upload.handle_drag_enter, false);
+        var body = $("body")[0];
+        body.addEventListener("dragover", function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            return false;
+        }, false);
+        body.addEventListener("drop", function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            return false;
+        }, false);
     }
 
     if (

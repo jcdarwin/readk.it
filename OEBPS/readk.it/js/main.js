@@ -33,7 +33,8 @@ require.config({
         'jquery.ba-urlinternal.min': ['jquery'],
         'jquery.hotkeys': ['jquery'],
         // Make non-AMD modules act like AMD modules
-        'iscroll': {exports: 'iScroll'}
+        'iscroll': {exports: 'iScroll'},
+        'zip/zip': {exports: 'zip'}
     }
 });
 
@@ -45,7 +46,7 @@ var addToHomeConfig = {
     message:'Install this book on your %device: tap %icon and then <strong>Add to Home Screen</strong>.'
 };
 
-// Readk.it required modules
+// Readk.it required top-level modules
 var required = ['jquery', 'app/controller', 'app/config', 'add-to-homescreen/src/add2home'];
 
 // Mixin any required client EPUB modules to the Readk.it required modules

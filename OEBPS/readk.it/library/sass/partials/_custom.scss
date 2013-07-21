@@ -257,7 +257,7 @@ and (orientation : landscape) {
 and (min-device-width : 768px) 
 and (max-device-width : 1024px)  {
     .library {
-        margin: 80px auto 40px;
+        margin: 60px auto 40px;
         .forward, .backward { height: 250px; }
         .frame { height: 250px; line-height: 250px; }
         .scrollbar { margin: 20px auto 10px; }

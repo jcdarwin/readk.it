@@ -14,7 +14,9 @@ var client = {
     paths: {
         client_js: '../../../js'
     },
-    // The required modules for our EPUB assets
+    // The required modules for our EPUB assets.
+    // Note that we don't need to specify jQuery here as Readk.it 
+    // supplies its own version of jQuery.
     required: [
         'client_js/libs/modernizr.min',
         'client_js/libs/detectizr.min',

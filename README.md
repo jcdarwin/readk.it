@@ -196,6 +196,8 @@ It goes without saying that, without JavaScript support, Readk.it will not funct
 
 Readk.it uses only CSS for Media Query support for differing device sizes, and not JavaScript. However, if you look into the Readk.it Manifesto EPUB you will find use of a JavaScript library, [enquire.js](http://wicky.nillia.ms/enquire.js/), used to provide JavaScript-based Media Query support for features such as detection of desktop browsers (e.g. for support of full-screen mode, which is not found in mobile browsers or dedicated reading devices).
 
+Readk.it supplies its own version of jQuery and takes advantage of jQuery's behaviour of defining itself globally, so there's no need to include your own version of jQuery, either in your content or in the OPF. 
+
 ###<a id="webserver"></a>Setting up a local webserver
 
 We use the [grunt-contrib-connect](https://github.com/gruntjs/grunt-contrib-connect) package to provide a simple web server.

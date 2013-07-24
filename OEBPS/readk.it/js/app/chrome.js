@@ -526,6 +526,9 @@ define([
                             });
                         })).done(function(){
                             upload.complete(100);
+                            setTimeout(function () {
+                                $('.greybox').slideUp('slow');
+                            }, 0);
                             publication = controller.initialise('', files);
                         });
 

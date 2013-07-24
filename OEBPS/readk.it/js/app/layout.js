@@ -31,6 +31,10 @@ define([
 
     /* Constructor */
     var Layout = function (caller, pub) {
+        // Reset our layout, removing any previously 
+        // laid-out publications.
+        reset();
+
         controller = caller;
         publication = pub;
 //storage('pages', []);
@@ -39,6 +43,7 @@ define([
             refresh: refresh,
             update: update,
             add: add,
+            reset: reset,
             trap_anchor: trap_anchor,
             storage: storage,
             go_back: go_back,
@@ -50,6 +55,15 @@ define([
             nav: nav,
             finalise: finalise
         };
+    };
+
+    // Reset our layout
+    var reset = function () {
+        page_scrollers = [];
+        pages = [];
+        var currentPage = 0;
+        var previousPage = 0;
+        $('#readkit-pageScroller .readkit-page').remove();
     };
 
     var book_scroller = new iScroll('readkit-pageWrapper', {

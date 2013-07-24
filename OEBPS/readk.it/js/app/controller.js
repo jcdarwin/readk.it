@@ -44,8 +44,7 @@ define([
         load_publication_callback = callback;
 
         // Parse the EPUB
-        publication = new Epub(book, 'META-INF/container.xml', load_publication);
-
+        publication = _initialise(book, load_publication);
         this.publication = publication;
         this.subscribe = subscribe;
         this.unsubscribe = unsubscribe;
@@ -56,11 +55,19 @@ define([
 
     /* Define the instance methods */
     Controller.prototype = {
+        initialise: function(book, files) {
+            return _initialise(book, load_publication, files);
+        },
         getPublication: function(){
             return (publication);
         },
         publication_finalise: function () {
         }
+    };
+
+    var _initialise = function (book, callback, files) {
+        // Parse the EPUB
+        return new Epub(book, 'META-INF/container.xml', callback, files);
     };
 
     var load_publication = function (epub) {
@@ -85,13 +92,25 @@ define([
             $.when.apply(this, $.map(pub.spine_entries, function(value) {
                 return $.Deferred(function(deferred_page){
 
-                    // Use the requirejs/text plugin to load our html resources.
-                    // https://github.com/requirejs/text
-                    require(["text!" + value.href + "!strip"],
-                        function(html) {
-                            deferred_page.resolve(html);
-                        }
-                    );
+                    var filename = '';
+                    if (value.href.indexOf('/') === 0) {
+                        filename = value.href.substr(1, value.href.length);
+                    }
+
+                    if (filename && pub.content[filename]) {
+                        // Our content's already been retrieved.
+                        // Remove the <body> element to mimic the behaviour of requirejs/text.
+                        var html = $($($.parseXML(pub.content[filename])).find('body').children()[0]).unwrap().html();
+                        deferred_page.resolve(html);
+                    } else {
+                        // Use the requirejs/text plugin to load our html resources.
+                        // https://github.com/requirejs/text
+                        require(["text!" + value.href + "!strip"],
+                            function(html) {
+                                deferred_page.resolve(html);
+                            }
+                        );
+                    }
 
                 }).done(function(html){
                     // !strip removes the <body> element, however this may leave us
@@ -113,12 +132,23 @@ define([
             $.when.apply(this, $.map(pub.css_entries, function(value) {
                 return $.Deferred(function(deferred_stylesheet){
 
-                    // Use the require-css plugin to load our stylesheet resources.
-                    require(["css!" + value.href],
-                        function(css) {
-                            deferred_stylesheet.resolve(css);
-                        }
-                    );
+                    var filename = '';
+                    if (value.href.indexOf('/') === 0) {
+                        filename = value.href.substr(1, value.href.length);
+                    }
+
+                    if (filename && pub.content[filename]) {
+                        // Our content's already been retrieved.
+                        var css = pub.content[filename];
+                        deferred_stylesheet.resolve(css);
+                    } else {
+                        // Use the require-css plugin to load our stylesheet resources.
+                        require(["css!" + value.href],
+                            function(css) {
+                                deferred_stylesheet.resolve(css);
+                            }
+                        );
+                    }
 
                 }).done(function(css){
                     stylesheets[value.id] = css;

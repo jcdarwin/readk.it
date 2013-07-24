@@ -12,7 +12,7 @@ define([
 ], function($){
 
     /* Main function controlling the processing of the epub. */
-    function Epub (d, f, callback) {
+    function Epub (d, f, callback, files) {
         var self = this;
         this.epub_dir = d;
         this.oebps_dir = '';
@@ -26,7 +26,14 @@ define([
         this.title = '';
         this.author = '';
         this.identifier = '';
-        $.get(d + f, {}, function(data){container(data, self, callback);});
+        this.content = '';
+
+        if (files) {
+            this.content = files;
+            container(files[f], self, callback, files);
+        } else {
+            $.get(d + f, {}, function(data){container(data, self, callback);});
+        }
         return this;
     }
 
@@ -44,18 +51,23 @@ define([
     };
 
     /* Open the container file to find the resources */
-    var container = function (f, epub, callback) {
+    var container = function (f, epub, callback, files) {
         epub.opf_file = $(f).find('rootfile').attr('full-path');
         // Get the OEPBS dir, if there is one
         if (epub.opf_file.indexOf('/') !== -1) {
             epub.oebps_dir = epub.opf_file.substr(0, epub.opf_file.lastIndexOf('/'));
         }
         epub.opf_file = epub.epub_dir + epub.opf_file;
-        $.get(epub.opf_file, {}, function(data){opf(data, epub, callback);});
+
+        if (files) {
+            opf(files[epub.opf_file], epub, callback, files);
+        } else {
+            $.get(epub.opf_file, {}, function(data){opf(data, epub, callback);});
+        }
     };
 
     /* Open the OPF file and read some useful metadata from it */
-    var opf = function (f, epub, callback) {
+    var opf = function (f, epub, callback, files) {
         // Get the document title
         // Depending on the browser, namespaces may or may not be handled here
         epub.version = $(f).find('package').attr('version');
@@ -104,12 +116,22 @@ define([
             // EPUB 2
             epub.ncx_file = $(f).find('manifest ' + opf_item_tag + '[id="' + toc + '"]').attr('href');
             epub.ncx_file = epub.epub_dir + epub.oebps_dir + '/' + epub.ncx_file;
-            $.get(epub.ncx_file, {}, function(data){ncx(data, epub, callback);});
+
+            if (files) {
+                ncx(files[epub.oebps_dir + '/' + epub.ncx_file], epub, callback);
+            } else {
+                $.get(epub.ncx_file, {}, function(data){ncx(data, epub, callback);});
+            }
         } else {
             // EPUB 3
             epub.nav_file = $(f).find('manifest ' + opf_item_tag + '[properties="nav"]').attr('href');
             epub.nav_file = epub.epub_dir + epub.oebps_dir + '/' + epub.nav_file;
-            $.get(epub.nav_file, {}, function(data){nav(data, epub, callback);});
+
+            if (files) {
+                nav(files[epub.oebps_dir + '/' + epub.nav_file], epub, callback);
+            } else {
+                $.get(epub.nav_file, {}, function(data){nav(data, epub, callback);});
+            }
         }
     };
 

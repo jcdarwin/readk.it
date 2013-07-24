@@ -1,0 +1,115 @@
+fieldset {
+    border: none;
+}
+#drag-upload-window {
+    width:80%;
+    -moz-border-radius-topleft:10px;
+    -moz-border-radius-topright:10px;
+    -webkit-border-top-right-radius:10px;
+    -webkit-border-top-left-radius:10px;
+    border-top-right-radius:10px;
+    border-top-left-radius:10px;
+    height:80%;
+    margin:20px 10% 0;
+    padding:0;
+}
+
+#drag-upload-window form {
+    border:4px dotted #bcbec0;
+    height:40%;
+    margin:2em;
+    padding:0;
+}
+
+#drag-upload-window form label {
+    font-size:2em;
+    text-align:center;
+    margin-top:1em;
+}
+
+.epub-upload-status {
+    font-size:1.5em;
+    padding:0 3em;
+}
+
+.epub-upload-status blockquote {
+    color:gray;
+    margin:1em 2em;
+}
+
+#drag-upload-spinner {
+    text-align: center;
+    visibility:hidden;
+    margin:auto;
+}
+
+.greybox label {
+    color:#222;
+    margin-bottom:1em;
+    display:block;
+    font-weight:700;
+}
+
+.greybox #epub-drag-upload input[type=file] {
+/*    visibility:hidden;*/
+    height:0;
+    width:0;
+    margin:0;
+    padding:0;
+}
+
+.greybox {
+    display:none;
+    position:absolute;
+    top:0;
+    z-index:150;
+    padding-bottom:20px;
+    background-color:#e6e7e8;
+    -moz-border-radius-bottomleft:10px;
+    -moz-border-radius-bottomright:10px;
+    -webkit-border-bottom-right-radius:10px;
+    -webkit-border-bottom-left-radius:10px;
+    border-bottom-right-radius:10px;
+    border-bottom-left-radius:10px;
+    /*
+        background:0;
+        border:1px solid #fff;
+    */
+    -moz-box-shadow:10px 10px 8px rgba(000,000,000,0.5);
+    -webkit-box-shadow:10px 10px 8px rgba(000,000,000,0.5),inset 4px 6px 13px rgba(230,231,232,1);
+    margin:auto;
+    font-family: sans-serif;
+}
+
+.greybox input {
+    display:inline-block;
+    padding:0;
+}
+
+.greybox form {
+    padding:14px 30px 13px 35px;
+}
+
+.loading {
+    visibility:visible!important;
+    -webkit-animation-name:rotate;
+    -webkit-animation-duration:1s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-transition-timing-function:linear;
+}
+
+.greybox progress {
+    width:80%;
+    display:block;
+    margin:1em auto;
+}
+
+.readkit-cancel {
+    font-size: 18px;
+}
+
+.readkit-cancel_upload {
+    float: right;
+    cursor: pointer;
+    margin-right: 5px;
+}

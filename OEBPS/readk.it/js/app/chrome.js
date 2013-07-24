@@ -505,19 +505,32 @@ define([
     };
 
     upload.upload_files = function (e, filelist) {
+        var files = [];
         filelist = filelist || $("#id_epub")[0].files;
-        if (filelist && FormData) {
-            var formdata = new FormData();
+        if (filelist) {
+            zip.workerScriptsPath = "js/lib/zip/";
             $.each(filelist, function (i, f) {
-                    zip.createReader(new zip.BlobReader(f), function(zipReader){
-                        zipReader.getEntries(function(entries){
-                            entries.forEach(function(entry){
-                                upload.progress(f, entry);
-                                console.log(entry.filename);
+                zip.createReader(new zip.BlobReader(f), function(zipReader){
+                    zipReader.getEntries(function(entries){
+
+                        $.when.apply(this, $.map(entries, function(entry) {
+                            return $.Deferred(function(deferred_entry){
+                                entry.getData(new zip.TextWriter(), function(text){
+                                    upload.progress(f, entry);
+                                    console.log(entry.filename);
+                                    deferred_entry.resolve(text);
+                                });
+                            }).done(function(text){
+                                filename = entry.filename;
+                                files[filename] = text;
                             });
+                        })).done(function(){
                             upload.complete(100);
+                            publication = controller.initialise('', files);
                         });
-                    }, upload.failed);
+
+                    });
+                }, upload.failed);
             });
             $("#epub-drag-upload-label").css("opacity", "0.2");
             $("#epub-drag-upload-status").text("Uploading EPUB...");

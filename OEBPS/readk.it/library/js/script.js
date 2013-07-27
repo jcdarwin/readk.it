@@ -1,7 +1,11 @@
-$(document).ready(function() {
-    $.event.trigger('kickoff');
-});
+define([
+    'jquery'
+], function($){
+    $(document).ready(function() {
+        $.event.trigger('kickoff');
+    });
 
-$(document).on('kickoff', function() {
+    $(document).on('kickoff', function() {
 
+    });
 });

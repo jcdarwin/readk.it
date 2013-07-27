@@ -515,14 +515,28 @@ define([
 
                         $.when.apply(this, $.map(entries, function(entry) {
                             return $.Deferred(function(deferred_entry){
-                                entry.getData(new zip.TextWriter(), function(text){
-                                    upload.progress(f, entry);
-                                    console.log(entry.filename);
-                                    deferred_entry.resolve(text);
-                                });
-                            }).done(function(text){
+
+                                var suffix = entry.filename.substr(entry.filename.lastIndexOf('.') + 1);
+                                if ( suffix == 'jpg' || suffix == 'jpg') {
+                                    // Retrieve jpgs as blobs, i.e. don't uncompress them to text
+                                    // as we'd simply have to recompress them to jpg to display them
+                                    // and that would be silly.
+                                    entry.getData(new zip.BlobWriter('image/jpeg'), function(blob){
+                                        upload.progress(f, entry);
+                                        console.log(entry.filename);
+                                        deferred_entry.resolve(blob);
+                                    });
+                                } else {
+                                    entry.getData(new zip.TextWriter(), function(text){
+                                        upload.progress(f, entry);
+                                        console.log(entry.filename);
+                                        deferred_entry.resolve(text);
+                                    });
+                                }
+
+                            }).done(function(value){
                                 filename = entry.filename;
-                                files[filename] = text;
+                                files[filename] = value;
                             });
                         })).done(function(){
                             upload.complete(100);

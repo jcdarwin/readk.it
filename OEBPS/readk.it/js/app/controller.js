@@ -99,7 +99,7 @@ define([
 
                     if (filename && pub.content[filename]) {
                         // Our content's already been retrieved.
-                        // Remove the <body> element to mimic the behaviour of requirejs/text.
+                        // Remove the <body> element to mimic the behaviour of requirejs/text !strip.
                         var html = $($($.parseXML(pub.content[filename])).find('body').children()[0]).unwrap().html();
                         deferred_page.resolve(html);
                     } else {
@@ -160,6 +160,14 @@ define([
         });
     }
 
+    function createURL(tag, prefix, value, suffix, pub) {
+        var filename = pub.oebps_dir + '/' + value;
+        // Note that our content is already in blob form
+        // var blob = new Blob([pub.content[filename]], {type: "image/jpeg"});
+        var url = URL.createObjectURL(pub.content[filename]);
+        return prefix + url + suffix;
+    }
+
     function layout_publication(publication, pages, css) {
         // Create our layout for this publication.
         layout = new Layout(self, publication);
@@ -170,9 +178,20 @@ define([
 
         $.each(publication.getToc(), function(index, value){
 
-            // Ensure internal image urls have the correct path prepended.
-            // We have to do this here as jQuery will try to resolve the src.
-            pages[value.id] = pages[value.id].replace(/(<[^<>]* (?:src|poster)=['"])/g, '$1' + value.path.replace(/[^\/]+/g, '..') + value.href.replace(/[^\/]*?$/, ''));
+            var filename = '';
+            if (value.href.indexOf('/') === 0) {
+                filename = value.href.substr(1, value.href.length);
+            }
+
+            if (filename && publication.content[filename]) {
+                // Our content's already been retrieved, e.g. via drag & drop
+                // Replace internal images with blob URLs.
+                pages[value.id] = pages[value.id].replace(/((?:<[^<>]* (?:src|poster)|<image<[^<>]* xlink\:href)=['"])(.*?)(['"'])/g, function(tag, prefix, value, suffix){ return createURL(tag, prefix, value, suffix, publication); } );
+            } else {
+                // Ensure internal image urls have the correct path prepended.
+                // We have to do this here as jQuery will try to resolve the src.
+                pages[value.id] = pages[value.id].replace(/((?:<[^<>]* (?:src|poster)|<image<[^<>]* xlink\:href)=['"])/g, '$1' + value.path.replace(/[^\/]+/g, '..') + value.href.replace(/[^\/]*?$/, ''));
+            }
 
             var page = $(pages[value.id]);
             // We have to rewrite any internal urls and corresponding ids

@@ -137,7 +137,8 @@ define([
                             for (var index in pub.content) {
                                 // Check whether our content entry ends with the font name.
                                 if ( index.indexOf(font, index.length - font.length) !== -1 ) {
-                                    return prefix + URL.createObjectURL(pub.content[index]) + suffix;
+                                    url = window.URL || window.webkitURL;
+                                    return prefix + url.createObjectURL(pub.content[index]) + suffix;
                                 }
                             }
                         });

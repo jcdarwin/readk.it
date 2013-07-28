@@ -507,30 +507,40 @@ define([
     upload.upload_files = function (e, filelist) {
         var files = [];
         filelist = filelist || $("#id_epub")[0].files;
-        if (filelist) {
+        if (filelist.length) {
             zip.workerScriptsPath = "js/lib/zip/";
-            $.each(filelist, function (i, f) {
+                f = filelist[0];
                 zip.createReader(new zip.BlobReader(f), function(zipReader){
                     zipReader.getEntries(function(entries){
 
                         $.when.apply(this, $.map(entries, function(entry) {
                             return $.Deferred(function(deferred_entry){
 
-                                var suffix = entry.filename.substr(entry.filename.lastIndexOf('.') + 1);
-                                if ( suffix == 'jpg' || suffix == 'jpg') {
-                                    // Retrieve jpgs as blobs, i.e. don't uncompress them to text
-                                    // as we'd simply have to recompress them to jpg to display them
-                                    // and that would be silly.
-                                    entry.getData(new zip.BlobWriter('image/jpeg'), function(blob){
+                                var suffix = entry.filename.lastIndexOf('.') === -1 ? '' : entry.filename.substr(entry.filename.lastIndexOf('.') + 1).toLowerCase();
+                                if (['opf', 'xml', 'htm', 'html', 'xhtml', 'css', ''].indexOf(suffix) != -1) {
+                                    // This is a text-like file that we need to load directly into the browser
+                                    // so store as text.
+                                    try {
+                                        // There's an issue with zip.TextWriter failing silently in
+                                        // Firefox; we have to supply 'utf-8', and also wrap it in
+                                        // a try-catch block for good measure.
+                                        // https://github.com/gildas-lormeau/zip.js/issues/58
+                                        entry.getData(new zip.TextWriter('utf-8'), function(text){
+                                            upload.progress(f, entry);
+                                            console.log(entry.filename);
+                                            deferred_entry.resolve(text);
+                                        });
+                                    } catch (e) {
+                                        console.log('zip.TextWriter failure with ' + entry.filename + ': ' + e);
+                                    }
+                                } else {
+                                    // Retrieve other files as blobs, i.e. don't uncompress them to text
+                                    // as in a number of cases we'd simply have to recompress them
+                                    // to display them (e.g. jpg) and that would be silly.
+                                    entry.getData(new zip.BlobWriter(), function(blob){
                                         upload.progress(f, entry);
                                         console.log(entry.filename);
                                         deferred_entry.resolve(blob);
-                                    });
-                                } else {
-                                    entry.getData(new zip.TextWriter(), function(text){
-                                        upload.progress(f, entry);
-                                        console.log(entry.filename);
-                                        deferred_entry.resolve(text);
                                     });
                                 }
 
@@ -545,10 +555,9 @@ define([
                             }, 0);
                             publication = controller.initialise('', files);
                         });
-
                     });
+
                 }, upload.failed);
-            });
             $("#epub-drag-upload-label").css("opacity", "0.2");
             $("#epub-drag-upload-status").text("Uploading EPUB...");
             $("#drag-upload-spinner").show().addClass("loading");

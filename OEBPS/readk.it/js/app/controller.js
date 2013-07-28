@@ -13,8 +13,9 @@ define([
     'app/config',
     'app/epub',
     'app/layout',
-    'app/chrome'
-], function($, $storage, jbum, config, Epub, Layout, Chrome){
+    'app/chrome',
+    'require-css/css'
+], function($, $storage, jbum, config, Epub, Layout, Chrome, require_css){
 
     var pages = [];
     var stylesheets = [];
@@ -25,17 +26,6 @@ define([
     var layout;
     var chrome;
     var self;
-
-    // Classic pubsub, as per https://gist.github.com/addyosmani/1321768
-    var subscribe = function() {
-        queue.on.apply(queue, arguments);
-    };
-    var unsubscribe = function() {
-        queue.off.apply(queue, arguments);
-    };
-    var publish = function() {
-        queue.trigger.apply(queue, arguments);
-    };
 
     /* Constructor */
      function Controller (book, callback) {
@@ -98,25 +88,25 @@ define([
                     }
 
                     if (filename && pub.content[filename]) {
-                        // Our content's already been retrieved.
+                        // Our content's already been retrieved, e.g. via drag & drop.
                         // Remove the <body> element to mimic the behaviour of requirejs/text !strip.
-                        var html = $($($.parseXML(pub.content[filename])).find('body').children()[0]).unwrap().html();
+                        var html = $($($.parseXML(pub.content[filename])).find('body')).wrapInner('<div />').html();
                         deferred_page.resolve(html);
                     } else {
                         // Use the requirejs/text plugin to load our html resources.
                         // https://github.com/requirejs/text
                         require(["text!" + value.href + "!strip"],
                             function(html) {
-                                deferred_page.resolve(html);
+                                // !strip removes the <body> element, however this may leave us
+                                // without a root element, therefore we need to enclose the
+                                // stripped html in a root <div>.
+                                deferred_page.resolve('<div>' + html + '</div>');
                             }
                         );
                     }
 
                 }).done(function(html){
-                    // !strip removes the <body> element, however this may leave us
-                    // without a root element, therefore we need to enclose the
-                    // stripped html in a root <div>.
-                    pages[value.id] = '<div>' + html + '</div>';
+                    pages[value.id] = html;
                 });
             })).done(function(){
                 d.resolve(pages);
@@ -138,9 +128,28 @@ define([
                     }
 
                     if (filename && pub.content[filename]) {
-                        // Our content's already been retrieved.
+                        // Our content's already been retrieved, e.g. via drag & drop.
                         var css = pub.content[filename];
-                        deferred_stylesheet.resolve(css);
+
+                        // Find any font urls and replace with blob urls
+                        // e.g. url('../fonts/Lato/Lato-Reg.ttf')
+                        css = css.replace(/(url\(['"])(.*?)([^'"\/]*)(['""]\))/g, function(tag, prefix, path, font, suffix) {
+                            for (var index in pub.content) {
+                                // Check whether our content entry ends with the font name.
+                                if ( index.indexOf(font, index.length - font.length) !== -1 ) {
+                                    return prefix + URL.createObjectURL(pub.content[index]) + suffix;
+                                }
+                            }
+                        });
+
+                        var blob = new Blob([css], {type: "text/css"});
+                        var url = URL.createObjectURL(blob);
+
+                        // Use the require-css plugin to indirectly load our stylesheet resources.
+                        // This feels like a hack, but it works.
+                        require_css.linkLoad(url, function(css) {
+                            deferred_stylesheet.resolve(css);
+                        });
                     } else {
                         // Use the require-css plugin to load our stylesheet resources.
                         require(["css!" + value.href],
@@ -160,14 +169,6 @@ define([
         });
     }
 
-    function createURL(tag, prefix, value, suffix, pub) {
-        var filename = pub.oebps_dir + '/' + value;
-        // Note that our content is already in blob form
-        // var blob = new Blob([pub.content[filename]], {type: "image/jpeg"});
-        var url = URL.createObjectURL(pub.content[filename]);
-        return prefix + url + suffix;
-    }
-
     function layout_publication(publication, pages, css) {
         // Create our layout for this publication.
         layout = new Layout(self, publication);
@@ -184,7 +185,7 @@ define([
             }
 
             if (filename && publication.content[filename]) {
-                // Our content's already been retrieved, e.g. via drag & drop
+                // Our content's already been retrieved, e.g. via drag & drop.
                 // Replace internal images with blob URLs.
                 pages[value.id] = pages[value.id].replace(/((?:<[^<>]* (?:src|poster)|<image<[^<>]* xlink\:href)=['"])(.*?)(['"'])/g, function(tag, prefix, value, suffix){ return createURL(tag, prefix, value, suffix, publication); } );
             } else {
@@ -231,7 +232,7 @@ define([
         layout.update(layout.page_scrollers[0].scroller);
         layout.restore_bookmarks();
 
-        // Create our chrome for this layout 
+        // Create our chrome for this layout.
         // Note that our chrome won't actually be initialised
         // until our layout has been finalised.
         chrome = new Chrome(self, layout);
@@ -240,6 +241,25 @@ define([
 
         load_publication_callback(publication, layout);
     }
+
+    function createURL(tag, prefix, value, suffix, pub) {
+        var filename = pub.oebps_dir + '/' + value;
+        // Note that our content is already in blob form
+        // var blob = new Blob([pub.content[filename]], {type: "image/jpeg"});
+        var url = URL.createObjectURL(pub.content[filename]);
+        return prefix + url + suffix;
+    }
+
+    // Classic pubsub, as per https://gist.github.com/addyosmani/1321768
+    var subscribe = function() {
+        queue.on.apply(queue, arguments);
+    };
+    var unsubscribe = function() {
+        queue.off.apply(queue, arguments);
+    };
+    var publish = function() {
+        queue.trigger.apply(queue, arguments);
+    };
 
     return (Controller);
 });

@@ -64,6 +64,14 @@ define([
         var currentPage = 0;
         var previousPage = 0;
         $('#readkit-pageScroller .readkit-page').remove();
+
+        // Unload any stylesheets for the currently-load publication
+        if (publication.css_entries) {
+            $.each(publication.css_entries, function(index, value) {
+                $('head link[rel="stylesheet"][href="' + value.href + '"]').remove();
+            });
+            publication.css_entries = [];
+        }
     };
 
     var book_scroller = new iScroll('readkit-pageWrapper', {

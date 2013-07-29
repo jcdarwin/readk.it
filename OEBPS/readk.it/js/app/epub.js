@@ -31,8 +31,10 @@ define([
         if (files) {
             this.content = files;
             container(files[f], self, callback, files);
-        } else {
+        } else if (f){
             $.get(d + f, {}, function(data){container(data, self, callback);});
+        } else {
+            callback(self);
         }
         return this;
     }

@@ -56,8 +56,19 @@ define([
     };
 
     var _initialise = function (book, callback, files) {
-        // Parse the EPUB
-        return new Epub(book, 'META-INF/container.xml', callback, files);
+        // Parse the EPUB.
+        if (!files && window.location.protocol == 'file:') {
+            // We've been loaded via a file url, so we can't use xhr calls to load assets
+            // from the server. In this case we create the EPUB instance, but by calling it
+            // without the 'META-INF/container.xml' value, no files will be retrieved.
+            // http://stackoverflow.com/questions/4150430/how-to-detect-a-script-load-of-a-file-url-fails-in-firefox
+            return new Epub(book, '', callback);
+        } else {
+            // We've either been web-served, or have a files array populated via drag and drop.
+            // If the former, then all the assets can be retrieved via xhr, and if the latter
+            // all assets can be retrieved from the files array.
+            return new Epub(book, 'META-INF/container.xml', callback, files);
+        }
     };
 
     var load_publication = function (epub) {
@@ -229,8 +240,10 @@ define([
             layout.add(value.id, value.file, pages[value.id]);
         });
 
-        layout.update(layout.page_scrollers[0].scroller);
-        layout.restore_bookmarks();
+        if (layout.page_scrollers.length) {
+            layout.update(layout.page_scrollers[0].scroller);
+            layout.restore_bookmarks();
+        }
 
         // Create our chrome for this layout.
         // Note that our chrome won't actually be initialised

@@ -610,6 +610,10 @@ define([
         }, false);
     }
 
+    if (window.location.protocol == 'file:') {
+        $('#readkit-sitePreloader').hide();
+    }
+
     if (
     ("standalone" in window.navigator) &&
     window.navigator.standalone

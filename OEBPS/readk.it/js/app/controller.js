@@ -144,17 +144,18 @@ define([
 
                         // Find any font urls and replace with blob urls
                         // e.g. url('../fonts/Lato/Lato-Reg.ttf')
+                        window_url = window.URL || window.webkitURL;
                         css = css.replace(/(url\(['"])(.*?)([^'"\/]*)(['""]\))/g, function(tag, prefix, path, font, suffix) {
                             for (var index in pub.content) {
                                 // Check whether our content entry ends with the font name.
                                 if ( index.indexOf(font, index.length - font.length) !== -1 ) {
-                                    return prefix + URL.createObjectURL(pub.content[index]) + suffix;
+                                    return prefix + window_url.createObjectURL(pub.content[index]) + suffix;
                                 }
                             }
                         });
 
                         var blob = new Blob([css], {type: "text/css"});
-                        var url = URL.createObjectURL(blob);
+                        var url = window_url.createObjectURL(blob);
 
                         // Use the require-css plugin to indirectly load our stylesheet resources.
                         // This feels like a hack, but it works.
@@ -259,7 +260,8 @@ define([
         var filename = pub.oebps_dir + '/' + value;
         // Note that our content is already in blob form
         // var blob = new Blob([pub.content[filename]], {type: "image/jpeg"});
-        var url = URL.createObjectURL(pub.content[filename]);
+        window_url = window.URL || window.webkitURL;
+        var url = window_url.createObjectURL(pub.content[filename]);
         return prefix + url + suffix;
     }
 

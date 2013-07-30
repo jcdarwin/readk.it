@@ -60,113 +60,57 @@ module.exports = function(grunt) {
       }
     },
 
-    concat: {
-      options: {
-        banner: '<%= banner %>',
-        stripBanners: true,
-        path_js: 'OEBPS/js',
-        path_js_libs: '<%= concat.options.path_js %>/libs'
-      },
-      // Our scripts, unconcatenated
-      script: {
-        src: ['<%= concat.options.path_js %>/script.js'],
-        dest: 'build/uncompressed/<%= concat.options.path_js %>/script.js'
-      },
-      queries: {
-        src: ['<%= concat.options.path_js %>/queries.js'],
-        dest: 'build/uncompressed/<%= concat.options.path_js %>/queries.js'
-      },
-      enquire: {
-        src: ['<%= concat.options.path_js_libs %>/enquire.min.js'],
-        dest: 'build/uncompressed/<%= concat.options.path_js_libs %>/enquire.min.js'
-      },
-      media_match: {
-        src: ['<%= concat.options.path_js_libs %>/media.match.min.js'],
-        dest: 'build/uncompressed/<%= concat.options.path_js_libs %>/media.match.min.js'
-      },
-      modernizr: {
-        src: ['<%= concat.options.path_js_libs %>/modernizr.min.js'],
-        dest: 'build/uncompressed/<%= concat.options.path_js_libs %>/modernizr.min.js'
-      },
-      jquery: {
-        src: ['<%= concat.options.path_js_libs %>/jquery-1.8.3.min.js'],
-        dest: 'build/uncompressed/<%= concat.options.path_js_libs %>/jquery-1.8.3.min.js'
-      },
-      jquery_fitvids: {
-        src: ['<%= concat.options.path_js_libs %>/jquery.fitvids.min.js'],
-        dest: 'build/uncompressed/<%= concat.options.path_js_libs %>/jquery.fitvids.min.js'
-      },
-      jquery_easing: {
-        src: ['<%= concat.options.path_js_libs %>/jquery.easing.1.3.min.js'],
-        dest: 'build/uncompressed/<%= concat.options.path_js_libs %>/jquery.easing.1.3.min.js'
-      },
-      // Our scripts, concatenated
-      compressed: {
-        src: ['<%= concat.options.path_js %>/queries.js', '<%= concat.options.path_js %>/script.js', '<%= concat.options.path_js_libs %>/enquire.min.js', '<%= concat.options.path_js_libs %>/modernizr.min.js', '<%= concat.options.path_js_libs %>/jquery-1.8.3.min.js', '<%= concat.options.path_js_libs %>/jquery.fitvids.min.js', '<%= concat.options.path_js_libs %>/jquery.easing.1.3.min.js'],
-        dest: 'build/compressed/<%= concat.options.path_js %>/<%= pkg.title || pkg.name %>.js'
-      }
-    },
 
     uglify: {
       options: {
         // mangle: false
-        report: 'min'
+        report: 'min',
+        path_js: 'OEBPS/js',
+        path_js_libs: '<%= uglify.options.path_js %>/libs'
       },
       // Our scripts, unconcatenated and uglified
       /*
       script: {
-        src: ['<%= concat.script.dest %>'],
-        dest: 'dist/uncompressed/<%= concat.options.path_js %>/script.min.js'
+        src: ['<%= uglify.options.path_js %>/script.js'],
+        dest: 'dist/uncompressed/<%= uglify.options.path_js %>/script.min.js'
       },
       queries: {
-        src: ['<%= concat.queries.dest %>'],
-        dest: 'dist/uncompressed/<%= concat.options.path_js %>/queries.min.js'
+        src: ['<%= uglify.options.path_js %>/queries.js'],
+        dest: 'dist/uncompressed/<%= uglify.options.path_js %>/queries.min.js'
       },
       */
       detectizr: {
-        src: ['<%= concat.detectizr.dest %>'],
-        dest: 'dist/uncompressed/<%= concat.options.path_js_libs %>/detectizr.min.js'
+        src: ['<%= uglify.options.path_js_libs %>/detectizr.min.js'],
+        dest: 'dist/uncompressed/<%= uglify.options.path_js_libs %>/detectizr.min.js'
       },
       enquire: {
-        src: ['<%= concat.enquire.dest %>'],
-        dest: 'dist/uncompressed/<%= concat.options.path_js_libs %>/enquire.min.js'
+        src: ['<%= uglify.options.path_js_libs %>/enquire.min.js'],
+        dest: 'dist/uncompressed/<%= uglify.options.path_js_libs %>/enquire.min.js'
       },
       media_match: {
-        src: ['<%= concat.media_match.dest %>'],
-        dest: 'dist/uncompressed/<%= concat.options.path_js_libs %>/media.match.min.js'
+        src: ['<%= uglify.options.path_js_libs %>/media.match.min.js'],
+        dest: 'dist/uncompressed/<%= uglify.options.path_js_libs %>/media.match.min.js'
       },
       modernizr: {
-        src: ['<%= concat.modernizr.dest %>'],
-        dest: 'dist/uncompressed/<%= concat.options.path_js_libs %>/modernizr.min.js'
+        src: ['<%= uglify.options.path_js_libs %>/modernizr.min.js'],
+        dest: 'dist/uncompressed/<%= uglify.options.path_js_libs %>/modernizr.min.js'
       },
-      jquery: {
-        src: ['<%= concat.jquery.dest %>'],
-        dest: 'dist/uncompressed/<%= concat.options.path_js_libs %>/jquery-1.8.3.min.js'
-      },
-
       jquery_fitvids: {
-        src: ['<%= concat.jquery_fitvids.dest %>'],
-        dest: 'dist/uncompressed/<%= concat.options.path_js_libs %>/jquery.fitvids.min.js'
+        src: ['<%= uglify.options.path_js_libs %>/jquery.fitvids.min.js'],
+        dest: 'dist/uncompressed/<%= uglify.options.path_js_libs %>/jquery.fitvids.min.js'
       },
       jquery_easing: {
-        src: ['<%= concat.jquery_easing.dest %>'],
-        dest: 'dist/uncompressed/<%= concat.options.path_js_libs %>/jquery.easing.1.3.min.js'
+        src: ['<%= uglify.options.path_js_libs %>/jquery.easing.1.3.min.js'],
+        dest: 'dist/uncompressed/<%= uglify.options.path_js_libs %>/jquery.easing.1.3.min.js'
       },
-      // Our scripts, concatenated and uglified
-      compressed: {
-        src: '<%= concat.compressed.dest %>',
-        dest: 'dist/compressed/<%= concat.options.path_js %>/<%= pkg.title || pkg.name %>.js.min.js'
+      screenfull: {
+        src: ['<%= uglify.options.path_js_libs %>/screenfull.min.js'],
+        dest: 'dist/uncompressed/<%= uglify.options.path_js_libs %>/screenfull.min.js'
       }
     },
 
     compass: {
       compile_uncompressed: {
-        options: {
-          config: 'OEBPS/sass/config.rb',
-          basePath: 'OEBPS/sass'
-        }
-      },
-      compile_compressed: {
         options: {
           config: 'OEBPS/sass/config.rb',
           basePath: 'OEBPS/sass'
@@ -187,32 +131,27 @@ module.exports = function(grunt) {
           {expand: true, src: ['mimetype'], dest: 'dist/uncompressed/'},
           {expand: true, src: ['META-INF/**'], dest: 'dist/uncompressed/'}, // includes files in path and its subdirs
           {expand: true, src: ['OEBPS/*'], dest: 'dist/uncompressed/', filter: 'isFile'}, // includes files in path
-          {expand: true, src: ['OEBPS/css/**', 'OEBPS/fonts/**', 'OEBPS/images/**'], dest: 'dist/uncompressed/'}, // includes files in path and its subdirs
-          {expand: true, flatten: true, src: ['<%= concat.script.dest %>'], dest: 'dist/uncompressed/OEBPS/js', filter: 'isFile'}, // includes files in path
-          {expand: true, flatten: true, src: ['<%= concat.queries.dest %>'], dest: 'dist/uncompressed/OEBPS/js', filter: 'isFile'}, // includes files in path
-          {expand: true, src: ['mimetype'], dest: 'dist/compressed/'},
-          {expand: true, src: ['META-INF/**'], dest: 'dist/compressed/'}, // includes files in path and its subdirs
-          {expand: true, src: ['OEBPS/*'], dest: 'dist/compressed/', filter: 'isFile'}, // includes files in path
-          {expand: true, src: ['OEBPS/css/**', 'OEBPS/fonts/**', 'OEBPS/images/**'], dest: 'dist/compressed/'} // includes files in path and its subdirs
+          {expand: true, src: ['OEBPS/js/*'], dest: 'dist/uncompressed/', filter: 'isFile'}, // includes files in path
+          {expand: true, src: ['OEBPS/css/**', 'OEBPS/fonts/**', 'OEBPS/images/**'], dest: 'dist/uncompressed/'} // includes files in path and its subdirs
+          /*
+          {expand: true, flatten: true, src: ['<%= uglify.script.dest %>'], dest: 'dist/uncompressed/OEBPS/js', filter: 'isFile'}, // includes files in path
+          {expand: true, flatten: true, src: ['<%= uglify.queries.dest %>'], dest: 'dist/uncompressed/OEBPS/js', filter: 'isFile'} // includes files in path
+          */
         ]
       },
       // Copy across the readk.it files.
       // <%= readkit_src %> allows us to easily change between source readk.it and built readk.it
       readkit: {
         options: {
-          processContentExclude: ['<%= readkit_src %>/.gitignore', '<%= readkit_src %>/build.txt', '<%= readkit_src %>/index.library.html', '<%= readkit_src %>/offline.manifest']
+          processContentExclude: ['OEBPS/readk.it/.gitignore', 'OEBPS/readk.it/index.library.html', 'OEBPS/readk.it/offline.manifest']
         },
         files: [
-          {expand: true, cwd: '<%= readkit_src %>/', src: ['*'], dest: 'dist/uncompressed/<%= readkit_dest %>/', filter: 'isFile'}, // includes files in path
-          {expand: true, cwd: '<%= readkit_src %>/', src: ['css/**', 'images/**'], dest: 'dist/uncompressed/<%= readkit_dest %>/'}, // includes files in path and its subdirs
-          {expand: true, cwd: '<%= readkit_src %>/', src: ['fonts/fontello/css/**', 'fonts/fontello/font/**', 'fonts/Lora/**', 'fonts/SourceSansPro/**'], dest: 'dist/uncompressed/<%= readkit_dest %>/'}, // includes files in path and its subdirs
-          {expand: true, cwd: '<%= readkit_src %>/', src: ['js/*'], dest: 'dist/uncompressed/<%= readkit_dest %>/', filter: 'isFile'}, // includes files in path
-          {expand: true, cwd: '<%= readkit_src %>/', src: ['js/app/**', 'js/lib/**'], dest: 'dist/uncompressed/<%= readkit_dest %>/'}, // includes files in path and its subdirs
-          {expand: true, cwd: '<%= readkit_src %>/', src: ['*'], dest: 'dist/compressed/<%= readkit_dest %>/', filter: 'isFile'}, // includes files in path
-          {expand: true, cwd: '<%= readkit_src %>/', src: ['css/**', 'images/**'], dest: 'dist/compressed/<%= readkit_dest %>/'}, // includes files in path and its subdirs
-          {expand: true, cwd: '<%= readkit_src %>/', src: ['fonts/fontello/css/**', 'fonts/fontello/font/**', 'fonts/Lora/**', 'fonts/SourceSansPro/**'], dest: 'dist/compressed/<%= readkit_dest %>/'}, // includes files in path and its subdirs
-          {expand: true, cwd: '<%= readkit_src %>/', src: ['js/*', 'build/dist/*'], dest: 'dist/compressed/<%= readkit_dest %>/', filter: 'isFile'}, // includes files in path
-          {expand: true, cwd: '<%= readkit_src %>/', src: ['js/app/**', 'js/lib/**'], dest: 'dist/compressed/<%= readkit_dest %>/'} // includes files in path and its subdirs
+          {expand: true, cwd: 'OEBPS/readk.it/', src: ['*'], dest: 'dist/uncompressed/<%= readkit_dest %>/', filter: 'isFile'}, // includes files in path
+          {expand: true, cwd: 'OEBPS/readk.it/', src: ['css/**', 'images/**'], dest: 'dist/uncompressed/<%= readkit_dest %>/'}, // includes files in path and its subdirs
+          {expand: true, cwd: 'OEBPS/readk.it/', src: ['fonts/fontello/css/**', 'fonts/fontello/font/**', 'fonts/Lora/**', 'fonts/SourceSansPro/**'], dest: 'dist/uncompressed/<%= readkit_dest %>/'}, // includes files in path and its subdirs
+          {expand: true, cwd: 'OEBPS/readk.it/', src: ['js/*'], dest: 'dist/uncompressed/<%= readkit_dest %>/', filter: 'isFile'}, // includes files in path
+          {expand: true, cwd: '<%= readkit_src %>', src: ['js/*'], dest: 'dist/uncompressed/<%= readkit_dest %>/', filter: 'isFile'}, // includes files in path
+          {expand: true, cwd: 'OEBPS/readk.it/', src: ['js/app/**', 'js/lib/**'], dest: 'dist/uncompressed/<%= readkit_dest %>/'} // includes files in path and its subdirs
         ]
       }
     },
@@ -262,7 +201,6 @@ module.exports = function(grunt) {
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-compass');
   /* grunt.loadNpmTasks('grunt-contrib-nodeunit'); */
@@ -272,6 +210,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
 
   // Default task.
-  grunt.registerTask('default', ['clean:before', 'jshint', 'concat', 'uglify', 'compass', 'copy', 'shell', 'clean:after']);
+  grunt.registerTask('default', ['clean:before', 'jshint', 'uglify', 'compass', 'copy', 'shell', 'clean:after']);
 
 };

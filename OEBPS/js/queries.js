@@ -29,7 +29,7 @@ $(document).ready(function() {
                 $(document).on('kickoff', function() {
                     // Use Modernizr.Detectizr to detect whether we've got a desktop browser
                     Modernizr.Detectizr.detect({ detectDeviceModel: false, detectScreen: true, detectOS: false, detectBrowser: false, detectPlugins: false });
-                    if (Modernizr.Detectizr.device.type == 'desktop') {
+                    if (Modernizr.Detectizr.device.type === 'desktop') {
                         // We only want our blue-pulse animation for the header icon on desktop browsers.
                         // This alerts uses that they can go full-screen.
                         $('.header-icon').css({'-webkit-animation-name': 'bluePulse', '-webkit-animation-duration': '2s', '-webkit-animation-iteration-count': 'infinite'});

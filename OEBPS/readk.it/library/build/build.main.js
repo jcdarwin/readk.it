@@ -20,7 +20,7 @@
         'add-to-homescreen/src/add2home',
         'client_js/script'
     ],
-    out: 'dist/main.compiled.js',
+    out: 'dist/js/main.compiled.js',
     shim: {
         // Shim in our jQuery plugins etc, as they aren't AMD modules
         'sly': ['jquery']

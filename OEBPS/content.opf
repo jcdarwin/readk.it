@@ -52,7 +52,7 @@
         <item id='readk_it_index_html' href='readk.it/index.html'  media-type='text/html' />
         <item id='readk_it_offline_manifest' href='readk.it/offline.manifest'  media-type='text/plain' />
     <!-- './readk.it/css'  -->
-        <item id='readk_it_css_styles_css' href='readk.it/css/styles.css'  media-type='text/css' />
+        <item id='readk_it_css_styles_css' href='readk.it/css/readkit-styles.css'  media-type='text/css' />
     <!-- './readk.it/fonts'  -->
     <!-- './readk.it/fonts/fontello'  -->
     <!-- './readk.it/fonts/fontello/css'  -->

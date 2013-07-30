@@ -27,7 +27,7 @@
         'client_js/script',
         'client_js/queries'
     ],
-    out: 'dist/main.compiled.js',
+    out: 'dist/js/main.compiled.js',
     map: {
       '*': {
         'css': 'require-css/css'

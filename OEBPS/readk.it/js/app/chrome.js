@@ -518,8 +518,8 @@ define([
 
                                 var suffix = entry.filename.lastIndexOf('.') === -1 ? '' : entry.filename.substr(entry.filename.lastIndexOf('.') + 1).toLowerCase();
                                 if (['opf', 'xml', 'htm', 'html', 'xhtml', 'css', ''].indexOf(suffix) != -1) {
-                                    // This is a text-like file that we need to load directly into the browser
-                                    // so store as text.
+                                    // This is a text-like file that we need to parse or load directly 
+                                    // into the browser, so store as text.
                                     try {
                                         // There's an issue with zip.TextWriter failing silently in
                                         // Firefox; we have to supply 'utf-8', and also wrap it in

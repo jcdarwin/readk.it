@@ -22,7 +22,7 @@
 ,
 {"name": "Moby-Dick", "version": "2.0", "identifier": "urn:uuid:65842f04-b044-11e2-80f8-001cc0a62c0b", "path": "OEBPS/readk.it/library/html/melville_moby_dick/", "total_pages": 144, "cover": "./html/melville_moby_dick/META-INF/../OPS/images/cover.jpg"}
 ,
-{"name": "The Signal and the Noise: Why So Many Predictions Fail-but Some Don't", "version": "2.0", "identifier": "2a56eb50-3bd5-4ffc-86b0-7041daf60cd8", "path": "OEBPS/readk.it/library/html/nate_silver_the_signal_and_the_noise/", "total_pages": 115, "cover": "./html/nate_silver_the_signal_and_the_noise/META-INF/../cover.jpeg"}
+{"name": "The Signal and the Noise: Why So Many Predictions Fail-but Some Don't", "version": "2.0", "identifier": "2a56eb50-3bd5-4ffc-86b0-7041daf60cd8", "path": "OEBPS/readk.it/library/html/nate_silver_the_signal_and_the_noise_part1/", "total_pages": 11, "cover": "./html/nate_silver_the_signal_and_the_noise_part1/META-INF/../cover.jpeg"}
 ,
 {"name": "A House of Pomegranates", "version": "2.0", "identifier": "urn:uuid:22f0eb6c-aa33-11e2-96f7-001cc0a62c0b", "path": "OEBPS/readk.it/library/html/oscar_wilde_a_house_of_pomegranates/", "total_pages": 9, "cover": "./html/oscar_wilde_a_house_of_pomegranates/META-INF/../OPS/images/cover.jpg"}
 ,

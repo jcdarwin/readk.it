@@ -199,11 +199,11 @@ define([
             if (filename && publication.content[filename]) {
                 // Our content's already been retrieved, e.g. via drag & drop.
                 // Replace internal images with blob URLs.
-                pages[value.id] = pages[value.id].replace(/((?:<[^<>]* (?:src|poster)|<image<[^<>]* xlink\:href)=['"])(.*?)(['"'])/g, function(tag, prefix, value, suffix){ return createURL(tag, prefix, value, suffix, publication); } );
+                pages[value.id] = pages[value.id].replace(/((?:<[^<>]* (?:src|poster)|<image[^<>]* xlink\:href)=['"])(.*?)(['"'])/g, function(tag, prefix, value, suffix){ return createURL(tag, prefix, value, suffix, publication); } );
             } else {
                 // Ensure internal image urls have the correct path prepended.
                 // We have to do this here as jQuery will try to resolve the src.
-                pages[value.id] = pages[value.id].replace(/((?:<[^<>]* (?:src|poster)|<image<[^<>]* xlink\:href)=['"])/g, '$1' + value.path.replace(/[^\/]+/g, '..') + value.href.replace(/[^\/]*?$/, ''));
+                pages[value.id] = pages[value.id].replace(/((?:<[^<>]* (?:src|poster)|<image[^<>]* xlink\:href)=['"])/g, '$1' + value.path.replace(/[^\/]+/g, '..') + value.href.replace(/[^\/]*?$/, ''));
             }
 
             var page = $(pages[value.id]);
@@ -224,6 +224,25 @@ define([
                 }
                 return $(v);
             });
+
+            // A special case: svg images (typically cover images).
+            // <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="100%" height="100%" viewBox="0 0 795 1200" preserveAspectRatio="none">
+            //    <image width="795" height="1200" xlink:href="cover.jpeg"/>
+            // </svg>
+            // We'll force the svg width and height to fall back to those specified on the image.
+            $.each(page.find('svg'), function (i, v) {
+                $(v).attr('width',  $($(this).children('image')[0]).attr('width'));
+                $(v).attr('height', $($(this).children('image')[0]).attr('height'));
+                // For good measure we try to ensure the image appears centered in the viewpport.
+                // Cover images are important (though this will probably break someone's styling somewhere)
+                $(v).closest('div').css({'width': '100%', 'text-align' : 'center'});
+            });
+
+            // jQuery's support for namespaced attributes is poor.
+            // This left here in case we need it in future.
+            //page.find('svg image').filter(function() { return $(this).attr('xlink:href'); }).each(function() {
+            //    $(this).attr('xlink:href', 'whatever'))
+            //});
 
             $.each(page.find('[id]'), function(i, v){
                 // We want to change something like 'milestone1' to 'chapter1_milestone1'

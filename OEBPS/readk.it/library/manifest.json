@@ -1,5 +1,7 @@
 [
 
+{"name": "SVG Image Test", "version": "2.0", "identifier": "svgtest", "path": "OEBPS/readk.it/library/html/svgtest/", "total_pages": 6, "cover": "./html/svgtest/META-INF/../cover.jpeg"}
+,
 {"name": "Accessible EPUB 3", "version": "3.0", "identifier": "urn:isbn:9781449328030", "path": "OEBPS/readk.it/library/html/accessible_epub_3/", "total_pages": 22, "cover": "./html/accessible_epub_3/META-INF/../EPUB/covers/9781449328030_lrg.jpg"}
 ,
 {"name": "Pride and Prejudice", "version": "2.0", "identifier": "urn:uuid:af27173e-ad1a-11e2-beff-001cc0a62c0b", "path": "OEBPS/readk.it/library/html/austen_pride_and_prejudice/", "total_pages": 69, "cover": "./html/austen_pride_and_prejudice/META-INF/../OPS/images/cover.jpg"}

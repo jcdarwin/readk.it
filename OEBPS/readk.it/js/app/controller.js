@@ -229,13 +229,11 @@ define([
             // <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="100%" height="100%" viewBox="0 0 795 1200" preserveAspectRatio="none">
             //    <image width="795" height="1200" xlink:href="cover.jpeg"/>
             // </svg>
-            // We'll force the svg width and height to fall back to those specified on the image.
             $.each(page.find('svg'), function (i, v) {
-                $(v).attr('width',  $($(this).children('image')[0]).attr('width'));
-                $(v).attr('height', $($(this).children('image')[0]).attr('height'));
-                // For good measure we try to ensure the image appears centered in the viewpport.
-                // Cover images are important (though this will probably break someone's styling somewhere)
-                $(v).closest('div').css({'width': '100%', 'text-align' : 'center'});
+                // We'll try to force the svg image to be  contrained to the viewport and centered.
+                // Cover images are important (though this will probably break someone's styling somewhere).
+                // This works in Chrome (at least), but not in Firefox.
+                ($(v)[0]).setAttribute('preserveAspectRatio', 'defer xMidYMid meet')
             });
 
             // jQuery's support for namespaced attributes is poor.

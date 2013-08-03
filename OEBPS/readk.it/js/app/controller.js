@@ -232,8 +232,10 @@ define([
             $.each(page.find('svg'), function (i, v) {
                 // We'll try to force the svg image to be  contrained to the viewport and centered.
                 // Cover images are important (though this will probably break someone's styling somewhere).
-                // This works in Chrome (at least), but not in Firefox.
-//                ($(v)[0]).setAttribute('preserveAspectRatio', 'defer xMidYMid meet')
+                // This works in desktop Chrome and Firefox, but not Safari on iOS.
+                ($(v)[0]).setAttribute('preserveAspectRatio', 'defer xMidYMid meet');
+//                ($(v)[0]).setAttribute('height', $(window).height());
+                $(v).parent().css({'width': '100%', 'text-align': 'center'})
             });
 
             // jQuery's support for namespaced attributes is poor.

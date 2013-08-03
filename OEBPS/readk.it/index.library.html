@@ -1,3 +1,8 @@
+<?xml version="1.0" standalone="no"?>
+
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
 <html>
     <head>
         <title>readk.it</title>
@@ -81,17 +86,13 @@
     <div class="readkit-cancel_upload">
         <span class="readkit-icon readkit-cancel readkit-inactive"><i class="icon-cancel"></i></span>
     </div>
-    <form id="readkit-epub-drag-upload" action="#" method="post" enctype="multipart/form-data">
-        <fieldset>
-          <legend></legend>
-          <label id="readkit-epub-drag-upload-label" for="readkit-id_epub_drag">Drag an EPUB file into this space to start reading.</label>
-          <input type="file" name="epub" id="readkit-id_drag_epub" multiple="multiple"> 
-        </fieldset>
-    </form>
+    <div id="readkit-epub-drag-upload">
+      <p id="readkit-epub-drag-upload-label">Drag an EPUB file into this space to start reading.</p>
+    </div>
     <div id="readkit-drag-upload-spinner">
       <img src="images/spinner-sm.png" width="50" alt="Loading image">
     </div>
-  <div id="readkit-epub-drag-upload-status" class="readkit-epub-upload-status">Upload progress:</div>
+  <div id="readkit-epub-drag-upload-status" class="readkit-epub-upload-status"></div>
   <progress class="readkit-drag-upload-progress" max="100" value="0"></progress>
 </div>
 

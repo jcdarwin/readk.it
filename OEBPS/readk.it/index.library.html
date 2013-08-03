@@ -77,22 +77,22 @@
             </div>
         </div>
 
-<div id="drag-upload-window" class="greybox">
+<div id="readkit-drag-upload-window" class="readkit-drag-upload-window">
     <div class="readkit-cancel_upload">
         <span class="readkit-icon readkit-cancel readkit-inactive"><i class="icon-cancel"></i></span>
     </div>
-    <form id="epub-drag-upload" action="http://ibisreader.com/library/upload/" method="post" enctype="multipart/form-data">
+    <form id="readkit-epub-drag-upload" action="#" method="post" enctype="multipart/form-data">
         <fieldset>
           <legend></legend>
-          <label id="epub-drag-upload-label" for="id_epub_drag">Drag an EPUB file into this space to read it.</label>
-          <input type="file" name="epub" id="id_drag_epub" multiple="multiple"> 
+          <label id="readkit-epub-drag-upload-label" for="readkit-id_epub_drag">Drag an EPUB file into this space to start reading.</label>
+          <input type="file" name="epub" id="readkit-id_drag_epub" multiple="multiple"> 
         </fieldset>
     </form>
-    <div id="drag-upload-spinner">
+    <div id="readkit-drag-upload-spinner">
       <img src="images/spinner-sm.png" width="50" alt="Loading image">
     </div>
-  <div id="epub-drag-upload-status" class="epub-upload-status">Upload progress:</div>
-  <progress class="drag-upload-progress" max="100" value="0"></progress>
+  <div id="readkit-epub-drag-upload-status" class="readkit-epub-upload-status">Upload progress:</div>
+  <progress class="readkit-drag-upload-progress" max="100" value="0"></progress>
 </div>
 
         <div id="readkit-pageWrapper">

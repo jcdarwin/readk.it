@@ -212,7 +212,7 @@ define([
         if (readkit_dropdown_size_ready) {
             readkit_dropdown_size_ready = false;
             if ( $('#readkit-dropdown-size').is(':visible') ) {
-                $('#readkit-dropdown-size').slideUp(600);
+                $('#readkit-dropdown-size').slideUp('slow');
             } else {
                 if ( $('#readkit-dropdown-lineheight').is(':visible') ) {
                     $('#readkit-dropdown-lineheight').slideUp();
@@ -224,7 +224,7 @@ define([
                 $('.readkit-strength-size[data-size="' + value + '"]')
                     .removeClass('readkit-inactive')
                     .addClass('readkit-active');
-                $('#readkit-dropdown-size').slideDown(600);
+                $('#readkit-dropdown-size').slideDown('slow');
             }
         }
 
@@ -272,7 +272,7 @@ define([
         if (readkit_dropdown_lineheight_ready) {
             readkit_dropdown_lineheight_ready = false;
             if ( $('#readkit-dropdown-lineheight').is(':visible') ) {
-                $('#readkit-dropdown-lineheight').slideUp(600);
+                $('#readkit-dropdown-lineheight').slideUp('slow');
             } else {
                 if ( $('#readkit-dropdown-size').is(':visible') ) {
                     $('#readkit-dropdown-size').slideUp();
@@ -284,7 +284,7 @@ define([
                 $('.readkit-strength-line-height[data-size="' + value + '"]')
                     .removeClass('readkit-inactive')
                     .addClass('readkit-active');
-                $('#readkit-dropdown-lineheight').slideDown(600);
+                $('#readkit-dropdown-lineheight').slideDown('slow');
             }
         }
 
@@ -350,7 +350,7 @@ define([
         if (readkit_dropdown_bookmark_ready) {
             readkit_dropdown_bookmark_ready = false;
             if ( $('#readkit-dropdown-bookmark').is(':visible') ) {
-                $('#readkit-dropdown-bookmark').slideUp(600);
+                $('#readkit-dropdown-bookmark').slideUp('slow');
             } else {
                 var value = layout.storage('font-bookmark');
                 $('.readkit-strength-bookmark[data-size="' + value + '"]').addClass('readkit-active');
@@ -399,10 +399,10 @@ define([
                 // Capture clicks on anchors so we can update the scroll position.
                 $('#readkit-bookmark-widget a').on('click', function(event) {
                     layout.trap_anchor(this, event);
-                    $('#readkit-dropdown-bookmark').slideUp(600);
+                    $('#readkit-dropdown-bookmark').slideUp('slow');
                 });
 
-                $('#readkit-dropdown-bookmark').slideDown(600, function() {
+                $('#readkit-dropdown-bookmark').slideDown('slow', function() {
                     setTimeout(function () {
                         bookmark_scroller.refresh();
                     }, 0);
@@ -473,18 +473,22 @@ define([
 
     $('.readkit-cancel_upload').on('click', function(e){
         e.stopPropagation();
-        $('.readkit-drag-upload-window').slideUp('slow');
+        $('.readkit-drag-upload-window').slideUp('slow', function(){
+        $(".readkit-drag-upload-spinner").removeClass('loading');
+        });
     });
 
     // The following more or less pinched from ibis.reader
     // At least some traces live on...
     var upload = {};
+    var progress_total = 0;
     upload.handle_drag_enter = function (e) {
         e.stopPropagation();
         e.preventDefault();
-        $("#readkit-epub-drag-upload-status").text("");
-        $(".readkit-drag-upload-progress").attr("value", '0');
-        $("#readkit-drag-upload-spinner").removeClass('loading').hide();
+        progress_total = 0;
+        $(".readkit-meter span").attr("style", "width:0%");
+        $(".readkit-epub-drag-upload-label").removeClass("loading").text("Drag an EPUB file into this space to start reading.");
+        $(".readkit-drag-upload-spinner").removeClass('loading');
 
         $('.readkit-drag-upload-window').slideDown();
         var epub_drag_upload = $("#readkit-epub-drag-upload")[0];
@@ -526,7 +530,7 @@ define([
                                         // https://github.com/gildas-lormeau/zip.js/issues/58
                                         entry.getData(new zip.TextWriter('utf-8'), function(text){
                                             upload.progress(f, entry);
-                                            console.log(entry.filename);
+                                            //console.log(entry.filename);
                                             deferred_entry.resolve(text);
                                         });
                                     } catch (e) {
@@ -538,7 +542,7 @@ define([
                                     // to display them (e.g. jpg) and that would be silly.
                                     entry.getData(new zip.BlobWriter(), function(blob){
                                         upload.progress(f, entry);
-                                        console.log(entry.filename);
+                                        //console.log(entry.filename);
                                         deferred_entry.resolve(blob);
                                     });
                                 }
@@ -557,29 +561,26 @@ define([
                     });
 
                 }, upload.failed);
-            $("#readkit-epub-drag-upload-label").css("opacity", "0.2");
-            $("#readkit-epub-drag-upload-status").text("Uploading EPUB...");
-            $("#readkit-drag-upload-spinner").show().addClass("loading");
+            $(".readkit-epub-drag-upload-label").addClass("loading").text("Uploading EPUB...");
+            $(".readkit-drag-upload-spinner").addClass("loading");
             return false;
         }
     };
 
-    var progress_total = 0;
     upload.progress = function (f, entry) {
         if (entry.compressedSize) {
             var progress_file = Math.round(entry.compressedSize * 100 / f.size);
             progress_total += progress_file;
-            $(".readkit-drag-upload-progress").attr("value", progress_total.toString());
+            $(".readkit-meter span").attr("style", "width:" + progress_total.toString() + "%");
             if (progress_total <= 99) {
-                $("#readkit-epub-drag-upload-status").html("Unpacking EPUB...");
+                $(".readkit-epub-drag-upload-label").html("Unpacking EPUB...");
             }
         }
     };
 
     upload.complete = function (a) {
-        $(".readkit-drag-upload-progress").attr("value", a.toString());
-        $("#readkit-epub-drag-upload-status").text("Opening EPUB...");
-        $("#readkit-drag-upload-spinner").removeClass('loading').hide();
+    $(".readkit-meter span").attr("style", "width:" + a.toString() + "%");
+        $(".readkit-epub-drag-upload-label").text("Opening EPUB...");
     };
 
     upload.failed = function (a) {

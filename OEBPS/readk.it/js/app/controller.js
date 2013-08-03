@@ -230,12 +230,21 @@ define([
             //    <image width="795" height="1200" xlink:href="cover.jpeg"/>
             // </svg>
             $.each(page.find('svg'), function (i, v) {
-                // We'll try to force the svg image to be  contrained to the viewport and centered.
-                // Cover images are important (though this will probably break someone's styling somewhere).
-                // This works in desktop Chrome and Firefox, but not Safari on iOS.
+                // Cover images are important (though the following will probably break someone's styling somewhere).
+                // We'll try to force the svg image to be contrained to the viewport.
+                // (Necessary for Firefox), but not Chrome.
+                // Unforutantely doesn't work in Safari on iOS (seems nothing works in Safari on iOS with respect to SVGs).
                 ($(v)[0]).setAttribute('preserveAspectRatio', 'defer xMidYMid meet');
-//                ($(v)[0]).setAttribute('height', $(window).height());
-                $(v).parent().css({'width': '100%', 'text-align': 'center'})
+
+                // Use iPhone2G-4S as the min height, and then substracting some for menu and padding.
+                // Note that, because this is SVG, we specify in integers, not pixels.
+                // We do this as we can't rely on $(window).height() -- it seems broken on Firefox
+                // though this may be to do with iScroll.
+                var minHeight = 480;
+                ($(v)[0]).setAttribute('height', $(window).height() > minHeight ? $(window).height() -80 : minHeight -80);
+
+                // Ensure the image is centered.
+                $(v).parent().css({'width': '100%', 'text-align': 'center', 'padding-top' : '20px'});
             });
 
             // jQuery's support for namespaced attributes is poor.

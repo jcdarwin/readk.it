@@ -83,8 +83,9 @@ for r, d, files in os.walk("."):
             path = 'OEBPS/readk.it/library/' + re.sub(r'^(?:./)?(.*)(META-INF)$', r"\g<1>", r)
 
             #For the normal case, where we only want to serve the library
-            # (http://localhost:8000/readk.it/library/library.html)
+            #(http://localhost:8000/readk.it/library/library.html)
             #path = 'readk.it/library/' + re.sub(r'^(?:./)?(.*)(META-INF)$', r"\g<1>", r)
+
             cover = opf.xpath("//opf:item[contains(@properties, 'cover-image')]/@href", namespaces=namespaces)
             if not cover:
                 coverid = opf.xpath("//opf:meta[contains(@name, 'cover')]/@content", namespaces=namespaces)

@@ -1,19 +1,5 @@
 [
 
-{"name": "SVG Image Test 1", "version": "2.0", "identifier": "svgtest1", "path": "OEBPS/readk.it/library/html/svgtest1/", "total_pages": 1, "cover": "./html/svgtest1/META-INF/../cover.jpeg"}
-,
-{"name": "SVG Image Test 2", "version": "2.0", "identifier": "svgtest2", "path": "OEBPS/readk.it/library/html/svgtest2/", "total_pages": 1, "cover": "./html/svgtest2/META-INF/../cover.jpeg"}
-,
-{"name": "SVG Image Test 3", "version": "2.0", "identifier": "svgtest3", "path": "OEBPS/readk.it/library/html/svgtest3/", "total_pages": 1, "cover": "./html/svgtest3/META-INF/../cover.jpeg"}
-,
-{"name": "SVG Image Test 4", "version": "2.0", "identifier": "svgtest4", "path": "OEBPS/readk.it/library/html/svgtest4/", "total_pages": 1, "cover": "./html/svgtest4/META-INF/../cover.jpeg"}
-,
-{"name": "SVG Image Test 5", "version": "2.0", "identifier": "svgtest5", "path": "OEBPS/readk.it/library/html/svgtest5/", "total_pages": 1, "cover": "./html/svgtest5/META-INF/../cover.jpeg"}
-,
-{"name": "SVG Image Test 6", "version": "2.0", "identifier": "svgtest6", "path": "OEBPS/readk.it/library/html/svgtest6/", "total_pages": 1, "cover": "./html/svgtest6/META-INF/../cover.jpeg"}
-,
-{"name": "SVG Image Test 7", "version": "2.0", "identifier": "svgtest7", "path": "OEBPS/readk.it/library/html/svgtest7/", "total_pages": 1, "cover": "./html/svgtest7/META-INF/../cover.jpeg"}
-,
 {"name": "Accessible EPUB 3", "version": "3.0", "identifier": "urn:isbn:9781449328030", "path": "OEBPS/readk.it/library/html/accessible_epub_3/", "total_pages": 22, "cover": "./html/accessible_epub_3/META-INF/../EPUB/covers/9781449328030_lrg.jpg"}
 ,
 {"name": "Pride and Prejudice", "version": "2.0", "identifier": "urn:uuid:af27173e-ad1a-11e2-beff-001cc0a62c0b", "path": "OEBPS/readk.it/library/html/austen_pride_and_prejudice/", "total_pages": 69, "cover": "./html/austen_pride_and_prejudice/META-INF/../OPS/images/cover.jpg"}

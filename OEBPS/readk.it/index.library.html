@@ -33,8 +33,6 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">    
         <link rel="apple-touch-startup-image" href="images/splash.png">
 
-        <link rel="stylesheet" href="css/drag_and_drop.css">
-
         <!-- Add to home screen: http://cubiq.org/add-to-home-screen -->
         <link rel="stylesheet" href="js/lib/add-to-homescreen/style/add2home.css">
         <script type="text/javascript">
@@ -82,20 +80,23 @@
             </div>
         </div>
 
-<div id="readkit-drag-upload-window" class="readkit-drag-upload-window">
-    <div class="readkit-cancel_upload">
-        <span class="readkit-icon readkit-cancel readkit-inactive"><i class="icon-cancel"></i></span>
-    </div>
-    <div id="readkit-epub-drag-upload">
-      <p id="readkit-epub-drag-upload-label">Drag an EPUB file into this space to start reading.</p>
-    </div>
-    <div id="readkit-drag-upload-spinner">
-      <img src="images/spinner-sm.png" width="50" alt="Loading image">
-    </div>
-  <div id="readkit-epub-drag-upload-status" class="readkit-epub-upload-status"></div>
-  <progress class="readkit-drag-upload-progress" max="100" value="0"></progress>
-</div>
+        <!-- Drag and drop an EPUB onto the browser to open it -->
+        <div id="readkit-drag-upload-window" class="readkit-drag-upload-window">
+            <div class="readkit-cancel_upload">
+                <span class="readkit-icon readkit-cancel readkit-inactive"><i class="icon-cancel"></i></span>
+            </div>
+            <div id="readkit-epub-drag-upload">
+                <p class="readkit-epub-drag-upload-label"></p>
+                <div class="readkit-drag-upload-spinner">
+                    <img src="images/spinner.gif" width="50" alt="Loading image">
+                </div>
+            </div>
+            <div class="readkit-meter">
+                <span style="width: 0%"></span>
+            </div>
+        </div>
 
+        <!-- Our main layout container -->
         <div id="readkit-pageWrapper">
             <div id="readkit-pageScroller">
             </div>

@@ -1,7 +1,7 @@
-fieldset {
+#readkit-epub-drag-upload fieldset {
     border: none;
 }
-#drag-upload-window {
+#readkit-drag-upload-window {
     width:80%;
     -moz-border-radius-topleft:10px;
     -moz-border-radius-topright:10px;
@@ -14,43 +14,43 @@ fieldset {
     padding:0;
 }
 
-#drag-upload-window form {
+#readkit-drag-upload-window form {
     border:4px dotted #bcbec0;
     height:40%;
     margin:2em;
     padding:0;
 }
 
-#drag-upload-window form label {
+#readkit-drag-upload-window form label {
     font-size:2em;
     text-align:center;
     margin-top:1em;
 }
 
-.epub-upload-status {
+.readkit-epub-upload-status {
     font-size:1.5em;
     padding:0 3em;
 }
 
-.epub-upload-status blockquote {
+.readkit-epub-upload-status blockquote {
     color:gray;
     margin:1em 2em;
 }
 
-#drag-upload-spinner {
+#readkit-drag-upload-spinner {
     text-align: center;
     visibility:hidden;
     margin:auto;
 }
 
-.greybox label {
+.readkit-drag-upload-window label {
     color:#222;
     margin-bottom:1em;
     display:block;
     font-weight:700;
 }
 
-.greybox #epub-drag-upload input[type=file] {
+.readkit-drag-upload-window #readkit-epub-drag-upload input[type=file] {
 /*    visibility:hidden;*/
     height:0;
     width:0;
@@ -58,7 +58,7 @@ fieldset {
     padding:0;
 }
 
-.greybox {
+.readkit-drag-upload-window {
     display:none;
     position:absolute;
     top:0;
@@ -81,12 +81,12 @@ fieldset {
     font-family: sans-serif;
 }
 
-.greybox input {
+.readkit-drag-upload-window input {
     display:inline-block;
     padding:0;
 }
 
-.greybox form {
+.readkit-drag-upload-window form {
     padding:14px 30px 13px 35px;
 }
 
@@ -98,7 +98,7 @@ fieldset {
     -webkit-transition-timing-function:linear;
 }
 
-.greybox progress {
+.readkit-drag-upload-window .readkit-drag-upload-progress {
     width:80%;
     display:block;
     margin:1em auto;

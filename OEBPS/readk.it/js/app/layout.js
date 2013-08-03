@@ -432,6 +432,12 @@ define([
             book_scroller.scrollTo(book_scroller.x - page_width, book_scroller.y, 200);
         });
 
+        $(document).bind('keydown', 'esc', function(){
+            setTimeout(function () {
+                $('.readkit-drag-upload-window').slideUp('slow');
+            }, 0);
+        });
+
         // Notify any subscribers that the layout has been loaded.
         controller.publish('publication_loaded');
     };

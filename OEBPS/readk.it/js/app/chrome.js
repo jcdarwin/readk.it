@@ -337,9 +337,9 @@ define([
         var bookmarks = layout.storage('bookmarks');
 
         if (bookmarks && bookmarks.length) {
-            $('#readkit-for-bookmark').addClass('readkit-active');
+            $('#readkit-for-bookmark').addClass('readkit-active').removeClass('readkit-inactive');
         } else {
-            $('#readkit-for-bookmark').removeClass('readkit-active');
+            $('#readkit-for-bookmark').addClass('readkit-inactive').removeClass('readkit-active');
         }
     }
 
@@ -426,14 +426,14 @@ define([
         $(this).parent().remove();
 
         if (!(bookmarks && bookmarks.length)) {
-            $('#readkit-for-bookmark').removeClass('readkit-active');
+            $('#readkit-for-bookmark').addClass('readkit-inactive').removeClass('readkit-active');
         }
 
     });
 
     $('#readkit-dropdown-bookmark').on('click', '.readkit-add-bookmark', function(e){
         e.preventDefault();
-        $('#readkit-for-bookmark').addClass('readkit-active');
+        $('#readkit-for-bookmark').addClass('readkit-active').removeClass('readkit-inactive');
 
         var value = $('#readkit-bookmark-input').attr('value');
         var file = $('#readkit-bookmark-input').attr('data-file');
@@ -473,7 +473,7 @@ define([
 
     $('.readkit-cancel_upload').on('click', function(e){
         e.stopPropagation();
-        $('.greybox').slideUp('slow');
+        $('.readkit-drag-upload-window').slideUp('slow');
     });
 
     // The following more or less pinched from ibis.reader
@@ -482,13 +482,12 @@ define([
     upload.handle_drag_enter = function (e) {
         e.stopPropagation();
         e.preventDefault();
-/*        greybox.hide("file-upload-window"); */
-        $("#epub-drag-upload-status").text("");
-        $("progress").attr("value", '0');
-        $("#drag-upload-spinner").removeClass('loading').hide();
+        $("#readkit-epub-drag-upload-status").text("");
+        $(".readkit-drag-upload-progress").attr("value", '0');
+        $("#readkit-drag-upload-spinner").removeClass('loading').hide();
 
-        $('.greybox').slideDown("drag-upload-window");
-        var epub_drag_upload = $("#epub-drag-upload")[0];
+        $('.readkit-drag-upload-window').slideDown();
+        var epub_drag_upload = $("#readkit-epub-drag-upload")[0];
         epub_drag_upload.addEventListener("drop", upload.prep_dropped_files_for_upload, false);
         epub_drag_upload.addEventListener("dragover", function (e) {
             e.stopPropagation();
@@ -506,7 +505,7 @@ define([
 
     upload.upload_files = function (e, filelist) {
         var files = [];
-        filelist = filelist || $("#id_epub")[0].files;
+        filelist = filelist || $("#readkit-id_epub")[0].files;
         if (filelist.length) {
             zip.workerScriptsPath = "js/lib/zip/";
                 f = filelist[0];
@@ -551,16 +550,16 @@ define([
                         })).done(function(){
                             upload.complete(100);
                             setTimeout(function () {
-                                $('.greybox').slideUp('slow');
+                                $('.readkit-drag-upload-window').slideUp('slow');
                             }, 0);
                             publication = controller.initialise('', files);
                         });
                     });
 
                 }, upload.failed);
-            $("#epub-drag-upload-label").css("opacity", "0.2");
-            $("#epub-drag-upload-status").text("Uploading EPUB...");
-            $("#drag-upload-spinner").show().addClass("loading");
+            $("#readkit-epub-drag-upload-label").css("opacity", "0.2");
+            $("#readkit-epub-drag-upload-status").text("Uploading EPUB...");
+            $("#readkit-drag-upload-spinner").show().addClass("loading");
             return false;
         }
     };
@@ -570,17 +569,17 @@ define([
         if (entry.compressedSize) {
             var progress_file = Math.round(entry.compressedSize * 100 / f.size);
             progress_total += progress_file;
-            $("progress").attr("value", progress_total.toString());
+            $(".readkit-drag-upload-progress").attr("value", progress_total.toString());
             if (progress_total <= 99) {
-                $("#epub-drag-upload-status").html("Unpacking EPUB...");
+                $("#readkit-epub-drag-upload-status").html("Unpacking EPUB...");
             }
         }
     };
 
     upload.complete = function (a) {
-        $("progress").attr("value", a.toString());
-        $("#epub-drag-upload-status").text("Opening EPUB...");
-        $("#drag-upload-spinner").removeClass('loading').hide();
+        $(".readkit-drag-upload-progress").attr("value", a.toString());
+        $("#readkit-epub-drag-upload-status").text("Opening EPUB...");
+        $("#readkit-drag-upload-spinner").removeClass('loading').hide();
     };
 
     upload.failed = function (a) {
@@ -590,8 +589,6 @@ define([
     upload.cancelled = function (e) {
         h.debug("The upload has been canceled by the user or the browser dropped the connection.");
     };
-/*    $("#id_epub").bind("change", upload.file_was_selected); */
-    $("#epub-upload").bind("submit", upload.upload_files);
 /*     if ("FileReader" in window && Modernizr.draganddrop) { */
     if ("FileReader" in window) {
         $("#epub-upload p").show();

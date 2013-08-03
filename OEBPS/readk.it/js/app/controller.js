@@ -233,7 +233,7 @@ define([
                 // We'll try to force the svg image to be  contrained to the viewport and centered.
                 // Cover images are important (though this will probably break someone's styling somewhere).
                 // This works in Chrome (at least), but not in Firefox.
-                ($(v)[0]).setAttribute('preserveAspectRatio', 'defer xMidYMid meet')
+//                ($(v)[0]).setAttribute('preserveAspectRatio', 'defer xMidYMid meet')
             });
 
             // jQuery's support for namespaced attributes is poor.

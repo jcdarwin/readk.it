@@ -156,6 +156,29 @@ module.exports = function(grunt) {
       }
     },
 
+    dom_munger: {
+      target: {
+        options: {
+          read: {selector: 'manifest item', attribute: 'href', writeto: 'manifestRefs', isPath:true}
+        },
+        src: 'OEBPS/content.opf'
+      }
+    },
+
+    jst: {
+        compile: {
+            options: {
+                namespace: 'readkit',
+                processName: function (filename) {
+                    return filename.split('/').pop().split('.')[0];
+                }
+            },
+            files: {
+                'dist/templates/compiled.js': ['OEBPS/*.html']
+            }
+        }
+    },
+
     shell: {
       zip: {
         command: [
@@ -208,8 +231,46 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-dom-munger');
+  grunt.loadNpmTasks('grunt-contrib-jst');
 
   // Default task.
   grunt.registerTask('default', ['clean:before', 'jshint', 'uglify', 'compass', 'copy', 'shell', 'clean:after']);
+  grunt.registerTask('mung', ['dom_munger:target', 'stuff']);
 
+  grunt.registerTask('stuff', function() {
+    //var tmpl = grunt.file.read('dist/templates/compiled.js');
+    //console.log(tmpl);
+
+    var lf = grunt.util.linefeed;
+
+    var options = this.options({
+      processContent: function (src) { return src; },
+      separator: lf + lf
+    });
+
+    var files = 'var files = {';
+
+    //grunt.file.expand(['<%= dom_munger.data.manifestRefs %>']).forEach(function(f) {
+    grunt.file.expand(['OEBPS/*html']).forEach(function(f) {
+        var filepath = f;
+        var src = options.processContent(grunt.file.read(filepath));
+        var compiled, filename;
+
+        compiled = src;
+        if (options.prettify) {
+          compiled = compiled.replace(new RegExp('\n', 'g'), '');
+        }
+        filename = filepath;
+
+        console.log(compiled);
+        console.log(filename);
+
+        files += "'" + filename + "': '" + compiled + "', ";
+    });
+
+    files += '};';
+    grunt.file.write('dist/templates/compiled.js', files);
+
+  });
 };

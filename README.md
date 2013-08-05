@@ -242,6 +242,8 @@ Install dependendices:
     npm install grunt-zip --save-dev
     npm install grunt-shell --save-dev
     npm install grunt-contrib-connect --save-dev
+    npm install assemble --save-dev
+    npm install grunt-contrib-jst --save-dev
 
 As we use cygwin, add the following hack into node_modules\grunt-contrib-compass\tasks\compass.js, directly before "compile(args, cb);":
 

@@ -196,6 +196,17 @@ define([
                 filename = value.href.substr(1, value.href.length);
             }
 
+            // Strip namespaces from svg elements (i.e. cover images) as these cause rendering problems.
+            // <svg:svg viewBox="0 0 525 700">
+            pages[value.id] = pages[value.id].replace(/<[^\:<>]*?:svg /g, '<svg ');
+            // </svg:svg>
+            pages[value.id] = pages[value.id].replace(/<\/[^\:<>]*?:svg>/g, '</svg>');
+
+            // <svg:image xlink:href="images/cover_front.jpg" transform="translate(0 0)" width="525" height="700" />
+            pages[value.id] = pages[value.id].replace(/<[^\:<>]*?:image /g, '<image ');
+            // </svg:image>
+            pages[value.id] = pages[value.id].replace(/<\/[^\:<>]*?:image>/g, '</image>');
+
             if (filename && publication.content[filename]) {
                 // Our content's already been retrieved, e.g. via drag & drop.
                 // Replace internal images with blob URLs.
@@ -225,15 +236,32 @@ define([
                 return $(v);
             });
 
+            // If we didn't strip namespaces from svgs above, then the following is an
+            // indication of the sort of hell we'd be going through (and things still wouldn't work!).
+            //
+            // Find svg elements.
+            // As they may be namespaced (and we don't know what the namespace prefix is),
+            // we can't simply use "page.find('svg')".
+            //var $svgs = page.find('svg');
+            //$svgs = $svgs.add(page.find('*').filter(function(i, v) {
+            //    var found;
+            //    $.each(v.attributes, function(i, attrib){
+            //        found = found || (attrib.value == 'http://www.w3.org/2000/svg');
+            //    });
+            //    return found;
+            //}));
+
+
             // A special case: svg images (typically cover images).
             // <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="100%" height="100%" viewBox="0 0 795 1200" preserveAspectRatio="none">
             //    <image width="795" height="1200" xlink:href="cover.jpeg"/>
             // </svg>
+
             $.each(page.find('svg'), function (i, v) {
                 // Cover images are important (though the following will probably break someone's styling somewhere).
                 // We'll try to force the svg image to be contrained to the viewport.
                 // (Necessary for Firefox), but not Chrome.
-                // Unforutantely doesn't work in Safari on iOS (seems nothing works in Safari on iOS with respect to SVGs).
+                // Unfortunately doesn't work in Safari on iOS (seems nothing works in Safari on iOS with respect to SVGs).
                 ($(v)[0]).setAttribute('preserveAspectRatio', 'defer xMidYMid meet');
 
                 // Use iPhone2G-4S as the min height, and then substracting some for menu and padding.
@@ -250,7 +278,7 @@ define([
             // jQuery's support for namespaced attributes is poor.
             // This left here in case we need it in future.
             //page.find('svg image').filter(function() { return $(this).attr('xlink:href'); }).each(function() {
-            //    $(this).attr('xlink:href', 'whatever'))
+            //    $(this).attr('xlink:href', 'whatever')
             //});
 
             $.each(page.find('[id]'), function(i, v){

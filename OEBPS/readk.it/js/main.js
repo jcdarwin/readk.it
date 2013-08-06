@@ -34,7 +34,8 @@ require.config({
         'jquery.hotkeys': ['jquery'],
         // Make non-AMD modules act like AMD modules
         'iscroll': {exports: 'iScroll'},
-        'zip/zip': {exports: 'zip'}
+        'zip/zip': {exports: 'zip'},
+        'zip/inflate': {exports: 'inflate'}
     }
 });
 

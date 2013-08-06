@@ -34,11 +34,10 @@ define([
         load_publication_callback = callback;
 
         // Parse the EPUB
-        publication = _initialise(book, load_publication);
-        this.publication = publication;
         this.subscribe = subscribe;
         this.unsubscribe = unsubscribe;
         this.publish = publish;
+        this.publication = _initialise(book, load_publication);
 
         return this;
     }
@@ -198,14 +197,14 @@ define([
 
             // Strip namespaces from svg elements (i.e. cover images) as these cause rendering problems.
             // <svg:svg viewBox="0 0 525 700">
-            pages[value.id] = pages[value.id].replace(/<[^\:<>]*?:svg /g, '<svg ');
+            pages[value.id] = pages[value.id].replace(/<[^\:<>\s]*?:svg /g, '<svg ');
             // </svg:svg>
-            pages[value.id] = pages[value.id].replace(/<\/[^\:<>]*?:svg>/g, '</svg>');
+            pages[value.id] = pages[value.id].replace(/<\/[^\:<>\s]*?:svg>/g, '</svg>');
 
             // <svg:image xlink:href="images/cover_front.jpg" transform="translate(0 0)" width="525" height="700" />
-            pages[value.id] = pages[value.id].replace(/<[^\:<>]*?:image /g, '<image ');
+            pages[value.id] = pages[value.id].replace(/<[^\:<>\s]*?:image /g, '<image ');
             // </svg:image>
-            pages[value.id] = pages[value.id].replace(/<\/[^\:<>]*?:image>/g, '</image>');
+            pages[value.id] = pages[value.id].replace(/<\/[^\:<>\s]*?:image>/g, '</image>');
 
             if (filename && publication.content[filename]) {
                 // Our content's already been retrieved, e.g. via drag & drop.
@@ -236,6 +235,11 @@ define([
                 return $(v);
             });
 
+            // A special case: svg images (typically cover images).
+            // <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="100%" height="100%" viewBox="0 0 795 1200" preserveAspectRatio="none">
+            //    <image width="795" height="1200" xlink:href="cover.jpeg"/>
+            // </svg>
+
             // If we didn't strip namespaces from svgs above, then the following is an
             // indication of the sort of hell we'd be going through (and things still wouldn't work!).
             //
@@ -251,11 +255,11 @@ define([
             //    return found;
             //}));
 
-
-            // A special case: svg images (typically cover images).
-            // <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="100%" height="100%" viewBox="0 0 795 1200" preserveAspectRatio="none">
-            //    <image width="795" height="1200" xlink:href="cover.jpeg"/>
-            // </svg>
+            // jQuery's support for namespaced attributes is poor.
+            // This left here in case we need it in future.
+            //page.find('svg image').filter(function() { return $(this).attr('xlink:href'); }).each(function() {
+            //    $(this).attr('xlink:href', 'whatever')
+            //});
 
             $.each(page.find('svg'), function (i, v) {
                 // Cover images are important (though the following will probably break someone's styling somewhere).
@@ -274,12 +278,6 @@ define([
                 // Ensure the image is centered.
                 $(v).parent().css({'width': '100%', 'text-align': 'center', 'padding-top' : '20px'});
             });
-
-            // jQuery's support for namespaced attributes is poor.
-            // This left here in case we need it in future.
-            //page.find('svg image').filter(function() { return $(this).attr('xlink:href'); }).each(function() {
-            //    $(this).attr('xlink:href', 'whatever')
-            //});
 
             $.each(page.find('[id]'), function(i, v){
                 // We want to change something like 'milestone1' to 'chapter1_milestone1'
@@ -313,7 +311,10 @@ define([
     }
 
     function createURL(tag, prefix, value, suffix, pub) {
-        var filename = pub.oebps_dir + '/' + value;
+        // Strip any leading directory steps:
+        // "../Images/9780864736772_cover_epub.jpg" => "Images/9780864736772_cover_epub.jpg"
+        // TODO: Make this more robust, and able to cope with multiple steps and complicated paths
+        var filename = pub.oebps_dir + '/' + value.replace(/^(\.\.\/)+/, '');
         // Note that our content is already in blob form
         // var blob = new Blob([pub.content[filename]], {type: "image/jpeg"});
         window_url = window.URL || window.webkitURL;

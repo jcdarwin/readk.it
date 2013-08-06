@@ -8,8 +8,9 @@
 
 define([
     'jquery',
-    'zip/zip'
-], function($, zip){
+    'zip/zip',
+    'zip/inflate'
+], function($, zip, inflate){
 
     var controller;
     var layout;
@@ -131,6 +132,12 @@ define([
             /* refresh(); */
             $(this).remove();
         });
+
+        if (location.protocol == 'file:') {
+            if (! $('.readkit-drag-upload-window').is(':visible')) {
+                upload.initalise();
+            }
+        }
     }
 
     /* Register handlers. */
@@ -478,25 +485,31 @@ define([
         });
     });
 
-    // The following more or less pinched from ibis.reader
-    // At least some traces live on...
     var upload = {};
     var progress_total = 0;
     upload.handle_drag_enter = function (e) {
         e.stopPropagation();
         e.preventDefault();
-        progress_total = 0;
-        $(".readkit-meter span").attr("style", "width:0%");
-        $(".readkit-epub-drag-upload-label").removeClass("loading").text("Drag an EPUB file into this space to start reading.");
-        $(".readkit-drag-upload-spinner").removeClass('loading');
 
-        $('.readkit-drag-upload-window').slideDown();
+        if (! $('.readkit-drag-upload-window').is(':visible')) {
+            upload.initalise();
+        }
+
         var epub_drag_upload = $("#readkit-epub-drag-upload")[0];
         epub_drag_upload.addEventListener("drop", upload.prep_dropped_files_for_upload, false);
         epub_drag_upload.addEventListener("dragover", function (e) {
             e.stopPropagation();
             e.preventDefault();
         }, false);
+    };
+
+    upload.initalise = function () {
+        progress_total = 0;
+        $(".readkit-meter span").attr("style", "width:0%");
+        $(".readkit-epub-drag-upload-label").removeClass("loading").text("Drag an EPUB file into this space to start reading.");
+        $(".readkit-drag-upload-spinner").removeClass('loading');
+
+        $('.readkit-drag-upload-window').slideDown();
     };
 
     upload.prep_dropped_files_for_upload = function (e) {
@@ -511,6 +524,12 @@ define([
         var files = [];
         filelist = filelist || $("#readkit-id_epub")[0].files;
         if (filelist.length) {
+
+            // Chrome's security policies means webworkers are not allowed
+            // with file urls, therefore we have to put up with slower and single-thread
+            // zip inflation.
+            zip.useWebWorkers = location.protocol == 'file:' && !window.chrome;
+
             zip.workerScriptsPath = "js/lib/zip/";
                 f = filelist[0];
                 zip.createReader(new zip.BlobReader(f), function(zipReader){
@@ -530,7 +549,7 @@ define([
                                         // https://github.com/gildas-lormeau/zip.js/issues/58
                                         entry.getData(new zip.TextWriter('utf-8'), function(text){
                                             upload.progress(f, entry);
-                                            //console.log(entry.filename);
+console.log(entry.filename);
                                             deferred_entry.resolve(text);
                                         });
                                     } catch (e) {
@@ -542,7 +561,7 @@ define([
                                     // to display them (e.g. jpg) and that would be silly.
                                     entry.getData(new zip.BlobWriter(), function(blob){
                                         upload.progress(f, entry);
-                                        //console.log(entry.filename);
+console.log(entry.filename);
                                         deferred_entry.resolve(blob);
                                     });
                                 }

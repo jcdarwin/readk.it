@@ -31,6 +31,7 @@ require.config({
         // Shim in our jQuery plugins etc, as they aren't AMD modules
         'jquery.storage': ['jquery'],
         'jquery.ba-urlinternal.min': ['jquery'],
+        'jquery.ba-resize': ['jquery'],
         'jquery.hotkeys': ['jquery'],
         // Make non-AMD modules act like AMD modules
         'iscroll': {exports: 'iScroll'},

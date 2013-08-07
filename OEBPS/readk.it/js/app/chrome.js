@@ -9,8 +9,9 @@
 define([
     'jquery',
     'zip/zip',
-    'zip/inflate'
-], function($, zip, inflate){
+    'zip/inflate',
+    'jquery.ba-resize'
+], function($, zip, inflate, jbr){
 
     var controller;
     var layout;
@@ -129,10 +130,12 @@ define([
 
         // Remove site preloader
         $('#readkit-sitePreloader').delay(200).fadeOut(500, function() {
-            /* refresh(); */
+            layout.refresh();
             $(this).remove();
         });
 
+        // For file URLs, where the user has most likely double-clicked the index.html
+        // show the drag and drop dialogue, as no publication has been loaded.
         if (location.protocol == 'file:') {
             if (! $('.readkit-drag-upload-window').is(':visible')) {
                 upload.initalise();
@@ -186,7 +189,9 @@ define([
             layout.storage('font', 'sans');
         }
 
-        layout.refresh(y_percent, layout.location().page);
+        $('.readkit-scroller').resize(function(){
+            layout.refresh(layout.location().page, y_percent);
+        });
     });
 
     $('.readkit-icon-serif').click(function(){
@@ -208,7 +213,9 @@ define([
             layout.storage('font', 'serif');
         }
 
-        layout.refresh(y_percent, layout.location().page);
+        $('.readkit-scroller').resize(function(){
+            layout.refresh(layout.location().page, y_percent);
+        });
     });
 
     // Fontsize event handlers
@@ -262,8 +269,11 @@ define([
         }
 
         var y_percent = layout.location().y / layout.location().height;
-        layout.refresh(y_percent, layout.location().page);
         layout.storage('font-size', value);
+
+        $('.readkit-scroller').resize(function(){
+            layout.refresh(layout.location().page, y_percent);
+        });
 
         setTimeout(function () {
             $('#readkit-dropdown-size').slideUp('slow');
@@ -326,8 +336,11 @@ define([
         }
 
         var y_percent = layout.location().y / layout.location().height;
-        layout.refresh(y_percent, layout.location().page);
         layout.storage('line-height', value);
+
+        $('.readkit-scroller').resize(function(){
+            layout.refresh(layout.location().page, y_percent);
+        });
 
         setTimeout(function () {
             $('#readkit-dropdown-lineheight').slideUp('slow');
@@ -526,9 +539,9 @@ define([
         if (filelist.length) {
 
             // Chrome's security policies means webworkers are not allowed
-            // with file urls, therefore we have to put up with slower and single-thread
-            // zip inflation.
-            zip.useWebWorkers = location.protocol == 'file:' && !window.chrome;
+            // with file urls, therefore we have to put up with slower
+            // single-threaded zip inflation.
+            zip.useWebWorkers = !(location.protocol == 'file:' && window.chrome);
 
             zip.workerScriptsPath = "js/lib/zip/";
                 f = filelist[0];
@@ -603,7 +616,8 @@ console.log(entry.filename);
     };
 
     upload.failed = function (a) {
-        upload.show_error_message(a.toString());
+        //upload.show_error_message(a.toString());
+        console.error(message);
     };
 
     upload.cancelled = function (e) {

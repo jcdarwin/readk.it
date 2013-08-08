@@ -283,16 +283,25 @@ $slider-width: 30px;
 }
 
 ##{$namespace}-bookmark-widget {
+
+    font-family: "Source Sans Pro", Arial, sans-serif; 
+
     a:hover, a:active, a:focus { 
         color: $link-unvisited;
+        text-decoration: none;
     }
 
     a, a:visited { 
-        color: $link-visited; 
+        color: $link-visited;
+        text-decoration: none;
+    }
+
+    ul {
+        padding-left: 20px;
     }
 
     li {
-        margin-bottom: 0;
+        margin-bottom: 5px;
     }
 
     hr {

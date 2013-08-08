@@ -116,6 +116,9 @@ define([
             //$('.readkit-strength-line-height.readkit-small').removeClass('readkit-inactive').addClass('readkit-active');
         }
 
+        // Set resize polling to 1 sec (default is 250ms)
+        $.resize.delay = 1000;
+
         // Check online status immediately, instead of waiting for the first setInterval
         check_status();
 
@@ -191,6 +194,14 @@ define([
 
         $('.readkit-scroller').resize(function(){
             layout.refresh(layout.location().page, y_percent);
+
+            // We wait for a reasonable amount of time for the DOM
+            // to adapt to the CSS changes, and then stop polling for resize.
+            // If we don't do this, scroll performance may be affected.
+            setTimeout(function () {
+                $('.readkit-scroller').unbind('resize');
+            }, 5000);
+
         });
     });
 
@@ -215,6 +226,14 @@ define([
 
         $('.readkit-scroller').resize(function(){
             layout.refresh(layout.location().page, y_percent);
+
+            // We wait for a reasonable amount of time for the DOM
+            // to adapt to the CSS changes, and then stop polling for resize.
+            // If we don't do this, scroll performance may be affected.
+            setTimeout(function () {
+                $('.readkit-scroller').unbind('resize');
+            }, 5000);
+
         });
     });
 
@@ -273,6 +292,14 @@ define([
 
         $('.readkit-scroller').resize(function(){
             layout.refresh(layout.location().page, y_percent);
+
+            // We wait for a reasonable amount of time for the DOM
+            // to adapt to the CSS changes, and then stop polling for resize.
+            // If we don't do this, scroll performance may be affected.
+            setTimeout(function () {
+                $('.readkit-scroller').unbind('resize');
+            }, 5000);
+
         });
 
         setTimeout(function () {
@@ -340,6 +367,14 @@ define([
 
         $('.readkit-scroller').resize(function(){
             layout.refresh(layout.location().page, y_percent);
+
+            // We wait for a reasonable amount of time for the DOM
+            // to adapt to the CSS changes, and then stop polling for resize.
+            // If we don't do this, scroll performance may be affected.
+            setTimeout(function () {
+                $('.readkit-scroller').unbind('resize');
+            }, 5000);
+
         });
 
         setTimeout(function () {

@@ -54,6 +54,35 @@
                 </div>
                 <div class="readkit-bookmark readkit-slider">
                     <label id="readkit-for-bookmark" for="readkit-dropdown-bookmark" class="readkit-icon readkit-bookmark readkit-inactive" title="bookmark"><i class="icon-bookmark"></i></label>
+
+                    <script type="text/tim" id="readkit-bookmark-widget-tmpl">
+                        <div id="readkit-bookmark-widget" class="readkit-wrapper-bookmarks">
+                            <div class="readkit-scroller" style="width:280px;">{{html}}</div>
+                        </div>
+                    </script>
+
+                    <script type="text/tim" id="readkit-bookmark-list-tmpl">
+                        <div id="readkit-bookmark-list">{{bookmarkeds}}</div><hr style="clear:both;" />
+                    </script>
+
+                    <script type="text/tim" id="readkit-bookmark-input-tmpl">
+                        <div class="readkit-bookmark-input">
+                            <input id="readkit-bookmark-input" type="text" data-file="{{file}}" value="{{title}}" />
+                            <span class="readkit-bookmark-icon-add readkit-add-bookmark"><i class="icon-plus-circle readkit-bookmark-icon"></i></span>
+                        </div>
+                    </script>
+
+                    <script type="text/tim" id="readkit-bookmark-list-item-tmpl">
+                        <div class="readkit-bookmark-list-item" style="margin-bottom:5px;">
+                            <span class="readkit-bookmark-icon-remove readkit-remove-bookmark">
+                                <i class="icon-minus-circle readkit-bookmark-icon" data-index={{index}}></i>
+                            </span>
+                            <p class="readkit-bookmark-title">
+                                <a href="#{{file}}" data-x="{{x}}" data-y="{{y}}">{{title}}</a>
+                            </p>
+                        </div>
+                    </script>
+
                     <div id="readkit-dropdown-bookmark" class="readkit-dropdown" style="display:none;overflow:hidden;">
                     </div>
                 </div>

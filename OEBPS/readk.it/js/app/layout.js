@@ -17,8 +17,9 @@ define([
     'jquery.storage',
     'iscroll',
     'underscore',
-    'jquery.hotkeys'
-], function($, $storage, iScroll, _, $hotkeys){
+    'jquery.hotkeys',
+    'tinytim'
+], function($, $storage, iScroll, _, $hotkeys, tinytim){
 
     var page_scrollers = [];
     var pages = [];
@@ -201,7 +202,13 @@ define([
 
     // Add a page
     var add = function (id, file, html) {
-        $('#readkit-pageScroller').append('<div class="readkit-page" id="' + file + '"><div id="' + id + '" class="readkit-wrapper"><div class="readkit-scroller"><div class="readkit-margins">' + html + '</div></div></div></div>');
+
+        $('#readkit-pageScroller').append(tinytim(
+            '<div class="readkit-page" id="{{file}}"><div id="{{id}}" class="readkit-wrapper"><div class="readkit-scroller"><div class="readkit-margins">{{html}}</div></div></div></div>',
+            {   file: file,
+                id:   id,
+                html: html}
+        ));
 
         var page_scroller = new iScroll(id, {snap: true, momentum: true, hScrollbar: false, vScrollbar: true, lockDirection: true,
             onAnimationEnd: function(){
@@ -435,6 +442,8 @@ define([
         $(document).bind('keydown', 'esc', function(){
             setTimeout(function () {
                 $('.readkit-drag-upload-window').slideUp('slow');
+                // close any open dropdowns
+                $('.readkit-dropdown').slideUp('slow');
             }, 0);
         });
 

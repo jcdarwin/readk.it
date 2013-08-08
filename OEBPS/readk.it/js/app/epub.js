@@ -120,7 +120,7 @@ define([
             epub.ncx_file = epub.epub_dir + (epub.oebps_dir ? epub.oebps_dir + '/' : '') + epub.ncx_file;
 
             if (files) {
-                ncx(files[(epub.oebps_dir ? epub.oebps_dir + '/' : '') + epub.ncx_file], epub, callback);
+                ncx(files[epub.ncx_file], epub, callback);
             } else {
                 $.get(epub.ncx_file, {}, function(data){ncx(data, epub, callback);});
             }
@@ -130,7 +130,7 @@ define([
             epub.nav_file = epub.epub_dir + epub.oebps_dir + '/' + epub.nav_file;
 
             if (files) {
-                nav(files[(epub.oebps_dir ? epub.oebps_dir + '/' : '') + epub.nav_file], epub, callback);
+                nav(files[epub.nav_file], epub, callback);
             } else {
                 $.get(epub.nav_file, {}, function(data){nav(data, epub, callback);});
             }

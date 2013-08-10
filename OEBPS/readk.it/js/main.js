@@ -14,6 +14,20 @@ var extend = function(obj, defaults) {
 };
 extend(paths, client.paths);
 
+// Readk.it shims
+var shims = {
+    // Shim in our jQuery plugins etc, as they aren't AMD modules
+    'jquery.storage': ['jquery'],
+    'jquery.ba-urlinternal.min': ['jquery'],
+    'jquery.ba-resize': ['jquery'],
+    'jquery.hotkeys': ['jquery'],
+    // Make non-AMD modules act like AMD modules
+    'iscroll': {exports: 'iScroll'},
+    'zip/zip': {exports: 'zip'},
+    'zip/inflate': {exports: 'inflate'}
+};
+extend(shims, client.shims);
+
 // Our main require config
 require.config({
     // By default load any module IDs from js/lib
@@ -27,17 +41,7 @@ require.config({
         'css': 'require-css/css'
       }
     },
-    shim: {
-        // Shim in our jQuery plugins etc, as they aren't AMD modules
-        'jquery.storage': ['jquery'],
-        'jquery.ba-urlinternal.min': ['jquery'],
-        'jquery.ba-resize': ['jquery'],
-        'jquery.hotkeys': ['jquery'],
-        // Make non-AMD modules act like AMD modules
-        'iscroll': {exports: 'iScroll'},
-        'zip/zip': {exports: 'zip'},
-        'zip/inflate': {exports: 'inflate'}
-    }
+    shim: shims
 });
 
 // Add to home screen: http://cubiq.org/add-to-home-screen

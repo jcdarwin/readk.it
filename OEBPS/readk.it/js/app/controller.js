@@ -162,16 +162,23 @@ define([
                             deferred_stylesheet.resolve(css);
                         });
                     } else {
-                        // Use the require-css plugin to load our stylesheet resources.
-                        require(["css!" + value.href],
-                            function(css) {
-                                deferred_stylesheet.resolve(css);
-                            }
-                        );
+                        // Avoid double-loading the Readkit stylesheet
+                        if (/readkit-styles\.css$/.test(value.href)) {
+                            deferred_stylesheet.resolve();
+                        } else {
+                            // Use the require-css plugin to load our stylesheet resources.
+                            require(["css!" + value.href],
+                                function(css) {
+                                    deferred_stylesheet.resolve(css);
+                                }
+                            );
+                        }
                     }
 
                 }).done(function(css){
-                    stylesheets[value.id] = css;
+                    if (css) {
+                        stylesheets[value.id] = css;
+                    }
                 });
             })).done(function(){
                 d.resolve(stylesheets);

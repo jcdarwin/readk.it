@@ -122,7 +122,7 @@ define([
         }
     });
 
-    // Function to redraw the layout after DOM changes.
+    // Redraw the layout after DOM changes.
     var refresh = function (page, y_percent) {
         setTimeout(function () {
             $.each(page_scrollers, function(i) {

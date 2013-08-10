@@ -81,6 +81,11 @@ $slider-width: 30px;
     height: 100%;
 }
 
+/* Needed especially for IE 10 */
+##{$namespace}-pageScroller {
+  height: 100%;
+}
+
 ##{$namespace}-pageWrapper {
     position: absolute;
     top: $header-height;
@@ -138,6 +143,8 @@ $slider-width: 30px;
     margin-top: 0;
     background-color: $header-color;
     z-index: 2;
+    line-height: 1;
+    font: normal 100%/1 sans-serif;
 }
 
 .#{$namespace}-controls {
@@ -233,7 +240,6 @@ $slider-width: 30px;
 
 .#{$namespace}-font {
     display: inline-block;
-    margin-top: -6px;
     font-size: $font-large;
 }
 
@@ -359,14 +365,9 @@ pre {
     text-align: center;
     background: $dark-color;
     padding-top: 6px;
-    line-height: $large;
+    padding-bottom: 0px;
     cursor: hand;
-    cursor: pointer; 
-
-    .#{$namespace}-serif, .#{$namespace}-sans {
-        padding-top: 3px;
-        padding-bottom: 3px;
-    }
+    cursor: pointer;
 }
 
 .#{$namespace}-online, .#{$namespace}-active {

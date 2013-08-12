@@ -28,7 +28,7 @@ define([
     var self;
 
     /* Constructor */
-     function Controller (book, callback) {
+     function Controller (book, URIs, callback) {
         self = this;
 
         load_publication_callback = callback;
@@ -37,15 +37,15 @@ define([
         this.subscribe = subscribe;
         this.unsubscribe = unsubscribe;
         this.publish = publish;
-        this.publication = _initialise(book, load_publication);
+        this.publication = _initialise(book, URIs, load_publication);
 
         return this;
     }
 
     /* Define the instance methods */
     Controller.prototype = {
-        initialise: function(book, files) {
-            return _initialise(book, load_publication, files);
+        initialise: function(book, URIs, files) {
+            return _initialise(book, URIs, load_publication, files);
         },
         getPublication: function(){
             return (publication);
@@ -54,9 +54,14 @@ define([
         }
     };
 
-    var _initialise = function (book, callback, files) {
+    var _initialise = function (book, URIs, callback, files) {
+
         // Parse the EPUB.
-        if (!files && window.location.protocol == 'file:') {
+        if (Object.getOwnPropertyNames(URIs).length && window.location.protocol == 'file:') {
+            // We've been loaded via a file url, using the standalone version
+            // whereby the EPUB content is encoded app/content.js using data URIs.
+            return new Epub('', 'META-INF/container.xml', callback, URIs);
+        } else if (!files && window.location.protocol == 'file:') {
             // We've been loaded via a file url, so we can't use xhr calls to load assets
             // from the server. In this case we create the EPUB instance, but by calling it
             // without the 'META-INF/container.xml' value, no files will be retrieved.

@@ -637,7 +637,7 @@ console.log(entry.filename);
                             setTimeout(function () {
                                 $('.readkit-drag-upload-window').slideUp('slow');
                             }, 0);
-                            publication = controller.initialise('', files);
+                            publication = controller.initialise('', {}, files);
                         });
                     });
 

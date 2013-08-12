@@ -53,12 +53,12 @@ var addToHomeConfig = {
 };
 
 // Readk.it required top-level modules
-var required = ['jquery', 'app/controller', 'app/config', 'add-to-homescreen/src/add2home'];
+var required = ['jquery', 'app/controller', 'app/config', 'app/content', 'add-to-homescreen/src/add2home'];
 
 // Mixin any required client EPUB modules to the Readk.it required modules
 required = required.concat(client.required);
 
-require(required, function($, Controller, config, add2home){
+require(required, function($, Controller, config, content, add2home){
     var book;
     var path = window.location.hash.replace(/^#/, '');
 
@@ -69,7 +69,7 @@ require(required, function($, Controller, config, add2home){
 
     book = config.epub_directory + path;
 
-    controller = new Controller(book, function() {
+    controller = new Controller(book, content.URIs, function() {
         $.event.trigger('kickoff');
     });
 

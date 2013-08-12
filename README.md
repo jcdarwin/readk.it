@@ -243,7 +243,7 @@ Install dependendices:
     npm install grunt-shell --save-dev
     npm install grunt-contrib-connect --save-dev
     npm install grunt-dom-munger --save-dev
-    npm install grunt-readkit-base64 --save-dev
+    npm install grunt-readkit-datauris --save-dev
 
 As we use cygwin, add the following hack into node_modules\grunt-contrib-compass\tasks\compass.js, directly before "compile(args, cb);":
 

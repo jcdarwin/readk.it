@@ -29,8 +29,14 @@ define([
         this.content = '';
 
         if (files) {
+
+            // Decode Data URIs
+            for (var i in files) {
+                files[i] = decode(files[i]);
+            }
+
             this.content = files;
-            container(files[f], self, callback, files);
+            container(decode(files[f]), self, callback, files);
         } else if (f){
             $.get(d + f, {}, function(data){container(data, self, callback);});
         } else {
@@ -62,7 +68,7 @@ define([
         epub.opf_file = epub.epub_dir + epub.opf_file;
 
         if (files) {
-            opf(files[epub.opf_file], epub, callback, files);
+            opf(decode(files[epub.opf_file]), epub, callback, files);
         } else {
             $.get(epub.opf_file, {}, function(data){opf(data, epub, callback);});
         }
@@ -120,7 +126,7 @@ define([
             epub.ncx_file = epub.epub_dir + (epub.oebps_dir ? epub.oebps_dir + '/' : '') + epub.ncx_file;
 
             if (files) {
-                ncx(files[epub.ncx_file], epub, callback);
+                ncx(decode(files[epub.ncx_file]), epub, callback);
             } else {
                 $.get(epub.ncx_file, {}, function(data){ncx(data, epub, callback);});
             }
@@ -130,7 +136,7 @@ define([
             epub.nav_file = epub.epub_dir + epub.oebps_dir + '/' + epub.nav_file;
 
             if (files) {
-                nav(files[epub.nav_file], epub, callback);
+                nav(decode(files[epub.nav_file]), epub, callback);
             } else {
                 $.get(epub.nav_file, {}, function(data){nav(data, epub, callback);});
             }
@@ -209,6 +215,29 @@ define([
         });
 
         callback(epub);
+    };
+
+    var decode = function decode (dataURI) {
+        var data;
+        if (/^data\:/.test(dataURI)) {
+            // We've got a data URI
+            var content = dataURI.indexOf(","),
+                meta = dataURI.substr(5, content).toLowerCase();
+
+            data = decodeURIComponent(dataURI.substr(content + 1));
+            
+            if (/;\s*base64\s*[;,]/.test(meta)) {
+                data = atob(data); // decode base64
+            }
+            if (/;\s*charset=[uU][tT][fF]-?8\s*[;,]/.test(meta)) {
+                data = decodeURIComponent(escape(data)); // decode UTF-8
+            }
+        } else {
+            // Presumably we have a blob URL
+            data = dataURI;
+        }
+        
+        return data;
     };
 
     return (Epub);

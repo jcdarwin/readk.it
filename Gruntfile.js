@@ -157,21 +157,14 @@ module.exports = function(grunt) {
     },
 
     dom_munger: {
-      manifest: {
-        options: {
-          read: {selector: 'manifest item', attribute: 'href', writeto: 'manifestRefs', isPath:true},
-        },
-        src: 'OEBPS/content.opf'
-      }
+      options: {
+        read: {selector: 'manifest item', attribute: 'href', writeto: 'manifestRefs', isPath:true},
+      },
+      src: 'OEBPS/content.opf'
     },
 
-    base64: {
-      manifest: {
-        // Target-specific file lists and/or options go here.
-        files: {
-          'dist/templates/compiled.js': ['<%= dom_munger.data.manifestRefs %>']
-        }
-      },
+    readkit_datauris: {
+      'dist/standalone/OEBPS/readk.it/js/app/content.js': ['META-INF/container.xml', 'OEBPS/content.opf', '<%= dom_munger.data.manifestRefs %>']
     },
 
     shell: {
@@ -227,11 +220,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-dom-munger');
-  grunt.loadNpmTasks('grunt-readkit-base64');
+  grunt.loadNpmTasks('grunt-readkit-datauris');
 
   // Default task.
   grunt.registerTask('default', ['clean:before', 'jshint', 'uglify', 'compass', 'copy', 'shell', 'clean:after']);
-  grunt.registerTask('mung', ['dom_munger:manifest', 'base64:manifest']);
+  grunt.registerTask('mung', ['dom_munger', 'readkit_datauris']);
 
   grunt.registerTask('stuff', function() {
     //var tmpl = grunt.file.read('dist/templates/compiled.js');

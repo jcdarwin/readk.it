@@ -141,7 +141,7 @@ define([
         // For file URLs, where the user has most likely double-clicked the index.html
         // show the drag and drop dialogue, as no publication has been loaded.
         if (location.protocol == 'file:') {
-            if (! $('.readkit-drag-upload-window').is(':visible')) {
+            if (! $('.readkit-drag-upload-window').is(':visible') && !$('#readkit-pageScroller').html()) {
                 upload.initalise();
             }
         }
@@ -601,7 +601,7 @@ define([
                             return $.Deferred(function(deferred_entry){
 
                                 var suffix = entry.filename.lastIndexOf('.') === -1 ? '' : entry.filename.substr(entry.filename.lastIndexOf('.') + 1).toLowerCase();
-                                if (['opf', 'xml', 'htm', 'html', 'xhtml', 'css', 'ncx', ''].indexOf(suffix) != -1) {
+                                if (['opf', 'xml', 'htm', 'html', 'xhtml', 'css', 'ncx', 'txt', ''].indexOf(suffix) != -1) {
                                     // This is a text-like file that we need to parse or load directly 
                                     // into the browser, so store as text.
                                     try {

@@ -32,11 +32,11 @@ define([
 
             // Decode Data URIs
             for (var i in files) {
-                files[i] = decode(files[i]);
+                files[i] = decode(i, files[i]);
             }
 
             this.content = files;
-            container(decode(files[f]), self, callback, files);
+            container(decode(f, files[f]), self, callback, files);
         } else if (f){
             $.get(d + f, {}, function(data){container(data, self, callback);});
         } else {
@@ -68,7 +68,7 @@ define([
         epub.opf_file = epub.epub_dir + epub.opf_file;
 
         if (files) {
-            opf(decode(files[epub.opf_file]), epub, callback, files);
+            opf(decode(epub.opf_file, files[epub.opf_file]), epub, callback, files);
         } else {
             $.get(epub.opf_file, {}, function(data){opf(data, epub, callback);});
         }
@@ -126,7 +126,7 @@ define([
             epub.ncx_file = epub.epub_dir + (epub.oebps_dir ? epub.oebps_dir + '/' : '') + epub.ncx_file;
 
             if (files) {
-                ncx(decode(files[epub.ncx_file]), epub, callback);
+                ncx(decode(epub.ncx_file, files[epub.ncx_file]), epub, callback);
             } else {
                 $.get(epub.ncx_file, {}, function(data){ncx(data, epub, callback);});
             }
@@ -136,7 +136,7 @@ define([
             epub.nav_file = epub.epub_dir + epub.oebps_dir + '/' + epub.nav_file;
 
             if (files) {
-                nav(decode(files[epub.nav_file]), epub, callback);
+                nav(decode(epub.nav_file, files[epub.nav_file]), epub, callback);
             } else {
                 $.get(epub.nav_file, {}, function(data){nav(data, epub, callback);});
             }
@@ -217,7 +217,9 @@ define([
         callback(epub);
     };
 
-    var decode = function decode (dataURI) {
+    var hasArrayBufferView = new Blob([new Uint8Array(100)]).size == 100;
+
+    var decode = function decode (index, dataURI) {
         var data;
         if (/^data\:/.test(dataURI)) {
             // We've got a data URI
@@ -228,8 +230,23 @@ define([
             
             if (/;\s*base64\s*[;,]/.test(meta)) {
                 data = atob(data); // decode base64
-            }
-            if (/;\s*charset=[uU][tT][fF]-?8\s*[;,]/.test(meta)) {
+
+                // Convert non-text files to blobs
+                var suffix = index.lastIndexOf('.') === -1 ? '' : index.substr(index.lastIndexOf('.') + 1).toLowerCase();
+                if (['opf', 'xml', 'htm', 'html', 'xhtml', 'css', 'ncx', 'txt', ''].indexOf(suffix) == -1) {
+                // Convert fonts to blobs
+                // if (/application\/(x-font-ttf|x-font-woff|x-font-type1|x-font-opentype|font-woff);\s*base64\s*[;,]/.test(meta)) {
+                    var buf = new ArrayBuffer(data.length);
+                    var arr = new Uint8Array(buf);
+                    for (var i = 0; i < data.length; i++) {
+                         arr[i] = data.charCodeAt(i);
+                    }
+                    if (!hasArrayBufferView) arr = buf;
+                    var blob = new Blob([arr], { type: meta.split(';')[0] });
+                    blob.slice = blob.slice || blob.webkitSlice;
+                    data = blob;
+                }
+            } else if (/;\s*charset=[uU][tT][fF]-?8\s*[;,]/.test(meta)) {
                 data = decodeURIComponent(escape(data)); // decode UTF-8
             }
         } else {

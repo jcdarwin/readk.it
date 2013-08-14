@@ -36,7 +36,7 @@ define([
             }
 
             this.content = files;
-            container(decode(f, files[f]), self, callback, files);
+            container(files[f], self, callback, files);
         } else if (f){
             $.get(d + f, {}, function(data){container(data, self, callback);});
         } else {
@@ -68,7 +68,7 @@ define([
         epub.opf_file = epub.epub_dir + epub.opf_file;
 
         if (files) {
-            opf(decode(epub.opf_file, files[epub.opf_file]), epub, callback, files);
+            opf(files[epub.opf_file], epub, callback, files);
         } else {
             $.get(epub.opf_file, {}, function(data){opf(data, epub, callback);});
         }
@@ -126,7 +126,7 @@ define([
             epub.ncx_file = epub.epub_dir + (epub.oebps_dir ? epub.oebps_dir + '/' : '') + epub.ncx_file;
 
             if (files) {
-                ncx(decode(epub.ncx_file, files[epub.ncx_file]), epub, callback);
+                ncx(files[epub.ncx_file], epub, callback);
             } else {
                 $.get(epub.ncx_file, {}, function(data){ncx(data, epub, callback);});
             }
@@ -136,7 +136,7 @@ define([
             epub.nav_file = epub.epub_dir + epub.oebps_dir + '/' + epub.nav_file;
 
             if (files) {
-                nav(decode(epub.nav_file, files[epub.nav_file]), epub, callback);
+                nav(files[epub.nav_file], epub, callback);
             } else {
                 $.get(epub.nav_file, {}, function(data){nav(data, epub, callback);});
             }
@@ -234,8 +234,6 @@ define([
                 // Convert non-text files to blobs
                 var suffix = index.lastIndexOf('.') === -1 ? '' : index.substr(index.lastIndexOf('.') + 1).toLowerCase();
                 if (['opf', 'xml', 'htm', 'html', 'xhtml', 'css', 'ncx', 'txt', ''].indexOf(suffix) == -1) {
-                // Convert fonts to blobs
-                // if (/application\/(x-font-ttf|x-font-woff|x-font-type1|x-font-opentype|font-woff);\s*base64\s*[;,]/.test(meta)) {
                     var buf = new ArrayBuffer(data.length);
                     var arr = new Uint8Array(buf);
                     for (var i = 0; i < data.length; i++) {

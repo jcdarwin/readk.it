@@ -22,7 +22,6 @@ define([
     var load_publication_callback;
     var publication;
     var item;
-    var queue = $({});
     var layout;
     var chrome;
     var self;
@@ -34,9 +33,6 @@ define([
         load_publication_callback = callback;
 
         // Parse the EPUB
-        this.subscribe = subscribe;
-        this.unsubscribe = unsubscribe;
-        this.publish = publish;
         this.publication = _initialise(book, URIs, load_publication);
 
         return this;
@@ -333,17 +329,6 @@ define([
         var url = window_url.createObjectURL(pub.content[filename]);
         return prefix + url + suffix;
     }
-
-    // Classic pubsub, as per https://gist.github.com/addyosmani/1321768
-    var subscribe = function() {
-        queue.on.apply(queue, arguments);
-    };
-    var unsubscribe = function() {
-        queue.off.apply(queue, arguments);
-    };
-    var publish = function() {
-        queue.trigger.apply(queue, arguments);
-    };
 
     return (Controller);
 });

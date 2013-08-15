@@ -8,15 +8,16 @@
 
 define([
     'jquery',
+    'app/utility',
     'zip/zip',
     'zip/inflate',
-    'jquery.ba-resize',
-    'tinytim'
-], function($, zip, inflate, jbr, tinytim){
+    'jquery.ba-resize'
+], function($, utility, zip, inflate, jbr){
 
     var controller;
     var layout;
-    var tag_names ='html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed,  figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, button';
+    var upload = {};
+    var progress_total = 0;
 
     /* Constructor */
     var Chrome = function (caller, surface) {
@@ -25,11 +26,11 @@ define([
 
         // We wait until the publication is loaded into the layout
         // before activating the chrome.
-        controller.subscribe('publication_loaded', initialiser);
+        utility.subscribe('publication_loaded', initialiser);
     };
 
     function initialiser() {
-        controller.subscribe('history_changed', check_backbutton);
+        utility.subscribe('history_changed', check_backbutton);
 
         // Plugin to eliminate click delay on iOS
         // http://cubiq.org/remove-onclick-delay-on-webkit-for-iphone
@@ -74,7 +75,7 @@ define([
         //$('#readkit-pageWrapper').noClickDelay();
 
         // Check for stored font preference and apply accordingly.
-        var font = layout.storage('font');
+        var font = utility.storage('font');
         if (font == 'serif') {
             $('.readkit-icon-serif').click();
         } else if (font == 'sans') {
@@ -90,7 +91,7 @@ define([
         }
 
         // Check for stored font-size preference and apply accordingly.
-        var fontsize = layout.storage('font-size');
+        var fontsize = utility.storage('font-size');
         if (_.isNumber(fontsize)) {
             $('#readkit-for-size').addClass('readkit-active');
             $('#readkit-pageWrapper').css('font-size', fontsize + 'px');
@@ -103,11 +104,11 @@ define([
         }
 
         // Check for stored line-height preference and apply accordingly.
-        var lineheight = layout.storage('line-height');
+        var lineheight = utility.storage('line-height');
         if (_.isNumber(lineheight)) {
             $('#readkit-for-lineheight').addClass('readkit-active');
             $('#readkit-pageWrapper')
-                .find(tag_names)
+                .find(utility.tags)
                 .css('line-height', lineheight);
             $('.readkit-strength-line-height[data-size="' + lineheight + '"]')
                 .removeClass('readkit-inactive')
@@ -156,7 +157,7 @@ define([
     });
 
     function check_backbutton() {
-        var history = layout.storage('history');
+        var history = utility.storage('history');
         var status = history && history.length ? 'readkit-active' : 'readkit-inactive';
 
         if (status == 'readkit-active') {
@@ -177,20 +178,20 @@ define([
 
         if ( $('.readkit-icon-sans').hasClass('readkit-active') ) {
             $('#readkit-pageWrapper')
-                .find(tag_names)
+                .find(utility.tags)
                 .removeClass('readkit-sans');
             $('.readkit-icon-sans').removeClass('readkit-active');
 
-            layout.storage('font', []);
+            utility.storage('font', []);
         } else {
             $('#readkit-pageWrapper')
-                .find(tag_names)
+                .find(utility.tags)
                 .addClass('readkit-sans')
                 .removeClass('readkit-serif');
             $('.readkit-icon-serif').removeClass('readkit-active');
             $('.readkit-icon-sans').addClass('readkit-active');
 
-            layout.storage('font', 'sans');
+            utility.storage('font', 'sans');
         }
 
         $('.readkit-scroller').resize(function(){
@@ -210,19 +211,19 @@ define([
         var y_percent = layout.location().y / layout.location().height;
         if ( $('.readkit-icon-serif').hasClass('readkit-active') ) {
             $('#readkit-pageWrapper')
-                .find(tag_names)
+                .find(utility.tags)
                 .removeClass('readkit-serif');
             $('.readkit-icon-serif').removeClass('readkit-active');
 
-            layout.storage('font', []);
+            utility.storage('font', []);
         } else {
-            $('#readkit-pageWrapper').find(tag_names)
+            $('#readkit-pageWrapper').find(utility.tags)
                 .addClass('readkit-serif')
                 .removeClass('readkit-sans');
             $('.readkit-icon-sans').removeClass('readkit-active');
             $('.readkit-icon-serif').addClass('readkit-active');
 
-            layout.storage('font', 'serif');
+            utility.storage('font', 'serif');
         }
 
         $('.readkit-scroller').resize(function(){
@@ -254,7 +255,7 @@ define([
                 if ( $('#readkit-dropdown-bookmark').is(':visible') ) {
                     $('#readkit-dropdown-bookmark').slideUp();
                 }
-                var value = layout.storage('font-size');
+                var value = utility.storage('font-size');
                 $('.readkit-strength-size[data-size="' + value + '"]')
                     .removeClass('readkit-inactive')
                     .addClass('readkit-active');
@@ -289,7 +290,7 @@ define([
         }
 
         var y_percent = layout.location().y / layout.location().height;
-        layout.storage('font-size', value);
+        utility.storage('font-size', value);
 
         $('.readkit-scroller').resize(function(){
             layout.refresh(layout.location().page, y_percent);
@@ -325,7 +326,7 @@ define([
                 if ( $('#readkit-dropdown-bookmark').is(':visible') ) {
                     $('#readkit-dropdown-bookmark').slideUp();
                 }
-                var value = layout.storage('line-height');
+                var value = utility.storage('line-height');
                 $('.readkit-strength-line-height[data-size="' + value + '"]')
                     .removeClass('readkit-inactive')
                     .addClass('readkit-active');
@@ -346,7 +347,7 @@ define([
                 .removeClass('readkit-active')
                 .addClass('readkit-inactive');
             $('#readkit-pageWrapper')
-                .find(tag_names)
+                .find(utility.tags)
                 .css('line-height', '');
             $('#readkit-for-lineheight').removeClass('readkit-active');
         } else {
@@ -358,13 +359,13 @@ define([
                 .addClass('readkit-active');
             value = $(this).data('size');
             $('#readkit-pageWrapper')
-                .find(tag_names)
+                .find(utility.tags)
                 .css('line-height', value);
             $('#readkit-for-lineheight').addClass('readkit-active');
         }
 
         var y_percent = layout.location().y / layout.location().height;
-        layout.storage('line-height', value);
+        utility.storage('line-height', value);
 
         $('.readkit-scroller').resize(function(){
             layout.refresh(layout.location().page, y_percent);
@@ -390,7 +391,7 @@ define([
 
     // Bookmark event handlers
     function check_bookmarks() {
-        var bookmarks = layout.storage('bookmarks');
+        var bookmarks = utility.storage('bookmarks');
 
         if (bookmarks && bookmarks.length) {
             $('#readkit-for-bookmark').addClass('readkit-active').removeClass('readkit-inactive');
@@ -408,7 +409,7 @@ define([
             if ( $('#readkit-dropdown-bookmark').is(':visible') ) {
                 $('#readkit-dropdown-bookmark').slideUp('slow');
             } else {
-                var value = layout.storage('font-bookmark');
+                var value = utility.storage('font-bookmark');
                 $('.readkit-strength-bookmark[data-size="' + value + '"]').addClass('readkit-active');
                 if ( $('#readkit-dropdown-size').is(':visible') ) {
                     $('#readkit-dropdown-size').slideUp();
@@ -417,12 +418,12 @@ define([
                     $('#readkit-dropdown-lineheight').slideUp();
                 }
 
-                var input = tinytim($('#readkit-bookmark-input-tmpl').html(), {
+                var input = utility.compile($('#readkit-bookmark-input-tmpl').html(), {
                     file:  layout.location().file,
                     title: layout.location().title
                 });
 
-                var bookmarks = layout.storage('bookmarks') || [];
+                var bookmarks = utility.storage('bookmarks') || [];
 
                 if (bookmarks && bookmarks.length) {
                     $('#readkit-for-bookmark').addClass('active');
@@ -430,7 +431,7 @@ define([
 
                 var bookmarkeds = '';
                 $.each(bookmarks, function(i, bookmark) {
-                    bookmarkeds += tinytim($('#readkit-bookmark-list-item-tmpl').html(), {
+                    bookmarkeds += utility.compile($('#readkit-bookmark-list-item-tmpl').html(), {
                         index:  i,
                         file:  bookmark.file,
                         x:     bookmark.x,
@@ -438,19 +439,19 @@ define([
                         title: bookmark.title
                     });
                 });
-                var html = tinytim($('#readkit-bookmark-list-tmpl').html(), {bookmarkeds: bookmarkeds});
+                var html = utility.compile($('#readkit-bookmark-list-tmpl').html(), {bookmarkeds: bookmarkeds});
 
                 navs = '';
                 $.each(layout.nav(), function(i, item) {
                     if (item.title) {
                         navs += repeat('<ul style="margin-top:0; margin-bottom:0;">', item.depth + 1);
-                        navs += tinytim('<li><a href="#{{url}}">{{title}}</a></li>', {url: item.url, title: item.title});
+                        navs += utility.compile('<li><a href="#{{url}}">{{title}}</a></li>', {url: item.url, title: item.title});
                         navs += repeat('</ul>', item.depth + 1);
                     }
                 });
                 html += navs;
 
-                html = tinytim(input + $('#readkit-bookmark-widget-tmpl').html(),
+                html = utility.compile(input + $('#readkit-bookmark-widget-tmpl').html(),
                     {html: html}
                 );
 
@@ -484,9 +485,9 @@ define([
         e.preventDefault();
         var index = $(this).data('index');
 
-        var bookmarks = layout.storage('bookmarks') || [];
+        var bookmarks = utility.storage('bookmarks') || [];
         bookmarks.splice(index,1);
-        layout.storage('bookmarks', bookmarks);
+        utility.storage('bookmarks', bookmarks);
 
         $(this).parent().remove();
 
@@ -502,7 +503,7 @@ define([
 
         var value = $('#readkit-bookmark-input').attr('value');
         var file = $('#readkit-bookmark-input').attr('data-file');
-        var bookmarks = layout.storage('bookmarks') || [];
+        var bookmarks = utility.storage('bookmarks') || [];
 
         var bookmark = {
             title: value,
@@ -511,7 +512,7 @@ define([
             y: layout.location().y
         };
 
-        html = tinytim($('#readkit-bookmark-list-item-tmpl').html(),
+        html = utility.compile($('#readkit-bookmark-list-item-tmpl').html(),
             {   index: bookmarks.length,
                 file:  bookmark.file,
                 title: bookmark.title,
@@ -521,7 +522,7 @@ define([
 
         $('#readkit-bookmark-list').append(html);
         bookmarks.push(bookmark);
-        layout.storage('bookmarks', bookmarks);
+        utility.storage('bookmarks', bookmarks);
     });
 
     // close any open dropdowns if the user clicks elsewhere
@@ -547,8 +548,6 @@ define([
         });
     });
 
-    var upload = {};
-    var progress_total = 0;
     upload.handle_drag_enter = function (e) {
         e.stopPropagation();
         e.preventDefault();
@@ -600,8 +599,7 @@ define([
                         $.when.apply(this, $.map(entries, function(entry) {
                             return $.Deferred(function(deferred_entry){
 
-                                var suffix = entry.filename.lastIndexOf('.') === -1 ? '' : entry.filename.substr(entry.filename.lastIndexOf('.') + 1).toLowerCase();
-                                if (['opf', 'xml', 'htm', 'html', 'xhtml', 'css', 'ncx', 'txt', ''].indexOf(suffix) != -1) {
+                                if (utility.isTextFile(entry.filename)) {
                                     // This is a text-like file that we need to parse or load directly 
                                     // into the browser, so store as text.
                                     try {

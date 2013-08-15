@@ -8,8 +8,9 @@
 */
 
 define([
-    'jquery'
-], function($){
+    'jquery',
+    'app/utility'
+], function($, utility){
 
     /* Main function controlling the processing of the epub. */
     function Epub (d, f, callback, files) {
@@ -32,7 +33,7 @@ define([
 
             // Decode Data URIs
             for (var i in files) {
-                files[i] = decode(i, files[i]);
+                files[i] = utility.decode(i, files[i]);
             }
 
             this.content = files;
@@ -215,44 +216,6 @@ define([
         });
 
         callback(epub);
-    };
-
-    var hasArrayBufferView = new Blob([new Uint8Array(100)]).size == 100;
-
-    var decode = function decode (index, dataURI) {
-        var data;
-        if (/^data\:/.test(dataURI)) {
-            // We've got a data URI
-            var content = dataURI.indexOf(","),
-                meta = dataURI.substr(5, content).toLowerCase();
-
-            data = decodeURIComponent(dataURI.substr(content + 1));
-            
-            if (/;\s*base64\s*[;,]/.test(meta)) {
-                data = atob(data); // decode base64
-
-                // Convert non-text files to blobs
-                var suffix = index.lastIndexOf('.') === -1 ? '' : index.substr(index.lastIndexOf('.') + 1).toLowerCase();
-                if (['opf', 'xml', 'htm', 'html', 'xhtml', 'css', 'ncx', 'txt', ''].indexOf(suffix) == -1) {
-                    var buf = new ArrayBuffer(data.length);
-                    var arr = new Uint8Array(buf);
-                    for (var i = 0; i < data.length; i++) {
-                         arr[i] = data.charCodeAt(i);
-                    }
-                    if (!hasArrayBufferView) arr = buf;
-                    var blob = new Blob([arr], { type: meta.split(';')[0] });
-                    blob.slice = blob.slice || blob.webkitSlice;
-                    data = blob;
-                }
-            } else if (/;\s*charset=[uU][tT][fF]-?8\s*[;,]/.test(meta)) {
-                data = decodeURIComponent(escape(data)); // decode UTF-8
-            }
-        } else {
-            // Presumably we have a blob URL
-            data = dataURI;
-        }
-        
-        return data;
     };
 
     return (Epub);

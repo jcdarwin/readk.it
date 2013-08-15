@@ -14,12 +14,11 @@
 
 define([
     'jquery',
-    'jquery.storage',
+    'app/utility',
     'iscroll',
     'underscore',
-    'jquery.hotkeys',
-    'tinytim'
-], function($, $storage, iScroll, _, $hotkeys, tinytim){
+    'jquery.hotkeys'
+], function($, utility, iScroll, _, $hotkeys){
 
     var page_scrollers = [];
     var pages = [];
@@ -38,15 +37,15 @@ define([
 
         controller = caller;
         publication = pub;
-//storage('pages', []);
-//storage('font-size', []);
+        utility.identifier = pub.identifier;
+//utility.storage('pages', []);
+//utility.storage('font-size', []);
         return {
             refresh: refresh,
             update: update,
             add: add,
             reset: reset,
             trap_anchor: trap_anchor,
-            storage: storage,
             go_back: go_back,
             restore_bookmarks: restore_bookmarks,
             publication: publication,
@@ -99,26 +98,26 @@ define([
                 this.options['page_scroller_waiting'] = undefined;
                 this.options['page_scroller_anchor'] = undefined;
 
-                if (storage('page') != currentPage) {
-                    if (storage('history')) {
-                        var history = storage('history');
-                        history.push(storage('page'));
-                        storage('history', history);
+                if (utility.storage('page') != currentPage) {
+                    if (utility.storage('history')) {
+                        var history = utility.storage('history');
+                        history.push(utility.storage('page'));
+                        utility.storage('history', history);
                     } else {
-                        storage('history', [storage('page')]);
+                        utility.storage('history', [utility.storage('page')]);
                     }
                     // Notify any subscribers that the history has changed.
-                    controller.publish('history_changed');
+                    utility.publish('history_changed');
                 }
             }
 
-            storage('page', currentPage);
+            utility.storage('page', currentPage);
 
-            var pages_previous = storage('pages') || [];
+            var pages_previous = utility.storage('pages') || [];
             if (pages_previous[currentPage]) {
                 pages_previous[currentPage].x = $(book_scroller)[0].x;
             }
-            storage('pages', pages_previous);
+            utility.storage('pages', pages_previous);
         }
     });
 
@@ -159,51 +158,19 @@ define([
         }
     };
 
-    // Local / session / cookie storage
-    var storage = function (key, value) {
-        // If only key is provided, it's a getter,
-        // otherwise it's a setter.
-        var pub = $.localStorage(publication.identifier) || [];
-
-        if (value) {
-            var entry = {};
-            entry[key] = value;
-            // filter out any existing entries with the supplied key.
-            pub = pub.filter(function (item) {
-                if (!item[key]) {
-                    return true;
-                }
-            });
-            pub.push(entry);
-            return $.localStorage(publication.identifier, pub);
-        } else {
-            pub = pub.filter(function (item) {
-                if (item[key]) {
-                    return true;
-                }
-            });
-            if (pub.length > 0) {
-                return pub[0][key];
-            } else {
-                return null;
-            }
-        }
-    };
-
     // Revisit the last entry in the history.
     var go_back = function () {
-        var history = storage('history');
+        var history = utility.storage('history');
         if (history.length) {
             var page = history.pop();
             book_scroller.scrollToPage(page, 0, 0);
-            storage('history', history);
+            utility.storage('history', history);
         }
     };
 
     // Add a page
     var add = function (id, file, html) {
-
-        $('#readkit-pageScroller').append(tinytim(
+        $('#readkit-pageScroller').append(utility.compile(
             '<div class="readkit-page" id="{{file}}"><div id="{{id}}" class="readkit-wrapper"><div class="readkit-scroller"><div class="readkit-margins">{{html}}</div></div></div></div>',
             {   file: file,
                 id:   id,
@@ -217,16 +184,16 @@ define([
                     if (pages[currentPage]) {
                         pages[currentPage].y = (page_scrollers[currentPage]).scroller.y;
                         pages[currentPage].height = (page_scrollers[currentPage]).scroller.scrollerH;
-                        storage('pages', pages);
+                        utility.storage('pages', pages);
                     }
                 }
             }
         });
-        var pages_previous = storage('pages') || [];
+        var pages_previous = utility.storage('pages') || [];
         if (!pages_previous[page_scrollers.length]) {
             pages_previous[page_scrollers.length] = {x: 0, y: 0};
         }
-        storage('pages', pages_previous);
+        utility.storage('pages', pages_previous);
         page_scrollers.push({file: file, scroller: page_scroller});
 
         // Capture clicks so we can update the scroll position.
@@ -349,10 +316,10 @@ define([
 
     // Restore our previous position in the layout
     var restore_bookmarks = function () {
-        if (storage('pages')) {
-            pages = storage('pages');
+        if (utility.storage('pages')) {
+            pages = utility.storage('pages');
 
-            var page = storage('page'),
+            var page = utility.storage('page'),
                 y = 0;
 
             if (page && book_scroller.pagesX.length > page) {
@@ -448,11 +415,11 @@ define([
         });
 
         // Notify any subscribers that the layout has been loaded.
-        controller.publish('publication_loaded');
+        utility.publish('publication_loaded');
     };
 
     var location = function() {
-        pages = storage('pages');
+        pages = utility.storage('pages');
 
         return {
             page:   currentPage,

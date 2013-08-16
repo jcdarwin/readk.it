@@ -184,14 +184,17 @@ define([
 
             utility.storage('font', []);
         } else {
-            $('#readkit-pageWrapper')
-                .find(utility.tags)
-                .addClass('readkit-sans')
-                .removeClass('readkit-serif');
-            $('.readkit-icon-serif').removeClass('readkit-active');
-            $('.readkit-icon-sans').addClass('readkit-active');
-
-            utility.storage('font', 'sans');
+            try {
+                $('#readkit-pageWrapper')
+                    .find(utility.tags)
+                    .addClass('readkit-sans')
+                    .removeClass('readkit-serif');
+                $('.readkit-icon-serif').removeClass('readkit-active');
+                $('.readkit-icon-sans').addClass('readkit-active');
+                utility.storage('font', 'sans');
+            } catch (e) {
+                console.log(e.message);
+            }
         }
 
         $('.readkit-scroller').resize(function(){
@@ -217,13 +220,16 @@ define([
 
             utility.storage('font', []);
         } else {
-            $('#readkit-pageWrapper').find(utility.tags)
-                .addClass('readkit-serif')
-                .removeClass('readkit-sans');
-            $('.readkit-icon-sans').removeClass('readkit-active');
-            $('.readkit-icon-serif').addClass('readkit-active');
-
-            utility.storage('font', 'serif');
+            try {
+                $('#readkit-pageWrapper').find(utility.tags)
+                    .addClass('readkit-serif')
+                    .removeClass('readkit-sans');
+                $('.readkit-icon-sans').removeClass('readkit-active');
+                $('.readkit-icon-serif').addClass('readkit-active');
+                utility.storage('font', 'serif');
+            } catch (e) {
+                console.log(e.message);
+            }
         }
 
         $('.readkit-scroller').resize(function(){

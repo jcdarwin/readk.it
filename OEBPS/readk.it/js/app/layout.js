@@ -86,7 +86,7 @@ define([
             // Store details of the page we're on
             if (page_width > 0) {
                 previousPage = currentPage;
-                currentPage = - Math.ceil( $('#readkit-pageScroller').position().left / page_width);
+                currentPage = - Math.ceil( Math.floor($('#readkit-pageScroller').position().left) / page_width);
 
                 // Ensure we align nicely on a page boundary
                 if (currentPage != previousPage) {

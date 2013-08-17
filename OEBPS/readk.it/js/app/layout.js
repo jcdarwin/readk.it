@@ -15,10 +15,11 @@
 define([
     'jquery',
     'app/utility',
+    'app/config',
     'iscroll',
     'underscore',
     'jquery.hotkeys'
-], function($, utility, iScroll, _, $hotkeys){
+], function($, utility, config, iScroll, _, $hotkeys){
 
     var page_scrollers = [];
     var pages = [];
@@ -260,7 +261,7 @@ define([
             //    update(book_scroller);
             //}, 0);
 
-            var matches = that.href.match(/^.*#((.*?)(?:__.*)?)$/);
+            var matches = that.href.match(/^.*#((.*?(?:__.*)?))$/);
             // http://localhost:8000/#ch04.xhtml                               => ["http://localhost:8000/#ch04.xhtml", "ch04.xhtml", "ch04.xhtml"]
             // http://localhost:8000/#ch04.xhtml__epub_3_best_practices_teaser => ["http://localhost:8000/#ch04.xhtml__epub_3_best_practices_teaser", "ch04.xhtml__epub_3_best_practices_teaser", "ch04.xhtml"]
             var anchor = matches[1];
@@ -309,7 +310,7 @@ define([
                 // We leave this a second to let any animations complete.
                 setTimeout(function(){
                     update((filtered_page_scrollers[0]).scroller);
-                }, 1000);
+                }, config.css_page_redraw_interval);
             }
         }
     };
@@ -353,57 +354,57 @@ define([
     var resizeTimer;
     $(window).resize(function() {
         clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(update, 100);
+        resizeTimer = setTimeout(update, config.window_resize_interval);
     });
 
     var finalise = function() {
         // Ensure that we can scroll using keyboard in desktop browsers
         $(document).bind('keydown', 'home', function(){
             if (currentPage !== undefined) {
-                (page_scrollers[currentPage]).scroller.scrollTo(0, 0, 200);
+                (page_scrollers[currentPage]).scroller.scrollTo(0, 0, config.scroll_duration);
             }
         });
 
         $(document).bind('keydown', 'end', function(){
             if (currentPage !== undefined) {
-                (page_scrollers[currentPage]).scroller.scrollTo(0, (page_scrollers[currentPage]).scroller.maxScrollY, 200);
+                (page_scrollers[currentPage]).scroller.scrollTo(0, (page_scrollers[currentPage]).scroller.maxScrollY, config.scroll_duration);
             }
         });
 
         $(document).bind('keydown', 'pageup', function(){
             if (currentPage !== undefined) {
                 var y = $((page_scrollers[currentPage]).scroller.wrapper).height();
-                (page_scrollers[currentPage]).scroller.scrollTo(0, (page_scrollers[currentPage]).scroller.y + y, 200);
+                (page_scrollers[currentPage]).scroller.scrollTo(0, (page_scrollers[currentPage]).scroller.y + y, config.scroll_duration);
             }
         });
 
         $(document).bind('keydown', 'pagedown', function(){
             if (currentPage !== undefined) {
                 var y = $((page_scrollers[currentPage]).scroller.wrapper).height();
-                (page_scrollers[currentPage]).scroller.scrollTo(0, (page_scrollers[currentPage]).scroller.y - y, 200);
+                (page_scrollers[currentPage]).scroller.scrollTo(0, (page_scrollers[currentPage]).scroller.y - y, config.scroll_duration);
             }
         });
 
         $(document).bind('keydown', 'up', function(){
             if (currentPage !== undefined) {
-                (page_scrollers[currentPage]).scroller.scrollTo(0, (page_scrollers[currentPage]).scroller.y + 40, 200);
+                (page_scrollers[currentPage]).scroller.scrollTo(0, (page_scrollers[currentPage]).scroller.y + 40, config.scroll_duration);
             }
         });
 
         $(document).bind('keydown', 'down', function(){
             if (currentPage !== undefined) {
-                (page_scrollers[currentPage]).scroller.scrollTo(0, (page_scrollers[currentPage]).scroller.y - 40, 200);
+                (page_scrollers[currentPage]).scroller.scrollTo(0, (page_scrollers[currentPage]).scroller.y - 40, config.scroll_duration);
             }
         });
 
         $(document).bind('keydown', 'left', function(){
             var x = page_width;
-            book_scroller.scrollTo(book_scroller.x + page_width, book_scroller.y, 200);
+            book_scroller.scrollTo(book_scroller.x + page_width, book_scroller.y, config.scroll_duration);
         });
 
         $(document).bind('keydown', 'right', function(){
             var x = page_width;
-            book_scroller.scrollTo(book_scroller.x - page_width, book_scroller.y, 200);
+            book_scroller.scrollTo(book_scroller.x - page_width, book_scroller.y, config.scroll_duration);
         });
 
         $(document).bind('keydown', 'esc', function(){

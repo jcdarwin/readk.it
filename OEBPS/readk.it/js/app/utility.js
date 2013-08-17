@@ -9,11 +9,12 @@
 define([
     'jquery',
     'jquery.storage',
-    'tinytim'
-], function($, $storage, tinytim){
+    'tinytim',
+    'modernizr',
+    'detectizr'
+], function($, $storage, tinytim, Modernizr, Detectizr){
 
     var identifier = '';
-    var tags ='html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed,  figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, button';
 
     var isTextFile = function(filename){
         var suffix = filename.lastIndexOf('.') === -1 ? '' : filename.substr(filename.lastIndexOf('.') + 1).toLowerCase();
@@ -120,20 +121,22 @@ define([
         });
         switch(op) {
             case operation.fontSwitch:
+                // Looks like iPad iOS is behaving itself for the time being
+                /*
                 if (Modernizr.Detectizr.device.model === 'ipad' && Modernizr.Detectizr.device.browser === 'safari') {
                     // Font-switching crashes Safari on iOS (at least 6.0.1)
                     return false;
                 } else {
                     return true;
                 }
-                break;
+                */
+                return true;
             default:
                 return true;
         }
     };
 
     return {
-        tags: tags,
         isTextFile: isTextFile,
         compile: compile,
         identifier: identifier,

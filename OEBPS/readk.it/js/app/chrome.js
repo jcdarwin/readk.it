@@ -9,10 +9,11 @@
 define([
     'jquery',
     'app/utility',
+    'app/config',
     'zip/zip',
     'zip/inflate',
     'jquery.ba-resize'
-], function($, utility, zip, inflate, jbr){
+], function($, utility, config, zip, inflate, jbr){
 
     var controller;
     var layout;
@@ -108,7 +109,7 @@ define([
         if (_.isNumber(lineheight)) {
             $('#readkit-for-lineheight').addClass('readkit-active');
             $('#readkit-pageWrapper')
-                .find(utility.tags)
+                .find(config.tags)
                 .css('line-height', lineheight);
             $('.readkit-strength-line-height[data-size="' + lineheight + '"]')
                 .removeClass('readkit-inactive')
@@ -118,14 +119,13 @@ define([
             //$('.readkit-strength-line-height.readkit-small').removeClass('readkit-inactive').addClass('readkit-active');
         }
 
-        // Set resize polling to 1 sec (default is 250ms)
-        $.resize.delay = 1000;
+        $.resize.delay = config.resize_interval;
 
         // Check online status immediately, instead of waiting for the first setInterval
         check_status();
 
         // Check online status on a regular interval
-        setInterval( check_status, 5000);
+        setInterval( check_status, config.check_status_interval);
 
         // Check the backbutton status
         check_backbutton();
@@ -134,7 +134,7 @@ define([
         check_bookmarks();
 
         // Remove site preloader
-        $('#readkit-sitePreloader').delay(200).fadeOut(500, function() {
+        $('#readkit-sitePreloader').delay('fast').fadeOut('slow', function() {
             layout.refresh();
             $(this).remove();
         });
@@ -179,7 +179,7 @@ define([
 
             if ( $('.readkit-icon-sans').hasClass('readkit-active') ) {
                 $('#readkit-pageWrapper')
-                    .find(utility.tags)
+                    .find(config.tags)
                     .removeClass('readkit-sans');
                 $('.readkit-icon-sans').removeClass('readkit-active');
 
@@ -187,7 +187,7 @@ define([
             } else {
                 try {
                     $('#readkit-pageWrapper')
-                        .find(utility.tags)
+                        .find(config.tags)
                         .addClass('readkit-sans')
                         .removeClass('readkit-serif');
                     $('.readkit-icon-serif').removeClass('readkit-active');
@@ -206,7 +206,7 @@ define([
                 // If we don't do this, scroll performance may be affected.
                 setTimeout(function () {
                     $('.readkit-scroller').unbind('resize');
-                }, 5000);
+                }, config.css_redraw_interval);
 
             });
         }
@@ -217,13 +217,13 @@ define([
             var y_percent = layout.location().y / layout.location().height;
             if ( $('.readkit-icon-serif').hasClass('readkit-active') ) {
                 $('#readkit-pageWrapper')
-                    .find(utility.tags)
+                    .find(config.tags)
                     .removeClass('readkit-serif');
                 $('.readkit-icon-serif').removeClass('readkit-active');
 
                 utility.storage('font', []);
             } else {
-                $('#readkit-pageWrapper').find(utility.tags)
+                $('#readkit-pageWrapper').find(config.tags)
                     .addClass('readkit-serif')
                     .removeClass('readkit-sans');
                 $('.readkit-icon-sans').removeClass('readkit-active');
@@ -239,7 +239,7 @@ define([
                 // If we don't do this, scroll performance may be affected.
                 setTimeout(function () {
                     $('.readkit-scroller').unbind('resize');
-                }, 5000);
+                }, config.css_redraw_interval);
 
             });
         }
@@ -306,7 +306,7 @@ define([
             // If we don't do this, scroll performance may be affected.
             setTimeout(function () {
                 $('.readkit-scroller').unbind('resize');
-            }, 5000);
+            }, config.css_redraw_interval);
 
         });
 
@@ -353,7 +353,7 @@ define([
                 .removeClass('readkit-active')
                 .addClass('readkit-inactive');
             $('#readkit-pageWrapper')
-                .find(utility.tags)
+                .find(config.tags)
                 .css('line-height', '');
             $('#readkit-for-lineheight').removeClass('readkit-active');
         } else {
@@ -365,7 +365,7 @@ define([
                 .addClass('readkit-active');
             value = $(this).data('size');
             $('#readkit-pageWrapper')
-                .find(utility.tags)
+                .find(config.tags)
                 .css('line-height', value);
             $('#readkit-for-lineheight').addClass('readkit-active');
         }
@@ -381,7 +381,7 @@ define([
             // If we don't do this, scroll performance may be affected.
             setTimeout(function () {
                 $('.readkit-scroller').unbind('resize');
-            }, 5000);
+            }, config.css_redraw_interval);
 
         });
 
@@ -615,7 +615,9 @@ define([
                                         // https://github.com/gildas-lormeau/zip.js/issues/58
                                         entry.getData(new zip.TextWriter('utf-8'), function(text){
                                             upload.progress(f, entry);
-console.log(entry.filename);
+                                            if (config.log) {
+                                                console.log(entry.filename);
+                                            }
                                             deferred_entry.resolve(text);
                                         });
                                     } catch (e) {
@@ -627,7 +629,9 @@ console.log(entry.filename);
                                     // to display them (e.g. jpg) and that would be silly.
                                     entry.getData(new zip.BlobWriter(), function(blob){
                                         upload.progress(f, entry);
-console.log(entry.filename);
+                                        if (config.log) {
+                                            console.log(entry.filename);
+                                        }
                                         deferred_entry.resolve(blob);
                                     });
                                 }

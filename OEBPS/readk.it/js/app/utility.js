@@ -105,6 +105,33 @@ define([
         return data;
     };
 
+    var operation = {
+        'fontSwitch': 'fontSwitch'
+    };
+
+    // Deal with device/browser support issues
+    var supported = function (op) {
+        Modernizr.Detectizr.detect({
+            detectDeviceModel: true,
+            detectScreen: true,
+            detectOS: true,
+            detectBrowser: true,
+            detectPlugins: false
+        });
+        switch(op) {
+            case operation.fontSwitch:
+                if (Modernizr.Detectizr.device.model === 'ipad' && Modernizr.Detectizr.device.browser === 'safari') {
+                    // Font-switching crashes Safari on iOS (at least 6.0.1)
+                    return false;
+                } else {
+                    return true;
+                }
+                break;
+            default:
+                return true;
+        }
+    };
+
     return {
         tags: tags,
         isTextFile: isTextFile,
@@ -114,6 +141,8 @@ define([
         subscribe: subscribe,
         unsubscribe: unsubscribe,
         publish: publish,
-        decode: decode
+        decode: decode,
+        supported: supported,
+        operation: operation
     };
 });

@@ -174,75 +174,75 @@ define([
 
     // Font style handlers
     $('.readkit-icon-sans').click(function(){
-        var y_percent = layout.location().y / layout.location().height;
+        if (utility.supported(utility.operation.fontSwitch)) {
+            var y_percent = layout.location().y / layout.location().height;
 
-        if ( $('.readkit-icon-sans').hasClass('readkit-active') ) {
-            $('#readkit-pageWrapper')
-                .find(utility.tags)
-                .removeClass('readkit-sans');
-            $('.readkit-icon-sans').removeClass('readkit-active');
-
-            utility.storage('font', []);
-        } else {
-            try {
+            if ( $('.readkit-icon-sans').hasClass('readkit-active') ) {
                 $('#readkit-pageWrapper')
                     .find(utility.tags)
-                    .addClass('readkit-sans')
-                    .removeClass('readkit-serif');
-                $('.readkit-icon-serif').removeClass('readkit-active');
-                $('.readkit-icon-sans').addClass('readkit-active');
-                utility.storage('font', 'sans');
-            } catch (e) {
-                console.log(e.message);
+                    .removeClass('readkit-sans');
+                $('.readkit-icon-sans').removeClass('readkit-active');
+
+                utility.storage('font', []);
+            } else {
+                try {
+                    $('#readkit-pageWrapper')
+                        .find(utility.tags)
+                        .addClass('readkit-sans')
+                        .removeClass('readkit-serif');
+                    $('.readkit-icon-serif').removeClass('readkit-active');
+                    $('.readkit-icon-sans').addClass('readkit-active');
+                    utility.storage('font', 'sans');
+                } catch (e) {
+                    console.log(e.message);
+                }
             }
+
+            $('.readkit-scroller').resize(function(){
+                layout.refresh(layout.location().page, y_percent);
+
+                // We wait for a reasonable amount of time for the DOM
+                // to adapt to the CSS changes, and then stop polling for resize.
+                // If we don't do this, scroll performance may be affected.
+                setTimeout(function () {
+                    $('.readkit-scroller').unbind('resize');
+                }, 5000);
+
+            });
         }
-
-        $('.readkit-scroller').resize(function(){
-            layout.refresh(layout.location().page, y_percent);
-
-            // We wait for a reasonable amount of time for the DOM
-            // to adapt to the CSS changes, and then stop polling for resize.
-            // If we don't do this, scroll performance may be affected.
-            setTimeout(function () {
-                $('.readkit-scroller').unbind('resize');
-            }, 5000);
-
-        });
     });
 
     $('.readkit-icon-serif').click(function(){
-        var y_percent = layout.location().y / layout.location().height;
-        if ( $('.readkit-icon-serif').hasClass('readkit-active') ) {
-            $('#readkit-pageWrapper')
-                .find(utility.tags)
-                .removeClass('readkit-serif');
-            $('.readkit-icon-serif').removeClass('readkit-active');
+        if (utility.supported(utility.operation.fontSwitch)) {
+            var y_percent = layout.location().y / layout.location().height;
+            if ( $('.readkit-icon-serif').hasClass('readkit-active') ) {
+                $('#readkit-pageWrapper')
+                    .find(utility.tags)
+                    .removeClass('readkit-serif');
+                $('.readkit-icon-serif').removeClass('readkit-active');
 
-            utility.storage('font', []);
-        } else {
-            try {
+                utility.storage('font', []);
+            } else {
                 $('#readkit-pageWrapper').find(utility.tags)
                     .addClass('readkit-serif')
                     .removeClass('readkit-sans');
                 $('.readkit-icon-sans').removeClass('readkit-active');
                 $('.readkit-icon-serif').addClass('readkit-active');
                 utility.storage('font', 'serif');
-            } catch (e) {
-                console.log(e.message);
             }
+
+            $('.readkit-scroller').resize(function(){
+                layout.refresh(layout.location().page, y_percent);
+
+                // We wait for a reasonable amount of time for the DOM
+                // to adapt to the CSS changes, and then stop polling for resize.
+                // If we don't do this, scroll performance may be affected.
+                setTimeout(function () {
+                    $('.readkit-scroller').unbind('resize');
+                }, 5000);
+
+            });
         }
-
-        $('.readkit-scroller').resize(function(){
-            layout.refresh(layout.location().page, y_percent);
-
-            // We wait for a reasonable amount of time for the DOM
-            // to adapt to the CSS changes, and then stop polling for resize.
-            // If we don't do this, scroll performance may be affected.
-            setTimeout(function () {
-                $('.readkit-scroller').unbind('resize');
-            }, 5000);
-
-        });
     });
 
     // Fontsize event handlers

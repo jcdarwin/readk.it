@@ -14,17 +14,19 @@ var extend = function(obj, defaults) {
 };
 extend(paths, client.paths);
 
-// Readk.it shims
+// Readk.it shims, with any client shims mixed in
 var shims = {
     // Shim in our jQuery plugins etc, as they aren't AMD modules
+    'modernizr': {deps: ['jquery'], exports: 'Modernizr'},
+    'detectizr': {deps: ['jquery', 'modernizr'], exports: 'Detectizr'},
     'jquery.storage': ['jquery'],
     'jquery.ba-urlinternal.min': ['jquery'],
     'jquery.ba-resize': ['jquery'],
     'jquery.hotkeys': ['jquery'],
-    // Make non-AMD modules act like AMD modules
+    // Make non-AMD modules available globally
     'iscroll': {exports: 'iScroll'},
     'zip/zip': {exports: 'zip'},
-    'zip/inflate': {exports: 'inflate'}
+    'zip/inflate': {exports: 'inflate'},
 };
 extend(shims, client.shims);
 

@@ -1,4 +1,5 @@
-/*
+@charset "UTF-8";
+/*!
 +---------------------------------------------------------------------+
 |                                                                     |
 |                ____                _ _      _ _                     |
@@ -427,47 +428,49 @@ pre {
   width: 24px;
   border-radius: 12px;
   padding-top: 0;
-}
-
-/* line 410, ../sass/partials/_custom.scss */
-.readkit-bookmark-icon {
   font-size: 24px;
   color: #56a2d3;
+  margin: 0;
 }
 
-/* line 415, ../sass/partials/_custom.scss */
+/* line 413, ../sass/partials/_custom.scss */
+.readkit-bookmark-icon:before {
+  margin: 0;
+}
+
+/* line 417, ../sass/partials/_custom.scss */
 .readkit-bookmark-icon-add {
   float: right;
   margin-top: 2px;
 }
 
-/* line 420, ../sass/partials/_custom.scss */
+/* line 422, ../sass/partials/_custom.scss */
 .readkit-bookmark-icon-remove {
   float: left;
 }
 
 /* iPhone 2G-4S in portrait & landscape */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-  /* line 434, ../sass/partials/_custom.scss */
+  /* line 436, ../sass/partials/_custom.scss */
   .readkit-header {
     top: 0;
     -webkit-user-select: none;
   }
 
-  /* line 438, ../sass/partials/_custom.scss */
+  /* line 440, ../sass/partials/_custom.scss */
   .readkit-slider {
     width: 30px;
   }
 }
 /* iPhone 5 in portrait & landscape */
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
-  /* line 447, ../sass/partials/_custom.scss */
+  /* line 449, ../sass/partials/_custom.scss */
   .readkit-header {
     top: 0;
     -webkit-user-select: none;
   }
 
-  /* line 451, ../sass/partials/_custom.scss */
+  /* line 453, ../sass/partials/_custom.scss */
   .readkit-slider {
     width: 30px;
   }
@@ -475,7 +478,7 @@ pre {
 /* iPad in portrait & landscape */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   /* Accomodate status bar */
-  /* line 461, ../sass/partials/_custom.scss */
+  /* line 463, ../sass/partials/_custom.scss */
   .readkit-header {
     top: 0;
     -webkit-user-select: none;
@@ -483,14 +486,14 @@ pre {
 }
 /* Desktop */
 @media only screen {
-  /* line 469, ../sass/partials/_custom.scss */
+  /* line 471, ../sass/partials/_custom.scss */
   .readkit-header {
     top: 0;
   }
 }
 /* Phone */
 @media (max-device-width: 240px) {
-  /* line 476, ../sass/partials/_custom.scss */
+  /* line 478, ../sass/partials/_custom.scss */
   .readkit-serif, .readkit-sans {
     display: none;
   }

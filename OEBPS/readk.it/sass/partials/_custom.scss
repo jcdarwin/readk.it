@@ -405,11 +405,13 @@ pre {
     width: $medium;
     border-radius: $medium / 2;
     padding-top: 0;
-}
-
-.#{$namespace}-bookmark-icon {
     font-size: 24px;
     color: $online-color;
+    margin: 0;
+}
+
+.#{$namespace}-bookmark-icon:before {
+    margin: 0;
 }
 
 .#{$namespace}-bookmark-icon-add {

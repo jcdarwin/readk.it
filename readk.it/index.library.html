@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+    <head>
+        <title>readk.it</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
+
+        <link rel="stylesheet" type="text/css" href="fonts/fontello/css/fontello.css">
+        <link rel="stylesheet" type="text/css" href="css/readkit-screen.css">
+
+        <!-- ========================= mobile icons ======================= -->
+        <!-- For iPhone 4 -->
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+        
+        <!-- For iPad 1 -->
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+        
+        <!-- For iPhone 3G, iPod Touch and Android -->
+        <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-57x57-precomposed.png">
+        
+        <!-- For Nokia -->
+        <link rel="shortcut icon" href="images/apple-touch-icon-57x57.png">
+        
+        <!-- For everything else -->
+        <link rel="shortcut icon" href="favicon.ico">
+        
+        <!--iOS -->
+        <meta name="apple-mobile-web-app-capable" content="yes">    
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">    
+        <link rel="apple-touch-startup-image" href="images/splash.png">
+
+        <!-- Add to home screen: http://cubiq.org/add-to-home-screen -->
+        <link rel="stylesheet" href="js/lib/add-to-homescreen/style/add2home.css">
+        <script type="text/javascript">
+        var addToHomeConfig = {
+            startDelay: 30000,
+            lifespan:10000,
+            touchIcon:true,
+            message:'Install this book on your %device: tap %icon and then <strong>Add to Home Screen</strong>.'
+        };
+        </script>
+        <script type="application/javascript" src="js/lib/add-to-homescreen/src/add2home.js"></script>
+    </head>
+    <body>
+        <div id='readkit-sitePreloader'><div id='readkit-preloaderImage'><img src='images/site_preloader.gif' alt='Preloader' /></div></div>
+
+        <div class="readkit-header">
+            <span class="readkit-icon readkit-back readkit-inactive"><i class="icon-chevron-left"></i></span>
+            <div class="readkit-controls">
+                <div class="readkit-size readkit-slider">
+                    <label id="readkit-for-size" for="readkit-dropdown-size" class="readkit-icon" title="font size"><i class="icon-text-height"></i></label>
+                    <div id="readkit-dropdown-size" class="readkit-dropdown" style="display:none;overflow:hidden;">
+                        <span class="readkit-strength-size readkit-inactive readkit-small" data-size="16"><i class="icon-text-height"></i></span>
+                        <span class="readkit-strength-size readkit-inactive readkit-medium" data-size="20"><i class="icon-text-height"></i></span>
+                        <span class="readkit-strength-size readkit-inactive readkit-large" data-size="24"><i class="icon-text-height"></i></span>
+                    </div>
+                </div>
+                <div class="readkit-lh readkit-slider">
+                    <label id="readkit-for-lineheight" for="readkit-dropdown-lineheight" class="readkit-icon" title="line height"><i class="icon-reorder"></i></label>
+                    <div id="readkit-dropdown-lineheight" class="readkit-dropdown" style="display:none;overflow:hidden;">
+                        <span class="readkit-strength-line-height readkit-inactive readkit-small" data-size="1.42"><i class="icon-reorder"></i></span>
+                        <span class="readkit-strength-line-height readkit-inactive readkit-medium" data-size="1.7"><i class="icon-reorder"></i></span>
+                        <span class="readkit-strength-line-height readkit-inactive readkit-large" data-size="2"><i class="icon-reorder"></i></span>
+                    </div>
+                </div>
+                <div class="readkit-bookmark readkit-slider">
+                    <label id="readkit-for-bookmark" for="readkit-dropdown-bookmark" class="readkit-icon readkit-bookmark readkit-inactive" title="bookmark"><i class="icon-bookmark"></i></label>
+
+                    <script type="text/tim" id="readkit-bookmark-widget-tmpl">
+                        <div id="readkit-bookmark-widget" class="readkit-wrapper-bookmarks">
+                            <div class="readkit-scroller" style="width:280px;">{{html}}</div>
+                        </div>
+                    </script>
+
+                    <script type="text/tim" id="readkit-bookmark-list-tmpl">
+                        <div id="readkit-bookmark-list">{{bookmarkeds}}</div><hr style="clear:both;" />
+                    </script>
+
+                    <script type="text/tim" id="readkit-bookmark-input-tmpl">
+                        <div class="readkit-bookmark-input">
+                            <input id="readkit-bookmark-input" type="text" data-file="{{file}}" value="{{title}}" />
+                            <span class="readkit-bookmark-icon-add readkit-add-bookmark"><i class="icon-plus-circle readkit-bookmark-icon"></i></span>
+                        </div>
+                    </script>
+
+                    <script type="text/tim" id="readkit-bookmark-list-item-tmpl">
+                        <div class="readkit-bookmark-list-item" style="margin-bottom:5px;">
+                            <span class="readkit-bookmark-icon-remove readkit-remove-bookmark">
+                                <i class="icon-minus-circle readkit-bookmark-icon" data-index={{index}}></i>
+                            </span>
+                            <p class="readkit-bookmark-title">
+                                <a href="#{{file}}" data-x="{{x}}" data-y="{{y}}">{{title}}</a>
+                            </p>
+                        </div>
+                    </script>
+
+                    <div id="readkit-dropdown-bookmark" class="readkit-dropdown" style="display:none;overflow:hidden;">
+                    </div>
+                </div>
+                <span class="readkit-icon readkit-icon-serif" title="serif font"><span class="readkit-font">A</span></span>
+                <span class="readkit-icon readkit-icon-sans" title="sans serif font"><span class="readkit-font">A</span></span>
+                <div style="text-align:center;">
+                    <span class="readkit-icon readkit-status readkit-offline" style="float:none;margin-left:-6px;"><a href="library/library.html"><i class="icon-cloud" style="color: #ffffff;text-decoration:none;"></i></a></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Drag and drop an EPUB onto the browser to open it -->
+        <div id="readkit-drag-upload-window" class="readkit-drag-upload-window">
+            <div class="readkit-cancel_upload">
+                <span class="readkit-icon readkit-cancel readkit-inactive"><i class="icon-cancel"></i></span>
+            </div>
+            <div id="readkit-epub-drag-upload">
+                <p class="readkit-epub-drag-upload-label"></p>
+                <div class="readkit-drag-upload-spinner">
+                    <img src="images/spinner.gif" width="50" alt="Loading image">
+                </div>
+            </div>
+            <div class="readkit-meter">
+                <span style="width: 0%"></span>
+            </div>
+        </div>
+
+        <!-- Our main layout container -->
+        <div id="readkit-pageWrapper">
+            <div id="readkit-pageScroller">
+            </div>
+        </div>
+
+        <!-- Our client EPUB configuration. -->
+        <script src="library/js/library.client.config.js"></script>
+
+        <!-- Use this for development - all js is served as separate files, but bootstrapped by main.js -->
+        <!-- <script data-main="js/main" src="js/lib/require.js"></script> -->
+
+        <!-- Use this for production - all js is served as a single file, readkit.js -->
+        <script data-main="js/readkit" src="js/lib/require.js"></script>
+
+    </body>
+</html>

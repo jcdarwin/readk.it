@@ -2,3 +2,4 @@
 /dist
 .tern-port
 .sass-cache
+.DS_Store

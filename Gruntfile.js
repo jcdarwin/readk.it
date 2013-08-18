@@ -119,6 +119,9 @@ module.exports = function(grunt) {
   grunt.registerTask('cleanAfter', ['clean:after']);
   grunt.registerTask('mung', ['dom_munger:metaInf', 'dom_munger:opf', 'readkit_datauris']);
 
+  // We have to create our grunt tasks dynamically, as we don't necessarily 
+  // know the EPUBs we'll be processing ahead of time.
+  // This page helped a lot: https://gist.github.com/brianfeister/4294776
   function generateDynamicTask(registerDynamicTasks){
     var manifest = grunt.file.readJSON('EPUB/manifest.json');
     for (var entry in manifest) {

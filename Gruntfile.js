@@ -1,13 +1,17 @@
 /*global module:false*/
 module.exports = function(grunt) {
 
+  // To create a production readkit (optimised js):
+  //    grunt
+
+  // To create a development readkit (source js):
+  //    grunt dev
+
   // Project configuration.
   grunt.initConfig({
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),
     epub_src: 'EPUB',
-    readkit_app: 'readk.it/build/dist', // readk.it compiled
-    // readkit_app: '/readk.it', // readk.it source
     readkit_src: 'readk.it', // readk.it source
     banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
       '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
@@ -146,7 +150,7 @@ module.exports = function(grunt) {
         options: {
           read: {selector: 'manifest item', attribute: 'href', writeto: 'manifestRefs', isPath:true}
         },
-        src: '<%= epub_src %>/' + path + '<%= grunt.option(\'' + identifier + '_opf-path\') %>'
+        src: ['<%= epub_src %>/' + path + '<%= grunt.option(\'' + identifier + '_opf-path\') %>', '!**/sass/**']
       });
 
       // Check our js
@@ -198,20 +202,39 @@ module.exports = function(grunt) {
         files: [
           {expand: true, src: ['<%= epub_src %>/' + path + 'mimetype'], dest: 'dist/'},
           {expand: true, src: ['<%= epub_src %>/' + path + 'META-INF/**'], dest: 'dist/'}, // includes files in path and its subdirs
-          {expand: true, src: ['<%= epub_src %>/' + path + '<%= grunt.option(\'' + identifier + '_oebps\') %>/**', '!**/sass/**'], dest: 'dist/', filter: 'isFile'} // includes files and subdirs in path
+          //{expand: true, src: ['<%= epub_src %>/' + path + '<%= grunt.option(\'' + identifier + '_oebps\') %>/**', '!**/sass/**'], dest: 'dist/', filter: 'isFile'} // includes files and subdirs in path
+          {expand: true, src: ['<%= dom_munger.data.manifestRefs %>', '<%= epub_src %>/' + path + '<%= grunt.option(\'' + identifier + '_opf-path\') %>'], dest: 'dist/', filter: 'isFile'} // includes files and subdirs in path
         ]
       });
 
-      // Copy Readk.it files to the dist directory
-      grunt.config('copy.' + identifier + '_readkit', {
+      // Copy production Readk.it to the dist directory
+      grunt.config('copy.' + identifier + '_readkit_prod', {
+        options: {
+        },
+        files: [
+          {expand: true, cwd: 'readk.it/build/dist/js', src: ['**'],
+            // includes files in path
+            dest: 'dist/<%= epub_src %>/' + path + '<%= grunt.option(\'' + identifier + '_oebps\') %>/readk.it/js', filter: 'isFile'}
+        ]
+      });
+
+      // Copy development Readk.it to the dist directory
+      grunt.config('copy.' + identifier + '_readkit_dev', {
+        options: {
+        },
+        files: [
+          {expand: true, cwd: 'readk.it/js', src: ['**'],
+            // includes files in path
+            dest: 'dist/<%= epub_src %>/' + path + '<%= grunt.option(\'' + identifier + '_oebps\') %>/readk.it/js', filter: 'isFile'}
+        ]
+      });
+
+      // Copy Readk.it assets to the dist directory
+      grunt.config('copy.' + identifier + '_readkit_assets', {
         options: {
           processContentExclude: ['<%= readkit_src %>/.gitignore']
         },
         files: [
-          // <%= readkit_app %> allows us to easily change between source readk.it and built readk.it
-          {expand: true, cwd: '<%= readkit_app %>/', src: ['**'],
-            // includes files in path
-            dest: 'dist/<%= epub_src %>/' + path + '<%= grunt.option(\'' + identifier + '_oebps\') %>/readk.it', filter: 'isFile'},
           {expand: true, cwd: '<%= readkit_src %>', src: ['*', '!index.library.html'],
             // includes files in path
             dest: 'dist/<%= epub_src %>/' + path + '<%= grunt.option(\'' + identifier + '_oebps\') %>/readk.it', filter: 'isFile'},
@@ -236,6 +259,54 @@ module.exports = function(grunt) {
             dest: 'dist/<%= epub_src %>/' + path + '<%= grunt.option(\'' + identifier + '_oebps\') %>/readk.it'}
 */
         ]
+      });
+
+
+      // Mixin the readkit mainfest entries to the opf file.
+      grunt.config('dom_munger.' + identifier + '_opf_mixin', {
+        options: {
+          xmlMode: true,
+          append: {selector: 'manifest', html: (function () {/*
+            <!-- './readk.it'  -->
+                <item id="readk_it_favicon_ico" href="readk.it/favicon.ico" media-type="image/vnd.microsoft.icon"></item>
+                <item id="readk_it_index_html" href="readk.it/index.html" media-type="text/html"></item>
+                <item id="readk_it_offline_manifest" href="readk.it/offline.manifest" media-type="text/plain"></item>
+            <!-- './readk.it/css'  -->
+                <item id="readk_it_css_screen_css" href="readk.it/css/readkit-screen.css" media-type="text/css"></item>
+                <item id="readk_it_css_drag_and_drop_css" href="readk.it/css/drag_and_drop.css" media-type="text/css"></item>
+                <item id="readk_it_css_add-to-homescreen_style_add2home_css" href="readk.it/css/add2home.css" media-type="text/css"></item>
+            <!-- './readk.it/fonts'  -->
+            <!-- './readk.it/fonts/fontello'  -->
+            <!-- './readk.it/fonts/fontello/css'  -->
+                <item id="readk_it_fonts_fontello_css_fontello_css" href="readk.it/fonts/fontello/css/fontello.css" media-type="text/css"></item>
+            <!-- './readk.it/fonts/fontello/font'  -->
+                <item id="readk_it_fonts_fontello_font_fontello_ttf" href="readk.it/fonts/fontello/font/fontello.ttf" media-type="application/vnd.ms-opentype"></item>
+                <item id="readk_it_fonts_fontello_font_fontello_woff" href="readk.it/fonts/fontello/font/fontello.woff" media-type="application/vnd.ms-opentype"></item>
+            <!-- './readk.it/fonts/Lora'  -->
+                <item id="readk_it_fonts_Lora_Lora-Bold_woff" href="readk.it/fonts/Lora/Lora-Bold.woff" media-type="application/vnd.ms-opentype"></item>
+                <item id="readk_it_fonts_Lora_Lora-BoldItalic_woff" href="readk.it/fonts/Lora/Lora-BoldItalic.woff" media-type="application/vnd.ms-opentype"></item>
+                <item id="readk_it_fonts_Lora_Lora-Italic_woff" href="readk.it/fonts/Lora/Lora-Italic.woff" media-type="application/vnd.ms-opentype"></item>
+                <item id="readk_it_fonts_Lora_Lora_woff" href="readk.it/fonts/Lora/Lora.woff" media-type="application/vnd.ms-opentype"></item>
+            <!-- './readk.it/fonts/SourceSansPro'  -->
+                <item id="readk_it_fonts_SourceSansPro_SourceSansPro-Bold_woff" href="readk.it/fonts/SourceSansPro/SourceSansPro-Bold.woff" media-type="application/vnd.ms-opentype"></item>
+                <item id="readk_it_fonts_SourceSansPro_SourceSansPro-BoldIt_woff" href="readk.it/fonts/SourceSansPro/SourceSansPro-BoldIt.woff" media-type="application/vnd.ms-opentype"></item>
+                <item id="readk_it_fonts_SourceSansPro_SourceSansPro-It_woff" href="readk.it/fonts/SourceSansPro/SourceSansPro-It.woff" media-type="application/vnd.ms-opentype"></item>
+                <item id="readk_it_fonts_SourceSansPro_SourceSansPro-Regular_woff" href="readk.it/fonts/SourceSansPro/SourceSansPro-Regular.woff" media-type="application/vnd.ms-opentype"></item>
+            <!-- './readk.it/images'  -->
+                <item id="readk_it_images_apple-touch-icon-114x114_png" href="readk.it/images/apple-touch-icon-114x114.png" media-type="image/png"></item>
+                <item id="readk_it_images_apple-touch-icon-57x57-precomposed_png" href="readk.it/images/apple-touch-icon-57x57-precomposed.png" media-type="image/png"></item>
+                <item id="readk_it_images_apple-touch-icon-57x57_png" href="readk.it/images/apple-touch-icon-57x57.png" media-type="image/png"></item>
+                <item id="readk_it_images_apple-touch-icon-72x72_png" href="readk.it/images/apple-touch-icon-72x72.png" media-type="image/png"></item>
+                <item id="readk_it_images_site_preloader_gif" href="readk.it/images/site_preloader.gif" media-type="image/gif"></item>
+                <item id="readk_it_images_spinner_gif" href="readk.it/images/spinner.gif" media-type="image/gif"></item>
+                <item id="readk_it_images_splash_png" href="readk.it/images/splash.png" media-type="image/png"></item>
+            <!-- './readk.it/js'  -->
+                <item id="readk_it_js_client_config_js" href="readk.it/js/client.config.js" media-type="text/javascript"></item>
+                <item id="readk_it_js_readkit_js" href="readk.it/js/readkit.js" media-type="text/javascript"></item>
+            */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1]
+          }
+        },
+        src: ['dist/<%= epub_src %>/' + path + '<%= grunt.option(\'' + identifier + '_opf-path\') %>']
       });
 
       // Uglify our js
@@ -282,23 +353,30 @@ module.exports = function(grunt) {
 
   generateDynamicTask(function(){
     // Tasks the happen before the EPUBs have been processed
-    var allTasks = ['clean:before', 'shell:requirejs'];
+    var prodTasks = ['clean:before', 'shell:requirejs'];
+    var devTasks = ['clean:before'];
 
     var manifest = grunt.file.readJSON('EPUB/manifest.json');
     for (var entry in manifest) {
       grunt.log.writeln(manifest[entry].path);
-      var tasks = ['dom_munger:'  + manifest[entry].identifier + '_metaInf', 'dom_munger:' + manifest[entry].identifier + '_opf', 'jshint:' + manifest[entry].identifier, 'copy:' + manifest[entry].identifier + '_epub', 'copy:' + manifest[entry].identifier + '_readkit', 'uglify:' + manifest[entry].identifier, 'shell:' + manifest[entry].identifier + '_zip'];
-      allTasks = allTasks.concat(tasks);
-      grunt.registerTask(manifest[entry].identifier, tasks);
+      var tasksForProd = ['dom_munger:'  + manifest[entry].identifier + '_metaInf', 'dom_munger:' + manifest[entry].identifier + '_opf', 'jshint:' + manifest[entry].identifier, 'copy:' + manifest[entry].identifier + '_epub', 'copy:' + manifest[entry].identifier + '_readkit_prod', 'copy:' + manifest[entry].identifier + '_readkit_assets', 'dom_munger:' + manifest[entry].identifier + '_opf_mixin', 'uglify:' + manifest[entry].identifier, 'shell:' + manifest[entry].identifier + '_zip'];
+      prodTasks = prodTasks.concat(tasksForProd);
+      grunt.registerTask(manifest[entry].identifier, tasksForProd);
+
+      var tasksForDev = ['dom_munger:'  + manifest[entry].identifier + '_metaInf', 'dom_munger:' + manifest[entry].identifier + '_opf', 'jshint:' + manifest[entry].identifier, 'copy:' + manifest[entry].identifier + '_epub', 'copy:' + manifest[entry].identifier + '_readkit_dev', 'copy:' + manifest[entry].identifier + '_readkit_assets', 'dom_munger:' + manifest[entry].identifier + '_opf_mixin', 'uglify:' + manifest[entry].identifier, 'shell:' + manifest[entry].identifier + '_zip'];
+      devTasks = devTasks.concat(tasksForDev);
+      grunt.registerTask(manifest[entry].identifier, tasksForDev);
     }
 
     // Tasks the happen after the EPUBs have been processed
-    allTasks = allTasks.concat(['clean:after']);
+    prodTasks = prodTasks.concat(['clean:after']);
+    devTasks = devTasks.concat(['clean:after']);
 
-    // Register our long list of tasks as default
-    grunt.registerTask( 'default', allTasks);
+    // Register our production tasks as default
+    grunt.registerTask( 'default', prodTasks);
 
-
+    // Register our development tasks as dev
+    grunt.registerTask( 'dev', devTasks);
   });
 
 

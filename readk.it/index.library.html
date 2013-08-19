@@ -129,11 +129,8 @@
         <!-- Our client EPUB configuration. -->
         <script src="library/js/library.client.config.js"></script>
 
-        <!-- Use this for development - all js is served as separate files, but bootstrapped by main.js -->
-        <!-- <script data-main="js/main" src="js/lib/require.js"></script> -->
-
         <!-- Use this for production - all js is served as a single file, readkit.js -->
-        <script data-main="js/readkit" src="js/lib/require.js"></script>
+        <script id="readkit-entry" data-main="js/readkit" src="js/lib/require.js"></script>
 
     </body>
 </html>

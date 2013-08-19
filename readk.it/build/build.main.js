@@ -10,7 +10,7 @@
         app: '../app',
         underscore: 'underscore-min.amd'
     },
-    name: '../main',
+    name: '../readkit',
     include: [
         'requireLib',
         'jquery',

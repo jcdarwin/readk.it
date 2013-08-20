@@ -238,7 +238,7 @@ module.exports = function(grunt) {
           {expand: true, cwd: '<%= readkit_src %>', src: ['*', '!index.library.html'],
             // includes files in path
             dest: 'dist/<%= epub_src %>/' + path + '<%= grunt.option(\'' + identifier + '_oebps\') %>/readk.it', filter: 'isFile'},
-          {expand: true, cwd: '<%= readkit_src %>/', src: ['css/**', 'images/**', 'js/client.config.js', 'js/lib/require.js', 'js/lib/Detectizr.js', 'js/lib/Modernizr.js', 'js/lib/text.js'],
+          {expand: true, cwd: '<%= readkit_src %>/', src: ['css/**', 'images/**', 'js/client.config.js'],
             // includes files in path and its subdirs
             dest: 'dist/<%= epub_src %>/' + path + '<%= grunt.option(\'' + identifier + '_oebps\') %>/readk.it'},
           {expand: true, cwd: '<%= readkit_src %>/', src: [
@@ -261,6 +261,18 @@ module.exports = function(grunt) {
         ]
       });
 
+
+      // Update our production index.html to point to the built readkit,
+      // and remove the now unnecessary data-main attribute.
+      grunt.config('dom_munger.' + identifier + '_readkit', {
+        options: {
+          update: {selector: '#readkit-entry', attribute: 'src', value: 'js/readkit.js'},
+          callback: function($) {
+            $('#readkit-entry').removeAttr('data-main');
+          }
+        },
+        src: ['dist/<%= epub_src %>/' + path + '<%= grunt.option(\'' + identifier + '_oebps\') %>/readk.it/index.html']
+      });
 
       // Mixin the readkit mainfest entries to the opf file.
       grunt.config('dom_munger.' + identifier + '_opf_mixin', {
@@ -331,14 +343,23 @@ module.exports = function(grunt) {
 
       grunt.config('shell.' + identifier + '_zip', {
         command: [
-          'export READKIT_GRUNTDIR=`pwd`',
+          'echo Zipping ' + identifier + '.epub to <%= grunt.config(\'shell.' + identifier + '_set_pwd.pwd\') %>/dist',
           'cd dist/<%= epub_src %>/' + path,
           'echo Zipping ' + identifier + '.epub...',
           'zip -X0 ' + identifier + '.epub mimetype -x ._',
           'zip -rDX9 ' + identifier + '.epub META-INF -x *.DS_Store -x ._*',
           'zip -rDX9 ' + identifier + '.epub <%= grunt.option(\'' + identifier + '_oebps\') %> -x *.DS_Store -x ._*',
-          'mv ' + identifier + '.epub ${READKIT_GRUNTDIR}/dist',
-          'echo Zipped ' + identifier + '.epub to ${READKIT_GRUNTDIR}/dist'
+        ].join('&&'),
+        options: {
+          stdout: true,
+          stderr: true
+        }
+      });
+
+      grunt.config('shell.' + identifier + '_mv', {
+        command: [
+          'mv dist/<%= epub_src %>/' + path + '/' + identifier + '.epub dist',
+          'echo Zipped ' + identifier + '.epub to dist'
         ].join('&&'),
         options: {
           stdout: true,
@@ -359,11 +380,11 @@ module.exports = function(grunt) {
     var manifest = grunt.file.readJSON('EPUB/manifest.json');
     for (var entry in manifest) {
       grunt.log.writeln(manifest[entry].path);
-      var tasksForProd = ['dom_munger:'  + manifest[entry].identifier + '_metaInf', 'dom_munger:' + manifest[entry].identifier + '_opf', 'jshint:' + manifest[entry].identifier, 'copy:' + manifest[entry].identifier + '_epub', 'copy:' + manifest[entry].identifier + '_readkit_prod', 'copy:' + manifest[entry].identifier + '_readkit_assets', 'dom_munger:' + manifest[entry].identifier + '_opf_mixin', 'uglify:' + manifest[entry].identifier, 'shell:' + manifest[entry].identifier + '_zip'];
+      var tasksForProd = ['dom_munger:'  + manifest[entry].identifier + '_metaInf', 'dom_munger:' + manifest[entry].identifier + '_opf', 'jshint:' + manifest[entry].identifier, 'copy:' + manifest[entry].identifier + '_epub', 'copy:' + manifest[entry].identifier + '_readkit_prod', 'copy:' + manifest[entry].identifier + '_readkit_assets', 'dom_munger:' + manifest[entry].identifier + '_readkit', 'dom_munger:' + manifest[entry].identifier + '_opf_mixin', 'uglify:' + manifest[entry].identifier, 'shell:' + manifest[entry].identifier + '_zip', 'shell:' + manifest[entry].identifier + '_mv'];
       prodTasks = prodTasks.concat(tasksForProd);
       grunt.registerTask(manifest[entry].identifier, tasksForProd);
 
-      var tasksForDev = ['dom_munger:'  + manifest[entry].identifier + '_metaInf', 'dom_munger:' + manifest[entry].identifier + '_opf', 'jshint:' + manifest[entry].identifier, 'copy:' + manifest[entry].identifier + '_epub', 'copy:' + manifest[entry].identifier + '_readkit_dev', 'copy:' + manifest[entry].identifier + '_readkit_assets', 'dom_munger:' + manifest[entry].identifier + '_opf_mixin', 'uglify:' + manifest[entry].identifier, 'shell:' + manifest[entry].identifier + '_zip'];
+      var tasksForDev = ['dom_munger:'  + manifest[entry].identifier + '_metaInf', 'dom_munger:' + manifest[entry].identifier + '_opf', 'jshint:' + manifest[entry].identifier, 'copy:' + manifest[entry].identifier + '_epub', 'copy:' + manifest[entry].identifier + '_readkit_dev', 'copy:' + manifest[entry].identifier + '_readkit_assets', 'dom_munger:' + manifest[entry].identifier + '_opf_mixin', 'uglify:' + manifest[entry].identifier, 'shell:' + manifest[entry].identifier + '_zip', 'shell:' + manifest[entry].identifier + '_mv'];
       devTasks = devTasks.concat(tasksForDev);
       grunt.registerTask(manifest[entry].identifier, tasksForDev);
     }

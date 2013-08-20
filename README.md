@@ -85,68 +85,6 @@ As Readk.it operates by compiling all of the EPUB XHTML files into a single HTML
 ####Content-opf
 In this mode Readk.it is included in the EPUB file, and travels with the EPUB file.
 
-To acheive this, we need to add a bunch of entries to the content.opf to ensure that the EPUB is valid (according to [epubcheck](https://code.google.com/p/epubcheck/)). This is only needed for compliance with dedicated EPUB reading systems &#8212; web-serving the content using Readk.it will still work without these entries in the content.opf.
-
-    <!-- './readk.it'  -->
-        <item id='readk_it_favicon_ico' href='readk.it/favicon.ico'  media-type='image/vnd.microsoft.icon' />
-        <item id='readk_it_index_html' href='readk.it/index.html'  media-type='text/html' />
-        <item id='readk_it_offline_manifest' href='readk.it/offline.manifest'  media-type='text/plain' />
-    <!-- './readk.it/css'  -->
-        <item id='readk_it_css_styles_css' href='readk.it/css/styles.css'  media-type='text/css' />
-    <!-- './readk.it/fonts'  -->
-    <!-- './readk.it/fonts/fontello'  -->
-    <!-- './readk.it/fonts/fontello/css'  -->
-        <item id='readk_it_fonts_fontello_css_fontello_css' href='readk.it/fonts/fontello/css/fontello.css'  media-type='text/css' />
-    <!-- './readk.it/fonts/fontello/font'  -->
-        <item id='readk_it_fonts_fontello_font_fontello_eot' href='readk.it/fonts/fontello/font/fontello.eot'  media-type='application/vnd.ms-fontobject' />
-        <item id='readk_it_fonts_fontello_font_fontello_svg' href='readk.it/fonts/fontello/font/fontello.svg'  media-type='image/svg+xml' />
-        <item id='readk_it_fonts_fontello_font_fontello_ttf' href='readk.it/fonts/fontello/font/fontello.ttf'  media-type='application/vnd.ms-opentype' />
-        <item id='readk_it_fonts_fontello_font_fontello_woff' href='readk.it/fonts/fontello/font/fontello.woff'  media-type='application/vnd.ms-opentype' />
-    <!-- './readk.it/fonts/Lora'  -->
-        <item id='readk_it_fonts_Lora_Lora-Bold_woff' href='readk.it/fonts/Lora/Lora-Bold.woff'  media-type='application/vnd.ms-opentype' />
-        <item id='readk_it_fonts_Lora_Lora-BoldItalic_woff' href='readk.it/fonts/Lora/Lora-BoldItalic.woff'  media-type='application/vnd.ms-opentype' />
-        <item id='readk_it_fonts_Lora_Lora-Italic_woff' href='readk.it/fonts/Lora/Lora-Italic.woff'  media-type='application/vnd.ms-opentype' />
-        <item id='readk_it_fonts_Lora_Lora_woff' href='readk.it/fonts/Lora/Lora.woff'  media-type='application/vnd.ms-opentype' />
-    <!-- './readk.it/fonts/SourceSansPro'  -->
-        <item id='readk_it_fonts_SourceSansPro_SourceSansPro-Bold_woff' href='readk.it/fonts/SourceSansPro/SourceSansPro-Bold.woff'  media-type='application/vnd.ms-opentype' />
-        <item id='readk_it_fonts_SourceSansPro_SourceSansPro-BoldIt_woff' href='readk.it/fonts/SourceSansPro/SourceSansPro-BoldIt.woff'  media-type='application/vnd.ms-opentype' />
-        <item id='readk_it_fonts_SourceSansPro_SourceSansPro-It_woff' href='readk.it/fonts/SourceSansPro/SourceSansPro-It.woff'  media-type='application/vnd.ms-opentype' />
-        <item id='readk_it_fonts_SourceSansPro_SourceSansPro-Regular_woff' href='readk.it/fonts/SourceSansPro/SourceSansPro-Regular.woff'  media-type='application/vnd.ms-opentype' />
-    <!-- './readk.it/images'  -->
-        <item id='readk_it_images_apple-touch-icon-114x114_png' href='readk.it/images/apple-touch-icon-114x114.png'  media-type='image/png' />
-        <item id='readk_it_images_apple-touch-icon-57x57-precomposed_png' href='readk.it/images/apple-touch-icon-57x57-precomposed.png'  media-type='image/png' />
-        <item id='readk_it_images_apple-touch-icon-57x57_png' href='readk.it/images/apple-touch-icon-57x57.png'  media-type='image/png' />
-        <item id='readk_it_images_apple-touch-icon-72x72_png' href='readk.it/images/apple-touch-icon-72x72.png'  media-type='image/png' />
-        <item id='readk_it_images_site_preloader_gif' href='readk.it/images/site_preloader.gif'  media-type='image/gif' />
-        <item id='readk_it_images_splash_png' href='readk.it/images/splash.png'  media-type='image/png' />
-    <!-- './readk.it/js'  -->
-        <item id='readk_it_js_client_config_js' href='readk.it/js/client.config.js'  media-type='text/javascript' />
-        <item id='readk_it_js_main_js' href='readk.it/js/main.js'  media-type='text/javascript' />
-        <item id='readk_it_js_require-jquery_js' href='readk.it/js/require-jquery.js'  media-type='text/javascript' />
-        <item id='readk_it_js_require_config_js' href='readk.it/js/require.config.js'  media-type='text/javascript' />
-    <!-- './readk.it/js/app'  -->
-        <item id='readk_it_js_app_chrome_js' href='readk.it/js/app/chrome.js'  media-type='text/javascript' />
-        <item id='readk_it_js_app_config_js' href='readk.it/js/app/config.js'  media-type='text/javascript' />
-        <item id='readk_it_js_app_controller_js' href='readk.it/js/app/controller.js'  media-type='text/javascript' />
-        <item id='readk_it_js_app_epub_js' href='readk.it/js/app/epub.js'  media-type='text/javascript' />
-        <item id='readk_it_js_app_layout_js' href='readk.it/js/app/layout.js'  media-type='text/javascript' />
-    <!-- './readk.it/js/lib'  -->
-        <item id='readk_it_js_lib_iscroll-mit-license_txt' href='readk.it/js/lib/iscroll-mit-license.txt'  media-type='text/plain' />
-        <item id='readk_it_js_lib_iscroll_js' href='readk.it/js/lib/iscroll.js'  media-type='text/javascript' />
-        <item id='readk_it_js_lib_jquery_ba-urlinternal_min_js' href='readk.it/js/lib/jquery.ba-urlinternal.min.js'  media-type='text/javascript' />
-        <item id='readk_it_js_lib_jquery_hotkeys_js' href='readk.it/js/lib/jquery.hotkeys.js'  media-type='text/javascript' />
-        <item id='readk_it_js_lib_jquery_storage_js' href='readk.it/js/lib/jquery.storage.js'  media-type='text/javascript' />
-        <item id='readk_it_js_lib_text_js' href='readk.it/js/lib/text.js'  media-type='text/javascript' />
-        <item id='readk_it_js_lib_underscore-min_amd_js' href='readk.it/js/lib/underscore-min.amd.js'  media-type='text/javascript' />
-    <!-- './readk.it/js/lib/add-to-homescreen'  -->
-    <!-- './readk.it/js/lib/add-to-homescreen/src'  -->
-        <item id='readk_it_js_lib_add-to-homescreen_src_add2home_js' href='readk.it/js/lib/add-to-homescreen/src/add2home.js'  media-type='text/javascript' />
-    <!-- './readk.it/js/lib/add-to-homescreen/style'  -->
-        <item id='readk_it_js_lib_add-to-homescreen_style_add2home_css' href='readk.it/js/lib/add-to-homescreen/style/add2home.css'  media-type='text/css' />
-    <!-- './readk.it/js/lib/require-css'  -->
-        <item id='readk_it_js_lib_require-css_css_js' href='readk.it/js/lib/require-css/css.js'  media-type='text/javascript' />
-        <item id='readk_it_js_lib_require-css_normalize_js' href='readk.it/js/lib/require-css/normalize.js'  media-type='text/javascript' />
-        <item id='readk_it_js_lib_require-css_LICENSE_txt' href='readk.it/js/lib/require-css/LICENSE.txt'  media-type='text/plain' />
 
 ####Building
 
@@ -163,6 +101,34 @@ This will create a <code>dist</code> directory, inside of which you'll find two 
 * running a web server so that you can view your publication in a browser by navigating to <code>http://localhost:8000/OEBPS/readk.it/</code>
 
 Note that the actual Readk.it Manifesto content is not optimised; this is intentional in order to preserve the sanity of future production staff who have to work with the EPUB content files to produce a new version. Although not ideal, it often happens that production staff only have recourse to the published files when producing the next version of content, say because the original source files have been lost, are not available, or are obsolete.
+
+#####Patches
+
+We've had to make some patches to the moudles in grunt-dom-munger in order to get them to work properly, namely:
+
+1. ```node_modules/grunt-dom-munger/tasks/dom_munger.js```
+
+    In the function ```processFile``` change:
+
+        updatedContents = $.html();  
+
+    to 
+
+        if (options.xmlMode) {
+          updatedContents = $.xml();
+        } else {
+          updatedContents = $.html();  
+        }
+
+2. ```node_modules/grunt-dom-munger/node_modules/cheerio/node_modules/htmlparser2/lib/Parser.js```
+
+    Comment out the meta reference in voidElements, otherwise we end up with broken meta tags in the opf file (specifically, meta tags that have both an opening and a closing tag lose their closing tag):
+
+        var voidElements = {
+        ...
+        //  meta: true,
+        ...
+        };
 
 ###<a id="library"></a>Library mode
 Library mode is as easy to setup as single-publication mode:

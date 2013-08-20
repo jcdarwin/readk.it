@@ -14,6 +14,7 @@
     include: [
         'requireLib',
         'jquery',
+        'text',
         'app/controller',
         'app/config',
         'app/content',

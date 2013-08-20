@@ -10,8 +10,8 @@ define([
     'jquery',
     'jquery.storage',
     'tinytim',
-    'modernizr',
-    'detectizr'
+    'Modernizr',
+    'Detectizr'
 ], function($, $storage, tinytim, Modernizr, Detectizr){
 
     var identifier = '';
@@ -112,7 +112,6 @@ define([
 
     // Deal with device/browser support issues
     var supported = function (op) {
-        /*
         Modernizr.Detectizr.detect({
             detectDeviceModel: true,
             detectScreen: true,
@@ -120,7 +119,6 @@ define([
             detectBrowser: true,
             detectPlugins: false
         });
-        */
         switch(op) {
             case operation.fontSwitch:
                 // Looks like iPad iOS is behaving itself for the time being

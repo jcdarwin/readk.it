@@ -1,7 +1,6 @@
 // Readk.it paths
 var paths = {
-    app: '../app',
-    underscore: 'underscore-min.amd'
+    app: '../app'
 };
 
 // Mixin any client EPUB paths to the Readk.it paths
@@ -20,7 +19,7 @@ var shims = {
     'modernizr': {deps: ['jquery'], exports: 'Modernizr'},
     'detectizr': {deps: ['jquery', 'modernizr'], exports: 'Detectizr'},
     'jquery.storage': ['jquery'],
-    'jquery.ba-urlinternal.min': ['jquery'],
+    'jquery.ba-urlinternal': ['jquery'],
     'jquery.ba-resize': ['jquery'],
     'jquery.hotkeys': ['jquery'],
     // Make non-AMD modules available globally

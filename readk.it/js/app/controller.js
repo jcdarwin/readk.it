@@ -9,13 +9,13 @@
 define([
     'jquery',
     'jquery.storage',
-    'jquery.ba-urlinternal.min',
+    'jquery.ba-urlinternal',
     'app/config',
     'app/epub',
     'app/layout',
     'app/chrome',
     'require-css/css'
-], function($, $storage, jbum, config, Epub, Layout, Chrome, require_css){
+], function($, $storage, $urlinternal, config, Epub, Layout, Chrome, require_css){
 
     var pages = [];
     var stylesheets = [];

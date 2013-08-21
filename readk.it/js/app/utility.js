@@ -10,8 +10,8 @@ define([
     'jquery',
     'jquery.storage',
     'tinytim',
-    'Modernizr',
-    'Detectizr'
+    'modernizr',
+    'detectizr'
 ], function($, $storage, tinytim, Modernizr, Detectizr){
 
     var identifier = '';

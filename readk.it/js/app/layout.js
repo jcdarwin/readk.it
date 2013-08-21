@@ -17,7 +17,7 @@ define([
     'app/utility',
     'app/config',
     'iscroll',
-    'underscore',
+    'lodash',
     'jquery.hotkeys'
 ], function($, utility, config, iScroll, _, $hotkeys){
 

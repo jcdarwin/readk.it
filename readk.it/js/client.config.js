@@ -33,7 +33,7 @@ var client = {
         // so that require.js loads them in the correct order.
         'client_js/libs/jquery.easing.1.3.min': ['jquery'],
         'client_js/libs/jquery.fitvids.min': ['jquery'],
-        'client_js/queries': ['client_js/libs/enquire.min', 'Modernizr', 'Detectizr'],
+        'client_js/queries': ['client_js/libs/enquire.min'],
         'client_js/script': ['client_js/queries', 'client_js/libs/jquery.fitvids.min']
 
     }

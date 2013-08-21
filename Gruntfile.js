@@ -1,11 +1,30 @@
+/*!
++---------------------------------------------------------------------+
+|                                                                     |
+|                ____                _ _      _ _                     |
+|               |  _ \ ___  __ _  __| | | __ (_) |_                   |
+|               | |_) / _ \/ _` |/ _` | |/ / | | __|                  |
+|               |  _ <  __/ (_| | (_| |   < _| | |_                   |
+|               |_| \_\___|\__,_|\__,_|_|\_(_)_|\__|                  |
+|                                                                     |                                     
+| URL:                                                                |
+| VERSION: 0.0.1                                                      |
+| GITHUB:                                                             |
+| AUTHOR: Jason Darwin (@nzmebooks)                                   |
+| LICENSE: Creative Commmons                                          |
+| http://creativecommons.org/licenses/by/3.0                          |
+|                                                                     |
+| To create a production readkit (optimised js):                      |
+| > grunt                                                             |
+|                                                                     |
+| To create a development readkit (source js):                        |
+| > grunt dev                                                         |
+|                                                                     |
++---------------------------------------------------------------------+
+*/
+
 /*global module:false*/
 module.exports = function(grunt) {
-
-  // To create a production readkit (optimised js):
-  //    grunt
-
-  // To create a development readkit (source js):
-  //    grunt dev
 
   // Project configuration.
   grunt.initConfig({
@@ -47,7 +66,23 @@ module.exports = function(grunt) {
     },
 
     compass: {
+      readkit: {
+        options: {
+          config: 'readk.it/sass/config.rb',
+          basePath: 'readk.it/sass'
+        }
+      }
       // Set dynamically
+    },
+
+    cssmin: {
+      readkit: {
+        expand: true,
+        cwd: 'readk.it/css/',
+        src: ['*.css', '!*.min.css'],
+        dest: 'dist/readkit/css/',
+        ext: '.css'
+      }
     },
 
     //nodeunit: {
@@ -63,32 +98,59 @@ module.exports = function(grunt) {
     },
 
     shell: {
-      // We use grunt-shell rather than grunt-contrib-requirejs as
-      // the latter can only cope with JSON config files.
-      requirejs: {
-        command: [
-          'cd readk.it/build',
-          'echo Building readkit...',
-          'node r.js -o build.main.js',
-          'echo readkit built'
-        ].join('&&'),
-        options: {
-          stdout: true,
-          stderr: true
-        }
-      }
-      // Other tasks set dynamically
+      // Set dynamically
     },
 
-  connect: {
-    server: {
-      options: {
-        port: 8000,
-        base: '.',
-        keepalive: true
+    requirejs: {
+      compile: {
+        options: {
+          baseUrl: 'readk.it/js/lib',
+          paths: {
+              requireLib: 'require',
+              app: '../app'
+          },
+          name: '../readkit',
+          include: [
+              'requireLib',
+              'jquery',
+              'text',
+              'app/controller',
+              'app/config',
+              'app/content',
+              'add-to-homescreen/src/add2home',
+          ],
+          out: 'dist/readkit/js/readkit.js',
+          map: {
+            '*': {
+              'css': 'require-css/css'
+            }
+          },
+          shim: {
+              // Shim in any files that aren't AMD modules
+              'jquery.storage': ['jquery'],
+              'jquery.ba-urlinternal': ['jquery'],
+              'jquery.ba-resize': ['jquery'],
+              'jquery.hotkeys': ['jquery'],
+              // Make certain non-AMD modules available globally
+              'modernizr': {deps: ['jquery'], exports: 'Modernizr'},
+              'detectizr': {deps: ['jquery', 'modernizr'], exports: 'Detectizr'},
+              'iscroll': {exports: 'iScroll'},
+              'zip/zip': {exports: 'zip'},
+              'zip/inflate': {exports: 'inflate'},
+          }
+        }
+      }
+    },
+
+    connect: {
+      server: {
+        options: {
+          port: 8000,
+          base: '.',
+          keepalive: true
+        }
       }
     }
-  }
 
 /*
     watch: {
@@ -108,6 +170,7 @@ module.exports = function(grunt) {
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-compass');
   /* grunt.loadNpmTasks('grunt-contrib-nodeunit'); */
@@ -117,6 +180,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-dom-munger');
   grunt.loadNpmTasks('grunt-readkit-datauris');
+  grunt.loadNpmTasks('grunt-contrib-requirejs');
 
   // Register our static tasks.
   grunt.registerTask('cleanBefore', ['clean:before']);
@@ -138,7 +202,7 @@ module.exports = function(grunt) {
         options: {
           read: {selector: 'container rootfiles rootfile', attribute: 'full-path', writeto: 'metaInfRef', isPath:false},
           callback: function($){
-            grunt.option(identifier + '_opf-path', $(this.read.selector).attr(this.read.attribute));
+            grunt.option(identifier + '_opf_path', $(this.read.selector).attr(this.read.attribute));
             grunt.option(identifier + '_oebps', $(this.read.selector).attr(this.read.attribute).replace(/\/.*$/, ''));
           }
         },
@@ -150,7 +214,7 @@ module.exports = function(grunt) {
         options: {
           read: {selector: 'manifest item', attribute: 'href', writeto: 'manifestRefs', isPath:true}
         },
-        src: ['<%= epub_src %>/' + path + '<%= grunt.option(\'' + identifier + '_opf-path\') %>', '!**/sass/**']
+        src: ['<%= epub_src %>/' + path + '<%= grunt.option(\'' + identifier + '_opf_path\') %>', '!**/sass/**']
       });
 
       // Check our js
@@ -203,7 +267,7 @@ module.exports = function(grunt) {
           {expand: true, src: ['<%= epub_src %>/' + path + 'mimetype'], dest: 'dist/'},
           {expand: true, src: ['<%= epub_src %>/' + path + 'META-INF/**'], dest: 'dist/'}, // includes files in path and its subdirs
           //{expand: true, src: ['<%= epub_src %>/' + path + '<%= grunt.option(\'' + identifier + '_oebps\') %>/**', '!**/sass/**'], dest: 'dist/', filter: 'isFile'} // includes files and subdirs in path
-          {expand: true, src: ['<%= dom_munger.data.manifestRefs %>', '<%= epub_src %>/' + path + '<%= grunt.option(\'' + identifier + '_opf-path\') %>'], dest: 'dist/', filter: 'isFile'} // includes files and subdirs in path
+          {expand: true, src: ['<%= dom_munger.data.manifestRefs %>', '<%= epub_src %>/' + path + '<%= grunt.option(\'' + identifier + '_opf_path\') %>'], dest: 'dist/', filter: 'isFile'} // includes files and subdirs in path
         ]
       });
 
@@ -212,9 +276,12 @@ module.exports = function(grunt) {
         options: {
         },
         files: [
-          {expand: true, cwd: 'readk.it/build/dist/js', src: ['**'],
+          {expand: true, cwd: 'dist/readkit/js', src: ['**'],
             // includes files in path
-            dest: 'dist/<%= epub_src %>/' + path + '<%= grunt.option(\'' + identifier + '_oebps\') %>/readk.it/js', filter: 'isFile'}
+            dest: 'dist/<%= epub_src %>/' + path + '<%= grunt.option(\'' + identifier + '_oebps\') %>/readk.it/js', filter: 'isFile'},
+          {expand: true, cwd: 'dist/readkit/css', src: ['**'],
+            // includes files in path
+            dest: 'dist/<%= epub_src %>/' + path + '<%= grunt.option(\'' + identifier + '_oebps\') %>/readk.it/css', filter: 'isFile'}
         ]
       });
 
@@ -225,7 +292,10 @@ module.exports = function(grunt) {
         files: [
           {expand: true, cwd: 'readk.it/js', src: ['**'],
             // includes files in path
-            dest: 'dist/<%= epub_src %>/' + path + '<%= grunt.option(\'' + identifier + '_oebps\') %>/readk.it/js', filter: 'isFile'}
+            dest: 'dist/<%= epub_src %>/' + path + '<%= grunt.option(\'' + identifier + '_oebps\') %>/readk.it/js', filter: 'isFile'},
+          {expand: true, cwd: 'readk.it/css', src: ['**'],
+            // includes files in path
+            dest: 'dist/<%= epub_src %>/' + path + '<%= grunt.option(\'' + identifier + '_oebps\') %>/readk.it/css', filter: 'isFile'}
         ]
       });
 
@@ -238,7 +308,7 @@ module.exports = function(grunt) {
           {expand: true, cwd: '<%= readkit_src %>', src: ['*', '!index.library.html'],
             // includes files in path
             dest: 'dist/<%= epub_src %>/' + path + '<%= grunt.option(\'' + identifier + '_oebps\') %>/readk.it', filter: 'isFile'},
-          {expand: true, cwd: '<%= readkit_src %>/', src: ['css/**', 'images/**', 'js/client.config.js'],
+          {expand: true, cwd: '<%= readkit_src %>/', src: ['images/**', 'js/client.config.js'],
             // includes files in path and its subdirs
             dest: 'dist/<%= epub_src %>/' + path + '<%= grunt.option(\'' + identifier + '_oebps\') %>/readk.it'},
           {expand: true, cwd: '<%= readkit_src %>/', src: [
@@ -260,7 +330,6 @@ module.exports = function(grunt) {
 */
         ]
       });
-
 
       // Update our production index.html to point to the built readkit,
       // and remove the now unnecessary data-main attribute.
@@ -318,7 +387,7 @@ module.exports = function(grunt) {
             */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1]
           }
         },
-        src: ['dist/<%= epub_src %>/' + path + '<%= grunt.option(\'' + identifier + '_opf-path\') %>']
+        src: ['dist/<%= epub_src %>/' + path + '<%= grunt.option(\'' + identifier + '_opf_path\') %>']
       });
 
       // Uglify our js
@@ -374,19 +443,44 @@ module.exports = function(grunt) {
 
   generateDynamicTask(function(){
     // Tasks the happen before the EPUBs have been processed
-    var prodTasks = ['clean:before', 'shell:requirejs'];
-    var devTasks = ['clean:before'];
+    var prodTasks = ['clean:before', 'compass:readkit', 'cssmin:readkit', 'requirejs:compile'];
+    var devTasks = ['clean:before', 'compass:readkit'];
 
     var manifest = grunt.file.readJSON('EPUB/manifest.json');
     for (var entry in manifest) {
       grunt.log.writeln(manifest[entry].path);
-      var tasksForProd = ['dom_munger:'  + manifest[entry].identifier + '_metaInf', 'dom_munger:' + manifest[entry].identifier + '_opf', 'jshint:' + manifest[entry].identifier, 'copy:' + manifest[entry].identifier + '_epub', 'copy:' + manifest[entry].identifier + '_readkit_prod', 'copy:' + manifest[entry].identifier + '_readkit_assets', 'dom_munger:' + manifest[entry].identifier + '_readkit', 'dom_munger:' + manifest[entry].identifier + '_opf_mixin', 'uglify:' + manifest[entry].identifier, 'shell:' + manifest[entry].identifier + '_zip', 'shell:' + manifest[entry].identifier + '_mv'];
-      prodTasks = prodTasks.concat(tasksForProd);
-      grunt.registerTask(manifest[entry].identifier, tasksForProd);
+      var identifier = manifest[entry].identifier;
 
-      var tasksForDev = ['dom_munger:'  + manifest[entry].identifier + '_metaInf', 'dom_munger:' + manifest[entry].identifier + '_opf', 'jshint:' + manifest[entry].identifier, 'copy:' + manifest[entry].identifier + '_epub', 'copy:' + manifest[entry].identifier + '_readkit_dev', 'copy:' + manifest[entry].identifier + '_readkit_assets', 'dom_munger:' + manifest[entry].identifier + '_opf_mixin', 'uglify:' + manifest[entry].identifier, 'shell:' + manifest[entry].identifier + '_zip', 'shell:' + manifest[entry].identifier + '_mv'];
+      var tasksForProd = [
+        'dom_munger:'  + identifier + '_metaInf',
+        'dom_munger:' + identifier + '_opf',
+        'jshint:' + identifier,
+        'copy:' + identifier + '_epub',
+        'copy:' + identifier + '_readkit_prod',
+        'copy:' + identifier + '_readkit_assets',
+        'dom_munger:' + identifier + '_readkit',
+        'dom_munger:' + identifier + '_opf_mixin',
+        'uglify:' + identifier,
+        'shell:' + identifier + '_zip',
+        'shell:' + identifier + '_mv'
+      ];
+      prodTasks = prodTasks.concat(tasksForProd);
+      grunt.registerTask(identifier, tasksForProd);
+
+      var tasksForDev = [
+        'dom_munger:'  + identifier + '_metaInf',
+        'dom_munger:' + identifier + '_opf',
+        'jshint:' + identifier,
+        'copy:' + identifier + '_epub',
+        'copy:' + identifier + '_readkit_dev',
+        'copy:' + identifier + '_readkit_assets',
+        'dom_munger:' + identifier + '_opf_mixin',
+        'uglify:' + identifier,
+        'shell:' + identifier + '_zip',
+        'shell:' + identifier + '_mv'
+      ];
       devTasks = devTasks.concat(tasksForDev);
-      grunt.registerTask(manifest[entry].identifier, tasksForDev);
+      grunt.registerTask(identifier, tasksForDev);
     }
 
     // Tasks the happen after the EPUBs have been processed
@@ -399,41 +493,4 @@ module.exports = function(grunt) {
     // Register our development tasks as dev
     grunt.registerTask( 'dev', devTasks);
   });
-
-
-/*
-  ,
-  grunt.registerTask('stuff2', function() {
-    //var tmpl = grunt.file.read('dist/templates/compiled.js');
-    //console.log(tmpl);
-
-    var lf = grunt.util.linefeed;
-
-    var options = this.options({
-      processContent: function (src) { return src; },
-      separator: lf + lf
-    });
-
-    var files = 'var files = {';
-
-    grunt.file.expand(['<%= dom_munger.data.manifestRefs %>']).forEach(function(f) {
-    //grunt.file.expand(['OEBPS/*html']).forEach(function(f) {
-        var filepath = f;
-        var src = options.processContent(grunt.file.read(filepath));
-        var compiled, filename;
-
-        compiled = src;
-        if (options.prettify) {
-          compiled = compiled.replace(new RegExp('\n', 'g'), '');
-        }
-        filename = filepath;
-
-        files += "'" + filename + "': '" + compiled + "', ";
-    });
-
-    files += '};';
-    grunt.file.write('dist/templates/compiled.js', files);
-
-  });
-*/
 };

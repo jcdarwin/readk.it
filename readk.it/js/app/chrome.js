@@ -681,7 +681,7 @@ define([
         h.debug("The upload has been canceled by the user or the browser dropped the connection.");
     };
 /*     if ("FileReader" in window && Modernizr.draganddrop) { */
-    if ("FileReader" in window) {
+    if ("FileReader" in window && config.lite) {
         $("#epub-upload p").show();
         var drag_zone = $("#readkit-pageWrapper")[0];
         drag_zone.addEventListener("dragenter", upload.handle_drag_enter, false);

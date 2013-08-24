@@ -1,6 +1,6 @@
 [
 
-{"name": "Readk.it: A Manifesto", "version": "3.0", "identifier": "readkit_a_manifesto", "path": "html/readkit_manifesto/", "total_pages": 3, "cover": "./html/readkit_manifesto/META-INF/../OEBPS/images/cover_front.png"}
+{"name": "Accessible EPUB 3", "version": "3.0", "identifier": "urn:isbn:9781449328030", "path": "html/accessible_epub_3/", "total_pages": 22, "cover": "./html/accessible_epub_3/META-INF/../EPUB/covers/9781449328030_lrg.jpg"}
 ,
-{"name": "Accessible EPUB 3", "version": "3.0", "identifier": "urn:isbn:9781449328030", "path": "html/zaccessible_epub_3/", "total_pages": 22, "cover": "./html/zaccessible_epub_3/META-INF/../EPUB/covers/9781449328030_lrg.jpg"}
+{"name": "Readk.it: A Manifesto", "version": "3.0", "identifier": "readkit_a_manifesto", "path": "html/readkit_manifesto/", "total_pages": 3, "cover": "./html/readkit_manifesto/META-INF/../OEBPS/images/cover_front.png"}
 ]

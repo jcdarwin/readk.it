@@ -82,22 +82,43 @@ As Readk.it operates by compiling all of the EPUB XHTML files into a single HTML
         ]
     };
 
+Prior to building, this folder tree (<code>readk.it/js/client.config.js</code>) should be dropped into directory of your EPUB that contains the opf file, for example:
+
+    META-INF
+    OEBPS
+        content.opf
+        readk.it/js/client.config.js
+
 ####Content-opf
 In this mode Readk.it is included in the EPUB file, and travels with the EPUB file.
 
 
 ####Building
 
-If you're looking over the code for the Readk.it Manifesto, you might notice that in the top-level folder, besides the familiar OEBPS and META-INF folders and mimetype file, there's a number of other files in there. This is because the Readk.it Manifesto uses [Grunt](http://gruntjs.com/) (the Javascript build tool) as its build tool. In order to compile the ReadK.it Manifesto, you'll need to [install node](http://nodejs.org/download/), [followed by grunt](http://gruntjs.com/installing-grunt), and then at a command line, navigate to the top-level directory and simply issue the command:
+Readk.it uses [Grunt](http://gruntjs.com/) (the Javascript build tool) as its build tool. In order to compile EPUBs with ReadK.it, you'll need to:
 
-    grunt
+1. [install node](http://nodejs.org/download/)
+1. [install grunt](http://gruntjs.com/installing-grunt)
+1. copy your EPUB to the EPUB directory
+1. At a command line, navigate to the top-level directory and simply issue the command:
 
-This will create a <code>dist</code> directory, inside of which you'll find two versions of the Readk.it Manifesto codetree and EPUB file: a development version with all files unconcatenated and unminified, and a production version which is optimised for performance. Grunt performs the following tasks:
+        grunt
+
+This will create a <code>dist</code> directory, inside of which you'll find your EPUB file which includes Readk.it, optimised for performance, with all the Readk.it js and css minified and concatenated.
+
+If you want to create a development version, with Readk.it js and css unminified and unconcatenated, then simply run:
+
+        grunt dev
+
+Grunt performs the following tasks:
 
 * compiling the SASS code into CSS
+* minifying the Readk.it CSS and javascript
 * assembling only the files that actually needs to be in the EPUB
 * checking the JavaScript files for consistency
 * zipping the files up into an EPUB
+
+
 * running a web server so that you can view your publication in a browser by navigating to <code>http://localhost:8000/OEBPS/readk.it/</code>
 
 Note that the actual Readk.it Manifesto content is not optimised; this is intentional in order to preserve the sanity of future production staff who have to work with the EPUB content files to produce a new version. Although not ideal, it often happens that production staff only have recourse to the published files when producing the next version of content, say because the original source files have been lost, are not available, or are obsolete.
@@ -208,8 +229,8 @@ Install dependendices:
     npm install grunt-zip --save-dev
     npm install grunt-shell --save-dev
     npm install grunt-contrib-connect --save-dev
-    npm install grunt-dom-munger --save-dev
     npm install grunt-contrib-requirejs --save-dev
+    npm install grunt-readkit-dom-munger --save-dev
     npm install grunt-readkit-datauris --save-dev
 
 As we use cygwin, add the following hack into node_modules\grunt-contrib-compass\tasks\compass.js, directly before "compile(args, cb);":

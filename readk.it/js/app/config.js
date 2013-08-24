@@ -39,10 +39,11 @@ define({
     // How long do we want to animate a scrolling action?
     scroll_duration: 200,
 
-    //  We can produce a lite version of Readk.it that is considerably smaller, as it drops:
+    // We can produce a lite version of Readk.it that is considerably smaller,
+    // if we forego:
     // * Drag and drop (not needed for mobile)
     // * Modernizr / Detectizr
-    lite: true,
+    lite: false,
 
     log: true,
 });

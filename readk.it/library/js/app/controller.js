@@ -53,7 +53,7 @@ define([
                 console.log(value.name);
 
                 // Load an entry for the publication into the library view
-                $('.frame .ul').append('<div class="li publication" data-url="../index.library.html#' + encodeURIComponent(value.path) + '"><img src="' + value.cover + '" /></div>');
+                $('.frame .ul').append('<div class="li publication" data-url="../index.library.html#' + encodeURIComponent('library/' + value.path) + '"><img src="' + value.cover + '" /></div>');
 
             });
 

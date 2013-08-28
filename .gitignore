@@ -1,5 +1,6 @@
 # Ignore only the top-level dist directory
 /dist
+/build
 .tern-port
 .sass-cache
 .DS_Store

@@ -87,7 +87,9 @@ Prior to building, this folder tree (<code>readk.it/js/client.config.js</code>) 
     META-INF
     OEBPS
         content.opf
-        readk.it/js/client.config.js
+        readk.it
+            js
+                client.config.js
 
 ####Content-opf
 In this mode Readk.it is included in the EPUB file, and travels with the EPUB file.

@@ -419,7 +419,7 @@ header.projecttitle {
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   /* line 259, ../sass/partials/_custom.scss */
   .library {
-    margin: 80px auto 40px;
+    margin: 60px auto 40px;
   }
   /* line 261, ../sass/partials/_custom.scss */
   .library .forward, .library .backward {
@@ -460,7 +460,7 @@ header.projecttitle {
 @media only screen {
   /* line 276, ../sass/partials/_custom.scss */
   .library {
-    margin: 80px auto 40px;
+    margin: 60px auto 40px;
   }
   /* line 279, ../sass/partials/_custom.scss */
   .library .forward, .library .backward {

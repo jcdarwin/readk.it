@@ -33,6 +33,9 @@ $namespace:     'readkit';
 .#{$namespace}-drag-upload-spinner {
     text-align: center;
     margin:auto;
+    width:50px;
+    height:50px;
+    background-image:url('../images/spinner.gif');
     opacity: 0;
 }
 

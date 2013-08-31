@@ -95,6 +95,8 @@ define([
                     var blob = new Blob([arr], { type: meta.split(';')[0] });
                     blob.slice = blob.slice || blob.webkitSlice;
                     data = blob;
+                } else {
+                    data = decodeURIComponent(escape(data));  // decode UTF-8
                 }
             } else if (/;\s*charset=[uU][tT][fF]-?8\s*[;,]/.test(meta)) {
                 data = decodeURIComponent(escape(data)); // decode UTF-8

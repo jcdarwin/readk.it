@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
 
-        <link rel="stylesheet" type="text/css" href="fonts/fontello/css/fontello.css" />
+        <link rel="stylesheet" type="text/css" href="css/fontello.css" />
         <link rel="stylesheet" type="text/css" href="css/readkit-screen.css" />
         <!-- Add to home screen: http://cubiq.org/add-to-home-screen -->
         <link rel="stylesheet" type="text/css" href="css/add2home.css" />
@@ -32,7 +32,7 @@
         <link rel="apple-touch-startup-image" href="images/splash.png" />
     </head>
     <body>
-        <div id='readkit-sitePreloader'><div id='readkit-preloaderImage'><img src='images/site_preloader.gif' alt='Preloader' /></div></div>
+        <div id='readkit-sitePreloader'><div id='readkit-preloaderImage'><div id='readkit-preloaderBackgroundImage'></div></div></div>
 
         <div class="readkit-header">
             <span class="readkit-icon readkit-back readkit-inactive"><i class="icon-chevron-left"></i></span>
@@ -58,17 +58,17 @@
 
                     <script type="text/tim" id="readkit-bookmark-widget-tmpl">
                         <div id="readkit-bookmark-widget" class="readkit-wrapper-bookmarks">
-                            <div class="readkit-scroller" style="width:280px;">{{html}}</div>
+                            <div class="readkit-scroller" style="width:280px;"><%html%></div>
                         </div>
                     </script>
 
                     <script type="text/tim" id="readkit-bookmark-list-tmpl">
-                        <div id="readkit-bookmark-list">{{bookmarkeds}}</div><hr style="clear:both;" />
+                        <div id="readkit-bookmark-list"><%bookmarkeds%></div><hr style="clear:both;" />
                     </script>
 
                     <script type="text/tim" id="readkit-bookmark-input-tmpl">
                         <div class="readkit-bookmark-input">
-                            <input id="readkit-bookmark-input" type="text" data-file="{{file}}" value="{{title}}" />
+                            <input id="readkit-bookmark-input" type="text" data-file="<%file%>" value="<%title%>" />
                             <span class="readkit-bookmark-icon-add readkit-add-bookmark"><i class="icon-plus-circle readkit-bookmark-icon"></i></span>
                         </div>
                     </script>
@@ -76,10 +76,10 @@
                     <script type="text/tim" id="readkit-bookmark-list-item-tmpl">
                         <div class="readkit-bookmark-list-item" style="margin-bottom:5px;">
                             <span class="readkit-bookmark-icon-remove readkit-remove-bookmark">
-                                <i class="icon-minus-circle readkit-bookmark-icon" data-index={{index}}></i>
+                                <i class="icon-minus-circle readkit-bookmark-icon" data-index=<%index%>></i>
                             </span>
                             <p class="readkit-bookmark-title">
-                                <a href="#{{file}}" data-x="{{x}}" data-y="{{y}}">{{title}}</a>
+                                <a href="#<%file%>" data-x="<%x%>" data-y="<%y%>"><%title%></a>
                             </p>
                         </div>
                     </script>
@@ -102,9 +102,7 @@
             </div>
             <div id="readkit-epub-drag-upload">
                 <p class="readkit-epub-drag-upload-label"></p>
-                <div class="readkit-drag-upload-spinner">
-                    <img src="images/spinner.gif" width="50" alt="Loading image" />
-                </div>
+                <div class="readkit-drag-upload-spinner"></div>
             </div>
             <div class="readkit-meter">
                 <span style="width: 0%"></span>
@@ -118,7 +116,7 @@
         </div>
 
         <!-- Our client EPUB configuration. -->
-        <script src="js/client.config.js"></script>
+        <script id="readkit-client" src="js/client.config.js"></script>
 
         <!-- Use this for production - all js is served as a single file, readkit.js -->
         <script id="readkit-entry" data-main="js/readkit" src="js/lib/require.js"></script>

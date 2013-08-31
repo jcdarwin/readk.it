@@ -36,8 +36,12 @@
     var tim = (function(){
         "use strict";
 
-        var start   = "{{",
-            end     = "}}",
+        // We change the template delimiters to prevent a conflict
+        // with grunt-bake
+        //var start   = "{{",
+        var start   = "<%",
+        //  end     = "}}",
+            end     = "%>",
             path    = "[a-z0-9_$][\\.a-z0-9_]*", // e.g. config.person.name
             pattern = new RegExp(start + "\\s*("+ path +")\\s*" + end, "gi"),
             undef;

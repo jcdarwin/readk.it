@@ -224,7 +224,6 @@ Install dependendices:
     npm install grunt --save-dev
     npm install grunt-contrib-jshint --save-dev
     npm install grunt-contrib-concat --save-dev
-    npm install grunt-contrib-uglify --save-dev
     npm install grunt-contrib-compass --save-dev
     npm install grunt-contrib-nodeunit --save-dev
     npm install grunt-contrib-watch --save-dev
@@ -234,6 +233,8 @@ Install dependendices:
     npm install grunt-contrib-requirejs --save-dev
     npm install grunt-readkit-dom-munger --save-dev
     npm install grunt-readkit-datauris --save-dev
+    npm install grunt-image-embed --save-dev
+    npm install grunt-bake --save-dev
 
 As we use cygwin, add the following hack into node_modules\grunt-contrib-compass\tasks\compass.js, directly before "compile(args, cb);":
 

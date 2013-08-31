@@ -172,7 +172,7 @@ utility.storage('pages', []);
     // Add a page
     var add = function (id, file, html) {
         $('#readkit-pageScroller').append(utility.compile(
-            '<div class="readkit-page" id="{{file}}"><div id="{{id}}" class="readkit-wrapper"><div class="readkit-scroller"><div class="readkit-margins">{{html}}</div></div></div></div>',
+            '<div class="readkit-page" id="<%file%>"><div id="<%id%>" class="readkit-wrapper"><div class="readkit-scroller"><div class="readkit-margins"><%html%></div></div></div></div>',
             {   file: file,
                 id:   id,
                 html: html}

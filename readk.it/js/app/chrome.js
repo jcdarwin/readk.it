@@ -142,7 +142,7 @@ define([
         // For file URLs, where the user has most likely double-clicked the index.html
         // show the drag and drop dialogue, as no publication has been loaded.
         if (location.protocol == 'file:') {
-            if (! $('.readkit-drag-upload-window').is(':visible') && !$('#readkit-pageScroller').html()) {
+            if (!$('.readkit-drag-upload-window').is(':visible') && !$('#readkit-pageScroller').html().trim()) {
                 upload.initalise();
             }
         }
@@ -451,7 +451,7 @@ define([
                 $.each(layout.nav(), function(i, item) {
                     if (item.title) {
                         navs += repeat('<ul style="margin-top:0; margin-bottom:0;">', item.depth + 1);
-                        navs += utility.compile('<li><a href="#{{url}}">{{title}}</a></li>', {url: item.url, title: item.title});
+                        navs += utility.compile('<li><a href="#<%url%>"><%title%></a></li>', {url: item.url, title: item.title});
                         navs += repeat('</ul>', item.depth + 1);
                     }
                 });

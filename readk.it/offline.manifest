@@ -5,44 +5,36 @@ CACHE MANIFEST
 # For application-cache gotchas, refer:
 # http://www.alistapart.com/articles/application-cache-is-a-douchebag/
 
-fonts/webfontkit-20121115-172814/stylesheet.css
-fonts/webfontkit-20121115-172814/adamina-regular-webfont.woff
-fonts/webfontkit-20121115-172814/ultra-webfont.woff
+css/add2home.css
+css/drag_and_drop.css
+css/readkit-screen.css
 
-fonts/webfontkit-20121115-185629/stylesheet.css
-fonts/webfontkit-20121115-185629/pt_sans-web-regular-webfont.woff
-fonts/webfontkit-20121115-185629/lobstertwo-bolditalic-webfont.woff
-fonts/webfontkit-20121115-185629/raleway-semibold-webfont.woff
-
-css/font-awesome.css
-css/styles.css
-
-fonts/fontawesome/fontawesome-webfont.eot
-fonts/fontawesome/fontawesome-webfont.svg
-fonts/fontawesome/fontawesome-webfont.ttf
-fonts/fontawesome/fontawesome-webfont.woff
-fonts/stylesheet.css
-
-html/mansfield_at_the_bay/OEBPS/Text/title_page.xhtml
-html/mansfield_at_the_bay/OEBPS/Text/chap01.xhtml
-
-js/main.js
-js/iscroll.js
-js/require.js
-js/scroll.js
-js/text.js
-
-favicon.ico
-
-index.html
+fonts/fontello/font/fontello.ttf
+fonts/fontello/font/fontello.woff
+fonts/Lora/Lora.woff
+fonts/Lora/Lora-Bold.woff
+fonts/Lora/Lora-BoldItalic.woff
+fonts/Lora/Lora-Italic.woff
+fonts/SourceSansPro/SourceSansPro-Bold.woff
+fonts/SourceSansPro/SourceSansPro-BoldIt.woff
+fonts/SourceSansPro/SourceSansPro-It.woff
+fonts/SourceSansPro/SourceSansPro-Regular.woff
 
 images/apple-touch-icon-57x57.png
 images/apple-touch-icon-57x57-precomposed.png
 images/apple-touch-icon-72x72.png
 images/apple-touch-icon-114x114.png
+images/site_preloader.gif
+images/spinner.gif
 images/splash.png
-images/logo.png
-images/picture.jpg
+
+js/readkit.js
+js/client.config.js
+js/app/content.js
+
+favicon.ico
+
+index.html
 
 NETWORK:
 *

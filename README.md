@@ -141,6 +141,7 @@ In order to fully understand the above syntax you'll need to be familiar with [R
 Readk.it uses [Grunt](http://gruntjs.com/) as its build tool. In order to compile EPUBs with Readk.it, you'll need to:
 
 1. Clone the Readk.it repository
+1. Ensure that you have Ruby and Compass installed on your system
 1. Ensure that you have Python installed on your system
 1. [install node](http://nodejs.org/download/)
 1. [install grunt](http://gruntjs.com/installing-grunt)
@@ -202,15 +203,7 @@ Readk.it itself uses only CSS for Media Query support for differing device sizes
 
 Install grunt-cli (Cygwin under windows):
 
-    npm install -g grunt-init
-
-    mkdir cygdrive/c/Users/Administrator/.grunt-init
-    git clone https://github.com/gruntjs/grunt-init-gruntfile.git cygdrive/c/Users/Administrator/.grunt-init/gruntfile
-
-Create a new project:
-
-    grunt-init cygdrive/c/Users/Administrator/.grunt-init/gruntfile
-    npm init
+    npm install -g grunt-cli
 
 Install dependendices:
 

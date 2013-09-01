@@ -17,7 +17,7 @@ var client = {
     // The required modules for our EPUB assets.
     // Note that we don't need to specify the following as Readk.it 
     // has them baked in:
-    // * Jquery
+    // * jQuery2
     // * Modernizr
     // * Detectizr
     required: [

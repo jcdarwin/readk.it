@@ -121,11 +121,15 @@ define([
 
         $.resize.delay = config.resize_interval;
 
-        // Check online status immediately, instead of waiting for the first setInterval
-        check_status();
+        if ($('.readkit-library').attr('data-library')) {
+            $('.readkit-library').toggle();
 
-        // Check online status on a regular interval
-        setInterval( check_status, config.check_status_interval);
+            // Check online status immediately, instead of waiting for the first setInterval
+            check_status();
+
+            // Check online status on a regular interval
+            setInterval( check_status, config.check_status_interval);
+        }
 
         // Check the backbutton status
         check_backbutton();
@@ -681,7 +685,7 @@ define([
         h.debug("The upload has been canceled by the user or the browser dropped the connection.");
     };
 /*     if ("FileReader" in window && Modernizr.draganddrop) { */
-    if ("FileReader" in window && config.lite) {
+    if ("FileReader" in window && !config.lite) {
         $("#epub-upload p").show();
         var drag_zone = $("#readkit-pageWrapper")[0];
         drag_zone.addEventListener("dragenter", upload.handle_drag_enter, false);

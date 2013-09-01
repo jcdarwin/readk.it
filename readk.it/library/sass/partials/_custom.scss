@@ -28,7 +28,9 @@ body{ font-family: 'Aleo Regular', serif; }
 
 * { -webkit-user-select: none; }
 
-body{ margin: 0; font-style: normal; font-weight: 400; overflow: hidden; }
+html { height: 100%; }
+
+body{ height: 100%; margin: 0; font-style: normal; font-weight: 400; overflow: hidden; }
 
 a { text-decoration: none; }
 
@@ -99,7 +101,6 @@ header.projecttitle {
     .readbar { max-width: $max-width; height: 30px; line-height: 0;}
     .read { margin: auto; text-align: center; font-size: 20px; width: 100px; height: 30px; line-height: 1.4; background: $bright-color;  border-radius: 5px; cursor: pointer;}
     .readtext { float: left; padding-left: 15px; }
-    .readicon { padding-top: 5px;}
 
     .controls {
         margin: 10px 0 0;

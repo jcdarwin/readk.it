@@ -146,12 +146,18 @@
 }
 
 /* line 161, ../sass/partials/_custom.scss */
+.readkit-library {
+  text-align: center;
+  display: none;
+}
+
+/* line 166, ../sass/partials/_custom.scss */
 .readkit-size, .readkit-lh {
   float: left;
   margin-right: 10px;
 }
 
-/* line 166, ../sass/partials/_custom.scss */
+/* line 171, ../sass/partials/_custom.scss */
 .readkit-dropdown {
   position: absolute;
   top: 35px;
@@ -164,14 +170,14 @@
   a-color: #bbbbbb;
 }
 
-/* line 182, ../sass/partials/_custom.scss */
+/* line 187, ../sass/partials/_custom.scss */
 #readkit-dropdown-size, #readkit-dropdown-lineheight {
   left: 30px;
   height: 60px;
   width: 116px;
 }
 
-/* line 188, ../sass/partials/_custom.scss */
+/* line 193, ../sass/partials/_custom.scss */
 #readkit-dropdown-bookmark {
   height: 380px;
   width: 280px;
@@ -180,12 +186,12 @@
   padding: 0 10px 10px 10px;
   overflow: hidden;
 }
-/* line 196, ../sass/partials/_custom.scss */
+/* line 201, ../sass/partials/_custom.scss */
 #readkit-dropdown-bookmark a {
   font-size: 12px;
 }
 
-/* line 201, ../sass/partials/_custom.scss */
+/* line 206, ../sass/partials/_custom.scss */
 .readkit-small {
   left: 10px;
   height: 18px;
@@ -193,13 +199,13 @@
   border-radius: 9px;
   margin-top: -13px;
 }
-/* line 208, ../sass/partials/_custom.scss */
+/* line 213, ../sass/partials/_custom.scss */
 .readkit-small i:before {
   font-size: 12px;
   line-height: 1.6em;
 }
 
-/* line 214, ../sass/partials/_custom.scss */
+/* line 219, ../sass/partials/_custom.scss */
 .readkit-medium {
   left: 38px;
   height: 24px;
@@ -207,13 +213,13 @@
   border-radius: 12px;
   margin-top: -13px;
 }
-/* line 221, ../sass/partials/_custom.scss */
+/* line 226, ../sass/partials/_custom.scss */
 .readkit-medium i:before {
   font-size: 16px;
   line-height: 1.6em;
 }
 
-/* line 228, ../sass/partials/_custom.scss */
+/* line 233, ../sass/partials/_custom.scss */
 .readkit-large {
   left: 72px;
   height: 30px;
@@ -221,39 +227,39 @@
   border-radius: 15px;
   margin-top: -13px;
 }
-/* line 235, ../sass/partials/_custom.scss */
+/* line 240, ../sass/partials/_custom.scss */
 .readkit-large i:before {
   font-size: 20px;
   line-height: 1.6em;
 }
 
-/* line 241, ../sass/partials/_custom.scss */
+/* line 246, ../sass/partials/_custom.scss */
 .readkit-font {
   display: inline-block;
   font-size: 18px;
 }
 
-/* line 246, ../sass/partials/_custom.scss */
+/* line 251, ../sass/partials/_custom.scss */
 .readkit-back {
   float: left;
   margin-left: 10px;
   margin-right: 10px;
 }
 
-/* line 252, ../sass/partials/_custom.scss */
+/* line 257, ../sass/partials/_custom.scss */
 .readkit-status {
   float: right;
   cursor: default;
 }
 
-/* line 257, ../sass/partials/_custom.scss */
+/* line 262, ../sass/partials/_custom.scss */
 .readkit-bookmark {
   float: right;
   cursor: hand;
   cursor: pointer;
 }
 
-/* line 263, ../sass/partials/_custom.scss */
+/* line 268, ../sass/partials/_custom.scss */
 #readkit-bookmark-input {
   width: 242px;
   display: inline-block;
@@ -262,7 +268,7 @@
   text-overflow: ellipsis;
 }
 
-/* line 271, ../sass/partials/_custom.scss */
+/* line 276, ../sass/partials/_custom.scss */
 .readkit-bookmark-title {
   float: left;
   width: 240px;
@@ -270,7 +276,7 @@
   margin-left: 5px;
 }
 
-/* line 278, ../sass/partials/_custom.scss */
+/* line 283, ../sass/partials/_custom.scss */
 .readkit-bookmark-input {
   position: relative;
   padding-top: 10px;
@@ -280,49 +286,49 @@
   z-index: 2;
 }
 
-/* line 287, ../sass/partials/_custom.scss */
+/* line 292, ../sass/partials/_custom.scss */
 .readkit-bookmark-list-item {
   float: left;
 }
 
-/* line 291, ../sass/partials/_custom.scss */
+/* line 296, ../sass/partials/_custom.scss */
 #readkit-bookmark-widget {
   font-family: "Source Sans Pro", Arial, sans-serif;
 }
-/* line 295, ../sass/partials/_custom.scss */
+/* line 300, ../sass/partials/_custom.scss */
 #readkit-bookmark-widget a:hover, #readkit-bookmark-widget a:active, #readkit-bookmark-widget a:focus {
   color: white;
   text-decoration: none;
 }
-/* line 300, ../sass/partials/_custom.scss */
+/* line 305, ../sass/partials/_custom.scss */
 #readkit-bookmark-widget a, #readkit-bookmark-widget a:visited {
   color: #bbbbbb;
   text-decoration: none;
 }
-/* line 305, ../sass/partials/_custom.scss */
+/* line 310, ../sass/partials/_custom.scss */
 #readkit-bookmark-widget ul {
   padding-left: 20px;
 }
-/* line 309, ../sass/partials/_custom.scss */
+/* line 314, ../sass/partials/_custom.scss */
 #readkit-bookmark-widget li {
   margin-bottom: 5px;
 }
-/* line 313, ../sass/partials/_custom.scss */
+/* line 318, ../sass/partials/_custom.scss */
 #readkit-bookmark-widget hr {
   margin-bottom: 0.5rem;
 }
 
-/* line 318, ../sass/partials/_custom.scss */
+/* line 323, ../sass/partials/_custom.scss */
 img {
   max-width: 100%;
 }
 
-/* line 322, ../sass/partials/_custom.scss */
+/* line 327, ../sass/partials/_custom.scss */
 pre {
   overflow: auto;
 }
 
-/* line 326, ../sass/partials/_custom.scss */
+/* line 331, ../sass/partials/_custom.scss */
 #readkit-sitePreloader {
   position: absolute;
   top: 0;
@@ -334,20 +340,20 @@ pre {
 }
 
 /* Preloader GIF created with http://preloaders.net */
-/* line 337, ../sass/partials/_custom.scss */
+/* line 342, ../sass/partials/_custom.scss */
 #readkit-preloaderImage {
   width: 50px;
   margin: 200px auto;
 }
 
-/* line 342, ../sass/partials/_custom.scss */
+/* line 347, ../sass/partials/_custom.scss */
 #readkit-preloaderBackgroundImage {
   width: 50px;
   height: 50px;
   background-image: url("../images/site_preloader.gif");
 }
 
-/* line 354, ../sass/partials/_custom.scss */
+/* line 359, ../sass/partials/_custom.scss */
 [class^="readkit-strength-"], [class*=" readkit-strength-"] {
   position: absolute;
   top: 50%;
@@ -358,7 +364,7 @@ pre {
   text-align: center;
 }
 
-/* line 364, ../sass/partials/_custom.scss */
+/* line 369, ../sass/partials/_custom.scss */
 .readkit-icon {
   color: #ffffff;
   margin-top: 5px;
@@ -374,17 +380,17 @@ pre {
   cursor: pointer;
 }
 
-/* line 379, ../sass/partials/_custom.scss */
+/* line 384, ../sass/partials/_custom.scss */
 .readkit-online, .readkit-active {
   background-color: #56a2d3;
 }
 
-/* line 383, ../sass/partials/_custom.scss */
+/* line 388, ../sass/partials/_custom.scss */
 .readkit-offline, .readkit-inactive {
   background-color: #bcbec0;
 }
 
-/* line 387, ../sass/partials/_custom.scss */
+/* line 392, ../sass/partials/_custom.scss */
 .readkit-icon-sans {
   font-family: Arial;
   font-weight: bold;
@@ -392,7 +398,7 @@ pre {
   margin-right: 10px;
 }
 
-/* line 394, ../sass/partials/_custom.scss */
+/* line 399, ../sass/partials/_custom.scss */
 .readkit-icon-serif {
   font-family: Georgia;
   font-weight: bold;
@@ -400,17 +406,17 @@ pre {
   margin-right: 10px;
 }
 
-/* line 401, ../sass/partials/_custom.scss */
+/* line 406, ../sass/partials/_custom.scss */
 .readkit-sans {
   font-family: "Source Sans Pro", Arial, sans-serif;
 }
 
-/* line 405, ../sass/partials/_custom.scss */
+/* line 410, ../sass/partials/_custom.scss */
 .readkit-serif {
   font-family: "Lora", Georgia, serif;
 }
 
-/* line 409, ../sass/partials/_custom.scss */
+/* line 414, ../sass/partials/_custom.scss */
 .readkit-bookmark-icon {
   height: 24px;
   width: 24px;
@@ -421,44 +427,44 @@ pre {
   margin: 0;
 }
 
-/* line 419, ../sass/partials/_custom.scss */
+/* line 424, ../sass/partials/_custom.scss */
 .readkit-bookmark-icon:before {
   margin: 0;
 }
 
-/* line 423, ../sass/partials/_custom.scss */
+/* line 428, ../sass/partials/_custom.scss */
 .readkit-bookmark-icon-add {
   float: right;
   margin-top: 2px;
 }
 
-/* line 428, ../sass/partials/_custom.scss */
+/* line 433, ../sass/partials/_custom.scss */
 .readkit-bookmark-icon-remove {
   float: left;
 }
 
 /* iPhone 2G-4S in portrait & landscape */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-  /* line 442, ../sass/partials/_custom.scss */
+  /* line 447, ../sass/partials/_custom.scss */
   .readkit-header {
     top: 0;
     -webkit-user-select: none;
   }
 
-  /* line 446, ../sass/partials/_custom.scss */
+  /* line 451, ../sass/partials/_custom.scss */
   .readkit-slider {
     width: 30px;
   }
 }
 /* iPhone 5 in portrait & landscape */
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
-  /* line 455, ../sass/partials/_custom.scss */
+  /* line 460, ../sass/partials/_custom.scss */
   .readkit-header {
     top: 0;
     -webkit-user-select: none;
   }
 
-  /* line 459, ../sass/partials/_custom.scss */
+  /* line 464, ../sass/partials/_custom.scss */
   .readkit-slider {
     width: 30px;
   }
@@ -466,7 +472,7 @@ pre {
 /* iPad in portrait & landscape */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   /* Accomodate status bar */
-  /* line 469, ../sass/partials/_custom.scss */
+  /* line 474, ../sass/partials/_custom.scss */
   .readkit-header {
     top: 0;
     -webkit-user-select: none;
@@ -474,14 +480,14 @@ pre {
 }
 /* Desktop */
 @media only screen {
-  /* line 477, ../sass/partials/_custom.scss */
+  /* line 482, ../sass/partials/_custom.scss */
   .readkit-header {
     top: 0;
   }
 }
 /* Phone */
 @media (max-device-width: 240px) {
-  /* line 484, ../sass/partials/_custom.scss */
+  /* line 489, ../sass/partials/_custom.scss */
   .readkit-serif, .readkit-sans {
     display: none;
   }

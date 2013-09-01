@@ -158,6 +158,11 @@ $slider-width: 30px;
     font-size: $font-medium;
 }
 
+.#{$namespace}-library {
+    text-align:center;
+    display:none;
+}
+
 .#{$namespace}-size, .#{$namespace}-lh {
     float: left;
     margin-right: $padding;

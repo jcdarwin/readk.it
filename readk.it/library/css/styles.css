@@ -34,20 +34,26 @@ body {
 }
 
 /* line 31, ../sass/partials/_custom.scss */
+html {
+  height: 100%;
+}
+
+/* line 33, ../sass/partials/_custom.scss */
 body {
+  height: 100%;
   margin: 0;
   font-style: normal;
   font-weight: 400;
   overflow: hidden;
 }
 
-/* line 33, ../sass/partials/_custom.scss */
+/* line 35, ../sass/partials/_custom.scss */
 a {
   text-decoration: none;
 }
 
 /* Header style */
-/* line 50, ../sass/partials/_custom.scss */
+/* line 52, ../sass/partials/_custom.scss */
 header.projecttitle {
   height: 100%;
   margin: 0 auto;
@@ -58,7 +64,7 @@ header.projecttitle {
 }
 
 /* Header */
-/* line 61, ../sass/partials/_custom.scss */
+/* line 63, ../sass/partials/_custom.scss */
 .library button, .library button {
   background: transparent;
   border: 0;
@@ -66,37 +72,37 @@ header.projecttitle {
   opacity: .5;
   cursor: pointer;
 }
-/* line 62, ../sass/partials/_custom.scss */
+/* line 64, ../sass/partials/_custom.scss */
 .library button:hover, .library button:hover {
   opacity: 1;
 }
-/* line 63, ../sass/partials/_custom.scss */
+/* line 65, ../sass/partials/_custom.scss */
 .library button:disabled, .library button:disabled {
   opacity: .2;
 }
-/* line 65, ../sass/partials/_custom.scss */
+/* line 67, ../sass/partials/_custom.scss */
 .library .forward, .library .backward {
   float: left;
   width: 50px;
   font-size: 60px;
   text-align: left;
 }
-/* line 66, ../sass/partials/_custom.scss */
+/* line 68, ../sass/partials/_custom.scss */
 .library .forward i[class^="icon-"]:before, .library .backward i[class^="icon-"]:before {
   width: 0;
 }
-/* line 67, ../sass/partials/_custom.scss */
+/* line 69, ../sass/partials/_custom.scss */
 .library .forward {
   float: right;
 }
-/* line 69, ../sass/partials/_custom.scss */
+/* line 71, ../sass/partials/_custom.scss */
 .library .frame {
   margin: 0 auto;
   max-width: 940px;
   overflow: hidden;
   text-shadow: none;
 }
-/* line 74, ../sass/partials/_custom.scss */
+/* line 76, ../sass/partials/_custom.scss */
 .library .frame div.ul {
   margin: 0;
   padding: 0;
@@ -104,11 +110,11 @@ header.projecttitle {
   font-size: 50px;
   display: inline-block;
 }
-/* line 80, ../sass/partials/_custom.scss */
+/* line 82, ../sass/partials/_custom.scss */
 .library .frame div.ul h2 {
   display: inline;
 }
-/* line 81, ../sass/partials/_custom.scss */
+/* line 83, ../sass/partials/_custom.scss */
 .library .frame div.ul div.li {
   float: left;
   margin: 0 1px 0 0;
@@ -119,24 +125,24 @@ header.projecttitle {
   cursor: pointer;
   display: inline;
 }
-/* line 82, ../sass/partials/_custom.scss */
+/* line 84, ../sass/partials/_custom.scss */
 .library .frame div.ul div.li.active {
   color: white;
   background: #82bf4c;
 }
-/* line 86, ../sass/partials/_custom.scss */
+/* line 88, ../sass/partials/_custom.scss */
 .library .scrollbar {
   max-width: 940px;
   height: 20px;
   line-height: 0;
 }
-/* line 90, ../sass/partials/_custom.scss */
+/* line 92, ../sass/partials/_custom.scss */
 .library .scrollbar .handle {
   width: 100px;
   height: 100%;
   cursor: pointer;
 }
-/* line 94, ../sass/partials/_custom.scss */
+/* line 96, ../sass/partials/_custom.scss */
 .library .scrollbar .handle .mousearea {
   width: 100%;
   height: 20px;
@@ -145,17 +151,17 @@ header.projecttitle {
   border: 1px solid white;
   border-radius: 5px;
 }
-/* line 95, ../sass/partials/_custom.scss */
+/* line 97, ../sass/partials/_custom.scss */
 .library .scrollbar .handle .mousearea:hover {
   opacity: 1;
 }
-/* line 99, ../sass/partials/_custom.scss */
+/* line 101, ../sass/partials/_custom.scss */
 .library .readbar {
   max-width: 940px;
   height: 30px;
   line-height: 0;
 }
-/* line 100, ../sass/partials/_custom.scss */
+/* line 102, ../sass/partials/_custom.scss */
 .library .read {
   margin: auto;
   text-align: center;
@@ -167,26 +173,22 @@ header.projecttitle {
   border-radius: 5px;
   cursor: pointer;
 }
-/* line 101, ../sass/partials/_custom.scss */
+/* line 103, ../sass/partials/_custom.scss */
 .library .readtext {
   float: left;
   padding-left: 15px;
 }
-/* line 102, ../sass/partials/_custom.scss */
-.library .readicon {
-  padding-top: 5px;
-}
-/* line 104, ../sass/partials/_custom.scss */
+/* line 105, ../sass/partials/_custom.scss */
 .library .controls {
   margin: 10px 0 0;
   text-align: center;
 }
-/* line 107, ../sass/partials/_custom.scss */
+/* line 108, ../sass/partials/_custom.scss */
 .library .controls .divider {
   display: inline-block;
   margin: 0 5px;
 }
-/* line 108, ../sass/partials/_custom.scss */
+/* line 109, ../sass/partials/_custom.scss */
 .library .controls button {
   line-height: 32px;
   vertical-align: middle;
@@ -198,7 +200,7 @@ header.projecttitle {
   border-radius: 25px;
   background-color: white;
 }
-/* line 110, ../sass/partials/_custom.scss */
+/* line 111, ../sass/partials/_custom.scss */
 .library .controls button i {
   position: relative;
   top: -2px;
@@ -210,7 +212,7 @@ header.projecttitle {
 }
 
 /* Publication */
-/* line 117, ../sass/partials/_custom.scss */
+/* line 118, ../sass/partials/_custom.scss */
 .publication {
   height: 180px;
   margin: 0 20px 20px 0;
@@ -218,12 +220,12 @@ header.projecttitle {
   float: left;
   border-radius: 5px;
 }
-/* line 124, ../sass/partials/_custom.scss */
+/* line 125, ../sass/partials/_custom.scss */
 .publication h2 {
   margin-top: 0;
   font-size: 12px;
 }
-/* line 126, ../sass/partials/_custom.scss */
+/* line 127, ../sass/partials/_custom.scss */
 .publication .publication img {
   border: 1px solid #3a3c47;
   border-radius: 5px;
@@ -234,7 +236,7 @@ header.projecttitle {
 }
 
 /* 3D shenanigans */
-/* line 131, ../sass/partials/_custom.scss */
+/* line 132, ../sass/partials/_custom.scss */
 .csstransforms3d .frame {
   -webkit-perspective: 800px;
   -ms-perspective: 800px;
@@ -243,13 +245,13 @@ header.projecttitle {
   -ms-perspective-origin: 50% 50%;
   perspective-origin: 50% 50%;
 }
-/* line 138, ../sass/partials/_custom.scss */
+/* line 139, ../sass/partials/_custom.scss */
 .csstransforms3d .frame div.ul {
   -webkit-transform-style: preserve-3d;
   -ms-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
-/* line 142, ../sass/partials/_custom.scss */
+/* line 143, ../sass/partials/_custom.scss */
 .csstransforms3d .frame div.ul div.li {
   position: relative;
   margin: 2px -25px;
@@ -259,14 +261,14 @@ header.projecttitle {
   -webkit-transition: -webkit-transform 300ms ease-out;
   transition: transform 300ms ease-out;
 }
-/* line 151, ../sass/partials/_custom.scss */
+/* line 152, ../sass/partials/_custom.scss */
 .csstransforms3d .frame div.ul div.li.active {
   z-index: 10;
   -webkit-transform: scale(1);
   -ms-transform: scale(1);
   transform: scale(1);
 }
-/* line 157, ../sass/partials/_custom.scss */
+/* line 158, ../sass/partials/_custom.scss */
 .csstransforms3d .frame div.ul div.li.active ~ div.li {
   -webkit-transform: rotateY(-60deg) scale(0.9);
   -ms-transform: rotateY(-60deg) scale(0.9);
@@ -275,29 +277,29 @@ header.projecttitle {
 
 /* iPhone 2G-4S in portrait & landscape */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-  /* line 185, ../sass/partials/_custom.scss */
+  /* line 186, ../sass/partials/_custom.scss */
   .library {
     margin: 40px auto 20px;
   }
-  /* line 187, ../sass/partials/_custom.scss */
+  /* line 188, ../sass/partials/_custom.scss */
   .library .forward, .library .backward {
     display: none;
   }
-  /* line 188, ../sass/partials/_custom.scss */
+  /* line 189, ../sass/partials/_custom.scss */
   .library .scrollbar {
     margin: 20px auto 10px;
   }
-  /* line 189, ../sass/partials/_custom.scss */
+  /* line 190, ../sass/partials/_custom.scss */
   .library .readbar {
     margin: 10px auto 20px;
   }
-  /* line 190, ../sass/partials/_custom.scss */
+  /* line 191, ../sass/partials/_custom.scss */
   .library .frame div.ul div.li {
     width: 190px;
     height: 240px;
   }
 
-  /* line 192, ../sass/partials/_custom.scss */
+  /* line 193, ../sass/partials/_custom.scss */
   .publication img {
     width: 190px;
     max-height: 240px;
@@ -305,40 +307,40 @@ header.projecttitle {
 }
 /* iPhone 2G-4S in landscape */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: landscape) {
-  /* line 204, ../sass/partials/_custom.scss */
+  /* line 205, ../sass/partials/_custom.scss */
   .library .forward, .library .backward {
     height: 200px;
   }
-  /* line 205, ../sass/partials/_custom.scss */
+  /* line 206, ../sass/partials/_custom.scss */
   .library .frame {
     height: 200px;
     line-height: 200px;
   }
-  /* line 206, ../sass/partials/_custom.scss */
+  /* line 207, ../sass/partials/_custom.scss */
   .library .controls {
     display: none;
   }
-  /* line 207, ../sass/partials/_custom.scss */
+  /* line 208, ../sass/partials/_custom.scss */
   .library .scrollbar {
     margin: 10px auto 10px;
   }
-  /* line 208, ../sass/partials/_custom.scss */
+  /* line 209, ../sass/partials/_custom.scss */
   .library .readbar {
     margin: 10px auto 10px;
   }
-  /* line 209, ../sass/partials/_custom.scss */
+  /* line 210, ../sass/partials/_custom.scss */
   .library .frame div.ul div.li {
     width: 150px;
     height: 190px;
   }
 
-  /* line 211, ../sass/partials/_custom.scss */
+  /* line 212, ../sass/partials/_custom.scss */
   .csstransforms3d .frame {
     height: 200px;
     line-height: 200px;
   }
 
-  /* line 212, ../sass/partials/_custom.scss */
+  /* line 213, ../sass/partials/_custom.scss */
   .publication img {
     width: 150px;
     max-height: 190px;
@@ -346,29 +348,29 @@ header.projecttitle {
 }
 /* iPhone 5 in portrait & landscape */
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
-  /* line 222, ../sass/partials/_custom.scss */
+  /* line 223, ../sass/partials/_custom.scss */
   .library {
     margin: 40px auto 20px;
   }
-  /* line 224, ../sass/partials/_custom.scss */
+  /* line 225, ../sass/partials/_custom.scss */
   .library .forward, .library .backward {
     display: none;
   }
-  /* line 225, ../sass/partials/_custom.scss */
+  /* line 226, ../sass/partials/_custom.scss */
   .library .scrollbar {
     margin: 20px auto 10px;
   }
-  /* line 226, ../sass/partials/_custom.scss */
+  /* line 227, ../sass/partials/_custom.scss */
   .library .readbar {
     margin: 10px auto 20px;
   }
-  /* line 227, ../sass/partials/_custom.scss */
+  /* line 228, ../sass/partials/_custom.scss */
   .library .frame div.ul div.li {
     width: 190px;
     height: 240px;
   }
 
-  /* line 229, ../sass/partials/_custom.scss */
+  /* line 230, ../sass/partials/_custom.scss */
   .publication img {
     width: 190px;
     max-height: 240px;
@@ -376,40 +378,40 @@ header.projecttitle {
 }
 /* iPhone 5 in landscape */
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (orientation: landscape) {
-  /* line 241, ../sass/partials/_custom.scss */
+  /* line 242, ../sass/partials/_custom.scss */
   .library .forward, .library .backward {
     height: 200px;
   }
-  /* line 242, ../sass/partials/_custom.scss */
+  /* line 243, ../sass/partials/_custom.scss */
   .library .frame {
     height: 200px;
     line-height: 200px;
   }
-  /* line 243, ../sass/partials/_custom.scss */
+  /* line 244, ../sass/partials/_custom.scss */
   .library .controls {
     display: none;
   }
-  /* line 244, ../sass/partials/_custom.scss */
+  /* line 245, ../sass/partials/_custom.scss */
   .library .scrollbar {
     margin: 10px auto 10px;
   }
-  /* line 245, ../sass/partials/_custom.scss */
+  /* line 246, ../sass/partials/_custom.scss */
   .library .readbar {
     margin: 10px auto 10px;
   }
-  /* line 246, ../sass/partials/_custom.scss */
+  /* line 247, ../sass/partials/_custom.scss */
   .library .frame div.ul div.li {
     width: 150px;
     height: 190px;
   }
 
-  /* line 248, ../sass/partials/_custom.scss */
+  /* line 249, ../sass/partials/_custom.scss */
   .csstransforms3d .frame {
     height: 200px;
     line-height: 200px;
   }
 
-  /* line 249, ../sass/partials/_custom.scss */
+  /* line 250, ../sass/partials/_custom.scss */
   .publication img {
     width: 150px;
     max-height: 190px;
@@ -417,40 +419,40 @@ header.projecttitle {
 }
 /* iPad in portrait & landscape */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-  /* line 259, ../sass/partials/_custom.scss */
+  /* line 260, ../sass/partials/_custom.scss */
   .library {
     margin: 60px auto 40px;
   }
-  /* line 261, ../sass/partials/_custom.scss */
+  /* line 262, ../sass/partials/_custom.scss */
   .library .forward, .library .backward {
     height: 250px;
   }
-  /* line 262, ../sass/partials/_custom.scss */
+  /* line 263, ../sass/partials/_custom.scss */
   .library .frame {
     height: 250px;
     line-height: 250px;
   }
-  /* line 263, ../sass/partials/_custom.scss */
+  /* line 264, ../sass/partials/_custom.scss */
   .library .scrollbar {
     margin: 20px auto 10px;
   }
-  /* line 264, ../sass/partials/_custom.scss */
+  /* line 265, ../sass/partials/_custom.scss */
   .library .readbar {
     margin: 10px auto 20px;
   }
-  /* line 265, ../sass/partials/_custom.scss */
+  /* line 266, ../sass/partials/_custom.scss */
   .library .frame div.ul div.li {
     width: 190px;
     height: 240px;
   }
 
-  /* line 267, ../sass/partials/_custom.scss */
+  /* line 268, ../sass/partials/_custom.scss */
   .csstransforms3d .frame {
     height: 250px;
     line-height: 250px;
   }
 
-  /* line 268, ../sass/partials/_custom.scss */
+  /* line 269, ../sass/partials/_custom.scss */
   .publication img {
     width: 190px;
     max-height: 240px;
@@ -458,40 +460,40 @@ header.projecttitle {
 }
 /* Desktop */
 @media only screen {
-  /* line 276, ../sass/partials/_custom.scss */
+  /* line 277, ../sass/partials/_custom.scss */
   .library {
     margin: 60px auto 40px;
   }
-  /* line 279, ../sass/partials/_custom.scss */
+  /* line 280, ../sass/partials/_custom.scss */
   .library .forward, .library .backward {
     height: 250px;
   }
-  /* line 282, ../sass/partials/_custom.scss */
+  /* line 283, ../sass/partials/_custom.scss */
   .library .frame {
     height: 250px;
     line-height: 250px;
   }
-  /* line 286, ../sass/partials/_custom.scss */
+  /* line 287, ../sass/partials/_custom.scss */
   .library .frame div.ul div.li {
     width: 190px;
     height: 240px;
   }
-  /* line 291, ../sass/partials/_custom.scss */
+  /* line 292, ../sass/partials/_custom.scss */
   .library .scrollbar {
     margin: 20px auto 10px;
   }
-  /* line 294, ../sass/partials/_custom.scss */
+  /* line 295, ../sass/partials/_custom.scss */
   .library .readbar {
     margin: 10px auto 20px;
   }
 
-  /* line 298, ../sass/partials/_custom.scss */
+  /* line 299, ../sass/partials/_custom.scss */
   .csstransforms3d .frame {
     height: 250px;
     line-height: 250px;
   }
 
-  /* line 303, ../sass/partials/_custom.scss */
+  /* line 304, ../sass/partials/_custom.scss */
   .publication img {
     width: 190px;
     max-height: 240px;

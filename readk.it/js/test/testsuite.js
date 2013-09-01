@@ -13,7 +13,7 @@
         //load it from the js/app directory.
         paths: {
             app: '../app',
-            underscore: 'underscore-min.amd'
+            underscore: 'lodash'
         },
         map: {
           '*': {

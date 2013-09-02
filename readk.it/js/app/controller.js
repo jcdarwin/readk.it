@@ -53,8 +53,9 @@ define([
     var _initialise = function (book, URIs, callback, files) {
 
         // Parse the EPUB.
-        if (Object.getOwnPropertyNames(URIs).length && window.location.protocol == 'file:') {
-            // We've been loaded via a file url, using the standalone version
+        //if (Object.getOwnPropertyNames(URIs).length && window.location.protocol == 'file:') {
+        if (Object.getOwnPropertyNames(URIs).length) {
+            // We've been loaded via a file url, using the solo version
             // whereby the EPUB content is encoded app/content.js using data URIs.
             return new Epub('', 'META-INF/container.xml', callback, URIs);
         } else if (!files && window.location.protocol == 'file:') {

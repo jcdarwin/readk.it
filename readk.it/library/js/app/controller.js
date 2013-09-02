@@ -53,7 +53,11 @@ define([
                 console.log(value.name);
 
                 // Load an entry for the publication into the library view
-                $('.frame .ul').append('<div class="li publication" data-url="../index.html#' + encodeURIComponent('library/' + value.path) + '"><img src="' + value.cover + '" /></div>');
+                if (config.solo) {
+                    $('.frame .ul').append('<div class="li publication" data-url="solo/' + value.solo + '"><img src="' + value.cover + '" /></div>');
+                } else {
+                    $('.frame .ul').append('<div class="li publication" data-url="../index.html#' + encodeURIComponent('library/' + value.path) + '"><img src="' + value.cover + '" /></div>');
+                }
 
             });
 

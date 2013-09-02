@@ -160,7 +160,6 @@ $slider-width: 30px;
 
 .#{$namespace}-library {
     text-align:center;
-    display:none;
 }
 
 .#{$namespace}-size, .#{$namespace}-lh {
@@ -266,7 +265,7 @@ $slider-width: 30px;
 }
 
 ##{$namespace}-bookmark-input {
-    width: 242px;
+    width: 240px;
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;

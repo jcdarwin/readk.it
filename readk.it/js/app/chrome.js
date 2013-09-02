@@ -122,13 +122,14 @@ define([
         $.resize.delay = config.resize_interval;
 
         if ($('.readkit-library').attr('data-library')) {
-            $('.readkit-library').toggle();
-
             // Check online status immediately, instead of waiting for the first setInterval
             check_status();
 
             // Check online status on a regular interval
             setInterval( check_status, config.check_status_interval);
+        } else {
+            // Hide the library button
+            $('.readkit-library').toggle();
         }
 
         // Check the backbutton status
@@ -401,13 +402,52 @@ define([
 
     // Bookmark event handlers
     function check_bookmarks() {
-        var bookmarks = utility.storage('bookmarks');
+        var bookmarks = utility.storage('bookmarks')  || [];
+
+        var input = utility.compile($('#readkit-bookmark-input-tmpl').html(), {
+            file:  layout.location().file,
+            title: layout.location().title
+        });
 
         if (bookmarks && bookmarks.length) {
             $('#readkit-for-bookmark').addClass('readkit-active').removeClass('readkit-inactive');
+            $('#readkit-for-bookmark').addClass('active');
         } else {
             $('#readkit-for-bookmark').addClass('readkit-inactive').removeClass('readkit-active');
         }
+
+        var bookmarkeds = '';
+        $.each(bookmarks, function(i, bookmark) {
+            bookmarkeds += utility.compile($('#readkit-bookmark-list-item-tmpl').html(), {
+                index:  i,
+                file:  bookmark.file,
+                x:     bookmark.x,
+                y:     bookmark.y,
+                title: bookmark.title
+            });
+        });
+        var html = utility.compile($('#readkit-bookmark-list-tmpl').html(), {bookmarkeds: bookmarkeds});
+
+        navs = '';
+        $.each(layout.nav(), function(i, item) {
+            if (item.title) {
+                navs += repeat('<ul style="margin-top:0; margin-bottom:0;">', item.depth + 1);
+                navs += utility.compile('<li><a href="#<%url%>"><%title%></a></li>', {url: item.url, title: item.title});
+                navs += repeat('</ul>', item.depth + 1);
+            }
+        });
+        html += navs;
+
+        html = utility.compile(input + $('#readkit-bookmark-widget-tmpl').html(),
+            {html: html}
+        );
+
+        $('#readkit-dropdown-bookmark').html(html);
+
+        var bookmark_scroller = new iScroll('readkit-bookmark-widget', {snap: true, momentum: true, hScroll: false, hScrollbar: false, vScrollbar: false, lockDirection: true,
+            onAnimationEnd: function(){
+            }
+        });
     }
 
     // For some reason this handler always fires twice in certain browsers
@@ -427,50 +467,6 @@ define([
                 if ( $('#readkit-dropdown-lineheight').is(':visible') ) {
                     $('#readkit-dropdown-lineheight').slideUp();
                 }
-
-                var input = utility.compile($('#readkit-bookmark-input-tmpl').html(), {
-                    file:  layout.location().file,
-                    title: layout.location().title
-                });
-
-                var bookmarks = utility.storage('bookmarks') || [];
-
-                if (bookmarks && bookmarks.length) {
-                    $('#readkit-for-bookmark').addClass('active');
-                }
-
-                var bookmarkeds = '';
-                $.each(bookmarks, function(i, bookmark) {
-                    bookmarkeds += utility.compile($('#readkit-bookmark-list-item-tmpl').html(), {
-                        index:  i,
-                        file:  bookmark.file,
-                        x:     bookmark.x,
-                        y:     bookmark.y,
-                        title: bookmark.title
-                    });
-                });
-                var html = utility.compile($('#readkit-bookmark-list-tmpl').html(), {bookmarkeds: bookmarkeds});
-
-                navs = '';
-                $.each(layout.nav(), function(i, item) {
-                    if (item.title) {
-                        navs += repeat('<ul style="margin-top:0; margin-bottom:0;">', item.depth + 1);
-                        navs += utility.compile('<li><a href="#<%url%>"><%title%></a></li>', {url: item.url, title: item.title});
-                        navs += repeat('</ul>', item.depth + 1);
-                    }
-                });
-                html += navs;
-
-                html = utility.compile(input + $('#readkit-bookmark-widget-tmpl').html(),
-                    {html: html}
-                );
-
-                $('#readkit-dropdown-bookmark').html(html);
-
-                var bookmark_scroller = new iScroll('readkit-bookmark-widget', {snap: true, momentum: true, hScroll: false, hScrollbar: false, vScrollbar: false, lockDirection: true,
-                    onAnimationEnd: function(){
-                    }
-                });
 
                 // Capture clicks on anchors so we can update the scroll position.
                 $('#readkit-bookmark-widget a').on('click', function(event) {

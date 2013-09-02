@@ -8,5 +8,6 @@
 */
 
 define({
-    manifest: "manifest.json"
+    manifest: "manifest.json",
+    solo: true
 });

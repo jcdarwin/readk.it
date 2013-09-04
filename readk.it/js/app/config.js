@@ -47,4 +47,5 @@ define({
 
     log: true,
 
+    workerScriptsPath: "js/lib/zip/",
 });

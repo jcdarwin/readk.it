@@ -426,11 +426,11 @@ utility.storage('pages', []);
 
         return {
             page:   currentPage,
-            title:  publication.spine_entries[currentPage].title,
-            file:   publication.spine_entries[currentPage].file,
-            height: pages[currentPage] ? pages[currentPage].height : (page_scrollers[currentPage]).scroller.scrollerH,
+            title:  publication.spine_entries[currentPage] && publication.spine_entries[currentPage].title,
+            file:   publication.spine_entries[currentPage] && publication.spine_entries[currentPage].file,
+            height: pages[currentPage] ? pages[currentPage].height : page_scrollers[currentPage] && (page_scrollers[currentPage]).scroller.scrollerH,
             x:      $(book_scroller)[0].x,
-            y:      pages[currentPage] ? pages[currentPage].y : (page_scrollers[currentPage]).scroller.y
+            y:      pages[currentPage] ? pages[currentPage].y : page_scrollers[currentPage] && (page_scrollers[currentPage]).scroller.y
         };
     };
 

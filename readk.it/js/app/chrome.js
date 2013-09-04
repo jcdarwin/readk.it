@@ -404,10 +404,13 @@ define([
     function check_bookmarks() {
         var bookmarks = utility.storage('bookmarks')  || [];
 
-        var input = utility.compile($('#readkit-bookmark-input-tmpl').html(), {
-            file:  layout.location().file,
-            title: layout.location().title
-        });
+        var input = '';
+        if (layout.location().file && layout.location().title) {
+            input = utility.compile($('#readkit-bookmark-input-tmpl').html(), {
+                file:  layout.location().file,
+                title: layout.location().title
+            });
+        }
 
         if (bookmarks && bookmarks.length) {
             $('#readkit-for-bookmark').addClass('readkit-active').removeClass('readkit-inactive');
@@ -592,64 +595,64 @@ define([
         filelist = filelist || $("#readkit-id_epub")[0].files;
         if (filelist.length) {
 
-            // Chrome's security policies means webworkers are not allowed
+            // Chrome's (and now Firefox) security policies means webworkers are not allowed
             // with file urls, therefore we have to put up with slower
             // single-threaded zip inflation.
-            zip.useWebWorkers = !(location.protocol == 'file:' && window.chrome);
+            zip.useWebWorkers = location.protocol != 'file:';
 
-            zip.workerScriptsPath = "js/lib/zip/";
-                f = filelist[0];
-                zip.createReader(new zip.BlobReader(f), function(zipReader){
-                    zipReader.getEntries(function(entries){
+            zip.workerScriptsPath = config.workerScriptsPath;
+            f = filelist[0];
+            zip.createReader(new zip.BlobReader(f), function(zipReader){
+                zipReader.getEntries(function(entries){
 
-                        $.when.apply(this, $.map(entries, function(entry) {
-                            return $.Deferred(function(deferred_entry){
+                    $.when.apply(this, $.map(entries, function(entry) {
+                        return $.Deferred(function(deferred_entry){
 
-                                if (utility.isTextFile(entry.filename)) {
-                                    // This is a text-like file that we need to parse or load directly 
-                                    // into the browser, so store as text.
-                                    try {
-                                        // There's an issue with zip.TextWriter failing silently in
-                                        // Firefox; we have to supply 'utf-8', and also wrap it in
-                                        // a try-catch block for good measure.
-                                        // https://github.com/gildas-lormeau/zip.js/issues/58
-                                        entry.getData(new zip.TextWriter('utf-8'), function(text){
-                                            upload.progress(f, entry);
-                                            if (config.log) {
-                                                console.log(entry.filename);
-                                            }
-                                            deferred_entry.resolve(text);
-                                        });
-                                    } catch (e) {
-                                        console.log('zip.TextWriter failure with ' + entry.filename + ': ' + e);
-                                    }
-                                } else {
-                                    // Retrieve other files as blobs, i.e. don't uncompress them to text
-                                    // as in a number of cases we'd simply have to recompress them
-                                    // to display them (e.g. jpg) and that would be silly.
-                                    entry.getData(new zip.BlobWriter(), function(blob){
+                            if (utility.isTextFile(entry.filename)) {
+                                // This is a text-like file that we need to parse or load directly 
+                                // into the browser, so store as text.
+                                try {
+                                    // There's an issue with zip.TextWriter failing silently in
+                                    // Firefox; we have to supply 'utf-8', and also wrap it in
+                                    // a try-catch block for good measure.
+                                    // https://github.com/gildas-lormeau/zip.js/issues/58
+                                    entry.getData(new zip.TextWriter('utf-8'), function(text){
                                         upload.progress(f, entry);
                                         if (config.log) {
                                             console.log(entry.filename);
                                         }
-                                        deferred_entry.resolve(blob);
+                                        deferred_entry.resolve(text);
                                     });
+                                } catch (e) {
+                                    console.log('zip.TextWriter failure with ' + entry.filename + ': ' + e);
                                 }
+                            } else {
+                                // Retrieve other files as blobs, i.e. don't uncompress them to text
+                                // as in a number of cases we'd simply have to recompress them
+                                // to display them (e.g. jpg) and that would be silly.
+                                entry.getData(new zip.BlobWriter(), function(blob){
+                                    upload.progress(f, entry);
+                                    if (config.log) {
+                                        console.log(entry.filename);
+                                    }
+                                    deferred_entry.resolve(blob);
+                                });
+                            }
 
-                            }).done(function(value){
-                                filename = entry.filename;
-                                files[filename] = value;
-                            });
-                        })).done(function(){
-                            upload.complete(100);
-                            setTimeout(function () {
-                                $('.readkit-drag-upload-window').slideUp('slow');
-                            }, 0);
-                            publication = controller.initialise('', {}, files);
+                        }).done(function(value){
+                            filename = entry.filename;
+                            files[filename] = value;
                         });
+                    })).done(function(){
+                        upload.complete(100);
+                        setTimeout(function () {
+                            $('.readkit-drag-upload-window').slideUp('slow');
+                        }, 0);
+                        publication = controller.initialise('', {}, files);
                     });
+                });
 
-                }, upload.failed);
+            }, upload.failed);
             $(".readkit-epub-drag-upload-label").addClass("loading").text("Uploading EPUB...");
             $(".readkit-drag-upload-spinner").addClass("loading");
             return false;

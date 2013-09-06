@@ -598,7 +598,7 @@ define([
             // Chrome's (and now Firefox) security policies means webworkers are not allowed
             // with file urls, therefore we have to put up with slower
             // single-threaded zip inflation.
-            zip.useWebWorkers = location.protocol != 'file:';
+            zip.useWebWorkers = location.protocol != 'file:' && config.mode != 'reader' && config.mode != 'solo';
 
             zip.workerScriptsPath = config.workerScriptsPath;
             f = filelist[0];

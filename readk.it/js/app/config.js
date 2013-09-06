@@ -47,5 +47,12 @@ define({
 
     log: true,
 
+    // What's the path to the web workers?
     workerScriptsPath: "js/lib/zip/",
+
+    // What mode are we in:
+    // * publication mode (we live in an EPUB)
+    // * solo mode (all content is encoded in content.js using Data URIs)
+    // * reader mode (no content)
+    mode: "publication",
 });

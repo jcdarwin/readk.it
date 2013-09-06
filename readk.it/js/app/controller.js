@@ -51,12 +51,14 @@ define([
     };
 
     var _initialise = function (book, URIs, callback, files) {
+        if (config.log) {
+            console.log('_initialise');
+        }
 
         // Parse the EPUB.
-        //if (Object.getOwnPropertyNames(URIs).length && window.location.protocol == 'file:') {
         if (Object.getOwnPropertyNames(URIs).length) {
-            // We've been loaded via a file url, using the solo version
-            // whereby the EPUB content is encoded app/content.js using data URIs.
+            // We've got the solo version whereby the EPUB content
+            // is encoded app/content.js using data URIs.
             return new Epub('', 'META-INF/container.xml', callback, URIs);
         } else if (!files && window.location.protocol == 'file:') {
             // We've been loaded via a file url, so we can't use xhr calls to load assets
@@ -64,6 +66,14 @@ define([
             // without the 'META-INF/container.xml' value, no files will be retrieved.
             // http://stackoverflow.com/questions/4150430/how-to-detect-a-script-load-of-a-file-url-fails-in-firefox
             return new Epub(book, '', callback);
+        } else if (config.mode == 'reader' && window.location.protocol != 'file:') {
+            if (files) {
+                // We're in reader mode, and have a files array populated via drag and drop.
+                return new Epub(book, 'META-INF/container.xml', callback, files);
+            } else {
+                // We're in reader mode, but have been opened without a files array.
+                return new Epub(book, '', callback);
+            }
         } else {
             // We've either been web-served, or have a files array populated via drag and drop.
             // If the former, then all the assets can be retrieved via xhr, and if the latter
@@ -73,6 +83,9 @@ define([
     };
 
     var load_publication = function (epub) {
+        if (config.log) {
+            console.log('load_publication');
+        }
         // require.js text plugin fires asynchronously, so we'll use
         // deferreds to work out when all texts have been retrieved.
         // If your brain hurts thinking about deferreds, this example
@@ -97,6 +110,10 @@ define([
                     var filename = '';
                     if (value.href.indexOf('/') === 0) {
                         filename = value.href.substr(1, value.href.length);
+                    }
+
+                    if (config.log) {
+                        console.log('load_html: ' + (filename || value.href));
                     }
 
                     if (filename && pub.content[filename]) {
@@ -202,6 +219,10 @@ define([
             var filename = '';
             if (value.href.indexOf('/') === 0) {
                 filename = value.href.substr(1, value.href.length);
+            }
+
+            if (config.log) {
+                console.log('laying out: ' + filename);
             }
 
             // Strip namespaces from svg elements (i.e. cover images) as these cause rendering problems.

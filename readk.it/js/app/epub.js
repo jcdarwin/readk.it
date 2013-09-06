@@ -63,7 +63,7 @@ define([
     var container = function (f, epub, callback, files) {
         epub.opf_file = $(f).find('rootfile').attr('full-path');
         // Get the OEPBS dir, if there is one
-        if (epub.opf_file.indexOf('/') !== -1) {
+        if (epub.opf_file && epub.opf_file.indexOf('/') !== -1) {
             epub.oebps_dir = epub.opf_file.substr(0, epub.opf_file.lastIndexOf('/'));
         }
         epub.opf_file = epub.epub_dir + epub.opf_file;

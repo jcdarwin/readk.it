@@ -1,14 +1,14 @@
 #Readk.it: turning digital reading inside out
 
-##Precis
+##Introduction
 
-Readk.it is a lightweight JavaScript-based reading system that allows EPUB files to be read in modern browsers on practically all devices. It can be used to web-serve EPUB content statically; no server-side code is required.
+Readk.it is a lightweight JavaScript-based reading system that allows publishers to distribute responsive book-like content in a form that can be read in modern browsers on practically all devices.
 
-Readk.it can be embedded inside an EPUB file and travel with it, allowing future browser users to view the publication as the publisher intended. Readk.it can also be used to serve up a library of EPUB titles, allowing publishers to easily web-serve their existing EPUB files. If you'd prefer to have a single file that a user can double-click on to view in the browser, Readk.it Solo will provide this. Finally, when viewing any Readk.it-enabled publication in the browser, the user is able to drag-and-drop another EPUB into the browser page to begin reading the new publication.
+Readk.it can be embedded inside an EPUB file and travel with it, allowing future browser users to view the publication as the publisher intended. Readk.it can also be used to serve up a library of EPUB titles, allowing publishers to easily web-serve their existing EPUB files. If you'd prefer to have a single file that can be distributed to a user such that they can double-click on the file to view it in the browser, Readk.it Solo will provide this. Finally, when viewing any Readk.it-enabled publication in the browser, the user is able to drag-and-drop another EPUB into the browser page to begin reading the new publication.
 
 ##Description
 
-Readk.it has been designed to take advantage of responsive design techniques in order to provide a seamless digital reading experience when the EPUB file is accessed via a browser, but where the EPUB file can also fallback to standard behaviour on dedicated EPUB reading devices (in which case Readk.it is quiesecent).
+Readk.it has been designed to take advantage of responsive design techniques in order to provide a seamless digital reading experience when the EPUB content is accessed via a browser, but where the EPUB file can also fallback to standard behaviour on dedicated EPUB reading devices (in which case Readk.it is quiesecent).
 
 No modifications to any existing EPUB files should be necessary in order to allow the EPUB to be read using Readk.it. However, a better reading experience than is currently possible on most dedicated EPUB reading devices can be acheived by coupling Readk.it with EPUB content created using responsive design techniques (see the Readk.it Manifesto for a simple example).
 
@@ -40,22 +40,22 @@ The reason Readk.it adopts this behaviour is to allow a simple means of loading 
 However, the main limitation this imposes is one of file size; this approach works well for normal-length text-based EPUBs but if your EPUB contains lots of media (particularly video), then you may find that it takes a long time for the publication to load (providing the browser doesn't time-out). Similarly, for large text-based publications such as Moby Dick, your experience will differ depending on the capabilities of your deivce. Moby Dick is not so much large as extensive, with the EPUB in the Readk.it library containing around 150 files, each of which has to be loaded before the publication can be displayed. For instance, my testing has shown that it loads generally well in desktop browsers, will load in my Kindle HD tablet (although taking about two minutes to do so), and I've yet to get it to load in my aging iPhone 3GS. The solution to this is simple: split your publication up into a series of smaller publications, and consider using the [Readk.it library configuration](#library) to serve them.
 
 ###EPUB-lite
-The EPUB standard is verbose and complex ([canonical fragment identifiers](http://www.idpf.org/epub/linking/cfi/), anyone?) and Readk.it makes no attempt to do much more than provide a mechanism for prising open an EPUB and wrapping it with a simple but functional navigation system. That's not to say that it couldn't be extended to support specific (and ocassionally esoteric) EPUB functionality in the way that [Readium](http://readium.org/) does, however the high majority of users should find that what Readk.it provides is ample. This is somewhat in the spirit of [EPUB Zero](http://epubzero.blogspot.co.nz/2013/02/epub-zero-radically-simpler-e-book.html), if somewhat less heretical in being able to cope with the existing EPUB file structure and metadata layout.
+The EPUB standard is verbose and complex ([canonical fragment identifiers](http://www.idpf.org/epub/linking/cfi/), anyone?) and Readk.it does not attempt to do much more than provide a mechanism for prising open an EPUB and wrapping it with a simple but functional navigation system. That's not to say that it couldn't be extended to support specific (and ocassionally esoteric) EPUB functionality in the way that [Readium](http://readium.org/) does, however the high majority of users should find that what Readk.it provides is ample. This is somewhat in the spirit of [EPUB Zero](http://epubzero.blogspot.co.nz/2013/02/epub-zero-radically-simpler-e-book.html), if somewhat less heretical in being able to cope with the existing EPUB file structure and metadata layout.
 
 ###Cross-browser support
 Readk.it has been designed to work with modern browsers, including Internet Explorer 10. However, it is not guaranteed to work seamlessly in all modern browsers, and known issues include:
 
-####Drag-and-Drop
-As Google Chrome does not allow the use of web-workers for fle URLs, drag-and-drop will work in Chrome though it will be noticeably slower than in other browsers (in this case the zip.js library falls back to using a single process to unzip EPUB assets).
-
 ####Data-URIs
-Readk.it Solo makes use of Data URIs and blobs to allow all of the content to be included in a single file. Unfortuantely Internet Explorer 10 treats blobs as cross-origin and denies access.
+Readk.it Solo makes use of Data URIs and blobs to allow all of the content to be included in a single file. Unfortuantely Internet Explorer 10 treats blobs as cross-origin and denies access when the content is opened as a file URL (i.e. double-clicked).
 
 ####jQuery2
 Given that we are targeting modern browsers (and that Readk.it was designed primarily for use on mobile devices), we have made a conscious choice to go with [jQuery2](http://blog.jquery.com/2013/04/18/jquery-2-0-released/), meaning that older browsers are not catered for.
 
 ####Non-standard browsers
 Browsers such as Opera Mini and the native Android browser are unlikely to support the functionaliy needed to allow Readk.it to work.
+
+####Drag-and-Drop
+Because of the security risks of using web-workers for file URLs, drag-and-drop will work when using file urls though it will be noticeably slower than when web-served (in this case the zip.js library falls back to using a single process to unzip EPUB assets).
 
 
 ##Before we begin

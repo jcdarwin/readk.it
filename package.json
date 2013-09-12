@@ -1,7 +1,7 @@
 {
-  "name": "readk.it_manifesto",
+  "name": "readk.it",
   "version": "0.0.1",
-  "description": "Readk.it Manifesto",
+  "description": "Readk.it",
   "main": "Gruntfile.js",
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@mebooks.co.nz:/var/lib/git/readk.it_manifesto"
+    "url": "git@mebooks.co.nz:/var/lib/git/readk.it"
   },
   "author": "Jason Darwin",
   "license": "BSD",

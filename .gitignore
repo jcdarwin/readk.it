@@ -5,3 +5,15 @@
 .sass-cache
 .DS_Store
 manifest.json
+node_modules/grunt
+node_modules/grunt-bake
+node_modules/grunt-contrib-clean
+node_modules/grunt-contrib-compass
+node_modules/grunt-contrib-concat
+node_modules/grunt-contrib-copy
+node_modules/grunt-contrib-cssmin
+node_modules/grunt-contrib-jshint
+node_modules/grunt-contrib-nodeunit
+node_modules/grunt-contrib-requirejs
+node_modules/grunt-image-embed
+node_modules/grunt-shell

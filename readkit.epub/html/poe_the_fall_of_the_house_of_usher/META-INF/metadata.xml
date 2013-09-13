@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entry xmlns="http://www.w3.org/2005/Atom" xmlns:thr="http://purl.org/syndication/thread/1.0" xmlns:dcterms="http://purl.org/dc/terms/">
+<title>The Fall of the House of Usher</title>
+<id>http://www.feedbooks.com/book/772</id>
+<author>
+  <name>Edgar Allan Poe</name>
+  <uri>http://www.feedbooks.com/author/16</uri>
+</author>
+<published>2007-04-12T15:45:10Z</published>
+<updated>2013-03-23T21:01:58Z</updated>
+<dcterms:language>en</dcterms:language>
+<dcterms:issued>1839</dcterms:issued>
+<category label="Fiction" term="FBFIC000000"/>
+<category label="Horror" term="FBFIC015000"/>
+<category label="Short Stories" term="FBFIC029000"/>
+<summary>The tale opens with the unnamed narrator arriving at the house of his friend, Roderick Usher, having received a letter from him in a distant part of the country complaining of an illness and asking for his comfort.</summary>
+<dcterms:extent>7,058 words</dcterms:extent>
+<dcterms:source>http://en.wikisource.org</dcterms:source>
+<link type="text/html" rel="alternate" href="http://generation.feedbooks.com/book/772" title="View on Feedbooks"/>
+<link type="application/epub+zip" rel="http://opds-spec.org/acquisition" href="http://generation.feedbooks.com/book/772.epub"/>
+<link type="application/x-mobipocket-ebook" rel="http://opds-spec.org/acquisition" href="http://generation.feedbooks.com/book/772.mobi"/>
+<link type="application/pdf" rel="http://opds-spec.org/acquisition" href="http://generation.feedbooks.com/book/772.pdf"/>
+<link type="image/jpeg" rel="http://opds-spec.org/image" href="http://covers.feedbooks.net/book/772.jpg?size=large&amp;t=1364072518"/>
+<link type="image/jpeg" rel="http://opds-spec.org/image/thumbnail" href="http://covers.feedbooks.net/book/772.jpg?t=1364072518"/>
+<link type="application/atom+xml;profile=opds-catalog;kind=acquisition" rel="related" href="http://generation.feedbooks.com/author/16/books/top.atom?lang=en" title="From the same author"/>
+<link type="application/atom+xml;profile=opds-catalog;kind=navigation" rel="related" href="http://generation.feedbooks.com/book/772/categories.atom" title="Categories for this book"/>
+<link type="application/atom+xml;profile=opds-catalog;kind=acquisition" rel="related" href="http://generation.feedbooks.com/book/772/similar.atom" title="People also downloaded..."/>
+<link type="application/atom+xml;profile=opds-catalog;kind=navigation" rel="related" href="http://generation.feedbooks.com/book/772/lists.atom" title="Reading lists for this book"/>
+<link type="application/atom+xml" rel="replies" thr:count="0" href="http://generation.feedbooks.com/book/772/comments.atom" title="Comments for this book (0)" thr:updated="2009-08-18T01:17:15Z"/>
+<link type="text/html" rel="related" href="http://www.goodreads.com/mobile/book/isbn/1420927035" title="View on Goodreads"/>
+<content type="html">&lt;p&gt;The tale opens with the unnamed narrator arriving at the house of his friend, Roderick Usher, having received a letter from him in a distant part of the country complaining of an illness and asking for his comfort.&lt;/p&gt;</content>
+  <link type="application/atom+xml" rel="contents" href="http://generation.feedbooks.com/book/772/contents.atom"/>
+</entry>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entry xmlns="http://www.w3.org/2005/Atom" xmlns:thr="http://purl.org/syndication/thread/1.0" xmlns:dcterms="http://purl.org/dc/terms/">
+<title>First Love</title>
+<id>http://www.feedbooks.com/book/2298</id>
+<author>
+  <name>Ivan Sergeyevich Turgenev</name>
+  <uri>http://www.feedbooks.com/author/126</uri>
+</author>
+<published>2008-03-11T14:56:43Z</published>
+<updated>2012-06-30T08:11:27Z</updated>
+<dcterms:language>en</dcterms:language>
+<dcterms:issued>1860</dcterms:issued>
+<category label="Fiction" term="FBFIC000000"/>
+<category label="Romance" term="FBFIC027000"/>
+<category label="Short Stories" term="FBFIC029000"/>
+<summary>Vladimir Petrovich Voldemar, a 16-year-old, is staying in the country with his family and meets Zinaida Alexandrovna Zasyekina, a beautiful 21-year-old woman, staying with her mother, Princess Zasyekina, in a wing of the manor. This family, as wit...</summary>
+<dcterms:extent>24,698 words</dcterms:extent>
+<dcterms:source>http://gutenberg.org</dcterms:source>
+<link type="text/html" rel="alternate" href="http://generation.feedbooks.com/book/2298" title="View on Feedbooks"/>
+<link type="application/epub+zip" rel="http://opds-spec.org/acquisition" href="http://generation.feedbooks.com/book/2298.epub"/>
+<link type="application/x-mobipocket-ebook" rel="http://opds-spec.org/acquisition" href="http://generation.feedbooks.com/book/2298.mobi"/>
+<link type="application/pdf" rel="http://opds-spec.org/acquisition" href="http://generation.feedbooks.com/book/2298.pdf"/>
+<link type="image/jpeg" rel="http://opds-spec.org/image" href="http://covers.feedbooks.net/book/2298.jpg?size=large&amp;t=1341043887"/>
+<link type="image/jpeg" rel="http://opds-spec.org/image/thumbnail" href="http://covers.feedbooks.net/book/2298.jpg?t=1341043887"/>
+<link type="application/atom+xml;profile=opds-catalog;kind=acquisition" rel="related" href="http://generation.feedbooks.com/author/126/books/top.atom?lang=en" title="From the same author"/>
+<link type="application/atom+xml;profile=opds-catalog;kind=navigation" rel="related" href="http://generation.feedbooks.com/book/2298/categories.atom" title="Categories for this book"/>
+<link type="application/atom+xml;profile=opds-catalog;kind=acquisition" rel="related" href="http://generation.feedbooks.com/book/2298/similar.atom" title="People also downloaded..."/>
+<link type="application/atom+xml" rel="replies" href="http://generation.feedbooks.com/book/2298/comments.atom" title="Comments for this book (0)" thr:count="0" thr:updated="2009-08-18T01:17:45Z"/>
+<link type="text/html" rel="related" href="http://www.goodreads.com/mobile/book/isbn/0199540403" title="View on Goodreads"/>
+<content type="html">&lt;p&gt;Vladimir Petrovich Voldemar, a 16-year-old, is staying in the country with his family and meets Zinaida Alexandrovna Zasyekina, a beautiful 21-year-old woman, staying with her mother, Princess Zasyekina, in a wing of the manor. This family, as with many of the Russian minor nobility with royal ties of that time, were only afforded a degree of respectability because of their titles; the Zasyekins, in the case of this story, are a very poor family. The young Vladimir falls irretrievably in love with Zinaida, who has a set of several other (socially more eligible) suitors whom he joins in their difficult and often fruitless search for the young lady's favour.&lt;/p&gt;</content>
+  <link type="application/atom+xml" rel="contents" href="http://generation.feedbooks.com/book/2298/contents.atom"/>
+</entry>

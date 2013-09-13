@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entry xmlns="http://www.w3.org/2005/Atom" xmlns:thr="http://purl.org/syndication/thread/1.0" xmlns:dcterms="http://purl.org/dc/terms/">
+<title>The Curious Case of Benjamin Button</title>
+<id>http://www.feedbooks.com/book/3431</id>
+<author>
+  <name>Francis Scott Fitzgerald</name>
+  <uri>http://www.feedbooks.com/author/201</uri>
+</author>
+<published>2008-11-25T15:54:28Z</published>
+<updated>2013-03-12T20:24:45Z</updated>
+<dcterms:language>en</dcterms:language>
+<dcterms:issued>1922</dcterms:issued>
+<category label="Fiction" term="FBFIC000000"/>
+<category label="Short Stories" term="FBFIC029000"/>
+<summary>This story was inspired by a remark of Mark Twain's to the effect that it was a pity that the best part of life came at the beginning and the worst part at the end. By trying the experiment upon only one man in a perfectly normal world I have scar...</summary>
+<dcterms:extent>9,129 words</dcterms:extent>
+<dcterms:source>http://www.gutenberg.org</dcterms:source>
+<rights>This work is available for countries where copyright is Life+70 and in the USA.</rights>
+<link type="text/html" rel="alternate" href="http://generation.feedbooks.com/book/3431" title="View on Feedbooks"/>
+<link type="application/epub+zip" rel="http://opds-spec.org/acquisition" href="http://generation.feedbooks.com/book/3431.epub"/>
+<link type="application/x-mobipocket-ebook" rel="http://opds-spec.org/acquisition" href="http://generation.feedbooks.com/book/3431.mobi"/>
+<link type="application/pdf" rel="http://opds-spec.org/acquisition" href="http://generation.feedbooks.com/book/3431.pdf"/>
+<link type="image/jpeg" rel="http://opds-spec.org/image" href="http://covers.feedbooks.net/book/3431.jpg?size=large&amp;t=1363119885"/>
+<link type="image/jpeg" rel="http://opds-spec.org/image/thumbnail" href="http://covers.feedbooks.net/book/3431.jpg?t=1363119885"/>
+<link type="application/atom+xml;profile=opds-catalog;kind=acquisition" rel="related" href="http://generation.feedbooks.com/author/201/books/top.atom?lang=en" title="From the same author"/>
+<link type="application/atom+xml;profile=opds-catalog;kind=navigation" rel="related" href="http://generation.feedbooks.com/book/3431/categories.atom" title="Categories for this book"/>
+<link type="application/atom+xml;profile=opds-catalog;kind=acquisition" rel="related" href="http://generation.feedbooks.com/book/3431/similar.atom" title="People also downloaded..."/>
+<link type="application/atom+xml;profile=opds-catalog;kind=navigation" rel="related" href="http://generation.feedbooks.com/book/3431/lists.atom" title="Reading lists for this book"/>
+<link type="application/atom+xml" rel="replies" thr:count="6" thr:updated="2011-01-30T19:11:53Z" href="http://generation.feedbooks.com/book/3431/comments.atom" title="Comments for this book (6)"/>
+<link type="text/html" rel="replies" thr:count="6" thr:updated="2011-01-30T19:11:53Z" href="http://generation.feedbooks.com/book/3431/comments" title="Comments for this book (6)"/>
+<link type="text/html" rel="related" href="http://www.goodreads.com/m/book?search_type=books&amp;search%5Bquery%5D=The%20Curious%20Case%20of%20Benjamin%20Button" title="Search on Goodreads"/>
+<content type="html">&lt;p&gt;This story was inspired by a remark of Mark Twain's to the effect that it was a pity that the best part of life came at the beginning and the worst part at the end. By trying the experiment upon only one man in a perfectly normal world I have scarcely given his idea a fair trial. Several weeks after completing it, I discovered an almost identical plot in Samuel Butler's &quot;Note-books.&quot;
+&lt;br /&gt;The story was published in &quot;Collier's&quot; last summer and provoked this startling letter from an anonymous admirer in Cincinnati:
+&lt;br /&gt;&quot;Sir--
+&lt;br /&gt;I have read the story Benjamin Button in Colliers and I wish to say that as a short story writer you would make a good lunatic I have seen many peices of cheese in my life but of all the peices of cheese I have ever seen you are the biggest peice. I hate to waste a peice of stationary on you but I will.&quot;
+&lt;/p&gt;</content>
+  <link type="application/atom+xml" rel="contents" href="http://generation.feedbooks.com/book/3431/contents.atom"/>
+</entry>

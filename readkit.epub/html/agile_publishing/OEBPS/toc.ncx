@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE ncx PUBLIC "-//NISO//DTD ncx 2005-1//EN"
+                 "http://www.daisy.org/z3986/2005/ncx-2005-1.dtd">
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
+ 
+ <head>
+    <meta name="dtb:uid" content="9781936102433"/>
+    <meta name="dtb:depth" content="1"/>
+    <meta name="dtb:totalPageCount" content="0"/>
+    <meta name="dtb:maxPageNumber" content="0"/> 
+ </head>
+ 
+ <docTitle>
+    <text>Agile Publishing</text>
+ </docTitle>
+
+<navMap>
+   	   		
+	<navPoint id="navPoint-1" playOrder="1" class="chapter">   
+		<navLabel><text>Cover</text></navLabel>
+		<content src="agile_cover.html"/> 
+	</navPoint>   
+	<navPoint id="navPoint-2" playOrder="2" class="chapter">   
+		<navLabel><text>Agile Publishing</text></navLabel>
+		<content src="agile_01.html"/> 
+	</navPoint> 
+	<navPoint id="navPoint-3" playOrder="3" class="chapter">   
+		<navLabel><text>Agile Tools</text></navLabel>
+		<content src="agile_07.html"/> 
+	</navPoint>  	
+	<navPoint id="navPoint-4" playOrder="4" class="section">   
+		<navLabel><text>Three Case Studies</text></navLabel>
+		<content src="agile_10.html"/> 
+		<navPoint id="navPoint-5" playOrder="5" class="chapter">   
+			<navLabel><text>Hirshhorn Museum of Art</text></navLabel>
+			<content src="agile_10a.html"/> 
+		</navPoint>   
+		<navPoint id="navPoint-6" playOrder="6" class="chapter">   
+			<navLabel><text>Harvard Art Museums</text></navLabel>
+			<content src="agile_11a.html"/> 
+		</navPoint>
+		<navPoint id="navPoint-7" playOrder="7" class="chapter">   
+			<navLabel><text>Phoenix Art Museum</text></navLabel>
+			<content src="agile_12a.html"/> 
+		</navPoint>   
+	</navPoint> 
+	<navPoint id="navPoint-8" playOrder="8" class="chapter">
+		<navLabel><text>Conclusion</text></navLabel>
+		<content src="agile_13.html"/>
+	</navPoint>     	    
+	<navPoint id="navPoint-9" playOrder="9" class="chapter">
+		<navLabel><text>Hol Art Books</text></navLabel>
+		<content src="holartbooks.html"/>
+	</navPoint>
+    	
+</navMap>
+
+<!-- Document created by Hol Art Books, 2012 -->
+</ncx>
+

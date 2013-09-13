@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entry xmlns="http://www.w3.org/2005/Atom" xmlns:thr="http://purl.org/syndication/thread/1.0" xmlns:dcterms="http://purl.org/dc/terms/">
+<title>A Room of One's Own</title>
+<id>http://www.feedbooks.com/book/6655</id>
+<author>
+  <name>Virginia Woolf</name>
+  <uri>http://www.feedbooks.com/author/206</uri>
+</author>
+<published>2013-03-01T21:17:01Z</published>
+<updated>2013-03-01T21:17:01Z</updated>
+<dcterms:language>en</dcterms:language>
+<dcterms:issued>1929</dcterms:issued>
+<category label="Non-Fiction" term="FBNFC000000"/>
+<category label="Literary essay" term="FBLIT000000"/>
+<category label="Social science" term="FBSOC000000"/>
+<category label="Feminism &amp; Feminist Theory" term="FBSOC010000"/>
+<summary>A Room of One's Own is an extended essay by Virginia Woolf. First published on 24 October 1929, the essay was based on a series of lectures she delivered at Newnham College and Girton College, two women's colleges at Cambridge University in Octobe...</summary>
+<dcterms:extent>37,653 words</dcterms:extent>
+<dcterms:source>http://gutenberg.org</dcterms:source>
+<rights>This work is available for countries where copyright is Life+70.</rights>
+<link type="text/html" rel="alternate" href="http://generation.feedbooks.com/book/6655" title="View on Feedbooks"/>
+<link type="application/epub+zip" rel="http://opds-spec.org/acquisition" href="http://generation.feedbooks.com/book/6655.epub"/>
+<link type="application/x-mobipocket-ebook" rel="http://opds-spec.org/acquisition" href="http://generation.feedbooks.com/book/6655.mobi"/>
+<link type="application/pdf" rel="http://opds-spec.org/acquisition" href="http://generation.feedbooks.com/book/6655.pdf"/>
+<link type="image/jpeg" rel="http://opds-spec.org/image" href="http://covers.feedbooks.net/book/6655.jpg?size=large&amp;t=1362172621"/>
+<link type="image/jpeg" rel="http://opds-spec.org/image/thumbnail" href="http://covers.feedbooks.net/book/6655.jpg?t=1362172621"/>
+<link type="application/atom+xml;profile=opds-catalog;kind=acquisition" rel="related" href="http://generation.feedbooks.com/author/206/books/top.atom?lang=en" title="From the same author"/>
+<link type="application/atom+xml;profile=opds-catalog;kind=navigation" rel="related" href="http://generation.feedbooks.com/book/6655/categories.atom" title="Categories for this book"/>
+<link type="application/atom+xml;profile=opds-catalog;kind=acquisition" rel="related" href="http://generation.feedbooks.com/book/6655/similar.atom" title="People also downloaded..."/>
+<link type="application/atom+xml" rel="replies" thr:count="0" thr:updated="2013-03-01T20:47:49Z" href="http://generation.feedbooks.com/book/6655/comments.atom" title="Comments for this book (0)"/>
+<link type="text/html" rel="related" href="http://www.goodreads.com/m/book?search_type=books&amp;search%5Bquery%5D=A%20Room%20of%20One%27s%20Own" title="Search on Goodreads"/>
+<content type="html">&lt;p&gt;A Room of One's Own is an extended essay by Virginia Woolf. First published on 24 October 1929, the essay was based on a series of lectures she delivered at Newnham College and Girton College, two women's colleges at Cambridge University in October 1928. While this extended essay in fact employs a fictional narrator and narrative to explore women both as writers of and characters in fiction, the manuscript for the delivery of the series of lectures, titled &quot;Women and Fiction&quot;, and hence the essay, are considered non-fiction. The essay is generally seen as a feminist text, and is noted in its argument for both a literal and figural space for women writers within a literary tradition dominated by patriarchy.&lt;/p&gt;</content>
+  <link type="application/atom+xml" rel="contents" href="http://generation.feedbooks.com/book/6655/contents.atom"/>
+</entry>

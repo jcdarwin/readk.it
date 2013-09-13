@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+// ==========================================================================//
+//
+// Custom mixins
+//
+// ==========================================================================//
+
+@mixin border($pos, $size) {
+    border-#{$pos}: #{$size}px solid $border-color;
+}
+
+@mixin button($color-of-button){
+    font-weight: 600;
+    font-style: normal;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    text-decoration: none;
+    text-rendering: auto;
+    cursor: pointer;
+    color: $color-of-button;
+    background: none;
+    border: none;
+    text-shadow: none;
+    padding: 0;
+    -webkit-transition: color 0.2s ease-out;
+    -moz-transition: color 0.2s ease-out;
+    -o-transition: color 0.2s ease-out;
+    transition: color 0.2s ease-out;
+}

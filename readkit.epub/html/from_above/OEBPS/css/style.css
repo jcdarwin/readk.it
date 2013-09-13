@@ -1,0 +1,153 @@
+a:link { 
+	color:#00aeef; 
+	text-decoration:underline;
+	background-color:transparent; }
+
+a:visited { 
+	color:#00aeef; 
+	text-decoration:underline;
+	background-color:transparent; }	
+
+a:hover { 
+	color:#005baa; 
+	text-decoration:underline;
+	background-color:transparent; }		
+
+h1 {	
+	font-weight: normal;
+	color:#005baa;
+	font-size: 2.25em; 
+	margin-bottom:0; }
+	
+h2 {	
+	font-weight: normal;
+	font-size: 1.75em;
+	color:#005baa; 
+	margin-top:0;}	
+
+h3 {
+	font-family: Helvetica, Arial, sans-serif; 
+	font-size: 1.15em; 	
+	color:#00aeef;
+	margin-bottom:6em; }	
+	
+h4 {
+	font-family: Helvetica, Arial, sans-serif; 	
+	font-size: .8em; 
+	color:#005baa; }
+	
+body.cover {
+	padding:0; 
+	margin:0; }	
+
+div.section {
+	text-align:center; 
+	margin-top:8em; 
+	margin-left:5%;
+	margin-right:5%; }	
+
+div.section h1 {
+	text-align:center; }
+
+div.section h2 {
+	text-align:center; }
+
+div.section h3 {
+	text-align:center; }
+	
+div.section h4 {
+	text-align:center; }		
+
+div.section p {
+	text-align:left; }	
+
+div.header {
+	text-align:left;
+	margin-top:4em;
+	margin-bottom: 4em; 
+	padding-left:2em; }		
+
+div.header h2 {
+	text-align:left; }
+
+div.header h4 {
+	text-align:left; }
+
+div.illustration { 
+	text-align:center; 
+	display:block;
+	margin-top:4em;
+	line-height: 1em;
+	width:96%;
+	margin-left:2%;
+	margin-right:2%; }
+	
+div.illustration img { 
+	min-width:150px; 
+	width:100%;
+	max-width:710px;
+	margin-bottom:10px;
+	padding-bottom: 0px; }
+
+div.illustrationvertical { 
+	text-align:center; 
+	display:block;
+	margin-top:4em;
+	line-height: 1em;
+	width:80%;
+	margin-left:10%;
+	margin-right:10%; }
+	
+div.illustrationvertical img { 
+	min-width:150px; 
+	width:100%;
+	max-width:710px;
+	margin-bottom:10px;
+	padding-bottom: 0px; }	
+
+div.logos {
+	margin-top:4em; }
+
+div.illustrationlogo { 
+	text-align:center; 
+	display:block;
+	line-height: 1em;
+	width:70%;
+	margin-bottom:2em;
+	margin-left:15%;
+	margin-right:15%; }
+	
+div.illustrationlogo img { 
+	min-width:150px; 
+	width:80%;
+	max-width:270px;
+	margin-bottom:.5em;
+	padding-bottom: 0px; }	
+	
+span.platename {
+	padding-bottom:5px;
+	border-bottom:1px solid #000; }	
+
+span.fineprint {
+	font-size:65%; 
+	text-align:right; }	
+
+div.quotes {
+	margin-top:2em; }		
+	
+div.works {
+	margin-left:2em; }	
+
+div.biolabel {
+	text-align: right;
+	height:0; 
+	font-size:65%; 
+	font-weight: bold; 
+	font-family: Helvetica, Arial, sans-serif;
+	color:#005baa; 
+	letter-spacing: 1px;
+	padding-right:1em;}
+
+div.biopic {
+	margin-left:2em; }	
+		

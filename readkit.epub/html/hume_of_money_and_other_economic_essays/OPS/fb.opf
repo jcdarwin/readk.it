@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<package version="2.0" unique-identifier="PrimaryID" xmlns="http://www.idpf.org/2007/opf">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dcterms="http://purl.org/dc/terms/">
+    <dc:title>Of Money, and Other Economic Essays</dc:title>
+    <dc:identifier id="PrimaryID" opf:scheme="URN">urn:uuid:167756ea-b1e6-11e2-8f74-001cc0a62c0b</dc:identifier>
+      <dc:identifier opf:scheme="URI">http://www.feedbooks.com/book/6709</dc:identifier>  
+    
+    <dc:language xsi:type="dcterms:RFC4646">en</dc:language>
+    
+    <dc:creator opf:role="aut" opf:file-as="Hume, David">David Hume</dc:creator>
+    
+    <dc:publisher>Feedbooks</dc:publisher>
+    <dc:description>David Hume is known for his philosophical writings, but he also wrote on politics, history, and economics.  This eBook contains 7 economic essays which were first published in Hume&#39;s Political Discourses (1752) and republished in Essays and Treatises on Several Subjects, Volume 1 (1758, 1777). One essay has been praised by the Nobel-Prize-winning economist, Paul Krugman, who said in his newspaper column:
+
+&quot;... Hume also helped found economics: his &#39;Of the Balance of Trade&#39;, published 34 years before The Wealth of Nations, was arguably the first example of modern economic reasoning, based on what amounts to a stylized model, albeit one without any equations or diagrams.&quot; (New York Times, 8 May 2011, &quot;Hume Day&quot;.) ... &quot;You could argue that modern economics really began with David Hume’s &#39;Of the Balance of Trade&#39;, whose core is a gloriously clear thought experiment....&quot; (ibid., 2 Feb 2011,  &quot;Models, Plain and Fancy&quot;.)
+
+Adam Smith (1723-1790), the author of The Wealth of Nations (1776), is commonly considered the &quot;father of modern economics&quot;, but Hume pre-dated Smith in that regard.  Both were Scottish philosophers of the Scottish Enlightenment, and although Hume was a decade older than Smith, they became lifelong friends after they met in 1750.
+
+The essays cover Commerce, Money, Interest, Balance of Trade, Jealousy of Trade, Taxes, and Pubic Credit (national debt).  Hume explained economic phenomena we observe even today, such as the self-correction of job migration to lower cost countries, money supply issues, the undesirable results of tariffs, military buildup in underdeveloped countries, and other topics that give insights into the happenings we read about in the news almost daily.
+
+This eBook is available only for personal and educational uses, non-commercial, with attribution to the source www.davidhume.org.</dc:description>
+    <dc:coverage></dc:coverage>
+    <dc:source>http://davidhume.org/texts/etv1.html</dc:source>
+    <dc:date opf:event="original-publication">1777</dc:date>
+    <dc:date opf:event="ops-publication">2013-04-02</dc:date>
+      <dc:rights>Attribution Non-Commercial Share Alike (cc by-nc-sa)</dc:rights><dc:rights  xsi:type="dcterms:URI">http://creativecommons.org/licenses/by-nc-sa/3.0/</dc:rights>
+    
+          <dc:subject>Non-Fiction</dc:subject>
+          <dc:subject>Business &amp; economics</dc:subject>
+    
+	    <meta name="cover" content="book-cover"/>
+  </metadata>
+
+  <manifest>
+    <!-- Content Documents -->
+    <item id="cover"
+      href="cover.xml"
+      media-type="application/xhtml+xml"/>
+
+    <item id="titlepage"
+      href="title.xml"
+      media-type="application/xhtml+xml"/>
+
+    <item id="about"
+      href="about.xml"
+      media-type="application/xhtml+xml"/>
+
+  
+    <item id="main0"
+      href="main0.xml"
+      media-type="application/xhtml+xml"/>
+
+    <item id="main1"
+      href="main1.xml"
+      media-type="application/xhtml+xml"/>
+
+    <item id="main2"
+      href="main2.xml"
+      media-type="application/xhtml+xml"/>
+
+    <item id="main3"
+      href="main3.xml"
+      media-type="application/xhtml+xml"/>
+
+    <item id="main4"
+      href="main4.xml"
+      media-type="application/xhtml+xml"/>
+
+    <item id="main5"
+      href="main5.xml"
+      media-type="application/xhtml+xml"/>
+
+    <item id="main6"
+      href="main6.xml"
+      media-type="application/xhtml+xml"/>
+
+    <item id="main7"
+      href="main7.xml"
+      media-type="application/xhtml+xml"/>
+
+    <item id="main8"
+      href="main8.xml"
+      media-type="application/xhtml+xml"/>
+
+    <item id="main9"
+      href="main9.xml"
+      media-type="application/xhtml+xml"/>
+
+    <item id="main10"
+      href="main10.xml"
+      media-type="application/xhtml+xml"/>
+
+    <item id="similar"
+      href="similar.xml"
+      media-type="application/xhtml+xml"/>
+
+    <item id="feedbooks"
+      href="feedbooks.xml"
+      media-type="application/xhtml+xml"/>
+    
+    <item id="footnotes"
+      href="footnotes.xml"
+      media-type="application/xhtml+xml"/>
+
+ 
+    <!-- CSS Style Sheets -->
+
+    <item id="page-css"
+      href="css/page.css"
+      media-type="text/css"/>
+
+    <item id="feedbooks-css"
+      href="css/feedbooks.css"
+      media-type="text/css"/>
+
+    <item id="titlepage-css"
+      href="css/title.css"
+      media-type="text/css"/>
+
+    <item id="about-css"
+      href="css/about.css"
+      media-type="text/css"/>
+    
+    <item id="main-css"
+      href="css/main.css"
+      media-type="text/css"/>
+    
+    <item id="footnotes-css"
+      href="css/footnotes.css"
+      media-type="text/css"/>
+
+    <!-- Images -->
+
+    <item id="logo-feedbooks-tiny"
+      href="images/logo-feedbooks-tiny.png"
+      media-type="image/png"/>
+      
+    <item id="logo-feedbooks"
+      href="images/logo-feedbooks.png"
+      media-type="image/png"/>
+
+    <item id="book-cover"
+      href="images/cover.jpg"
+      media-type="image/jpeg"/>
+
+    <!-- NCX -->
+
+    <item id="ncx"
+      href="fb.ncx"
+      media-type="application/x-dtbncx+xml"/>
+
+  </manifest>
+
+  <spine toc="ncx">
+
+  <itemref idref="cover" linear="yes"/>
+
+
+  <itemref idref="titlepage" linear="yes"/>
+
+  <itemref idref="about" linear="yes"/>
+
+  
+  <itemref idref="main0" linear="yes"/>
+
+  <itemref idref="main1" linear="yes"/>
+
+  <itemref idref="main2" linear="yes"/>
+
+  <itemref idref="main3" linear="yes"/>
+
+  <itemref idref="main4" linear="yes"/>
+
+  <itemref idref="main5" linear="yes"/>
+
+  <itemref idref="main6" linear="yes"/>
+
+  <itemref idref="main7" linear="yes"/>
+
+  <itemref idref="main8" linear="yes"/>
+
+  <itemref idref="main9" linear="yes"/>
+
+  <itemref idref="main10" linear="yes"/>
+
+
+  <itemref idref="similar" linear="yes"/>
+
+  <itemref idref="footnotes" linear="no"/>
+
+  <itemref idref="feedbooks" linear="yes"/>
+
+  </spine>
+
+  <guide>
+
+  <reference type="cover" title="Cover" href="cover.xml"/>
+
+  <reference type="title-page" title="Title Page" href="title.xml"/>
+
+  <reference type="bibliography" title="About" href="about.xml"/>
+
+  
+  <reference type="text" title="Main0" href="main0.xml"/>
+
+  <reference type="text" title="Main1" href="main1.xml"/>
+
+  <reference type="text" title="Main2" href="main2.xml"/>
+
+  <reference type="text" title="Main3" href="main3.xml"/>
+
+  <reference type="text" title="Main4" href="main4.xml"/>
+
+  <reference type="text" title="Main5" href="main5.xml"/>
+
+  <reference type="text" title="Main6" href="main6.xml"/>
+
+  <reference type="text" title="Main7" href="main7.xml"/>
+
+  <reference type="text" title="Main8" href="main8.xml"/>
+
+  <reference type="text" title="Main9" href="main9.xml"/>
+
+  <reference type="text" title="Main10" href="main10.xml"/>
+
+  <reference type="text" title="Similar Books" href="similar.xml"/>
+
+  <reference type="copyright-page" title="Feedbooks" href="feedbooks.xml"/>
+
+  </guide>
+</package>

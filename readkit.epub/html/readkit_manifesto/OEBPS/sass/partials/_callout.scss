@@ -1,0 +1,122 @@
+@charset "UTF-8";
+
+// ==========================================================================//
+//
+// $Variables
+//
+// ==========================================================================//
+
+// $Color
+// -------------------------------------//
+
+$info-background-color: #c3ddff;
+$callout-border-color: #3a5999;
+$callout-background-color: rgba(97, 148, 255, 0.95);
+$link-visited: #6194ff;
+$link-unvisited: #3a5999;
+$callout-button-color: $link-unvisited;
+
+// $Dimension
+// -------------------------------------//
+$line-height: 1.2;
+
+// ==========================================================================//
+//
+// $Mixins
+//
+// ==========================================================================//
+
+@mixin callout-border($pos, $size) {
+    border-#{$pos}: #{$size}px solid $callout-border-color;
+}
+
+.callout {
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0;
+    text-decoration: none;
+    text-transform: none;
+    text-rendering: auto;
+}
+.calloutThumbnail {
+    max-width: 100%;
+    cursor: pointer;
+}
+.calloutThumbnailHover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: $callout-background-color;
+    z-index: 10;
+    display: none;
+}
+.calloutThumbnailHover h4 {
+    position: absolute;
+    margin-top: 1rem;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 1.5rem;
+    line-height: $line-height;
+    color: #fff;
+}
+.calloutThumbnailHover h5 {
+    position: absolute;
+    padding-top: 6.875rem;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 0.875rem;
+    color: #fff;
+}
+.thumbnailImage {
+    width: 100%;
+}
+.calloutInfo h4 {
+    padding-top: 0.6875rem;
+    padding-bottom: 0.5rem;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 1.4rem;
+    line-height: $line-height;
+    color: $body-copy-color;
+    margin-bottom: 0.5rem;
+    @include callout-border(bottom, 1);
+}
+.calloutInfo ul {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.calloutInfo ul li {
+    margin-bottom: 0.25rem;
+}
+.calloutInfo {
+    background-color: $info-background-color;
+    padding: 0 10px;
+    a:visited { color: $link-visited; }
+    a, a:hover, a:active, a:focus { color: $link-unvisited; }
+}
+.calloutNav {
+    font-weight: 700;
+    font-style: normal;
+    line-height: $line-height;
+    color: $body-copy-color;
+    height: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    @include callout-border(top, 1);
+}
+.calloutNav button {
+    @include button($callout-button-color);
+    letter-spacing: 0.09rem;
+}
+a {
+    -webkit-transition: color 0.2s ease-out;
+    -moz-transition: color 0.2s ease-out;
+    -o-transition: color 0.2s ease-out;
+    transition: color 0.2s ease-out;
+}
+.calloutNavClose {
+    display: none;
+    padding-top: 0.2rem;
+    float: right;    
+}

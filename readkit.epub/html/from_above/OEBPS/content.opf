@@ -1,0 +1,380 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns="http://www.idpf.org/2007/opf" xmlns:opf="http://www.idpf.org/2007/opf" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" unique-identifier="bookid" version="2.0">
+ <metadata>
+  <dc:identifier opf:scheme="ISBN" id="bookid">urn:isbn:9781936102426</dc:identifier>
+	<dc:language>en-US</dc:language>
+  <dc:title>From Above: Aerial Photography from the Center for Creative Photography</dc:title>
+  <dc:creator opf:role="aut" opf:file-as="Senf, Becky A.">Rebecca A. Senf</dc:creator>
+  <dc:date opf:event="ops-publication">2013-05-04</dc:date>
+  <dc:description>Aerial photography was first invented in 19th century France through the use of tethered hot air balloons. In the time since these first experiments, the role of aerial photography has shifted in response to changing technologies, governments, and societies. Situated above the land, in airplane or helicopter, cameras have been used in service of military reconnaissance and peacetime survey, scientific exploration, photojournalism, and the creation of art. The exhibition &#8220;From Above: Aerial Photography from the Center for Creative Photography&#8221; was on view at the Phoenix Art Museum from May 4 to September 22, 2013. The Collection of the Center for Creative Photography traces those threads from the early 1900s into the 21st century. The exhibition included around 80 works from the Center&#8217;s Collection, along with several loans from artists. The exhibition explored the variety of reasons photographers have taken to the air. Even though all these photographs have strong visual appeal, and can be appreciated as photographic works of art, the prints are grouped according to the intention of their original maker. To underscore the diversity of aerial photography&#8217;s applications, we have invited specialists from a variety of fields (graphic design, cartography, architecture, land management) to respond to the photographs from their particular point of view, encouraging alternate ways of seeing each image.</dc:description>
+  <dc:publisher>Hol Art Books</dc:publisher>
+  <dc:rights>Copyright &#169; Rebecca A. Senf and the Phoenix Museum of Art, 2013</dc:rights>
+  <dc:subject>PHOTOGRAPHY / Subjects &#38; Themes / Aerial</dc:subject>
+  <dc:subject>PHOTOGRAPHY / Collections, Catalogs, Exhibitions / Group Shows</dc:subject>
+  <dc:subject>PHOTOGRAPHY / History</dc:subject>
+  <meta name="cover" content="cover-image" />
+ </metadata>
+ <manifest>
+	<item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml"/>
+	<item id="css" href="css/style.css" media-type="text/css"/>
+	<item id="cover-image" href="images/cover.jpg" media-type="image/jpeg"/>
+	<item id="fromabove_bio_allen" href="fromabove_bio_allen.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_arreola" href="fromabove_bio_arreola.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_bridges" href="fromabove_bio_bridges.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_brown" href="fromabove_bio_brown.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_budnik" href="fromabove_bio_budnik.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_dawson" href="fromabove_bio_dawson.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_evans" href="fromabove_bio_evans.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_garnett" href="fromabove_bio_garnett.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_gohlke" href="fromabove_bio_gohlke.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_goin" href="fromabove_bio_goin.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_gowin" href="fromabove_bio_gowin.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_hagel" href="fromabove_bio_hagel.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_heisey" href="fromabove_bio_heisey.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_henle" href="fromabove_bio_henle.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_hernandez" href="fromabove_bio_hernandez.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_keller" href="fromabove_bio_keller.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_light" href="fromabove_bio_light.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_loew" href="fromabove_bio_loew.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_maisel" href="fromabove_bio_maisel.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_morgan" href="fromabove_bio_morgan.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_rantoul" href="fromabove_bio_rantoul.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_rosano" href="fromabove_bio_rosano.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_rothstein" href="fromabove_bio_rothstein.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_shikany" href="fromabove_bio_shikany.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_smith" href="fromabove_bio_smith.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_steichen" href="fromabove_bio_steichen.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_stemm" href="fromabove_bio_stemm.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_stevens" href="fromabove_bio_stevens.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_strom" href="fromabove_bio_strom.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_stupich" href="fromabove_bio_stupich.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_svoma" href="fromabove_bio_svoma.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_talen" href="fromabove_bio_talen.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_trapido-lurie" href="fromabove_bio_trapido-lurie.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_ugarte" href="fromabove_bio_ugarte.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bio_washburn" href="fromabove_bio_washburn.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bridges01" href="fromabove_bridges01.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bridges02" href="fromabove_bridges02.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bridges03" href="fromabove_bridges03.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bridges04" href="fromabove_bridges04.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bridges05" href="fromabove_bridges05.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bridges06" href="fromabove_bridges06.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_bridges07" href="fromabove_bridges07.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_brown01" href="fromabove_brown01.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_brown03" href="fromabove_brown03.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_budnik01" href="fromabove_budnik01.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_budnik02" href="fromabove_budnik02.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_checklist" href="fromabove_checklist.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_cover" href="fromabove_cover.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_dawson01" href="fromabove_dawson01.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_dawson02" href="fromabove_dawson02.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_dawson03" href="fromabove_dawson03.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_ebook" href="fromabove_ebook.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_endsheet" href="fromabove_endsheet.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_evans01" href="fromabove_evans01.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_evans02" href="fromabove_evans02.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_furtherreading" href="fromabove_furtherreading.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_garnett01" href="fromabove_garnett01.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_garnett02" href="fromabove_garnett02.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_garnett03" href="fromabove_garnett03.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_garnett04" href="fromabove_garnett04.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_gohlke01" href="fromabove_gohlke01.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_gohlke02" href="fromabove_gohlke02.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_goin01" href="fromabove_goin01.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_gowin01" href="fromabove_gowin01.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_gowin02" href="fromabove_gowin02.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_gowin03" href="fromabove_gowin03.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_hagel02" href="fromabove_hagel02.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_heisey01" href="fromabove_heisey01.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_henle01" href="fromabove_henle01.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_intro" href="fromabove_intro.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_keller01" href="fromabove_keller01.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_light01" href="fromabove_light01.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_maisel01" href="fromabove_maisel01.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_maisel02" href="fromabove_maisel02.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_maisel03" href="fromabove_maisel03.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_partnership" href="fromabove_partnership.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_rantoul01" href="fromabove_rantoul01.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_rantoul02" href="fromabove_rantoul02.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_rantoul03" href="fromabove_rantoul03.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_rantoul04" href="fromabove_rantoul04.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_rantoul05" href="fromabove_rantoul05.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_rothstein01" href="fromabove_rothstein01.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_section01_science" href="fromabove_section01_science.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_section02_journalism" href="fromabove_section02_journalism.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_section03_survey" href="fromabove_section03_survey.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_section04_art" href="fromabove_section04_art.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_section05_artists" href="fromabove_section05_artists.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_smith01" href="fromabove_smith01.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_smith02" href="fromabove_smith02.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_smith03" href="fromabove_smith03.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_smith04" href="fromabove_smith04.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_smith05" href="fromabove_smith05.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_smith07" href="fromabove_smith07.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_smith08" href="fromabove_smith08.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_smith09" href="fromabove_smith09.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_steichen01" href="fromabove_steichen01.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_steichen02" href="fromabove_steichen02.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_steichen03" href="fromabove_steichen03.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_steichen04" href="fromabove_steichen04.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_steichen05" href="fromabove_steichen05.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_stevens01" href="fromabove_stevens01.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_stevens02" href="fromabove_stevens02.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_stevens03" href="fromabove_stevens03.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_stevens04" href="fromabove_stevens04.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_stevens05" href="fromabove_stevens05.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_stevens06" href="fromabove_stevens06.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_stevens07" href="fromabove_stevens07.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_stevens08" href="fromabove_stevens08.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_stupich01" href="fromabove_stupich01.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_stupich02" href="fromabove_stupich02.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_stupich03" href="fromabove_stupich03.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_titlepage" href="fromabove_titlepage.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_washburn01" href="fromabove_washburn01.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_washburn02" href="fromabove_washburn02.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_washburn03" href="fromabove_washburn03.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_washburn04" href="fromabove_washburn04.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_washburn05" href="fromabove_washburn05.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_washburn06" href="fromabove_washburn06.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_washburn07" href="fromabove_washburn07.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_washburn08" href="fromabove_washburn08.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_washburn09" href="fromabove_washburn09.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_washburn10" href="fromabove_washburn10.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_washburn11" href="fromabove_washburn11.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_washburn12" href="fromabove_washburn12.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_washburn13" href="fromabove_washburn13.html" media-type="application/xhtml+xml"/>
+	<item id="fromabove_washburn14" href="fromabove_washburn14.html" media-type="application/xhtml+xml"/>
+	<item id="i76317002" href="images/76317002.jpg" media-type="image/jpeg"/>
+	<item id="i76317008" href="images/76317008.jpg" media-type="image/jpeg"/>
+	<item id="i78009001" href="images/78009001.jpg" media-type="image/jpeg"/>
+	<item id="i78100005" href="images/78100005.jpg" media-type="image/jpeg"/>
+	<item id="i78100006" href="images/78100006.jpg" media-type="image/jpeg"/>
+	<item id="i78100008" href="images/78100008.jpg" media-type="image/jpeg"/>
+	<item id="i78100010" href="images/78100010.jpg" media-type="image/jpeg"/>
+	<item id="i78100011" href="images/78100011.jpg" media-type="image/jpeg"/>
+	<item id="i78100015" href="images/78100015.jpg" media-type="image/jpeg"/>
+	<item id="i78100018" href="images/78100018.jpg" media-type="image/jpeg"/>
+	<item id="i78100031" href="images/78100031.jpg" media-type="image/jpeg"/>
+	<item id="i78100032" href="images/78100032.jpg" media-type="image/jpeg"/>
+	<item id="i78100034" href="images/78100034.jpg" media-type="image/jpeg"/>
+	<item id="i78100035" href="images/78100035.jpg" media-type="image/jpeg"/>
+	<item id="i78100038" href="images/78100038.jpg" media-type="image/jpeg"/>
+	<item id="i78100046" href="images/78100046.jpg" media-type="image/jpeg"/>
+	<item id="i78200041" href="images/78200041.jpg" media-type="image/jpeg"/>
+	<item id="i78200045" href="images/78200045.jpg" media-type="image/jpeg"/>
+	<item id="i79061002" href="images/79061002.jpg" media-type="image/jpeg"/>
+	<item id="i79061004" href="images/79061004.jpg" media-type="image/jpeg"/>
+	<item id="i81117009" href="images/81117009.jpg" media-type="image/jpeg"/>
+	<item id="i81117027" href="images/81117027.jpg" media-type="image/jpeg"/>
+	<item id="i81211011" href="images/81211011.jpg" media-type="image/jpeg"/>
+	<item id="i81236022" href="images/81236022.jpg" media-type="image/jpeg"/>
+	<item id="i82079001" href="images/82079001.jpg" media-type="image/jpeg"/>
+	<item id="i82079006" href="images/82079006.jpg" media-type="image/jpeg"/>
+	<item id="i82079010" href="images/82079010.jpg" media-type="image/jpeg"/>
+	<item id="i82102001" href="images/82102001.jpg" media-type="image/jpeg"/>
+	<item id="i82102059" href="images/82102059.jpg" media-type="image/jpeg"/>
+	<item id="i82102061" href="images/82102061.jpg" media-type="image/jpeg"/>
+	<item id="i82102068" href="images/82102068.jpg" media-type="image/jpeg"/>
+	<item id="i82102070" href="images/82102070.jpg" media-type="image/jpeg"/>
+	<item id="i82102073" href="images/82102073.jpg" media-type="image/jpeg"/>
+	<item id="i82102131" href="images/82102131.jpg" media-type="image/jpeg"/>
+	<item id="i82102132" href="images/82102132.jpg" media-type="image/jpeg"/>
+	<item id="i82102159" href="images/82102159.jpg" media-type="image/jpeg"/>
+	<item id="i82102534" href="images/82102534.jpg" media-type="image/jpeg"/>
+	<item id="i85020002" href="images/85020002.jpg" media-type="image/jpeg"/>
+	<item id="i85125047" href="images/85125047.jpg" media-type="image/jpeg"/>
+	<item id="i85125088" href="images/85125088.jpg" media-type="image/jpeg"/>
+	<item id="i88003003" href="images/88003003.jpg" media-type="image/jpeg"/>
+	<item id="i88003007" href="images/88003007.jpg" media-type="image/jpeg"/>
+	<item id="i88003013" href="images/88003013.jpg" media-type="image/jpeg"/>
+	<item id="i88003018" href="images/88003018.jpg" media-type="image/jpeg"/>
+	<item id="i88003020" href="images/88003020.jpg" media-type="image/jpeg"/>
+	<item id="i89033001" href="images/89033001.jpg" media-type="image/jpeg"/>
+	<item id="i98079132" href="images/98079132.jpg" media-type="image/jpeg"/>
+	<item id="i98111046" href="images/98111046.jpg" media-type="image/jpeg"/>
+	<item id="i99067001" href="images/99067001.jpg" media-type="image/jpeg"/>
+	<item id="i2000023001" href="images/2000023001.jpg" media-type="image/jpeg"/>
+	<item id="i2000037049" href="images/2000037049.jpg" media-type="image/jpeg"/>
+	<item id="i2000050025" href="images/2000050025.jpg" media-type="image/jpeg"/>
+	<item id="i2000052002" href="images/2000052002.jpg" media-type="image/jpeg"/>
+	<item id="i2000110056" href="images/2000110056.jpg" media-type="image/jpeg"/>
+	<item id="i2001010003" href="images/2001010003.jpg" media-type="image/jpeg"/>
+	<item id="i2001010004" href="images/2001010004.jpg" media-type="image/jpeg"/>
+	<item id="i2001010006" href="images/2001010006.jpg" media-type="image/jpeg"/>
+	<item id="i2011051002" href="images/2011051002.jpg" media-type="image/jpeg"/>
+	<item id="i2011051007" href="images/2011051007.jpg" media-type="image/jpeg"/>
+	<item id="i2011051010" href="images/2011051010.jpg" media-type="image/jpeg"/>
+	<item id="i2011051011" href="images/2011051011.jpg" media-type="image/jpeg"/>
+	<item id="i2011051013" href="images/2011051013.jpg" media-type="image/jpeg"/>
+	<item id="i2011051014" href="images/2011051014.jpg" media-type="image/jpeg"/>
+	<item id="i2011051020" href="images/2011051020.jpg" media-type="image/jpeg"/>
+	<item id="i2012008001" href="images/2012008001.jpg" media-type="image/jpeg"/>
+	<item id="i2012008002" href="images/2012008002.jpg" media-type="image/jpeg"/>
+	<item id="i2012047003" href="images/2012047003.jpg" media-type="image/jpeg"/>
+	<item id="i2012047008" href="images/2012047008.jpg" media-type="image/jpeg"/>
+	<item id="i2012047012" href="images/2012047012.jpg" media-type="image/jpeg"/>
+	<item id="i2012047015" href="images/2012047015.jpg" media-type="image/jpeg"/>
+	<item id="i2012047021" href="images/2012047021.jpg" media-type="image/jpeg"/>
+	<item id="ag_24_01_029" href="images/ag_24_01_029.jpg" media-type="image/jpeg"/>
+	<item id="ag_24_01_031" href="images/ag_24_01_031.jpg" media-type="image/jpeg"/>
+	<item id="ag_24_01_035" href="images/ag_24_01_035.jpg" media-type="image/jpeg"/>
+	<item id="ag_24_02_091" href="images/ag_24_02_091.jpg" media-type="image/jpeg"/>
+	<item id="ag_24_02_124" href="images/ag_24_02_124.jpg" media-type="image/jpeg"/>
+	<item id="allen" href="images/allen.jpg" media-type="image/jpeg"/>
+	<item id="arreola" href="images/arreola.jpg" media-type="image/jpeg"/>
+	<item id="BagdadAZ2" href="images/BagdadAZ2.jpg" media-type="image/jpeg"/>
+	<item id="hernandez" href="images/hernandez.jpg" media-type="image/jpeg"/>
+	<item id="loew" href="images/loew.jpg" media-type="image/jpeg"/>
+	<item id="logo_ccp" href="images/logo_ccp.gif" media-type="image/gif"/>
+	<item id="logo_fromabove" href="images/logo_fromabove.gif" media-type="image/gif"/>
+	<item id="logo_hol" href="images/logo_hol.gif" media-type="image/gif"/>
+	<item id="logo_infocus" href="images/logo_infocus.gif" media-type="image/gif"/>
+	<item id="logo_phxart_full" href="images/logo_phxart_full.gif" media-type="image/gif"/>
+	<item id="logo_phxart" href="images/logo_phxart.gif" media-type="image/gif"/>
+	<item id="logo_snellwilmer" href="images/logo_snellwilmer.gif" media-type="image/gif"/>
+	<item id="michaellight_book.jpg" href="images/michaellight_book.jpg" media-type="image/jpeg"/>
+	<item id="morgan" href="images/morgan.jpg" media-type="image/jpeg"/>
+	<item id="rosano" href="images/rosano.jpg" media-type="image/jpeg"/>
+	<item id="shikany" href="images/shikany.jpg" media-type="image/jpeg"/>
+	<item id="SilverCityNM1" href="images/SilverCityNM1.jpg" media-type="image/jpeg"/>
+	<item id="SoWR_heisey" href="images/SoWR_heisey.jpg" media-type="image/jpeg"/>
+	<item id="stemm" href="images/stemm.jpg" media-type="image/jpeg"/>
+	<item id="strom" href="images/strom.jpg" media-type="image/jpeg"/>
+	<item id="svoma" href="images/svoma.jpg" media-type="image/jpeg"/>
+	<item id="talen" href="images/talen.jpg" media-type="image/jpeg"/>
+	<item id="trapido-lurie" href="images/trapido-lurie.jpg" media-type="image/jpeg"/>
+	<item id="ugarte" href="images/ugarte.jpg" media-type="image/jpeg"/>
+ </manifest>
+ <spine toc="ncx">
+	<itemref idref="fromabove_cover"/>
+	<itemref idref="fromabove_titlepage"/>
+	<itemref idref="fromabove_ebook"/>
+	<itemref idref="fromabove_intro"/>
+	<itemref idref="fromabove_section01_science"/>
+	<itemref idref="fromabove_washburn01"/>
+	<itemref idref="fromabove_washburn02"/>
+	<itemref idref="fromabove_washburn03"/>
+	<itemref idref="fromabove_washburn04"/>
+	<itemref idref="fromabove_washburn05"/>
+	<itemref idref="fromabove_washburn06"/>
+	<itemref idref="fromabove_washburn07"/>
+	<itemref idref="fromabove_washburn08"/>
+	<itemref idref="fromabove_washburn09"/>
+	<itemref idref="fromabove_washburn10"/>
+	<itemref idref="fromabove_washburn11"/>
+	<itemref idref="fromabove_washburn12"/>
+	<itemref idref="fromabove_washburn13"/>
+	<itemref idref="fromabove_washburn14"/>
+	<itemref idref="fromabove_keller01"/>
+	<itemref idref="fromabove_section02_journalism"/>
+	<itemref idref="fromabove_smith01"/>
+	<itemref idref="fromabove_smith02"/>
+	<itemref idref="fromabove_smith03"/>
+	<itemref idref="fromabove_smith04"/>
+	<itemref idref="fromabove_smith05"/>
+	<itemref idref="fromabove_smith07"/>
+	<itemref idref="fromabove_smith08"/>
+	<itemref idref="fromabove_smith09"/>
+	<itemref idref="fromabove_hagel02"/>
+	<itemref idref="fromabove_section03_survey"/>
+	<itemref idref="fromabove_steichen01"/>
+	<itemref idref="fromabove_steichen02"/>
+	<itemref idref="fromabove_steichen03"/>
+	<itemref idref="fromabove_steichen04"/>
+	<itemref idref="fromabove_steichen05"/>
+	<itemref idref="fromabove_stevens01"/>
+	<itemref idref="fromabove_stevens02"/>
+	<itemref idref="fromabove_stevens03"/>
+	<itemref idref="fromabove_stevens04"/>
+	<itemref idref="fromabove_stevens05"/>
+	<itemref idref="fromabove_stevens06"/>
+	<itemref idref="fromabove_stevens07"/>
+	<itemref idref="fromabove_stevens08"/>
+	<itemref idref="fromabove_rothstein01"/>
+	<itemref idref="fromabove_section04_art"/>
+	<itemref idref="fromabove_garnett01"/>
+	<itemref idref="fromabove_garnett02"/>
+	<itemref idref="fromabove_garnett03"/>
+	<itemref idref="fromabove_garnett04"/>
+	<itemref idref="fromabove_henle01"/>
+	<itemref idref="fromabove_brown01"/>
+	<itemref idref="fromabove_brown03"/>
+	<itemref idref="fromabove_gowin01"/>
+	<itemref idref="fromabove_gowin02"/>
+	<itemref idref="fromabove_gowin03"/>
+	<itemref idref="fromabove_budnik01"/>
+	<itemref idref="fromabove_budnik02"/>
+	<itemref idref="fromabove_maisel01"/>
+	<itemref idref="fromabove_maisel02"/>
+	<itemref idref="fromabove_maisel03"/>
+	<itemref idref="fromabove_gohlke01"/>
+	<itemref idref="fromabove_gohlke02"/>
+	<itemref idref="fromabove_dawson01"/>
+	<itemref idref="fromabove_dawson02"/>
+	<itemref idref="fromabove_dawson03"/>
+	<itemref idref="fromabove_heisey01"/>
+	<itemref idref="fromabove_evans01"/>
+	<itemref idref="fromabove_evans02"/>
+	<itemref idref="fromabove_goin01"/>
+	<itemref idref="fromabove_stupich01"/>
+	<itemref idref="fromabove_stupich02"/>
+	<itemref idref="fromabove_stupich03"/>
+	<itemref idref="fromabove_light01"/>
+	<itemref idref="fromabove_bridges01"/>
+	<itemref idref="fromabove_bridges02"/>
+	<itemref idref="fromabove_bridges03"/>
+	<itemref idref="fromabove_bridges04"/>
+	<itemref idref="fromabove_bridges05"/>
+	<itemref idref="fromabove_bridges06"/>
+	<itemref idref="fromabove_bridges07"/>
+	<itemref idref="fromabove_rantoul01"/>
+	<itemref idref="fromabove_rantoul02"/>
+	<itemref idref="fromabove_rantoul03"/>
+	<itemref idref="fromabove_rantoul04"/>
+	<itemref idref="fromabove_rantoul05"/>
+	<itemref idref="fromabove_section05_artists"/>
+	<itemref idref="fromabove_bio_allen"/>
+	<itemref idref="fromabove_bio_arreola"/>
+	<itemref idref="fromabove_bio_bridges"/>
+	<itemref idref="fromabove_bio_brown"/>
+	<itemref idref="fromabove_bio_budnik"/>
+	<itemref idref="fromabove_bio_dawson"/>
+	<itemref idref="fromabove_bio_evans"/>
+	<itemref idref="fromabove_bio_garnett"/>
+	<itemref idref="fromabove_bio_gohlke"/>
+	<itemref idref="fromabove_bio_goin"/>
+	<itemref idref="fromabove_bio_gowin"/>
+	<itemref idref="fromabove_bio_hagel"/>
+	<itemref idref="fromabove_bio_heisey"/>
+	<itemref idref="fromabove_bio_henle"/>
+	<itemref idref="fromabove_bio_hernandez"/>
+	<itemref idref="fromabove_bio_keller"/>
+	<itemref idref="fromabove_bio_light"/>
+	<itemref idref="fromabove_bio_loew"/>
+	<itemref idref="fromabove_bio_maisel"/>
+	<itemref idref="fromabove_bio_morgan"/>
+	<itemref idref="fromabove_bio_rantoul"/>
+	<itemref idref="fromabove_bio_rosano"/>
+	<itemref idref="fromabove_bio_rothstein"/>
+	<itemref idref="fromabove_bio_shikany"/>
+	<itemref idref="fromabove_bio_smith"/>
+	<itemref idref="fromabove_bio_steichen"/>
+	<itemref idref="fromabove_bio_stemm"/>
+	<itemref idref="fromabove_bio_stevens"/>
+	<itemref idref="fromabove_bio_strom"/>
+	<itemref idref="fromabove_bio_stupich"/>
+	<itemref idref="fromabove_bio_svoma"/>
+	<itemref idref="fromabove_bio_talen"/>
+	<itemref idref="fromabove_bio_trapido-lurie"/>
+	<itemref idref="fromabove_bio_ugarte"/>
+	<itemref idref="fromabove_bio_washburn"/>
+	<itemref idref="fromabove_checklist"/>
+	<itemref idref="fromabove_furtherreading"/>
+	<itemref idref="fromabove_partnership"/>
+	<itemref idref="fromabove_endsheet"/>
+ </spine>
+ <guide>
+ 	<reference type="cover" title="Cover" href="fromabove_cover.html" />
+ </guide>
+ <!-- Document created by Hol Art Books, 2013 -->
+</package>

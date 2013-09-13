@@ -1,0 +1,92 @@
+// $Text Indentation Value
+// -------------------------------------//
+
+$indent-val: 1.0em;
+
+// $Measure Margin Calculator
+// -------------------------------------//
+// Surely the typeplate guys have got the measure margin calculation 
+// back-to-front, and this is the way to do it?
+
+@function measure-margin($scale, $measure, $value) {
+    // divide 1 unit of measure by given font-size & return a relative em value
+    @return ($scale/$measure)#{$value};
+}
+
+// $Headings
+// -------------------------------------//
+
+// Our media queries shift the heading sizes defined previously
+// down a notch, as they're too big for mobile devices.
+@mixin media-query($h, $size) {
+
+    /* iPhone 2G-4S in portrait & landscape */
+    @media only screen 
+    and (min-device-width : 320px) 
+    and (max-device-width : 480px) {
+        #{$h} {
+            @include modular-scale($size, $font-base, '#{$type-scale-unit-value}', $measure);
+        }
+    }
+
+    /* iPhone 5 in portrait & landscape */
+    @media only screen 
+    and (min-device-width : 320px) 
+    and (max-device-width : 568px) {
+        #{$h} {
+            @include modular-scale($size, $font-base, '#{$type-scale-unit-value}', $measure);
+        }
+    }
+
+    /* Phone */
+    @media (max-width : 240px) {
+        #{$h} {
+            @include modular-scale($size / 1.1, $font-base, '#{$type-scale-unit-value}', $measure);
+        }
+    }
+
+}
+
+@include media-query(h1, $beta) {};
+@include media-query(h2, $gamma) {};
+@include media-query(h3, $delta) {};
+@include media-query(h4, $epsilon) {};
+@include media-query(h5, $zeta) {};
+
+// $Parargraphs
+// -------------------------------------//
+
+p {
+    & + p {
+        //siblings indentation
+        text-indent: 0;
+        margin-top: 0;
+    }
+}
+
+
+// $Lists
+// -------------------------------------//
+
+ol, ul.square, ul.circle, ul.disc {
+    margin-left: $indent-val * 1;
+}
+
+ul, ol {
+    margin-bottom: $indent-val * 2;
+}
+
+li {
+    margin-bottom: $indent-val * 0.75;
+}
+
+// $Hyphenation
+// -------------------------------------//
+
+.lede {
+    @include css-hyphens(none); 
+}
+
+h1, h2, h3, h4 {
+    @include hyphens(none);    
+}

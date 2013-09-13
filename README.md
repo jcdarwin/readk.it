@@ -242,24 +242,12 @@ The grunt-readkit-dom-munger plugin is a patched version of [grunt-dom-munger](h
           updatedContents = $.html();  
         }
 
-2. ```node_modules/grunt-dom-munger/node_modules/cheerio/node_modules/htmlparser2/lib/Parser.js```
+2. ```node_modules/grunt-readkit-dom-munger/npm-shrinkwrap.json```
 
-    Comment out the meta reference in voidElements, otherwise we end up with broken meta tags in the opf file (specifically, meta tags that have both an opening and a closing tag lose their closing tag):
+    We use ```npm-shrinkwrap.json``` to specify a hard dependency for our own version of [htmlparser2](https://github.com/jcdarwin/htmlparser2) (used by cheerio: ```node_modules/grunt-readkit-dom-munger/node_modules/cheerio/node_modules/htmlparser2/lib/Parser.js```), in which we've commented out the meta reference in voidElements, to avoid ending up with broken meta tags in the opf file (specifically, meta tags that have both an opening and a closing tag lose their closing tag):
 
         var voidElements = {
         ...
         //  meta: true,
         ...
         };
-
-###grunt-contrib-compass
-
-As we use cygwin, add the following hack into node_modules\grunt-contrib-compass\tasks\compass.js, directly before "compile(args, cb);":
-
-      if (args[0] === 'compass.bat') {
-        console.log("Our little hack to get 'grunt compass' to work in cygwin -- don't use compass.bat");
-        args.shift();
-        args.unshift('/usr/bin/compass');
-        args.unshift('ruby.exe');
-        console.log(args);
-      }

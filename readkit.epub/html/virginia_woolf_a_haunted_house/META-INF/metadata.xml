@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entry xmlns="http://www.w3.org/2005/Atom" xmlns:thr="http://purl.org/syndication/thread/1.0" xmlns:dcterms="http://purl.org/dc/terms/">
+<title>A Haunted House</title>
+<id>http://www.feedbooks.com/book/1388</id>
+<author>
+  <name>Virginia Woolf</name>
+  <uri>http://www.feedbooks.com/author/206</uri>
+</author>
+<published>2007-07-15T21:50:48Z</published>
+<updated>2012-10-31T15:37:44Z</updated>
+<dcterms:language>en</dcterms:language>
+<dcterms:issued>1921</dcterms:issued>
+<category label="Fiction" term="FBFIC000000"/>
+<category label="Occult &amp; Supernatural" term="FBFIC024000"/>
+<category label="Supernatural Creatures" term="FBFIC024020N"/>
+<category label="Ghost" term="FBFIC012000"/>
+<category label="Short Stories" term="FBFIC029000"/>
+<summary>Virginia Woolf's intention to publish her short stories is carried out in this volume, posthumously collected by her husband, Leonard Woolf. Containing six of eight stories from Monday or Tuesday, seven that appeared in magazines, and five other s...</summary>
+<dcterms:extent>680 words</dcterms:extent>
+<dcterms:source>http://gutenberg.net.au</dcterms:source>
+<rights>This work is available for countries where copyright is Life+70 and in the USA.</rights>
+<link type="text/html" rel="alternate" href="http://generation.feedbooks.com/book/1388" title="View on Feedbooks"/>
+<link type="application/epub+zip" rel="http://opds-spec.org/acquisition" href="http://generation.feedbooks.com/book/1388.epub"/>
+<link type="application/x-mobipocket-ebook" rel="http://opds-spec.org/acquisition" href="http://generation.feedbooks.com/book/1388.mobi"/>
+<link type="application/pdf" rel="http://opds-spec.org/acquisition" href="http://generation.feedbooks.com/book/1388.pdf"/>
+<link type="image/jpeg" rel="http://opds-spec.org/image" href="http://covers.feedbooks.net/book/1388.jpg?size=large&amp;t=1351697864"/>
+<link type="image/jpeg" rel="http://opds-spec.org/image/thumbnail" href="http://covers.feedbooks.net/book/1388.jpg?t=1351697864"/>
+<link type="application/atom+xml;profile=opds-catalog;kind=acquisition" rel="related" href="http://generation.feedbooks.com/author/206/books/top.atom?lang=en" title="From the same author"/>
+<link type="application/atom+xml;profile=opds-catalog;kind=navigation" rel="related" href="http://generation.feedbooks.com/book/1388/categories.atom" title="Categories for this book"/>
+<link type="application/atom+xml;profile=opds-catalog;kind=acquisition" rel="related" href="http://generation.feedbooks.com/book/1388/similar.atom" title="People also downloaded..."/>
+<link type="application/atom+xml;profile=opds-catalog;kind=navigation" rel="related" href="http://generation.feedbooks.com/book/1388/lists.atom" title="Reading lists for this book"/>
+<link type="application/atom+xml" rel="replies" href="http://generation.feedbooks.com/book/1388/comments.atom" title="Comments for this book (0)" thr:count="0" thr:updated="2009-08-18T01:17:25Z"/>
+<link type="text/html" rel="related" href="http://www.goodreads.com/mobile/book/isbn/0156028034" title="View on Goodreads"/>
+<content type="html">&lt;p&gt;Virginia Woolf's intention to publish her short stories is carried out in this volume, posthumously collected by her husband, Leonard Woolf. Containing six of eight stories from Monday or Tuesday, seven that appeared in magazines, and five other stories, the book makes available Virginia Woolf's shorter works of fiction.&lt;/p&gt;</content>
+  <link type="application/atom+xml" rel="contents" href="http://generation.feedbooks.com/book/1388/contents.atom"/>
+</entry>

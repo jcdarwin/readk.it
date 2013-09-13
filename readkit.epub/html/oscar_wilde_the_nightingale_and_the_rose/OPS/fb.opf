@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<package version="2.0" unique-identifier="PrimaryID" xmlns="http://www.idpf.org/2007/opf">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dcterms="http://purl.org/dc/terms/">
+    <dc:title>The Nightingale and the Rose</dc:title>
+    <dc:identifier id="PrimaryID" opf:scheme="URN">urn:uuid:23faa63e-a956-11e2-aad1-001cc0a62c0b</dc:identifier>
+      <dc:identifier opf:scheme="URI">http://www.feedbooks.com/book/21</dc:identifier>  
+    
+    <dc:language xsi:type="dcterms:RFC4646">en</dc:language>
+    
+    <dc:creator opf:role="aut" opf:file-as="Wilde, Oscar">Oscar Wilde</dc:creator>
+    
+    <dc:publisher>Feedbooks</dc:publisher>
+    <dc:description>A nightingale overhears a student complaining that his professor&#39;s daughter will not dance with him, as he is unable to give her a red rose. The nightingale visits all the rose-trees in the garden, and one of the white roses tell her that there&#39;s a way to produce a red rose, but only if the nightingale is prepared to sing the sweetest song for the rose all night, and sacrifice her life to do so. Seeing the student in tears, the nightingale carries out the ritual, and impales herself on the rose-tree&#39;s thorn so that her heart&#39;s blood can stain the rose. The student takes the rose to the professor&#39;s daughter, but she again rejects him because another man has sent her some real jewels, and &quot;everybody knows that jewels cost far more than flowers.&quot; The student angrily throws the rose into the gutter, returns to his study of metaphysics, and decides not to believe in true love anymore.</dc:description>
+    <dc:coverage></dc:coverage>
+    <dc:source>Wikisource</dc:source>
+    <dc:date opf:event="original-publication">1888</dc:date>
+    <dc:date opf:event="ops-publication">2006-12-14</dc:date>
+<dc:rights></dc:rights>    
+          <dc:subject>Fiction</dc:subject>
+          <dc:subject>Short Stories</dc:subject>
+          <dc:subject>Juvenile &amp; Young Adult</dc:subject>
+    
+	    <meta name="cover" content="book-cover"/>
+  </metadata>
+
+  <manifest>
+    <!-- Content Documents -->
+    <item id="cover"
+      href="cover.xml"
+      media-type="application/xhtml+xml"/>
+
+    <item id="titlepage"
+      href="title.xml"
+      media-type="application/xhtml+xml"/>
+
+    <item id="about"
+      href="about.xml"
+      media-type="application/xhtml+xml"/>
+
+  
+    <item id="main0"
+      href="main0.xml"
+      media-type="application/xhtml+xml"/>
+
+    <item id="similar"
+      href="similar.xml"
+      media-type="application/xhtml+xml"/>
+
+    <item id="feedbooks"
+      href="feedbooks.xml"
+      media-type="application/xhtml+xml"/>
+    
+ 
+    <!-- CSS Style Sheets -->
+
+    <item id="page-css"
+      href="css/page.css"
+      media-type="text/css"/>
+
+    <item id="feedbooks-css"
+      href="css/feedbooks.css"
+      media-type="text/css"/>
+
+    <item id="titlepage-css"
+      href="css/title.css"
+      media-type="text/css"/>
+
+    <item id="about-css"
+      href="css/about.css"
+      media-type="text/css"/>
+    
+    <item id="main-css"
+      href="css/main.css"
+      media-type="text/css"/>
+    
+    <item id="footnotes-css"
+      href="css/footnotes.css"
+      media-type="text/css"/>
+
+    <!-- Images -->
+
+    <item id="logo-feedbooks-tiny"
+      href="images/logo-feedbooks-tiny.png"
+      media-type="image/png"/>
+      
+    <item id="logo-feedbooks"
+      href="images/logo-feedbooks.png"
+      media-type="image/png"/>
+
+    <item id="book-cover"
+      href="images/cover.jpg"
+      media-type="image/jpeg"/>
+
+    <!-- NCX -->
+
+    <item id="ncx"
+      href="fb.ncx"
+      media-type="application/x-dtbncx+xml"/>
+
+  </manifest>
+
+  <spine toc="ncx">
+
+  <itemref idref="cover" linear="yes"/>
+
+
+  <itemref idref="titlepage" linear="yes"/>
+
+  <itemref idref="about" linear="yes"/>
+
+  
+  <itemref idref="main0" linear="yes"/>
+
+
+  <itemref idref="similar" linear="yes"/>
+
+  <itemref idref="feedbooks" linear="yes"/>
+
+  </spine>
+
+  <guide>
+
+  <reference type="cover" title="Cover" href="cover.xml"/>
+
+  <reference type="title-page" title="Title Page" href="title.xml"/>
+
+  <reference type="bibliography" title="About" href="about.xml"/>
+
+  
+  <reference type="text" title="Main0" href="main0.xml"/>
+
+  <reference type="text" title="Similar Books" href="similar.xml"/>
+
+  <reference type="copyright-page" title="Feedbooks" href="feedbooks.xml"/>
+
+  </guide>
+</package>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8" />
+        <title>What is Readk.it?</title>
+        <link href="css/grids.css" rel="stylesheet" />
+        <link href="css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+
+        <script src="js/libs/modernizr.min.js"></script>
+        <!--
+        <script src="js/libs/jquery-1.8.3.min.js"></script>
+        <script src="js/libs/jquery.easing.1.3.min.js"></script>
+        <script src="js/libs/jquery.fitvids.min.js"></script>
+        <script src="js/script.js"></script>
+        -->
+    </head>
+    <body>
+        <section class="container">
+            <header class="header">
+                <h1>What is Readk.it?</h1>
+                <hr />
+            </header>
+
+            <article>
+                <div>
+                    <h4>Readk.it is:</h4>
+                    <ul>
+                        <li>a reading system which can serve a library of EPUB titles</li>
+                        <li>a reading system which can be embedded into the EPUB file and travel with it</li>
+                        <li>lightweight and easily-customisable by the publisher to take advantage of browser capabilities</li>
+                        <li>a reading system which tries to move away from some of the <a rel="external" href="http://en.wikipedia.org/wiki/Skeuomorph">skeuomorphisms</a> of current vendor reading systems, instead taking advantage of the possibilities of digital reading.</li>
+                    </ul>
+
+                    <h4>An embeddable reading system</h4>
+                    <p>Having the reading system travel with the eBook means that publisher&#8217;s intentions regarding the presentation of their content (as expressed via the configuration of Readk.it in a given EPUB file) will always be honoured when a web browser is used to read the eBook.</p>
+                    <p>At the same time, as the EPUB file remains fully compliant with the EPUB standard, it is able to be read by any vendor reading system that recognises EPUB content (although, of course, possibly with less richness of content than is available when using Readk.it itself to view the content).</p>
+                    <p>Although excelling as a reading system that can be customised and embedded in a particular eBook publication, Readk.it can also be easily configured to web-serve a library of titles.</p>
+
+                    <h4>A lightweight and easily-customisable reading system</h4>
+                    <p>As Readk.it is built using open web technologies (HTML, CSS and JavaScript), it is easy for a web developer to alter the behaviour of Readk.it as they desire. This may include:</p>
+
+                    <ul>
+                        <li>changing the Readk.it chrome, such that some features are disabled, or other features added.</li>
+                        <li>customising the branding and user interface of Readk.it to reflect their preferences.</li>
+                        <li>customising Readk.it to support special features of the content.</li>
+                    </ul>
+
+                    <p>Readk.it uses only client-side JavaScript to perform its work; as far as a web server is concerned, all of the Readk.it files and the EPUB/s that Readk.it is presenting are static. This means there is no requirement for server-side logic, and all of Readk.it and the EPUB files that it is presenting can be served from cache, or solely from a cloud-based storage service such as Amazon&#8217;s S3.
+                    </p>
+
+                    <p>Readk.it does use local storage and app cache to store user preferences and EPUB data client-side, in order to allow the user to read their content in multiple sessions. The first time a publication is accessed using Readk.it, the entire EPUB file is loaded into app cache storage, thus allowing the user to continue reading the publication in future while offline.
+                    </p>
+
+                    <p>This approach does mean that Readk.it is limited by the size of the publication; if your content requires more than a reasonable amount of multimedia (particularly video), you might like to think about dividing your content up into separate publications.
+                    </p>
+
+                    <h4>A reading system for digital reading</h4>
+                    <p>Readk.it avoids some of the more obvious ways that features necessary in printed books have been re-implemented in other digital reading systems, but without adding obvious value. Like the <a rel="external" href="http://en.wikipedia.org/wiki/Landau_(automobile)">Landau roofs</a> used on early motorcars, many of these features, such as page-turn and faux wooden bookshelves tend towards the decorative rather than functional.</p>
+
+                    <p>In contrast to page-based presentation of many current vendor reading systems, Readk.it by default presents a chapter as a single folio, allowing the reader to read the chapter content by continuously scrolling down the content, but also to access other chapters by scrolling across.</p>
+
+                    <p>When the reader swipes back to a chapter they have previously been reading, they are positioned at the same place as they were at previously.</p>
+
+                </div>
+
+            </article>
+        </section>
+    </body>
+</html>

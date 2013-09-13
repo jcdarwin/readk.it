@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<package version="2.0" unique-identifier="PrimaryID" xmlns="http://www.idpf.org/2007/opf">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dcterms="http://purl.org/dc/terms/">
+    <dc:title>2 B R O 2 B</dc:title>
+    <dc:identifier id="PrimaryID" opf:scheme="URN">urn:uuid:f31961a4-aa0e-11e2-9b97-001cc0a62c0b</dc:identifier>
+      <dc:identifier opf:scheme="URI">http://www.feedbooks.com/book/912</dc:identifier>  
+    
+    <dc:language xsi:type="dcterms:RFC4646">en</dc:language>
+    
+    <dc:creator opf:role="aut" opf:file-as="Vonnegut, Kurt">Kurt Vonnegut</dc:creator>
+    
+    <dc:publisher>Feedbooks</dc:publisher>
+    <dc:description>2 B R 0 2 B is a satiric short story that imagines life (and death) in a future world where aging has been “cured” and population control is mandated and administered by the government.</dc:description>
+    <dc:coverage></dc:coverage>
+    <dc:source>http://www.gutenberg.org</dc:source>
+    <dc:date opf:event="original-publication">1962</dc:date>
+    <dc:date opf:event="ops-publication">2007-05-04</dc:date>
+<dc:rights>Please read the legal notice included in this e-book and/or check the copyright status in your country.</dc:rights>    
+          <dc:subject>Fiction</dc:subject>
+          <dc:subject>Humorous</dc:subject>
+          <dc:subject>Science Fiction</dc:subject>
+          <dc:subject>Short Stories</dc:subject>
+    
+	    <meta name="cover" content="book-cover"/>
+  </metadata>
+
+  <manifest>
+    <!-- Content Documents -->
+    <item id="cover"
+      href="cover.xml"
+      media-type="application/xhtml+xml"/>
+
+    <item id="titlepage"
+      href="title.xml"
+      media-type="application/xhtml+xml"/>
+
+    <item id="about"
+      href="about.xml"
+      media-type="application/xhtml+xml"/>
+
+  
+    <item id="main0"
+      href="main0.xml"
+      media-type="application/xhtml+xml"/>
+
+    <item id="similar"
+      href="similar.xml"
+      media-type="application/xhtml+xml"/>
+
+    <item id="feedbooks"
+      href="feedbooks.xml"
+      media-type="application/xhtml+xml"/>
+    
+ 
+    <!-- CSS Style Sheets -->
+
+    <item id="page-css"
+      href="css/page.css"
+      media-type="text/css"/>
+
+    <item id="feedbooks-css"
+      href="css/feedbooks.css"
+      media-type="text/css"/>
+
+    <item id="titlepage-css"
+      href="css/title.css"
+      media-type="text/css"/>
+
+    <item id="about-css"
+      href="css/about.css"
+      media-type="text/css"/>
+    
+    <item id="main-css"
+      href="css/main.css"
+      media-type="text/css"/>
+    
+    <item id="footnotes-css"
+      href="css/footnotes.css"
+      media-type="text/css"/>
+
+    <!-- Images -->
+
+    <item id="logo-feedbooks-tiny"
+      href="images/logo-feedbooks-tiny.png"
+      media-type="image/png"/>
+      
+    <item id="logo-feedbooks"
+      href="images/logo-feedbooks.png"
+      media-type="image/png"/>
+
+    <item id="book-cover"
+      href="images/cover.jpg"
+      media-type="image/jpeg"/>
+
+    <!-- NCX -->
+
+    <item id="ncx"
+      href="fb.ncx"
+      media-type="application/x-dtbncx+xml"/>
+
+  </manifest>
+
+  <spine toc="ncx">
+
+  <itemref idref="cover" linear="yes"/>
+
+
+  <itemref idref="titlepage" linear="yes"/>
+
+  <itemref idref="about" linear="yes"/>
+
+  
+  <itemref idref="main0" linear="yes"/>
+
+
+  <itemref idref="similar" linear="yes"/>
+
+  <itemref idref="feedbooks" linear="yes"/>
+
+  </spine>
+
+  <guide>
+
+  <reference type="cover" title="Cover" href="cover.xml"/>
+
+  <reference type="title-page" title="Title Page" href="title.xml"/>
+
+  <reference type="bibliography" title="About" href="about.xml"/>
+
+  
+  <reference type="text" title="Main0" href="main0.xml"/>
+
+  <reference type="text" title="Similar Books" href="similar.xml"/>
+
+  <reference type="copyright-page" title="Feedbooks" href="feedbooks.xml"/>
+
+  </guide>
+</package>

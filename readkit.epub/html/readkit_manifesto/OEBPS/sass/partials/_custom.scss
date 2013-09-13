@@ -1,0 +1,143 @@
+@charset "UTF-8";
+
+// ==========================================================================//
+//
+// $BaseStyles
+//
+// ==========================================================================//
+
+// $Typography
+// -------------------------------------//
+
+@include font-face(Lato, font-files(
+    "Lato/Lato-Reg.ttf", truetype,
+    "Lato/Lato-Reg.woff", woff), false, normal, normal, false, Lato-Regular);
+
+@include font-face(Lato, font-files(
+    "Lato/Lato-Bol.ttf", truetype,
+    "Lato/Lato-Bol.woff", woff), false, bold, false, false, Lato-Bold);
+
+@include font-face(Lato, font-files(
+    "Lato/Lato-RegIta.ttf", truetype,
+    "Lato/Lato-RegIta.woff", woff), false, normal, italic, false, Lato-Italic);
+
+
+body {
+    background-color: $background-color;
+    font-family: "Lato";
+    margin: 0 1em 1em 1em;
+}
+
+// ==========================================================================//
+//
+// $LayoutStyles
+//
+// ==========================================================================//
+
+// ==========================================================================//
+//
+// $ModuleStyles
+//
+// ==========================================================================//
+
+.header {
+    @include border(top, 3);
+    padding-top: 2rem;
+}
+
+.icon-container {
+  text-align: center;
+  padding-bottom: 1rem;
+}
+
+.header-icon {
+  width: 102px;
+  height: 102px;
+  border-radius: 51px;
+  display:inline-block;
+  padding-bottom: 0;
+}
+
+.header-icon img {
+    width: 102px;
+    height: 102px;
+}
+
+.blurb {
+    font-weight: normal;
+}
+
+nav {
+    display: block;
+    float: right;
+    padding-top: 3.2rem;
+    margin-bottom: -2.1rem;
+    padding-bottom: 1.4rem;
+}
+
+nav ul {
+    list-style: none outside;
+    margin-bottom: 20px;
+
+    li {
+        display: inline;
+        padding-left: 1.625rem;
+
+        button, a {
+            @include button($button-color);
+        }
+    }
+}
+
+nav ul li:first-child {
+    padding-left: 0;
+}
+
+article {
+    float: left;
+}
+
+hr {
+    border: solid $border-color;
+    border-width: 1px 0 0;
+    clear: both;
+    margin: 0.625rem 0 1.875rem;
+    height: 0;
+}
+
+
+// ==========================================================================//
+//
+// $StateStyles
+//
+// ==========================================================================//
+
+a, a:visited { color: $link-visited; }
+a:hover, a:active, a:focus { color: $link-unvisited; }
+
+.main_icon {
+    cursor: pointer;
+}
+
+html:-moz-full-screen {
+   background: $background-color;
+}
+
+html:-webkit-full-screen {
+    background: $background-color;
+}
+
+html:fullscreen {
+   background: $background-color;
+}
+
+.tooltip {
+  display:none;
+  position: absolute;
+  background-color: $offline-color;
+  border-radius: 0.2rem;
+  padding: 0.3rem;
+  color: $light-color;
+  font-size:0.85rem;
+  z-index: 1;
+}

@@ -1,0 +1,6 @@
+[
+
+{"name": "Accessible EPUB 3", "version": "3.0", "identifier": "urn:isbn:9781449328030", "path": "html/accessible_epub_3/", "total_pages": 22, "cover": "./html/accessible_epub_3/META-INF/../EPUB/covers/9781449328030_lrg.jpg", "solo": "urn_isbn_9781449328030_accessible_epub_3.html"}
+,
+{"name": "A Room of One's Own", "version": "2.0", "identifier": "urn:uuid:fec04522-a7c0-11e2-8a72-001cc0a62c0b", "path": "html/woolf_a_room_of_ones_own/", "total_pages": 13, "cover": "./html/woolf_a_room_of_ones_own/META-INF/../OPS/images/cover.jpg", "solo": "urn_uuid_fec04522-a7c0-11e2-8a72-001cc0a62c0b_a_room_of_one_s_own.html"}
+]

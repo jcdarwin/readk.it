@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="bookid">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <dc:title>Readk.it: A Manifesto</dc:title>
+        <dc:creator>Jason Darwin</dc:creator>
+        <dc:language>en</dc:language>
+        <dc:rights>&#169; Jason Darwin, 2013</dc:rights>
+        <dc:publisher>meBooks</dc:publisher>
+        <dc:identifier id="bookid">readkit_a_manifesto</dc:identifier>
+        <meta property="dcterms:modified">2012-08-20T03:18:06Z</meta>
+        <meta name="cover" content="images_cover_front_png"/>
+<!-- <x-metadata><EmbeddedCover>images\cover_front.png</EmbeddedCover></x-metadata> -->
+    </metadata>
+    <manifest>
+    <!-- '.'  -->
+        <item id="allow_html" href="allow.html" media-type="application/xhtml+xml" properties="scripted"/>
+        <item id="index_html" href="index.html" media-type="application/xhtml+xml" properties="scripted"/>
+        <item id="what_html" href="what.html" media-type="application/xhtml+xml" properties="scripted"/>
+    <!-- './css'  -->
+        <item id="css_screen_css" href="css/screen.css" media-type="text/css"/>
+    <!-- './css/pure'  -->
+        <item id="css_grids_css" href="css/grids.css" media-type="text/css"/>
+    <!-- './fonts'  -->
+    <!-- './fonts/Lato'  -->
+        <item id="fonts_Lato_Lato-Bol_ttf" href="fonts/Lato/Lato-Bol.ttf" media-type="application/vnd.ms-opentype"/>
+        <item id="fonts_Lato_Lato-Bol_woff" href="fonts/Lato/Lato-Bol.woff" media-type="application/vnd.ms-opentype"/>
+        <item id="fonts_Lato_Lato-Ita_ttf" href="fonts/Lato/Lato-RegIta.ttf" media-type="application/vnd.ms-opentype"/>
+        <item id="fonts_Lato_Lato-Ita_woff" href="fonts/Lato/Lato-RegIta.woff" media-type="application/vnd.ms-opentype"/>
+        <item id="fonts_Lato_Lato-Reg_ttf" href="fonts/Lato/Lato-Reg.ttf" media-type="application/vnd.ms-opentype"/>
+        <item id="fonts_Lato_Lato-Reg_woff" href="fonts/Lato/Lato-Reg.woff" media-type="application/vnd.ms-opentype"/>
+        <item id="fonts_Lato_SIL_Open_Font_License_1_1_txt" href="fonts/Lato/SIL_Open_Font_License_1.1.txt" media-type="text/plain"/>
+    <!-- './images'  -->
+        <item id="images_callout_01_jpg" href="images/callout_01.jpg" media-type="image/jpeg"/>
+        <item id="images_callout_02_jpg" href="images/callout_02.jpg" media-type="image/jpeg"/>
+        <item id="images_callout_03_jpg" href="images/callout_03.jpg" media-type="image/jpeg"/>
+        <item id="images_callout_04_jpg" href="images/callout_04.jpg" media-type="image/jpeg"/>
+        <item id="images_callout_05_jpg" href="images/callout_05.jpg" media-type="image/jpeg"/>
+        <item id="images_cover_front_png" href="images/cover_front.png" media-type="image/png"/>
+        <item id="images_icon-102x102_png" href="images/icon-102x102.png" media-type="image/png"/>
+    <!-- './js'  -->
+        <item id="js_script_js" href="js/script.js" media-type="text/javascript"/>
+        <item id="js_queries_min_js" href="js/queries.js" media-type="text/javascript"/>
+    <!-- './js/libs'  -->
+        <item id="js_libs_enquire_min_js" href="js/libs/enquire.min.js" media-type="text/javascript"/>
+        <item id="js_libs_jquery_easing_1_3_min_js" href="js/libs/jquery.easing.1.3.min.js" media-type="text/javascript"/>
+        <item id="js_libs_jquery_fitvids_min_js" href="js/libs/jquery.fitvids.min.js" media-type="text/javascript"/>
+        <item id="js_libs_media_match_min_js" href="js/libs/media.match.min.js" media-type="text/javascript"/>
+        <item id="js_libs_modernizr_min_js" href="js/libs/modernizr.min.js" media-type="text/javascript"/>
+        <item id="js_libs_detectizr_min_js" href="js/libs/detectizr.min.js" media-type="text/javascript"/>
+        <item id="js_libs_screenfull_min_js" href="js/libs/screenfull.min.js" media-type="text/javascript"/>
+        <item id="toc" properties="nav" href="toc.html" media-type="application/xhtml+xml"/>    
+    </manifest>
+    <spine page-progression-direction="ltr">
+        <itemref idref="index_html"/>
+        <itemref idref="what_html"/>
+        <itemref idref="allow_html"/>
+    </spine>
+  <guide>
+      <reference type="toc" title="Table of Contents" href="toc.html%23toc"/>
+  </guide>
+</package>

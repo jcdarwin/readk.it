@@ -141,11 +141,12 @@ In order to fully understand the above syntax you'll need to be familiar with [R
 Readk.it uses [Grunt](http://gruntjs.com/) as its build tool. In order to compile EPUBs with Readk.it, you'll need to:
 
 1. Clone the Readk.it repository
-1. Ensure that you have Ruby and Compass installed on your system
-1. Ensure that you have Python installed on your system
-1. [install node](http://nodejs.org/download/)
-1. [install grunt](http://gruntjs.com/installing-grunt)
-1. copy your unzipped EPUBs to the **readkit.epub** directory, one EPUB per folder
+1. Ensure that you have [Ruby and Compass installed](http://compass-style.org/install/) on your system
+1. Ensure that you have [Python](http://www.python.org/) installed on your system
+1. [Install node](http://nodejs.org/download/)
+1. [Install grunt](http://gruntjs.com/getting-started): ```npm install -g grunt-cli```
+1. Install the node modules for the application: ```npm install```
+1. Copy your unzipped EPUBs to the **readkit.epub** directory, one EPUB per folder
 1. At a command line, navigate to the top-level directory and simply issue the command:
 
         grunt
@@ -198,29 +199,6 @@ Readk.it itself uses only CSS for Media Query support for differing device sizes
 ###Testing
 
 * [The readk.it testing framework: http://localhost:8000/OEBPS/readk.it/js/test/](http://localhost:8000/OEBPS/readk.it/js/test/)
-
-###<a id="grunt"></a>Grunt
-
-Install grunt-cli (Cygwin under windows):
-
-    npm install -g grunt-cli
-
-Install dependendices:
-
-    npm install grunt --save-dev
-    npm install grunt-contrib-jshint --save-dev
-    npm install grunt-contrib-concat --save-dev
-    npm install grunt-contrib-compass --save-dev
-    npm install grunt-contrib-nodeunit --save-dev
-    npm install grunt-contrib-watch --save-dev
-    npm install grunt-zip --save-dev
-    npm install grunt-shell --save-dev
-    npm install grunt-contrib-connect --save-dev
-    npm install grunt-contrib-requirejs --save-dev
-    npm install grunt-readkit-dom-munger --save-dev
-    npm install grunt-readkit-datauris --save-dev
-    npm install grunt-image-embed --save-dev
-    npm install grunt-bake --save-dev
 
 ##Patches
 

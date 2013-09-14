@@ -726,12 +726,19 @@ module.exports = function(grunt) {
                 <item id="readk_it_fonts_SourceSansPro_SourceSansPro-Regular_woff" href="readk.it/fonts/SourceSansPro/SourceSansPro-Regular.woff" media-type="application/vnd.ms-opentype"></item>
             <!-- './readk.it/images'  -->
                 <item id="readk_it_images_apple-touch-icon-114x114_png" href="readk.it/images/apple-touch-icon-114x114.png" media-type="image/png"></item>
+                <item id="readk_it_images_apple-touch-icon-144x144_png" href="readk.it/images/apple-touch-icon-144x144.png" media-type="image/png"></item>
                 <item id="readk_it_images_apple-touch-icon-57x57-precomposed_png" href="readk.it/images/apple-touch-icon-57x57-precomposed.png" media-type="image/png"></item>
                 <item id="readk_it_images_apple-touch-icon-57x57_png" href="readk.it/images/apple-touch-icon-57x57.png" media-type="image/png"></item>
                 <item id="readk_it_images_apple-touch-icon-72x72_png" href="readk.it/images/apple-touch-icon-72x72.png" media-type="image/png"></item>
                 <item id="readk_it_images_site_preloader_gif" href="readk.it/images/site_preloader.gif" media-type="image/gif"></item>
                 <item id="readk_it_images_spinner_gif" href="readk.it/images/spinner.gif" media-type="image/gif"></item>
-                <item id="readk_it_images_splash_png" href="readk.it/images/splash.png" media-type="image/png"></item>
+                <item id="readk_it_images_apple-touch-startup-image-320x460_png" href="readk.it/images/apple-touch-startup-image-320x460.png" media-type="image/png"></item>
+                <item id="readk_it_images_apple-touch-startup-image-640x920_png" href="readk.it/images/apple-touch-startup-image-640x920.png" media-type="image/png"></item>
+                <item id="readk_it_images_apple-touch-startup-image-640x1096_png" href="readk.it/images/apple-touch-startup-image-640x1096.png" media-type="image/png"></item>
+                <item id="readk_it_images_apple-touch-startup-image-748x1024_png" href="readk.it/images/apple-touch-startup-image-748x1024.png" media-type="image/png"></item>
+                <item id="readk_it_images_apple-touch-startup-image-768x1004_png" href="readk.it/images/apple-touch-startup-image-768x1004.png" media-type="image/png"></item>
+                <item id="readk_it_images_apple-touch-startup-image-1536x2008_png" href="readk.it/images/apple-touch-startup-image-1536x2008.png" media-type="image/png"></item>
+                <item id="readk_it_images_apple-touch-startup-image-2048x1496_png" href="readk.it/images/apple-touch-startup-image-2048x1496.png" media-type="image/png"></item>
             <!-- './readk.it/js'  -->
                 <item id="readk_it_js_client_config_js" href="readk.it/js/client.config.js" media-type="text/javascript"></item>
                 <item id="readk_it_js_readkit_js" href="readk.it/js/readkit.js" media-type="text/javascript"></item>
@@ -779,12 +786,19 @@ module.exports = function(grunt) {
             nd.ms-opentype' />
             <!-- './readk.it/images'  -->
                 <item id='readk_it_images_apple-touch-icon-114x114_png' href='readk.it/images/apple-touch-icon-114x114.png' media-type='image/png' />
+                <item id="readk_it_images_apple-touch-icon-144x144_png" href="readk.it/images/apple-touch-icon-144x144.png" media-type="image/png"></item>
                 <item id='readk_it_images_apple-touch-icon-57x57-precomposed_png' href='readk.it/images/apple-touch-icon-57x57-precomposed.png' media-type='image/png' />
                 <item id='readk_it_images_apple-touch-icon-57x57_png' href='readk.it/images/apple-touch-icon-57x57.png' media-type='image/png' />
                 <item id='readk_it_images_apple-touch-icon-72x72_png' href='readk.it/images/apple-touch-icon-72x72.png' media-type='image/png' />
                 <item id='readk_it_images_site_preloader_gif' href='readk.it/images/site_preloader.gif' media-type='image/gif' />
                 <item id='readk_it_images_spinner_gif' href='readk.it/images/spinner.gif' media-type='image/gif' />
-                <item id='readk_it_images_splash_png' href='readk.it/images/splash.png' media-type='image/png' />
+                <item id="readk_it_images_apple-touch-startup-image-320x460_png" href="readk.it/images/apple-touch-startup-image-320x460.png" media-type="image/png"></item>
+                <item id="readk_it_images_apple-touch-startup-image-640x920_png" href="readk.it/images/apple-touch-startup-image-640x920.png" media-type="image/png"></item>
+                <item id="readk_it_images_apple-touch-startup-image-640x1096_png" href="readk.it/images/apple-touch-startup-image-640x1096.png" media-type="image/png"></item>
+                <item id="readk_it_images_apple-touch-startup-image-748x1024_png" href="readk.it/images/apple-touch-startup-image-748x1024.png" media-type="image/png"></item>
+                <item id="readk_it_images_apple-touch-startup-image-768x1004_png" href="readk.it/images/apple-touch-startup-image-768x1004.png" media-type="image/png"></item>
+                <item id="readk_it_images_apple-touch-startup-image-1536x2008_png" href="readk.it/images/apple-touch-startup-image-1536x2008.png" media-type="image/png"></item>
+                <item id="readk_it_images_apple-touch-startup-image-2048x1496_png" href="readk.it/images/apple-touch-startup-image-2048x1496.png" media-type="image/png"></item>
             <!-- './readk.it/js'  -->
                 <item id='readk_it_js_client_config_js' href='readk.it/js/client.config.js' media-type='text/javascript' />
                 <item id='readk_it_js_readkit_js' href='readk.it/js/readkit.js' media-type='text/javascript' />

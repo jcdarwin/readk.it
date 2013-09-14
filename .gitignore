@@ -6,3 +6,4 @@
 .DS_Store
 manifest.json
 node_modules
+/readkit.epub/html

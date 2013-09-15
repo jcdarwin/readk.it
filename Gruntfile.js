@@ -26,6 +26,23 @@
 /*global module:false*/
 module.exports = function(grunt) {
 
+  function processManifestDev(err, stdout, stderr, cb) {
+    generateDynamicTasks(runDynamicTasks, 'dev', cb);
+  }
+
+  function processManifestProd(err, stdout, stderr, cb) {
+    var config = grunt.file.read('readk.it/js/app/config.js');
+    if (/lite\:\s*true/.test(config)) {
+      // prod_lite is a version of Readk.it that is smaller, as it foregoes:
+      // * Drag and drop (not needed for mobile)
+      // * Modernizr / Detectizr
+      generateDynamicTasks(runDynamicTasks, 'prod_lite', cb);
+    } else {
+      generateDynamicTasks(runDynamicTasks, 'prod', cb);
+    }
+
+  }
+
   // Project configuration.
   grunt.initConfig({
     // Metadata.
@@ -45,6 +62,9 @@ module.exports = function(grunt) {
         'dist',
         'build',
         '.sass-cache'
+      ],
+      build_readkit: [
+        'build/readkit'
       ],
       // Now that we've finished, remove the build directories.
       after: [
@@ -112,7 +132,39 @@ module.exports = function(grunt) {
     },
 
     jshint: {
-      // Set dynamically
+      // Check our js
+      readkit: {
+        options: {
+          '-W061': true, // W061: eval can be harmful.
+          '-W083': true, // W083: Don't make functions within a loop.
+          '-W098': true, // W098: 'e' is defined but never used.
+          '-W117': true, // W117: 'client' is not defined.
+          curly: true,
+          eqeqeq: true,
+          immed: true,
+          latedef: true,
+          newcap: true,
+          noarg: true,
+          sub: true,
+          undef: true,
+          unused: true,
+          boss: true,
+          eqnull: true,
+          browser: true,
+          globals: {
+            enquire: true,
+            jQuery: true,
+            Modernizr: true,
+            screenfull: true,
+            document: true,
+            navigator: true
+          },
+          ignores: ['<%= readkit_src %>/js/lib/*.js', '<%= readkit_src %>/js/lib/**/*.js', '<%= readkit_src %>/js/test/qunit/*.js', '<%= readkit_src %>/library/js/lib/*.js', '<%= readkit_src %>/library/js/lib/**/*.js']
+        },
+        files: {
+          src: ['Gruntfile.js', '<%= readkit_src %>/**/*.js']
+        }
+      }
     },
 
     compass: {
@@ -499,6 +551,31 @@ module.exports = function(grunt) {
         src: [opf_path_src]
       });
 
+      // Read the manifest html entries from the opf file
+      grunt.config('readkit_dom_munger.' + identifier + '_opf_html', {
+        options: {
+          read: {selector: 'manifest item[media-type="application/xhtml+xml"]', attribute: 'href', writeto: 'manifestHtmlRefs', isPath:true}
+        },
+        src: [opf_path_src]
+      });
+
+      // Read the client scripts from the html files
+      grunt.config('readkit_dom_munger.' + identifier + '_client_scripts', {
+        options: {
+          read: {selector: 'script', attribute: 'src', writeto: 'clientScriptRefs', isPath:false, concatenate: true}
+        },
+        src: ['<%= readkit_dom_munger.data.manifestHtmlRefs %>']
+      });
+
+      // Copy our client script files to the build directory
+      grunt.config('copy.' + identifier + '_client_scripts_to_build', {
+        options: {
+        },
+        files: [
+          {expand: true, src: ['<%= readkit_dom_munger.data.clientScriptRefs %>'], cwd: oebps_path_src, dest: 'build/readkit/', filter: 'isFile'}
+        ]
+      });
+
       // Copy our EPUB files to the dist directory
       grunt.config('copy.' + identifier + '_epub_to_dist', {
         options: {
@@ -610,36 +687,14 @@ module.exports = function(grunt) {
         ]
       });
 
-      // Check our js
-      grunt.config('jshint.' + identifier, {
+      grunt.config('copy.' + identifier + '_client_config_to_build', {
         options: {
-          curly: true,
-          eqeqeq: true,
-          immed: true,
-          latedef: true,
-          newcap: true,
-          noarg: true,
-          sub: true,
-          undef: true,
-          unused: true,
-          boss: true,
-          eqnull: true,
-          browser: true,
-          globals: {
-            enquire: true,
-            jQuery: true,
-            Modernizr: true,
-            screenfull: true,
-            document: true,
-            navigator: true
-          }
         },
-        gruntfile: {
-          src: 'Gruntfile.js'
-        },
-        js: {
-          src: [oebps_path_dest + '/**/*.js']
-        }
+        files: [
+          {expand: true, cwd: oebps_path_src + '/readk.it/js/',
+            src: ['client.config.js'],
+            dest: 'build/readkit/js', filter: 'isFile'}
+        ]
       });
 
       grunt.config(identifier + '_config_prod', {
@@ -677,8 +732,18 @@ module.exports = function(grunt) {
             $('meta[name="apple-mobile-web-app-capable"]').remove();
             $('meta[name="apple-mobile-web-app-status-bar-style"]').remove();
             $('head').append('<style><!--(bake css/screen.css)--></style>');
-            $('script#readkit-client').removeAttr('src').append('<!--(bake js/client.config.js)-->');
+            $('script#readkit-client').remove();
+//            $('script#readkit-client').removeAttr('src').append('<!--(bake js/client.config.js)-->');
             $('script#readkit-entry').removeAttr('src').append('<!--(bake ../readkit.js)-->');
+          }
+        },
+        src: ['build/readkit/index.html']
+      });
+
+      grunt.config('readkit_dom_munger.' + identifier + '_solo_index_remove_library', {
+        options: {
+          callback: function($) {
+            $('.readkit-library').removeAttr('data-library');
           }
         },
         src: ['build/readkit/index.html']
@@ -698,19 +763,18 @@ module.exports = function(grunt) {
       grunt.config('readkit_dom_munger.' + identifier + '_opf_mixin_prod', {
         options: {
           xmlMode: true,
-          append: {selector: 'manifest', html: (function () {/*
+          append: {selector: 'manifest', html: function () {/*
             <!-- './readk.it'  -->
                 <item id="readk_it_favicon_ico" href="readk.it/favicon.ico" media-type="image/vnd.microsoft.icon"></item>
-                <item id="readk_it_index_html" href="readk.it/index.html" media-type="text/html"></item>
+                <item id="readk_it_index_html" href="readk.it/index.html" media-type="text/plain"></item>
                 <item id="readk_it_offline_manifest" href="readk.it/offline.manifest" media-type="text/plain"></item>
             <!-- './readk.it/css'  -->
+                <item id="readk_it_css_fontello_css" href="readk.it/css/fontello.css" media-type="text/plain"></item>
                 <item id="readk_it_css_screen_css" href="readk.it/css/readkit-screen.css" media-type="text/plain"></item>
                 <item id="readk_it_css_drag_and_drop_css" href="readk.it/css/drag_and_drop.css" media-type="text/plain"></item>
                 <item id="readk_it_css_add-to-homescreen_style_add2home_css" href="readk.it/css/add2home.css" media-type="text/plain"></item>
             <!-- './readk.it/fonts'  -->
             <!-- './readk.it/fonts/fontello'  -->
-            <!-- './readk.it/fonts/fontello/css'  -->
-                <item id="readk_it_fonts_fontello_css_fontello_css" href="readk.it/fonts/fontello/css/fontello.css" media-type="text/plain"></item>
             <!-- './readk.it/fonts/fontello/font'  -->
                 <item id="readk_it_fonts_fontello_font_fontello_ttf" href="readk.it/fonts/fontello/font/fontello.ttf" media-type="application/vnd.ms-opentype"></item>
                 <item id="readk_it_fonts_fontello_font_fontello_woff" href="readk.it/fonts/fontello/font/fontello.woff" media-type="application/vnd.ms-opentype"></item>
@@ -727,7 +791,6 @@ module.exports = function(grunt) {
             <!-- './readk.it/images'  -->
                 <item id="readk_it_images_apple-touch-icon-114x114_png" href="readk.it/images/apple-touch-icon-114x114.png" media-type="image/png"></item>
                 <item id="readk_it_images_apple-touch-icon-144x144_png" href="readk.it/images/apple-touch-icon-144x144.png" media-type="image/png"></item>
-                <item id="readk_it_images_apple-touch-icon-57x57-precomposed_png" href="readk.it/images/apple-touch-icon-57x57-precomposed.png" media-type="image/png"></item>
                 <item id="readk_it_images_apple-touch-icon-57x57_png" href="readk.it/images/apple-touch-icon-57x57.png" media-type="image/png"></item>
                 <item id="readk_it_images_apple-touch-icon-72x72_png" href="readk.it/images/apple-touch-icon-72x72.png" media-type="image/png"></item>
                 <item id="readk_it_images_site_preloader_gif" href="readk.it/images/site_preloader.gif" media-type="image/gif"></item>
@@ -742,7 +805,9 @@ module.exports = function(grunt) {
             <!-- './readk.it/js'  -->
                 <item id="readk_it_js_client_config_js" href="readk.it/js/client.config.js" media-type="text/javascript"></item>
                 <item id="readk_it_js_readkit_js" href="readk.it/js/readkit.js" media-type="text/javascript"></item>
-            */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1]
+            <!-- './readk.it/js/lib/zip'  -->
+                <item id='readk_it_js_lib_zip_inflate_js' href='readk.it/js/lib/zip/inflate.js' media-type='text/javascript' />
+            */}.toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1]
           }
         },
         src: [opf_path_dest]
@@ -754,19 +819,18 @@ module.exports = function(grunt) {
       grunt.config('readkit_dom_munger.' + identifier + '_opf_mixin_dev', {
         options: {
           xmlMode: true,
-          append: {selector: 'manifest', html: (function () {/*
+          append: {selector: 'manifest', html: function () {/*
             <!-- './readk.it'  -->
                 <item id='readk_it_favicon_ico' href='readk.it/favicon.ico' media-type='image/vnd.microsoft.icon' />
-                <item id='readk_it_index_html' href='readk.it/index.html' media-type='text/html' />
+                <item id='readk_it_index_html' href='readk.it/index.html' media-type='text/plain' />
                 <item id="readk_it_offline_manifest" href="readk.it/offline.manifest" media-type="text/plain"></item>
             <!-- './readk.it/css'  -->
+                <item id="readk_it_css_fontello_css" href="readk.it/css/fontello.css" media-type="text/plain"></item>
                 <item id='readk_it_css_add2home_css' href='readk.it/css/add2home.css' media-type='text/plain' />
                 <item id='readk_it_css_drag_and_drop_css' href='readk.it/css/drag_and_drop.css' media-type='text/plain' />
                 <item id='readk_it_css_readkit-screen_css' href='readk.it/css/readkit-screen.css' media-type='text/plain' />
             <!-- './readk.it/fonts'  -->
             <!-- './readk.it/fonts/fontello'  -->
-            <!-- './readk.it/fonts/fontello/css'  -->
-                <item id='readk_it_fonts_fontello_css_fontello_css' href='readk.it/fonts/fontello/css/fontello.css' media-type='text/plain' />
             <!-- './readk.it/fonts/fontello/font'  -->
                 <item id='readk_it_fonts_fontello_font_fontello_ttf' href='readk.it/fonts/fontello/font/fontello.ttf' media-type='application/vnd.ms-opentype' />
                 <item id='readk_it_fonts_fontello_font_fontello_woff' href='readk.it/fonts/fontello/font/fontello.woff' media-type='application/vnd.ms-opentype' />
@@ -787,7 +851,6 @@ module.exports = function(grunt) {
             <!-- './readk.it/images'  -->
                 <item id='readk_it_images_apple-touch-icon-114x114_png' href='readk.it/images/apple-touch-icon-114x114.png' media-type='image/png' />
                 <item id="readk_it_images_apple-touch-icon-144x144_png" href="readk.it/images/apple-touch-icon-144x144.png" media-type="image/png"></item>
-                <item id='readk_it_images_apple-touch-icon-57x57-precomposed_png' href='readk.it/images/apple-touch-icon-57x57-precomposed.png' media-type='image/png' />
                 <item id='readk_it_images_apple-touch-icon-57x57_png' href='readk.it/images/apple-touch-icon-57x57.png' media-type='image/png' />
                 <item id='readk_it_images_apple-touch-icon-72x72_png' href='readk.it/images/apple-touch-icon-72x72.png' media-type='image/png' />
                 <item id='readk_it_images_site_preloader_gif' href='readk.it/images/site_preloader.gif' media-type='image/gif' />
@@ -848,7 +911,7 @@ module.exports = function(grunt) {
             <!-- './readk.it/js/test/qunit'  -->
                 <item id='readk_it_js_test_qunit_qunit_css' href='readk.it/js/test/qunit/qunit.css' media-type='text/plain' />
                 <item id='readk_it_js_test_qunit_qunit_js' href='readk.it/js/test/qunit/qunit.js' media-type='text/javascript' />
-            */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1]
+            */}.toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1]
           }
         },
         src: [opf_path_dest]
@@ -882,7 +945,7 @@ module.exports = function(grunt) {
       // Move the EPUB file to the top level of the readkit.epub directory.
       grunt.config('shell.' + identifier + '_mv', {
         command: [
-          'mv dist/readkit.epub/' + path + '/' + identifier + '_' + name + '.epub dist/readkit.epub',
+          'mv dist/readkit.epub/' + path + identifier + '_' + name + '.epub dist/readkit.epub',
           'echo Zipped ' + identifier + '_' + name + '.epub to dist'
         ].join('&&'),
         options: {
@@ -902,6 +965,7 @@ module.exports = function(grunt) {
         'clean:before',
         'compass:readkit',
         'copy:readkit_prod_to_build',
+        'jshint:readkit',
         'cssmin:readkit',
         'concat:readkit',
         'imageEmbed:build',
@@ -932,6 +996,7 @@ module.exports = function(grunt) {
         'concat:readkit',
         'imageEmbed:build',
         'copy:readkit_prodlite_to_build',
+        'jshint:readkit',
         'config_mode_reader',
         'requirejs:compile_readkit',
         'readkit_dom_munger:index_reader',
@@ -978,18 +1043,27 @@ module.exports = function(grunt) {
 
         // Our publication-specific prod/prod lite tasks
         var tasksForProd = [
+          'clean:build_readkit',
+          'copy:readkit_prod_to_build',
+          'cssmin:readkit',
+          'concat:readkit',
+          'imageEmbed:build',
           'config_mode_publication',
           'readkit_dom_munger:' + identifier + '_metaInf',
           'readkit_dom_munger:' + identifier + '_oebps',
           'readkit_dom_munger:' + identifier + '_opf',
+          'readkit_dom_munger:' + identifier + '_opf_html',
+          'readkit_dom_munger:' + identifier + '_client_scripts',
           'copy:' + identifier + '_epub_to_dist',
+          'copy:' + identifier + '_client_scripts_to_build',
+          'copy:' + identifier + '_client_config_to_build',
           'copy:content_js_to_build',
           identifier + '_config_prod',
+          'mixin_client_config',
           'requirejs:compile_readkit',
           'copy:' + identifier + '_readkit_prod_to_dist',
           'copy:' + identifier + '_readkit_assets_to_dist',
           'copy:' + identifier + '_client_config_to_dist',
-          'jshint:' + identifier,
           'readkit_dom_munger:' + identifier + '_readkit_index',
           'readkit_dom_munger:' + identifier + '_opf_mixin_prod',
           'shell:' + identifier + '_zip',
@@ -999,8 +1073,9 @@ module.exports = function(grunt) {
           'requirejs:compile_readkit', // compile solo, including the data URIs in content.js
           'readkit_dom_munger:' + identifier + '_solo_index',
           'bake:' + identifier + '_solo',
-          'copy:' + identifier + '_solo_index_to_dist',
           'copy:' + identifier + '_solo_index_to_library',
+          'readkit_dom_munger:' + identifier + '_solo_index_remove_library',
+          'copy:' + identifier + '_solo_index_to_dist',
           'copy:' + identifier + '_cover_to_library'
         ];
         prodTasks = prodTasks.concat(tasksForProd);
@@ -1015,7 +1090,6 @@ module.exports = function(grunt) {
           'copy:' + identifier + '_readkit_dev_to_dist',
           'copy:' + identifier + '_readkit_assets_to_dist',
           'copy:' + identifier + '_client_config_to_dist',
-          'jshint:' + identifier,
           'readkit_dom_munger:' + identifier + '_opf_mixin_dev',
           'shell:' + identifier + '_zip',
           'shell:' + identifier + '_mv',
@@ -1023,8 +1097,9 @@ module.exports = function(grunt) {
           'copy:' + identifier + '_readkit_dev_to_solo',
           'readkit_dom_munger:' + identifier + '_solo_index',
           'bake:' + identifier + '_solo',
-          'copy:' + identifier + '_solo_index_to_dist',
           'copy:' + identifier + '_solo_index_to_library',
+          'readkit_dom_munger:' + identifier + '_solo_index_remove_library',
+          'copy:' + identifier + '_solo_index_to_dist',
           'copy:' + identifier + '_cover_to_library'
         ];
         devTasks = devTasks.concat(tasksForDev);
@@ -1051,26 +1126,36 @@ module.exports = function(grunt) {
       cb();
    };
 
-  function processManifestDev(err, stdout, stderr, cb) {
-    generateDynamicTasks(runDynamicTasks, 'dev', cb);
-  }
-
-  function processManifestProd(err, stdout, stderr, cb) {
-    var config = grunt.file.read('readk.it/js/app/config.js');
-    if (/lite\:\s*true/.test(config)) {
-      // prod_lite is a version of Readk.it that is smaller, as it foregoes:
-      // * Drag and drop (not needed for mobile)
-      // * Modernizr / Detectizr
-      generateDynamicTasks(runDynamicTasks, 'prod_lite', cb);
-    } else {
-      generateDynamicTasks(runDynamicTasks, 'prod', cb);
-    }
-
-  }
-
   // Register our static tasks.
   grunt.registerTask('cleanBefore', ['clean:before']);
   grunt.registerTask('cleanAfter', ['clean:after']);
+
+  grunt.registerTask('mixin_client_config', 'Mixin the client config to the require compilation', function(){
+    // Mixin any client EPUB paths to the Readk.it paths
+    var extend = function(obj, defaults) {
+        for (var i in defaults) {
+            if (!obj[i]) {
+                obj[i] = defaults[i];
+            }
+        }
+    };
+    eval(grunt.file.read('build/readkit/js/client.config.js'));
+
+    // Mixin our client paths to our readkit paths
+    var paths = grunt.config.get('requirejs.compile_readkit.options.paths');
+    extend(paths, client.paths);
+    paths.client_js = paths.client_js_build;
+    grunt.config.set('requirejs.compile_readkit.options.paths', paths);
+
+    // Mixin our client includes to our readkit includes
+    var include = grunt.config.get('requirejs.compile_readkit.options.include');
+    grunt.config.set('requirejs.compile_readkit.options.include', include.concat(client.required));
+
+    // Mixin our client shims to our readkit shims
+    var shim = grunt.config.get('requirejs.compile_readkit.options.shim');
+    extend(shim, client.shims);
+    grunt.config.set('requirejs.compile_readkit.options.shim', shim);
+  });
 
   grunt.registerTask('config_mode_publication', 'Configure the publication mode', function(){
     var config = grunt.file.read('build/readkit/js/app/config.js');
@@ -1099,7 +1184,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('readme_epub', 'Write the Readkit EPUB Readme file', function(){
-    var readme = (function () {/*
+    var readme = function () {/*
 #Readkit EPUB
 
 The EPUB files in this directory contain Readkit, meaning they will function as conventional EPUB files, readable in all compliant EPUB reading systems.
@@ -1115,12 +1200,12 @@ The EPUB content can then be read in one of three different ways using Readkit:
 3. Either using a file URL or web-served, drag and drop another EPUB file onto the browser window to start reading the new file.
 
 For more information, visit the [Readk.it home page](http://readk.it)
-      */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
+      */}.toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
     grunt.file.write('dist/readkit.epub/README.md', readme);
   });
 
   grunt.registerTask('readme_library', 'Write the Readkit Library Readme file', function(){
-    var readme = (function () {/*
+    var readme = function () {/*
 #Readkit Library
 
 To access the Readkit Library, webserve Readk.it from the readkit.library directory, and then in your browser navigate to the library index.html file, e.g. <code>http://localhost:8000/library/library.html</code>
@@ -1128,12 +1213,12 @@ To access the Readkit Library, webserve Readk.it from the readkit.library direct
 You'll then be able to choose the EPUB content you want to read.
 
 For more information, visit the [Readk.it home page](http://readk.it)
-      */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
+      */}.toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
     grunt.file.write('dist/readkit.library/README.md', readme);
   });
 
   grunt.registerTask('readme_reader', 'Write the Readkit Reader Readme file', function(){
-    var readme = (function () {/*
+    var readme = function () {/*
 #Readkit Reader
 
 The Readk.it Reader is a single html file which allows you to read EPUB content in one of two ways:
@@ -1144,12 +1229,12 @@ The Readk.it Reader is a single html file which allows you to read EPUB content 
 Either using a file URL or web-served, drag and drop another EPUB file onto the browser window to start reading.
 
 For more information, visit the [Readk.it home page](http://readk.it)
-      */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
+      */}.toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
     grunt.file.write('dist/readkit.reader/README.md', readme);
   });
 
   grunt.registerTask('readme_solo', 'Write the Readkit Solo Readme file', function(){
-    var readme = (function () {/*
+    var readme = function () {/*
 #Readkit Solo
 
 Each html file in this directory contains EPUB content which can be read in one of two ways:
@@ -1160,7 +1245,7 @@ Each html file in this directory contains EPUB content which can be read in one 
 Either using a file URL or web-served, drag and drop another EPUB file onto the browser window to start reading
 
 For more information, visit the [Readk.it home page](http://readk.it)
-      */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
+      */}.toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
     grunt.file.write('dist/readkit.solo/README.md', readme);
   });
 

@@ -1,3 +1,4 @@
+/*global require:false, client:false, controller:false */
 // Readk.it paths
 var paths = {
     app: '../app'
@@ -11,7 +12,12 @@ var extend = function(obj, defaults) {
         }
     }
 };
-extend(paths, client.paths);
+try {
+    if (client && client.paths) {
+        extend(paths, client.paths);
+    }
+} catch(e) {
+}
 
 // Readk.it shims, with any client shims mixed in
 var shims = {
@@ -27,7 +33,12 @@ var shims = {
     'zip/zip': {exports: 'zip'},
     'zip/inflate': {exports: 'inflate'},
 };
-extend(shims, client.shims);
+try {
+    if (client && client.shims) {
+        extend(shims, client.shims);
+    }
+} catch(e) {
+}
 
 // Our main require config
 require.config({
@@ -57,7 +68,12 @@ var addToHomeConfig = {
 var required = ['jquery', 'app/controller', 'app/config', 'app/content', 'add-to-homescreen/src/add2home'];
 
 // Mixin any required client EPUB modules to the Readk.it required modules
-required = required.concat(client.required);
+try {
+    if (client && client.required) {
+        required = required.concat(client.required);
+    }
+} catch(e) {
+}
 
 require(required, function($, Controller, config, content, add2home){
     var book;
@@ -70,7 +86,7 @@ require(required, function($, Controller, config, content, add2home){
 
     book = config.epub_directory + path;
 
-    controller = new Controller(book, content.URIs, function() {
+    var controller = new Controller(book, content.URIs, function() {
         $.event.trigger('kickoff');
     });
 

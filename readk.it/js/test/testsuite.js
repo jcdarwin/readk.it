@@ -1,3 +1,4 @@
+/*global require:false, QUnit: false */
 // http://www.jonnyreeves.co.uk/2012/qunit-and-requirejs/
 (function () {
 

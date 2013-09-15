@@ -12,6 +12,7 @@
 **   the pages
 */
 
+ /*global define:false */
 define([
     'jquery',
     'app/utility',
@@ -19,7 +20,7 @@ define([
     'iscroll',
     'lodash',
     'jquery.hotkeys'
-], function($, utility, config, iScroll, _, $hotkeys){
+], function($, utility, config, IScroll, _, $hotkeys){
 
     var page_scrollers = [];
     var pages = [];
@@ -75,7 +76,7 @@ utility.storage('pages', []);
         }
     };
 
-    var book_scroller = new iScroll('readkit-pageWrapper', {
+    var book_scroller = new IScroll('readkit-pageWrapper', {
         snap: true,
         snapThreshold:1,
         momentum: false,
@@ -89,7 +90,7 @@ utility.storage('pages', []);
                 currentPage = - Math.ceil( Math.floor($('#readkit-pageScroller').position().left) / page_width);
 
                 // Ensure we align nicely on a page boundary
-                if (currentPage != previousPage) {
+                if (currentPage !== previousPage) {
                     book_scroller.scrollToPage(currentPage, 0, 0);
                 }
             }
@@ -99,7 +100,7 @@ utility.storage('pages', []);
                 this.options['page_scroller_waiting'] = undefined;
                 this.options['page_scroller_anchor'] = undefined;
 
-                if (utility.storage('page') != currentPage) {
+                if (utility.storage('page') !== currentPage) {
                     if (utility.storage('history')) {
                         var history = utility.storage('history');
                         history.push(utility.storage('page'));
@@ -128,7 +129,7 @@ utility.storage('pages', []);
             $.each(page_scrollers, function(i) {
                 this.scroller.refresh();
                 if ( ! (y_percent === undefined && page === undefined) ) {
-                    if (i == page) {
+                    if (i === page) {
                         var y = this.scroller.scrollerH * y_percent;
                         this.scroller.scrollTo(0, y);
                     }
@@ -178,7 +179,7 @@ utility.storage('pages', []);
                 html: html}
         ));
 
-        var page_scroller = new iScroll(id, {snap: true, momentum: true, hScrollbar: false, vScrollbar: true, lockDirection: true,
+        var page_scroller = new IScroll(id, {snap: true, momentum: true, hScrollbar: false, vScrollbar: true, lockDirection: true,
             onAnimationEnd: function(){
                 if (!restoring) {
                     // Store details of the current position on the page.
@@ -198,12 +199,12 @@ utility.storage('pages', []);
         page_scrollers.push({file: file, scroller: page_scroller});
 
         // Capture clicks so we can update the scroll position.
-        $('#' + id).on('click', function(event) {
+        $('#' + id).on('click', function() {
             file = this.id.replace(/_/, '.');
 
             // Firstly, find the page scroller from our collection that is keyed to our page.
             var page_scroller = (_.filter(page_scrollers, function(scroller) {
-                return scroller.file == file;
+                return scroller.file === file;
             }))[0];
 
             // Redraw the page scroller layout, as the click may have resulted in
@@ -218,12 +219,12 @@ utility.storage('pages', []);
         });
 
         // Capture clicks on buttons so we can update the scroll position.
-        $('#' + id + ' button').on('click', function(event) {
+        $('#' + id + ' button').on('click', function() {
             file = $(this).parents('.readkit-page').attr('id').replace(/_/, '.');
 
             // Firstly, find the page scroller from our collection that is keyed to our page.
             var page_scroller = (_.filter(page_scrollers, function(scroller) {
-                return scroller.file == file;
+                return scroller.file === file;
             }))[0];
 
             // Redraw the page scroller layout, as the click may have resulted in
@@ -246,7 +247,7 @@ utility.storage('pages', []);
     };
 
     var trap_anchor = function(that, event) {
-        if ( $(that).attr('rel') == 'external' ) {
+        if ( $(that).attr('rel') === 'external' ) {
             // Let clicks on anchors with rel="external" resolve as normal.
         } else {
             event.preventDefault();
@@ -272,22 +273,22 @@ utility.storage('pages', []);
 
             // Firstly, find the page scroller from our collection that is keyed to our page.
             var filtered_page_scrollers = _.filter(page_scrollers, function(scroller) {
-                return scroller.file == page_anchor;
+                return scroller.file === page_anchor;
             });
 
             if (filtered_page_scrollers.length === 0) {
                 filtered_page_scrollers = _.filter(page_scrollers, function(scroller) {
                     // Find the pagescroller with the page containing the id matching our anchor.
-                    return scroller.file == $('[id="' + page_anchor + '"]').parents('.readkit-page').attr('id');
+                    return scroller.file === $('[id="' + page_anchor + '"]').parents('.readkit-page').attr('id');
                 });
             }
 
             var newPage;
             page_scrollers.every(function(page_scroller, i){
-                if (page_scroller.file == filtered_page_scrollers[0].file){
+                if (page_scroller.file === filtered_page_scrollers[0].file){
                     newPage = i;
                 }
-                return newPage != i;
+                return newPage !== i;
             });
 
             // Set the options in the book_scroller indicating that there is

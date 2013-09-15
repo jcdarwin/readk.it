@@ -7,6 +7,7 @@
 **
 */
 
+/*global define:false */
 define({
 
     // Normally the readk.it folder will live directly in the OEBPS folder,

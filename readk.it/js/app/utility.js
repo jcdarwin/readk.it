@@ -6,6 +6,7 @@
 ** Utility functions for Readk.it.
 */
 
+ /*global define:false, console:false */
 define([
     'app/config',
     'jquery',
@@ -19,7 +20,7 @@ define([
 
     var isTextFile = function(filename){
         var suffix = filename.lastIndexOf('.') === -1 ? '' : filename.substr(filename.lastIndexOf('.') + 1).toLowerCase();
-        return ['opf', 'xml', 'htm', 'html', 'xhtml', 'css', 'ncx', 'txt', ''].indexOf(suffix) != -1;
+        return ['opf', 'xml', 'htm', 'html', 'xhtml', 'css', 'ncx', 'txt', ''].indexOf(suffix) !== -1;
     };
 
     // Compile our html templates using tinytim
@@ -70,7 +71,7 @@ define([
         queue.trigger.apply(queue, arguments);
     };
 
-    var _hasArrayBufferView = new Blob([new Uint8Array(100)]).size == 100;
+    var _hasArrayBufferView = new Blob([new Uint8Array(100)]).size === 100;
 
     var decode = function decode (index, dataURI) {
         var data;
@@ -91,15 +92,17 @@ define([
                     for (var i = 0; i < data.length; i++) {
                          arr[i] = data.charCodeAt(i);
                     }
-                    if (!_hasArrayBufferView) arr = buf;
+                    if (!_hasArrayBufferView) {
+                        arr = buf;
+                    }
                     var blob = new Blob([arr], { type: meta.split(';')[0] });
                     blob.slice = blob.slice || blob.webkitSlice;
                     data = blob;
                 } else {
-                    data = decodeURIComponent(escape(data));  // decode UTF-8
+                    data = decodeURIComponent(encodeURI(data)); // decode UTF-8
                 }
             } else if (/;\s*charset=[uU][tT][fF]-?8\s*[;,]/.test(meta)) {
-                data = decodeURIComponent(escape(data)); // decode UTF-8
+                data = decodeURIComponent(encodeURI(data)); // decode UTF-8
             }
         } else {
             // Presumably we have a blob URL
@@ -113,9 +116,27 @@ define([
         'fontSwitch': 'fontSwitch'
     };
 
+    var log = function(msg) {
+        if (console && console.log) {
+            console.log(msg);
+        }
+    };
+
+    var debug = function(msg) {
+        if (console && console.debug) {
+            console.debug(msg);
+        }
+    };
+
+    var error = function(msg) {
+        if (console && console.error) {
+            console.error(msg);
+        }
+    };
+
     // Deal with device/browser support issues
     var supported = function (op) {
-        if (!config.lite) {
+        if (!config.lite && Detectizr) {
             Modernizr.Detectizr.detect({
                 detectDeviceModel: true,
                 detectScreen: true,
@@ -151,6 +172,9 @@ define([
         publish: publish,
         decode: decode,
         supported: supported,
-        operation: operation
+        operation: operation,
+        log: log,
+        debug: debug,
+        error: error
     };
 });

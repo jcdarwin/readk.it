@@ -1,3 +1,4 @@
+ /*global require:false, console:false */
 require.config({
     //By default load any module IDs from js/lib
     baseUrl: 'js/lib',
@@ -13,7 +14,9 @@ require.config({
 });
 
 var initialized = function () {
-    console.log('main.initialized');
+    if (console && console.log) {
+        console.log('main.initialized');
+    }
 };
 
 // Add to home screen: http://cubiq.org/add-to-home-screen 
@@ -24,7 +27,7 @@ var addToHomeConfig = {
     message:'Install this app on your %device: tap %icon and then <strong>Add to Home Screen</strong>.'
 };
 
-require(['app/controller', 'app/config', 'add-to-homescreen/src/add2home'], function(Controller, config, add2home){
+require(['app/controller', 'app/config'], function(Controller, config){
     var options = {manifest: config.manifest};
-    controller = new Controller(options, initialized);
+    var controller = new Controller(options, initialized);
 });

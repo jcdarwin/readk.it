@@ -1,4 +1,5 @@
-define([
+ /*global define:false */
+ define([
     'jquery'
 ], function($){
     $(document).ready(function() {

@@ -3,6 +3,7 @@
 ** Tests are driven by ../../../library/mainfest.json
 */
 
+/*global define:false, $:false, expect:false, test:false, equal:false, deepEqual:false, console:false, QUnit:false, module:false */
 define(function (require) {
 
     // Refer http://benalman.com/talks/unit-testing-qunit.html for userful pointers
@@ -25,7 +26,7 @@ define(function (require) {
                 perform_tests(book);
             });
         })
-        .error(function() { alert("error"); });
+        .error(function() { console.error("error"); });
 
 
         function perform_tests(book) {
@@ -42,7 +43,7 @@ define(function (require) {
 
                 // Retrieve the appropriate publication from the mainfest based on the identifier.
                 var pub = $(data).filter(function(index) {
-                    return data[index].identifier == publication.identifier;
+                    return data[index].identifier === publication.identifier;
                 })[0];
 
                 test("Number of pages and order correct, returns " + $(publication.spine_entries).size() + " and array", function () {

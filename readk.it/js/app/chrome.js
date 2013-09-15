@@ -6,14 +6,17 @@
 ** Functions to support Readk.it user interface customisation.
 */
 
+ /*global define:false */
 define([
     'jquery',
     'app/utility',
     'app/config',
     'zip/zip',
     'zip/inflate',
-    'jquery.ba-resize'
-], function($, utility, config, zip, inflate, jbr){
+    'jquery.ba-resize',
+    'iscroll',
+    'lodash'
+], function($, utility, config, zip, inflate, jbr, IScroll, _){
 
     var controller;
     var layout;
@@ -43,7 +46,7 @@ define([
                 e.preventDefault();
                 moved = false;
                 $target = $(e.target);
-                if($target.nodeType == 3) {
+                if($target.nodeType === 3) {
                     $target = $($target.parent());
                 }
                 $target.addClass('pressed');
@@ -77,9 +80,9 @@ define([
 
         // Check for stored font preference and apply accordingly.
         var font = utility.storage('font');
-        if (font == 'serif') {
+        if (font === 'serif') {
             $('.readkit-icon-serif').click();
-        } else if (font == 'sans') {
+        } else if (font === 'sans') {
             $('.readkit-icon-sans').click();
         } else {
             // By default we use the publication styles.
@@ -146,7 +149,7 @@ define([
 
         // For file URLs, where the user has most likely double-clicked the index.html
         // show the drag and drop dialogue, as no publication has been loaded.
-        if (location.protocol == 'file:') {
+        if (location.protocol === 'file:') {
             if (!$('.readkit-drag-upload-window').is(':visible') && !$('#readkit-pageScroller').html().trim()) {
                 upload.initalise();
             }
@@ -165,7 +168,7 @@ define([
         var history = utility.storage('history');
         var status = history && history.length ? 'readkit-active' : 'readkit-inactive';
 
-        if (status == 'readkit-active') {
+        if (status === 'readkit-active') {
             $('.readkit-back').removeClass('readkit-inactive');
         } else {
             $('.readkit-back').removeClass('readkit-active');
@@ -199,7 +202,7 @@ define([
                     $('.readkit-icon-sans').addClass('readkit-active');
                     utility.storage('font', 'sans');
                 } catch (e) {
-                    console.log(e.message);
+                    utility.log(e.message);
                 }
             }
 
@@ -400,6 +403,8 @@ define([
         return (new Array(times + 1)).join(value);
     };
 
+    var bookmark_scroller;
+
     // Bookmark event handlers
     function check_bookmarks() {
         var bookmarks = utility.storage('bookmarks')  || [];
@@ -431,7 +436,7 @@ define([
         });
         var html = utility.compile($('#readkit-bookmark-list-tmpl').html(), {bookmarkeds: bookmarkeds});
 
-        navs = '';
+        var navs = '';
         $.each(layout.nav(), function(i, item) {
             if (item.title) {
                 navs += repeat('<ul style="margin-top:0; margin-bottom:0;">', item.depth + 1);
@@ -447,7 +452,7 @@ define([
 
         $('#readkit-dropdown-bookmark').html(html);
 
-        var bookmark_scroller = new iScroll('readkit-bookmark-widget', {snap: true, momentum: true, hScroll: false, hScrollbar: false, vScrollbar: false, lockDirection: true,
+        bookmark_scroller = new IScroll('readkit-bookmark-widget', {snap: true, momentum: true, hScroll: false, hScrollbar: false, vScrollbar: false, lockDirection: true,
             onAnimationEnd: function(){
             }
         });
@@ -521,7 +526,7 @@ define([
             y: layout.location().y
         };
 
-        html = utility.compile($('#readkit-bookmark-list-item-tmpl').html(),
+        var html = utility.compile($('#readkit-bookmark-list-item-tmpl').html(),
             {   index: bookmarks.length,
                 file:  bookmark.file,
                 title: bookmark.title,
@@ -598,10 +603,10 @@ define([
             // Chrome's (and now Firefox) security policies means webworkers are not allowed
             // with file urls, therefore we have to put up with slower
             // single-threaded zip inflation.
-            zip.useWebWorkers = location.protocol != 'file:' && config.mode != 'reader' && config.mode != 'solo';
+            zip.useWebWorkers = location.protocol !== 'file:' && config.mode !== 'reader' && config.mode !== 'solo';
 
             zip.workerScriptsPath = config.workerScriptsPath;
-            f = filelist[0];
+            var f = filelist[0];
             zip.createReader(new zip.BlobReader(f), function(zipReader){
                 zipReader.getEntries(function(entries){
 
@@ -619,12 +624,12 @@ define([
                                     entry.getData(new zip.TextWriter('utf-8'), function(text){
                                         upload.progress(f, entry);
                                         if (config.log) {
-                                            console.log(entry.filename);
+                                            utility.log(entry.filename);
                                         }
                                         deferred_entry.resolve(text);
                                     });
                                 } catch (e) {
-                                    console.log('zip.TextWriter failure with ' + entry.filename + ': ' + e);
+                                    utility.log('zip.TextWriter failure with ' + entry.filename + ': ' + e);
                                 }
                             } else {
                                 // Retrieve other files as blobs, i.e. don't uncompress them to text
@@ -633,14 +638,14 @@ define([
                                 entry.getData(new zip.BlobWriter(), function(blob){
                                     upload.progress(f, entry);
                                     if (config.log) {
-                                        console.log(entry.filename);
+                                        utility.log(entry.filename);
                                     }
                                     deferred_entry.resolve(blob);
                                 });
                             }
 
                         }).done(function(value){
-                            filename = entry.filename;
+                            var filename = entry.filename;
                             files[filename] = value;
                         });
                     })).done(function(){
@@ -648,7 +653,7 @@ define([
                         setTimeout(function () {
                             $('.readkit-drag-upload-window').slideUp('slow');
                         }, 0);
-                        publication = controller.initialise('', {}, files);
+                        controller.initialise('', {}, files);
                     });
                 });
 
@@ -677,11 +682,11 @@ define([
 
     upload.failed = function (a) {
         //upload.show_error_message(a.toString());
-        console.error(message);
+        utility.error(a.toString());
     };
 
     upload.cancelled = function (e) {
-        h.debug("The upload has been canceled by the user or the browser dropped the connection.");
+        utility.debug("The upload has been canceled by the user or the browser dropped the connection.");
     };
 /*     if ("FileReader" in window && Modernizr.draganddrop) { */
     if ("FileReader" in window && !config.lite) {
@@ -701,7 +706,7 @@ define([
         }, false);
     }
 
-    if (window.location.protocol == 'file:') {
+    if (window.location.protocol === 'file:') {
         $('#readkit-sitePreloader').hide();
     }
 

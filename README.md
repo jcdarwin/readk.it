@@ -220,12 +220,34 @@ The grunt-readkit-dom-munger plugin is a patched version of [grunt-dom-munger](h
           updatedContents = $.html();  
         }
 
+    and change
+
+        grunt.config(['readkit_dom_munger','data',options.read.writeto],vals);
+
+    to
+
+        var writeto;
+        if (options.read.concatenate) {
+          writeto = grunt.config.get(['readkit_dom_munger','data',options.read.writeto]);
+          writeto = writeto && writeto.length && vals.length ? writeto.concat(vals) : writeto && writeto.length ? writeto : vals;
+        } else {
+          writeto = vals;
+        }
+        grunt.verbose.writeln(('writeto: ' + writeto).cyan);
+        grunt.config(['readkit_dom_munger','data',options.read.writeto],writeto);
+
 2. ```node_modules/grunt-readkit-dom-munger/npm-shrinkwrap.json```
 
-    We use ```npm-shrinkwrap.json``` to specify a hard dependency for our own version of [htmlparser2](https://github.com/jcdarwin/htmlparser2) (used by cheerio: ```node_modules/grunt-readkit-dom-munger/node_modules/cheerio/node_modules/htmlparser2/lib/Parser.js```), in which we've commented out the meta reference in voidElements, to avoid ending up with broken meta tags in the opf file (specifically, meta tags that have both an opening and a closing tag lose their closing tag):
+    We use ```npm-shrinkwrap.json``` to specify a hard dependency for our own version of [htmlparser2](https://github.com/jcdarwin/htmlparser2) (used by cheerio: ```node_modules/grunt-readkit-dom-munger/node_modules/cheerio/node_modules/htmlparser2/lib/Parser.js```), in which we've commented out the meta reference in voidElements, and added a few of the tags found in the .opf file:
 
         var voidElements = {
         ...
+        //  Add extra tags found in the opf file.
+            item: true,
+            itemref: true,
+            reference: true,
+        //  Comment out the link and meta reference in voidElements, otherwise we end up with broken meta tags in the opf file 
+        //  (specifically, meta tags that have both an opening and a closing tag lose their closing tag).
         //  meta: true,
         ...
         };

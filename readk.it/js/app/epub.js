@@ -7,6 +7,7 @@
 ** With thanks to Liza Daly.
 */
 
+ /*global define:false */
 define([
     'jquery',
     'app/utility'
@@ -51,9 +52,9 @@ define([
         if (!id) {
             return (this.spine_entries);
         } else {
-            for(var i = 0; i < spine_entries.length; i++) {
-                if (spine_entries[i].id == id) {
-                    return spine_entries[i];
+            for(var i = 0; i < this.spine_entries.length; i++) {
+                if (this.spine_entries[i].id === id) {
+                    return this.spine_entries[i];
                 }
             }
         }
@@ -152,16 +153,16 @@ define([
             var src = $(this).find('content').attr('src');
             var file = src.replace(/\//g, '_');
             var filtered_spine_entries = epub.spine_entries.filter(function (item) {
-                return item.file == file;
+                return item.file === file;
             });
             if (filtered_spine_entries[0]) {
                 filtered_spine_entries[0]['title'] = text;
             }
 
             if (/#/.test(src)) {
-                if (src.substr(0,1) == '#') {
+                if (src.substr(0,1) === '#') {
                     // We must have something like '#milestone1'; convert to '#chapter1_milestone1'
-                    src = publication.file + '_' + src.substr(1);
+                    src = file + '_' + src.substr(1);
                 } else {
                     // We must have something like 'text/chapter2#milestone1'; convert to '#text_chapter2#milestone1'
                     src = src.replace(/\//g, '_').replace(/#/g, '_');
@@ -188,16 +189,16 @@ define([
             var file = href.replace(/\//g, '_');
             file = file.replace(/#.*/g, '');
             var filtered_spine_entries = epub.spine_entries.filter(function (item) {
-                return item.file == file;
+                return item.file === file;
             });
             if (filtered_spine_entries[0]) {
                 filtered_spine_entries[0]['title'] = $(this).text();
             }
 
             if (/#/.test(href)) {
-                if (href.substr(0,1) == '#') {
+                if (href.substr(0,1) === '#') {
                     // We must have something like '#milestone1'; convert to '#chapter1_milestone1'
-                    href = publication.file + '_' + href.substr(1);
+                    href = file + '_' + href.substr(1);
                 } else {
                     // We must have something like 'text/chapter2#milestone1'; convert to '#text_chapter2#milestone1'
                     href = href.replace(/\//g, '_').replace(/#/g, '_');

@@ -6,6 +6,7 @@
 ** Our main controller, bootstrapped by require.js.
 */
 
+/*global define:false, console:false */
 define([
     'jquery',
     'app/config',
@@ -25,7 +26,7 @@ define([
                 e.preventDefault();
                 moved = false;
                 $target = $(e.target);
-                if($target.nodeType == 3) {
+                if($target.nodeType === 3) {
                     $target = $($target.parent());
                 }
                 $target.addClass('pressed');

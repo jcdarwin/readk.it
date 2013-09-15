@@ -7,6 +7,7 @@
 **
 */
 
+/*global define:false */
 define({
     manifest: "manifest.json",
     solo: true

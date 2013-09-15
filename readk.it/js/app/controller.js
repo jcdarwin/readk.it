@@ -6,6 +6,7 @@
 ** Our main controller, bootstrapped by require.js.
 */
 
+/*global define:false, require:false */
 define([
     'jquery',
     'jquery.storage',
@@ -14,14 +15,12 @@ define([
     'app/epub',
     'app/layout',
     'app/chrome',
+    'app/utility',
     'require-css/css'
-], function($, $storage, $urlinternal, config, Epub, Layout, Chrome, require_css){
+], function($, $storage, $urlinternal, config, Epub, Layout, Chrome, utility, require_css){
 
-    var pages = [];
-    var stylesheets = [];
     var load_publication_callback;
     var publication;
-    var item;
     var layout;
     var chrome;
     var self;
@@ -52,7 +51,7 @@ define([
 
     var _initialise = function (book, URIs, callback, files) {
         if (config.log) {
-            console.log('_initialise');
+            utility.log('_initialise');
         }
 
         // Parse the EPUB.
@@ -60,13 +59,13 @@ define([
             // We've got the solo version whereby the EPUB content
             // is encoded app/content.js using data URIs.
             return new Epub('', 'META-INF/container.xml', callback, URIs);
-        } else if (!files && window.location.protocol == 'file:') {
+        } else if (!files && window.location.protocol === 'file:') {
             // We've been loaded via a file url, so we can't use xhr calls to load assets
             // from the server. In this case we create the EPUB instance, but by calling it
             // without the 'META-INF/container.xml' value, no files will be retrieved.
             // http://stackoverflow.com/questions/4150430/how-to-detect-a-script-load-of-a-file-url-fails-in-firefox
             return new Epub(book, '', callback);
-        } else if (config.mode == 'reader' && window.location.protocol != 'file:') {
+        } else if (config.mode === 'reader' && window.location.protocol !== 'file:') {
             if (files) {
                 // We're in reader mode, and have a files array populated via drag and drop.
                 return new Epub(book, 'META-INF/container.xml', callback, files);
@@ -84,7 +83,7 @@ define([
 
     var load_publication = function (epub) {
         if (config.log) {
-            console.log('load_publication');
+            utility.log('load_publication');
         }
         // require.js text plugin fires asynchronously, so we'll use
         // deferreds to work out when all texts have been retrieved.
@@ -113,7 +112,7 @@ define([
                     }
 
                     if (config.log) {
-                        console.log('load_html: ' + (filename || value.href));
+                        utility.log('load_html: ' + (filename || value.href));
                     }
 
                     if (filename && pub.content[filename]) {
@@ -162,7 +161,7 @@ define([
 
                         // Find any font urls and replace with blob urls
                         // e.g. url('../fonts/Lato/Lato-Reg.ttf')
-                        window_url = window.URL || window.webkitURL;
+                        var window_url = window.URL || window.webkitURL;
                         css = css.replace(/(url\(['"])(.*?)([^'"\/]*)(['""]\))/g, function(tag, prefix, path, font, suffix) {
                             for (var index in pub.content) {
                                 // Check whether our content entry ends with the font name.
@@ -222,7 +221,7 @@ define([
             }
 
             if (config.log) {
-                console.log('laying out: ' + filename);
+                utility.log('laying out: ' + filename);
             }
 
             // Strip namespaces from svg elements (i.e. cover images) as these cause rendering problems.
@@ -252,8 +251,8 @@ define([
 
             $.each(internal_urls, function(i, v){
                 if ( typeof $(v).attr('href') !== 'undefined' ) {
-                    if ( $(v).attr('rel') != 'external' ) {
-                        if ($(v).attr('href').substr(0,1) == '#') {
+                    if ( $(v).attr('rel') !== 'external' ) {
+                        if ($(v).attr('href').substr(0,1) === '#') {
                             // We must have something like '#milestone1'; convert to '#chapter1_milestone1'
                             $(v).attr('href', '#' + publication.file + '_' + $(v).attr('href').substr(1));
                         } else {
@@ -347,7 +346,7 @@ define([
         var filename = pub.oebps_dir + '/' + value.replace(/^(\.\.\/)+/, '');
         // Note that our content is already in blob form
         // var blob = new Blob([pub.content[filename]], {type: "image/jpeg"});
-        window_url = window.URL || window.webkitURL;
+        var window_url = window.URL || window.webkitURL;
         var url = window_url.createObjectURL(pub.content[filename]);
         return prefix + url + suffix;
     }

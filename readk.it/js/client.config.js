@@ -12,7 +12,8 @@
 var client = {
     // The paths for our EPUB assets
     paths: {
-        client_js: '../../../js'
+        client_js: '../../../js',
+        client_js_build: '../../js'
     },
     // The required modules for our EPUB assets.
     // Note that we don't need to specify the following as Readk.it 

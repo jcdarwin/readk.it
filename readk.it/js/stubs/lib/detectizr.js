@@ -9,5 +9,6 @@
 ** 
 */
 
+/*global define:false */
 define({
 });

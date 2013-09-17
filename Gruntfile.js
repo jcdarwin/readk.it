@@ -67,18 +67,18 @@ module.exports = function(grunt) {
       // Before generating any new files, remove any previously-created files.
       before: [
         'dist',
-//        'build',
+        'build',
         '.sass-cache'
       ],
       build_readkit: [
-//        'build/readkit'
+        'build/readkit'
       ],
       build_readkit_js: [
         'build/readkit.js'
       ],
       // Now that we've finished, remove the build directories.
       after: [
-//        'build',
+        'build',
         '.sass-cache'
       ]
     },
@@ -386,7 +386,7 @@ module.exports = function(grunt) {
       make_manifest: {
         command: [
           'cd <%= epub_src %>',
-          //'python manifest.maker.py > manifest.json',
+          'python manifest.maker.py > manifest.json',
 //          'python2.6.exe manifest.maker.py > manifest.json',
           'echo Created manifest: manifest.json'
         ].join('&&'),
@@ -399,7 +399,7 @@ module.exports = function(grunt) {
         // Create our manifest describing the EPUB files
         command: [
           'cd <%= epub_src %>',
-          //'python manifest.maker.py > manifest.json',
+          'python manifest.maker.py > manifest.json',
 //          'python2.6.exe manifest.maker.py > manifest.json',
           'echo Created manifest: manifest.json'
         ].join('&&'),
@@ -1125,9 +1125,7 @@ module.exports = function(grunt) {
           grunt.config.set('requirejs.' + identifier + '_compile_readkit.options.shim', shim);
 
           // Compile readk.it for this publication
-grunt.log.writeln('RUNNING: ' + 'requirejs:' + identifier + '_compile_readkit');
           grunt.task.run('requirejs:' + identifier + '_compile_readkit');
-grunt.log.writeln('RAN: ' + 'requirejs:' + identifier + '_compile_readkit');
         });
 
         // Our publication-specific prod/prod lite tasks

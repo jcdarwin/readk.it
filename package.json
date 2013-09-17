@@ -1,0 +1,32 @@
+{
+  "name": "readk.it",
+  "version": "0.0.1",
+  "description": "Readk.it",
+  "main": "Gruntfile.js",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-clean": "~0.4.1",
+    "grunt-contrib-compass": "~0.2.0",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-shell": "~0.3.0",
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-readkit-dom-munger": "git+https://github.com/jcdarwin/grunt-readkit-dom-munger.git#master",
+    "grunt-readkit-datauris": "git+https://github.com/jcdarwin/grunt-readkit-datauris.git#master",
+    "grunt-contrib-requirejs": "~0.4.1",
+    "grunt-contrib-cssmin": "~0.6.1",
+    "grunt-image-embed": "~0.3.1",
+    "grunt-bake": "~0.2.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@mebooks.co.nz:/var/lib/git/readk.it"
+  },
+  "author": "Jason Darwin",
+  "license": "BSD",
+  "readmeFilename": "README.md"
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html class="js csstransforms csstransforms3d">
+    <head>
+        <title>Readk.it library</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
+
+        <!-- ========================= mobile icons ======================= -->
+        <!-- For iPhone 4 -->
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../images/apple-touch-icon-114x114.png" />
+        
+        <!-- For iPad 1 -->
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../images/apple-touch-icon-72x72.png" />
+        
+        <!-- For iPhone 3G, iPod Touch and Android -->
+        <link rel="apple-touch-icon-precomposed" href="../images/apple-touch-icon-57x57-precomposed.png" />
+        
+        <!-- For Nokia -->
+        <link rel="shortcut icon" href="../images/apple-touch-icon-57x57.png" />
+        
+        <!-- For everything else -->
+        <link rel="shortcut icon" href="../favicon.ico" />
+        
+        <!--iOS -->
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <link rel="apple-touch-startup-image" href="../images/splash.png" />
+
+        <!-- Add to home screen: http://cubiq.org/add-to-home-screen -->
+        <link rel="stylesheet" href="css/add2home.css" />
+        <link rel="stylesheet" type="text/css" href="fonts/fontello/css/fontello.css" />
+        <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    </head>
+    <body>
+        <header class="projecttitle">
+            <div id="library" class="library pagespan">
+                <button class="backward">
+                    <i class="icon-angle-left"></i>
+                </button>
+                <button class="forward">
+                    <i class="icon-angle-right"></i>
+                </button>
+                <div class="frame" style="overflow:hidden;">
+                    <div class="ul">
+                    </div>
+                </div>
+                <div class="readbar">
+                    <div class="read">
+                        <div class="readtext">Read</div>
+                        <div class="readicon">
+                            <i class="icon-book"></i>
+                            <img class="spinner" style="display:none;" src="images/spinner.gif" />
+                        </div>
+                    </div>
+                </div>
+                <div class="controls">
+                    <button class="first" data-action="toStart"><i class="icon-double-angle-left"></i></button>
+                    <span class="divider"></span>
+                    <button class="prev"><i class="icon-angle-left"></i></button>
+                    <span class="divider"></span>
+                    <button class="next"><i class="icon-angle-right"></i></button>
+                    <span class="divider"></span>
+                    <button class="last" data-action="toEnd"><i class="icon-double-angle-right"></i></button>
+                    <div class="scrollbar">
+                            <div class="handle">
+                            <div class="mousearea"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- All js is served as a single file, main.compiled.js -->
+        <script id="library-entry" data-main="js/main.compiled" src="js/lib/require.js"></script>
+
+    </body>
+</html>

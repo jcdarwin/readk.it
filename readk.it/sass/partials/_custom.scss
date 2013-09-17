@@ -1,0 +1,491 @@
+@charset "UTF-8";
+
+// ==========================================================================//
+//
+// $Variables
+//
+// ==========================================================================//
+
+// Our namespace -- sass will soon have namespaces, and make this a bit easier
+$namespace:     'readkit';
+
+$padding:       10px;
+$margin:        $padding * 2;
+$header-height: $padding * 4;
+
+$small:         18px;
+$medium:        24px;
+$large:         30px;
+
+$font-small:    12px;
+$font-medium:   16px;
+$font-large:    18px;
+
+$line-height:   1.6em;
+$border-radius: 12px;
+
+$slider-width: 30px;
+
+
+// ==========================================================================//
+//
+// $Typography
+//
+// ==========================================================================//
+
+@include font-face('Source Sans Pro', font-files(
+    "SourceSansPro/SourceSansPro-Regular.woff", woff), false, 400, normal, false, SourceSansPro-Regular);
+
+@include font-face('Source Sans Pro', font-files(
+    "SourceSansPro/SourceSansPro-Bold.woff", woff), false, 700, normal, false, SourceSansPro-Bold);
+
+@include font-face('Source Sans Pro', font-files(
+    "SourceSansPro/SourceSansPro-It.woff", truetype), false, 400, italic, false, SourceSansPro-It);
+
+@include font-face('Source Sans Pro', font-files(
+    "SourceSansPro/SourceSansPro-BoldIt.woff", truetype), false, 700, italic, false, SourceSansPro-BoldIt);
+
+
+@include font-face('Lora', font-files(
+    "Lora/Lora.woff", woff), false, 400, normal, false, Lora-Regular);
+
+@include font-face('Lora', font-files(
+    "Lora/Lora-Bold.woff", woff), false, 700, normal, false, Lora-Bold);
+
+@include font-face('Lora', font-files(
+    "Lora/Lora-Italic.woff", truetype), false, 400, italic, false, Lora-Italic);
+
+@include font-face('Lora', font-files(
+    "Lora/Lora-BoldItalic.woff", truetype), false, 700, italic, false, Lora-BoldItalic);
+
+
+// ==========================================================================//
+//
+// $BaseStyles
+//
+// ==========================================================================//
+
+.#{$namespace}-margins {
+    margin: 0 $margin;
+}
+
+// ==========================================================================//
+//
+// $LayoutStyles
+//
+// ==========================================================================//
+
+.#{$namespace}-page {
+    float: left;
+    -webkit-transform: translate3d(0,0,0);
+    height: 100%;
+}
+
+/* Needed especially for IE 10 */
+##{$namespace}-pageScroller {
+  height: 100%;
+}
+
+##{$namespace}-pageWrapper {
+    position: absolute;
+    top: $header-height;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding-bottom: $margin;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.#{$namespace}-wrapper {
+    position: relative;
+    height: 100%;
+    /* The next two lines allow for an "overlap" when scrolling a page vertically */
+    top: 20px;
+    overflow: visible !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.#{$namespace}-wrapper-bookmarks {
+    position: absolute;
+    top: $header-height;
+    left: $padding;
+    right: $padding;
+    bottom: 0;
+    overflow: auto;
+    z-index: 1;
+}
+
+.#{$namespace}-scroller {
+    position: absolute;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    width: 100%;
+    padding: 0;
+    z-index: 1;
+}
+
+// ==========================================================================//
+//
+// $ModuleStyles
+//
+// ==========================================================================//
+
+.#{$namespace}-header {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: $header-height;
+    width: 100%;
+    margin-top: 0;
+    background-color: $header-color;
+    z-index: 2;
+    line-height: 1;
+    font: normal 100%/1 sans-serif;
+}
+
+.#{$namespace}-controls {
+    padding-left: $padding;
+    padding-right: $padding;
+    font-size: $font-large;
+    -webkit-user-select: none;
+}
+
+.#{$namespace}-slider, .#{$namespace}-slider span, label i, span.icon, span i {
+    font-size: $font-medium;
+}
+
+.#{$namespace}-library {
+    text-align:center;
+}
+
+.#{$namespace}-size, .#{$namespace}-lh {
+    float: left;
+    margin-right: $padding;
+}
+
+.#{$namespace}-dropdown {
+    position: absolute;
+    top: 35px;
+    margin-top: $padding / 2;
+    background-color: $dropdown-color;
+    border-radius: $border-radius;
+
+    a: link {
+        color: $link-unvisited;
+    }
+
+    a: visited {
+        color: $link-visited;
+    }
+}
+
+##{$namespace}-dropdown-size, ##{$namespace}-dropdown-lineheight {
+    left: $padding * 3;
+    height: 60px;
+    width: 116px;
+}
+
+##{$namespace}-dropdown-bookmark {
+    height: 380px;
+    width: 280px;
+    right: $padding;
+    color: $light-color;
+    padding: 0 $padding $padding $padding;
+    overflow: hidden;
+
+    a {
+        font-size: $font-small;
+    }
+}
+
+.#{$namespace}-small {
+    left: $padding;
+    height: $small;
+    width: $small;
+    border-radius: $small / 2;
+    margin-top: -13px;
+
+    i:before {
+        font-size: $font-small;
+        line-height: $line-height;
+    }
+}
+
+.#{$namespace}-medium {
+    left: $padding + $small + $padding;
+    height: $medium;
+    width: $medium;
+    border-radius: $medium / 2;
+    margin-top: -13px;
+
+    i:before {
+        font-size: $font-medium;
+        line-height: $line-height;
+    }
+}
+
+
+.#{$namespace}-large{
+    left: $padding + $small + $padding + $medium + $padding;
+    height: $large;
+    width: $large;
+    border-radius: $large / 2;
+    margin-top: -13px;
+
+    i:before {
+        font-size: 20px;
+        line-height: $line-height;
+    }
+}
+
+.#{$namespace}-font {
+    display: inline-block;
+    font-size: $font-large;
+}
+
+.#{$namespace}-back {
+    float: left;
+    margin-left: $padding;
+    margin-right: $padding;
+}
+
+.#{$namespace}-status {
+    float: right;
+    cursor: default;
+}
+
+.#{$namespace}-bookmark {
+    float: right;
+    cursor: hand;
+    cursor: pointer;
+}
+
+##{$namespace}-bookmark-input {
+    width: 240px;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.#{$namespace}-bookmark-title {
+    float: left;
+    width: 240px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.#{$namespace}-bookmark-input {
+    position: relative;
+    padding-top: $padding;
+    padding-bottom: $padding / 2;
+    margin-bottom: $padding / 2;
+    background-color: $dropdown-color;
+    z-index: 2;
+}
+
+.#{$namespace}-bookmark-list-item {
+    float: left;
+}
+
+##{$namespace}-bookmark-widget {
+
+    font-family: "Source Sans Pro", Arial, sans-serif; 
+
+    a:hover, a:active, a:focus { 
+        color: $link-unvisited;
+        text-decoration: none;
+    }
+
+    a, a:visited { 
+        color: $link-visited;
+        text-decoration: none;
+    }
+
+    ul {
+        padding-left: 20px;
+    }
+
+    li {
+        margin-bottom: 5px;
+    }
+
+    hr {
+        margin-bottom: 0.5rem;
+    }
+}
+
+img {
+    max-width: 100%;
+}
+
+pre {
+    overflow: auto;
+}
+
+##{$namespace}-sitePreloader { 
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: $dark-color;
+    z-index: 2;
+} /* Preloader GIF created with http://preloaders.net */
+
+
+##{$namespace}-preloaderImage {
+    width: 50px;
+    margin: 200px auto;
+}
+
+##{$namespace}-preloaderBackgroundImage {
+    width:50px;
+    height:50px;
+    background-image:url('../images/site_preloader.gif');
+}
+
+// ==========================================================================//
+//
+// $StateStyles
+//
+// ==========================================================================//
+
+[class^="#{$namespace}-strength-"], [class*=" #{$namespace}-strength-"] {
+    position: absolute;
+    top: 50%;
+    float: left;
+    margin-right: 0;
+    cursor: hand;
+    cursor: pointer;
+    text-align: center;
+}
+
+.#{$namespace}-icon {
+    color: #ffffff;
+    margin-top: 5px;
+    display: inline-block;
+    height: $medium;
+    width: $large;
+    border-radius: $large / 2;
+    text-align: center;
+    background: $dark-color;
+    padding-top: 6px;
+    padding-bottom: 0px;
+    cursor: hand;
+    cursor: pointer;
+}
+
+.#{$namespace}-online, .#{$namespace}-active {
+    background-color: $online-color;
+}
+
+.#{$namespace}-offline, .#{$namespace}-inactive {
+    background-color: $offline-color;
+}
+
+.#{$namespace}-icon-sans {
+    font-family: Arial;
+    font-weight: bold;
+    float: right;
+    margin-right: $margin / 2;
+}
+
+.#{$namespace}-icon-serif {
+    font-family: Georgia;
+    font-weight: bold;
+    float: right;
+    margin-right: $margin / 2;
+}
+
+.#{$namespace}-sans {
+    font-family: "Source Sans Pro", Arial, sans-serif;
+}
+
+.#{$namespace}-serif {
+    font-family: "Lora", Georgia, serif;
+}
+
+.#{$namespace}-bookmark-icon {
+    height: $medium;
+    width: $medium;
+    border-radius: $medium / 2;
+    padding-top: 0;
+    font-size: 24px;
+    color: $online-color;
+    margin: 0;
+}
+
+.#{$namespace}-bookmark-icon:before {
+    margin: 0;
+}
+
+.#{$namespace}-bookmark-icon-add {
+    float: right;
+    margin-top: 2px;
+}
+
+.#{$namespace}-bookmark-icon-remove {
+    float: left;
+}
+
+// ==========================================================================//
+//
+// $Media Queries
+//
+// ==========================================================================//
+
+/* iPhone 2G-4S in portrait & landscape */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+    .#{$namespace}-header {
+        top: 0;
+        -webkit-user-select: none;
+    }
+    .#{$namespace}-slider {
+        width: $slider-width;
+    }
+}
+
+/* iPhone 5 in portrait & landscape */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px) {
+    .#{$namespace}-header {
+        top: 0;
+        -webkit-user-select: none;
+    }
+    .#{$namespace}-slider {
+        width: $slider-width;
+    }
+}
+
+/* iPad in portrait & landscape */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)  {
+    /* Accomodate status bar */
+    .#{$namespace}-header {
+        top: 0;
+        -webkit-user-select: none; 
+    }                
+}
+
+/* Desktop */
+@media only screen {
+    .#{$namespace}-header {
+        top: 0;
+    }                
+}
+
+/* Phone */
+@media (max-device-width:240px) {
+    .#{$namespace}-serif, .#{$namespace}-sans {
+        display: none;
+    }
+}

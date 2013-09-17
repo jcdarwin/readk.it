@@ -1,0 +1,40 @@
+CACHE MANIFEST
+
+# v1.07
+
+# For application-cache gotchas, refer:
+# http://www.alistapart.com/articles/application-cache-is-a-douchebag/
+
+css/add2home.css
+css/drag_and_drop.css
+css/readkit-screen.css
+
+fonts/fontello/font/fontello.ttf
+fonts/fontello/font/fontello.woff
+fonts/Lora/Lora.woff
+fonts/Lora/Lora-Bold.woff
+fonts/Lora/Lora-BoldItalic.woff
+fonts/Lora/Lora-Italic.woff
+fonts/SourceSansPro/SourceSansPro-Bold.woff
+fonts/SourceSansPro/SourceSansPro-BoldIt.woff
+fonts/SourceSansPro/SourceSansPro-It.woff
+fonts/SourceSansPro/SourceSansPro-Regular.woff
+
+images/apple-touch-icon-57x57.png
+images/apple-touch-icon-57x57-precomposed.png
+images/apple-touch-icon-72x72.png
+images/apple-touch-icon-114x114.png
+images/site_preloader.gif
+images/spinner.gif
+images/splash.png
+
+js/readkit.js
+js/client.config.js
+js/app/content.js
+
+favicon.ico
+
+index.html
+
+NETWORK:
+*

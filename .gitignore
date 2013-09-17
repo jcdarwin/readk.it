@@ -1,2 +1,10 @@
+# Ignore only the top-level dist directory
+/dist
+/build
+.tern-port
+.sass-cache
 .DS_Store
-html/thirdparty/*
+manifest.json
+node_modules
+/readkit.epub/html
+manifest.json

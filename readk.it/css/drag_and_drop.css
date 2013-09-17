@@ -1,0 +1,246 @@
+#readkit-epub-drag-upload {
+    border: none;
+}
+#readkit-epub-drag-upload {
+    border:4px dotted #bcbec0;
+    height:40%;
+    margin:2em;
+    padding:1em;
+}
+
+#readkit-epub-drag-upload p {
+    font-size:2em;
+    text-align:center;
+    margin-bottom: 0.5em;
+}
+
+#readkit-drag-upload-spinner {
+    text-align: center;
+    visibility:hidden;
+    margin:auto;
+    opacity: 0.2;
+}
+
+#readkit-drag-upload-window {
+    width:80%;
+    margin:40px 10% 0;
+}
+
+.readkit-drag-upload-window {
+    display:none;
+    position:absolute;
+    top:0;
+    z-index:150;
+    padding-bottom:20px;
+    background-color:#e6e7e8;
+    -moz-border-radius-bottomleft:10px;
+    -moz-border-radius-bottomright:10px;
+    -webkit-border-bottom-right-radius:10px;
+    -webkit-border-bottom-left-radius:10px;
+    border-bottom-right-radius:10px;
+    border-bottom-left-radius:10px;
+    /*
+        background:0;
+        border:1px solid #fff;
+    */
+    -moz-box-shadow:10px 10px 8px rgba(000,000,000,0.5);
+    -webkit-box-shadow:10px 10px 8px rgba(000,000,000,0.5),inset 4px 6px 13px rgba(230,231,232,1);
+    margin:auto;
+    font-family: sans-serif;
+}
+
+.readkit-epub-drag-upload {
+    padding:14px 30px 13px 35px;
+}
+
+.loading {
+    visibility:visible!important;
+    -webkit-animation-name:rotate;
+    -webkit-animation-duration:1s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-transition-timing-function:linear;
+}
+
+/* Progress bars: http://css-tricks.com/css3-progress-bars/ */
+.readkit-meter { 
+    display:block;
+    height: 20px;
+    position: relative;
+    margin: auto 2em;
+    background: #555;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    border-radius: 25px;
+    padding: 10px;
+    -webkit-box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
+    -moz-box-shadow   : inset 0 -1px 1px rgba(255,255,255,0.3);
+    box-shadow        : inset 0 -1px 1px rgba(255,255,255,0.3);
+}
+
+/* Progress bar fill */
+.readkit-meter > span {
+    display: block;
+    height: 100%;
+       -webkit-border-top-right-radius: 20px;
+    -webkit-border-bottom-right-radius: 20px;
+           -moz-border-radius-topright: 20px;
+        -moz-border-radius-bottomright: 20px;
+               border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+        -webkit-border-top-left-radius: 20px;
+     -webkit-border-bottom-left-radius: 20px;
+            -moz-border-radius-topleft: 20px;
+         -moz-border-radius-bottomleft: 20px;
+                border-top-left-radius: 20px;
+             border-bottom-left-radius: 20px;
+    background-color: rgb(43,194,83);
+    background-image: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0, rgb(43,194,83)),
+      color-stop(1, rgb(84,240,84))
+     );
+    background-image: -webkit-linear-gradient(
+      center bottom,
+      rgb(43,194,83) 37%,
+      rgb(84,240,84) 69%
+     );
+    background-image: -moz-linear-gradient(
+      center bottom,
+      rgb(43,194,83) 37%,
+      rgb(84,240,84) 69%
+     );
+    background-image: -ms-linear-gradient(
+      center bottom,
+      rgb(43,194,83) 37%,
+      rgb(84,240,84) 69%
+     );
+    background-image: -o-linear-gradient(
+      center bottom,
+      rgb(43,194,83) 37%,
+      rgb(84,240,84) 69%
+     );
+    -webkit-box-shadow: 
+      inset 0 2px 9px  rgba(255,255,255,0.3),
+      inset 0 -2px 6px rgba(0,0,0,0.4);
+    -moz-box-shadow: 
+      inset 0 2px 9px  rgba(255,255,255,0.3),
+      inset 0 -2px 6px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Candy-striping */
+.readkit-meter > span:after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background-image: 
+       -webkit-gradient(linear, 0 0, 100% 100%, 
+          color-stop(.25, rgba(255, 255, 255, .2)), 
+          color-stop(.25, transparent), color-stop(.5, transparent), 
+          color-stop(.5, rgba(255, 255, 255, .2)), 
+          color-stop(.75, rgba(255, 255, 255, .2)), 
+          color-stop(.75, transparent), to(transparent)
+       );
+    background-image: 
+        -webkit-linear-gradient(
+          -45deg, 
+          rgba(255, 255, 255, .2) 25%, 
+          transparent 25%, 
+          transparent 50%, 
+          rgba(255, 255, 255, .2) 50%, 
+          rgba(255, 255, 255, .2) 75%, 
+          transparent 75%, 
+          transparent
+       );
+    background-image: 
+        -moz-linear-gradient(
+          -45deg, 
+          rgba(255, 255, 255, .2) 25%, 
+          transparent 25%, 
+          transparent 50%, 
+          rgba(255, 255, 255, .2) 50%, 
+          rgba(255, 255, 255, .2) 75%, 
+          transparent 75%, 
+          transparent
+       );
+    background-image: 
+        -ms-linear-gradient(
+          -45deg, 
+          rgba(255, 255, 255, .2) 25%, 
+          transparent 25%, 
+          transparent 50%, 
+          rgba(255, 255, 255, .2) 50%, 
+          rgba(255, 255, 255, .2) 75%, 
+          transparent 75%, 
+          transparent
+       );
+    background-image: 
+        -o-linear-gradient(
+          -45deg, 
+          rgba(255, 255, 255, .2) 25%, 
+          transparent 25%, 
+          transparent 50%, 
+          rgba(255, 255, 255, .2) 50%, 
+          rgba(255, 255, 255, .2) 75%, 
+          transparent 75%, 
+          transparent
+       );
+    z-index: 1;
+    -webkit-background-size: 50px 50px;
+    -moz-background-size:    50px 50px;
+    background-size:         50px 50px;
+    -webkit-animation: move 2s linear infinite;
+    -moz-animation: move 2s linear infinite;
+       -webkit-border-top-right-radius: 8px;
+    -webkit-border-bottom-right-radius: 8px;
+           -moz-border-radius-topright: 8px;
+        -moz-border-radius-bottomright: 8px;
+               border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+        -webkit-border-top-left-radius: 20px;
+     -webkit-border-bottom-left-radius: 20px;
+            -moz-border-radius-topleft: 20px;
+         -moz-border-radius-bottomleft: 20px;
+                border-top-left-radius: 20px;
+             border-bottom-left-radius: 20px;
+    overflow: hidden;
+}
+
+@-webkit-keyframes move {
+    0% {
+       background-position: 0 0;
+    }
+    100% {
+       background-position: 50px 50px;
+    }
+}
+
+@-moz-keyframes move {
+    0% {
+       background-position: 0 0;
+    }
+    100% {
+       background-position: 50px 50px;
+    }
+}
+
+@-webkit-animation expandWidth {
+   0% { width: 0; }
+/*   100% { width: auto; } */
+}
+.readkit-meter > span:after{
+  -webkit-animation: move 2s linear infinite;
+}
+
+.readkit-cancel {
+    font-size: 18px;
+}
+
+.readkit-cancel_upload {
+    float: right;
+    cursor: pointer;
+    margin-right: 5px;
+}

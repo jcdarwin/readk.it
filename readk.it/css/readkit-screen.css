@@ -1,0 +1,690 @@
+@font-face {
+  font-family: "Source Sans Pro";
+  src: local("SourceSansPro-Regular"), url('../fonts/SourceSansPro/SourceSansPro-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Source Sans Pro";
+  src: local("SourceSansPro-Bold"), url('../fonts/SourceSansPro/SourceSansPro-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Source Sans Pro";
+  src: local("SourceSansPro-It"), url('../fonts/SourceSansPro/SourceSansPro-It.woff') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Source Sans Pro";
+  src: local("SourceSansPro-BoldIt"), url('../fonts/SourceSansPro/SourceSansPro-BoldIt.woff') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Lora";
+  src: local("Lora-Regular"), url('../fonts/Lora/Lora.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lora";
+  src: local("Lora-Bold"), url('../fonts/Lora/Lora-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lora";
+  src: local("Lora-Italic"), url('../fonts/Lora/Lora-Italic.woff') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Lora";
+  src: local("Lora-BoldItalic"), url('../fonts/Lora/Lora-BoldItalic.woff') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* line 68, ../sass/partials/_custom.scss */
+.readkit-margins {
+  margin: 0 20px;
+}
+
+/* line 78, ../sass/partials/_custom.scss */
+.readkit-page {
+  float: left;
+  -webkit-transform: translate3d(0, 0, 0);
+  height: 100%;
+}
+
+/* Needed especially for IE 10 */
+/* line 85, ../sass/partials/_custom.scss */
+#readkit-pageScroller {
+  height: 100%;
+}
+
+/* line 89, ../sass/partials/_custom.scss */
+#readkit-pageWrapper {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding-bottom: 20px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* line 100, ../sass/partials/_custom.scss */
+.readkit-wrapper {
+  position: relative;
+  height: 100%;
+  /* The next two lines allow for an "overlap" when scrolling a page vertically */
+  top: 20px;
+  overflow: visible !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+/* line 113, ../sass/partials/_custom.scss */
+.readkit-wrapper-bookmarks {
+  position: absolute;
+  top: 40px;
+  left: 10px;
+  right: 10px;
+  bottom: 0;
+  overflow: auto;
+  z-index: 1;
+}
+
+/* line 123, ../sass/partials/_custom.scss */
+.readkit-scroller {
+  position: absolute;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  width: 100%;
+  padding: 0;
+  z-index: 1;
+}
+
+/* line 137, ../sass/partials/_custom.scss */
+.readkit-header {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 40px;
+  width: 100%;
+  margin-top: 0;
+  background-color: #e6e7e8;
+  z-index: 2;
+  line-height: 1;
+  font: normal 100%/1 sans-serif;
+}
+
+/* line 150, ../sass/partials/_custom.scss */
+.readkit-controls {
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 18px;
+  -webkit-user-select: none;
+}
+
+/* line 157, ../sass/partials/_custom.scss */
+.readkit-slider, .readkit-slider span, label i, span.icon, span i {
+  font-size: 16px;
+}
+
+/* line 161, ../sass/partials/_custom.scss */
+.readkit-library {
+  text-align: center;
+}
+
+/* line 165, ../sass/partials/_custom.scss */
+.readkit-size, .readkit-lh {
+  float: left;
+  margin-right: 10px;
+}
+
+/* line 170, ../sass/partials/_custom.scss */
+.readkit-dropdown {
+  position: absolute;
+  top: 35px;
+  margin-top: 5px;
+  background-color: #444444;
+  border-radius: 12px;
+  a: link;
+  a-color: white;
+  a: visited;
+  a-color: #bbbbbb;
+}
+
+/* line 186, ../sass/partials/_custom.scss */
+#readkit-dropdown-size, #readkit-dropdown-lineheight {
+  left: 30px;
+  height: 60px;
+  width: 116px;
+}
+
+/* line 192, ../sass/partials/_custom.scss */
+#readkit-dropdown-bookmark {
+  height: 380px;
+  width: 280px;
+  right: 10px;
+  color: white;
+  padding: 0 10px 10px 10px;
+  overflow: hidden;
+}
+/* line 200, ../sass/partials/_custom.scss */
+#readkit-dropdown-bookmark a {
+  font-size: 12px;
+}
+
+/* line 205, ../sass/partials/_custom.scss */
+.readkit-small {
+  left: 10px;
+  height: 18px;
+  width: 18px;
+  border-radius: 9px;
+  margin-top: -13px;
+}
+/* line 212, ../sass/partials/_custom.scss */
+.readkit-small i:before {
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+/* line 218, ../sass/partials/_custom.scss */
+.readkit-medium {
+  left: 38px;
+  height: 24px;
+  width: 24px;
+  border-radius: 12px;
+  margin-top: -13px;
+}
+/* line 225, ../sass/partials/_custom.scss */
+.readkit-medium i:before {
+  font-size: 16px;
+  line-height: 1.6em;
+}
+
+/* line 232, ../sass/partials/_custom.scss */
+.readkit-large {
+  left: 72px;
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  margin-top: -13px;
+}
+/* line 239, ../sass/partials/_custom.scss */
+.readkit-large i:before {
+  font-size: 20px;
+  line-height: 1.6em;
+}
+
+/* line 245, ../sass/partials/_custom.scss */
+.readkit-font {
+  display: inline-block;
+  font-size: 18px;
+}
+
+/* line 250, ../sass/partials/_custom.scss */
+.readkit-back {
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/* line 256, ../sass/partials/_custom.scss */
+.readkit-status {
+  float: right;
+  cursor: default;
+}
+
+/* line 261, ../sass/partials/_custom.scss */
+.readkit-bookmark {
+  float: right;
+  cursor: hand;
+  cursor: pointer;
+}
+
+/* line 267, ../sass/partials/_custom.scss */
+#readkit-bookmark-input {
+  width: 240px;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* line 275, ../sass/partials/_custom.scss */
+.readkit-bookmark-title {
+  float: left;
+  width: 240px;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+/* line 282, ../sass/partials/_custom.scss */
+.readkit-bookmark-input {
+  position: relative;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  background-color: #444444;
+  z-index: 2;
+}
+
+/* line 291, ../sass/partials/_custom.scss */
+.readkit-bookmark-list-item {
+  float: left;
+}
+
+/* line 295, ../sass/partials/_custom.scss */
+#readkit-bookmark-widget {
+  font-family: "Source Sans Pro", Arial, sans-serif;
+}
+/* line 299, ../sass/partials/_custom.scss */
+#readkit-bookmark-widget a:hover, #readkit-bookmark-widget a:active, #readkit-bookmark-widget a:focus {
+  color: white;
+  text-decoration: none;
+}
+/* line 304, ../sass/partials/_custom.scss */
+#readkit-bookmark-widget a, #readkit-bookmark-widget a:visited {
+  color: #bbbbbb;
+  text-decoration: none;
+}
+/* line 309, ../sass/partials/_custom.scss */
+#readkit-bookmark-widget ul {
+  padding-left: 20px;
+}
+/* line 313, ../sass/partials/_custom.scss */
+#readkit-bookmark-widget li {
+  margin-bottom: 5px;
+}
+/* line 317, ../sass/partials/_custom.scss */
+#readkit-bookmark-widget hr {
+  margin-bottom: 0.5rem;
+}
+
+/* line 322, ../sass/partials/_custom.scss */
+img {
+  max-width: 100%;
+}
+
+/* line 326, ../sass/partials/_custom.scss */
+pre {
+  overflow: auto;
+}
+
+/* line 330, ../sass/partials/_custom.scss */
+#readkit-sitePreloader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  z-index: 2;
+}
+
+/* Preloader GIF created with http://preloaders.net */
+/* line 341, ../sass/partials/_custom.scss */
+#readkit-preloaderImage {
+  width: 50px;
+  margin: 200px auto;
+}
+
+/* line 346, ../sass/partials/_custom.scss */
+#readkit-preloaderBackgroundImage {
+  width: 50px;
+  height: 50px;
+  background-image: url("../images/site_preloader.gif");
+}
+
+/* line 358, ../sass/partials/_custom.scss */
+[class^="readkit-strength-"], [class*=" readkit-strength-"] {
+  position: absolute;
+  top: 50%;
+  float: left;
+  margin-right: 0;
+  cursor: hand;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* line 368, ../sass/partials/_custom.scss */
+.readkit-icon {
+  color: #ffffff;
+  margin-top: 5px;
+  display: inline-block;
+  height: 24px;
+  width: 30px;
+  border-radius: 15px;
+  text-align: center;
+  background: black;
+  padding-top: 6px;
+  padding-bottom: 0px;
+  cursor: hand;
+  cursor: pointer;
+}
+
+/* line 383, ../sass/partials/_custom.scss */
+.readkit-online, .readkit-active {
+  background-color: #56a2d3;
+}
+
+/* line 387, ../sass/partials/_custom.scss */
+.readkit-offline, .readkit-inactive {
+  background-color: #bcbec0;
+}
+
+/* line 391, ../sass/partials/_custom.scss */
+.readkit-icon-sans {
+  font-family: Arial;
+  font-weight: bold;
+  float: right;
+  margin-right: 10px;
+}
+
+/* line 398, ../sass/partials/_custom.scss */
+.readkit-icon-serif {
+  font-family: Georgia;
+  font-weight: bold;
+  float: right;
+  margin-right: 10px;
+}
+
+/* line 405, ../sass/partials/_custom.scss */
+.readkit-sans {
+  font-family: "Source Sans Pro", Arial, sans-serif;
+}
+
+/* line 409, ../sass/partials/_custom.scss */
+.readkit-serif {
+  font-family: "Lora", Georgia, serif;
+}
+
+/* line 413, ../sass/partials/_custom.scss */
+.readkit-bookmark-icon {
+  height: 24px;
+  width: 24px;
+  border-radius: 12px;
+  padding-top: 0;
+  font-size: 24px;
+  color: #56a2d3;
+  margin: 0;
+}
+
+/* line 423, ../sass/partials/_custom.scss */
+.readkit-bookmark-icon:before {
+  margin: 0;
+}
+
+/* line 427, ../sass/partials/_custom.scss */
+.readkit-bookmark-icon-add {
+  float: right;
+  margin-top: 2px;
+}
+
+/* line 432, ../sass/partials/_custom.scss */
+.readkit-bookmark-icon-remove {
+  float: left;
+}
+
+/* iPhone 2G-4S in portrait & landscape */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  /* line 446, ../sass/partials/_custom.scss */
+  .readkit-header {
+    top: 0;
+    -webkit-user-select: none;
+  }
+
+  /* line 450, ../sass/partials/_custom.scss */
+  .readkit-slider {
+    width: 30px;
+  }
+}
+/* iPhone 5 in portrait & landscape */
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+  /* line 459, ../sass/partials/_custom.scss */
+  .readkit-header {
+    top: 0;
+    -webkit-user-select: none;
+  }
+
+  /* line 463, ../sass/partials/_custom.scss */
+  .readkit-slider {
+    width: 30px;
+  }
+}
+/* iPad in portrait & landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  /* Accomodate status bar */
+  /* line 473, ../sass/partials/_custom.scss */
+  .readkit-header {
+    top: 0;
+    -webkit-user-select: none;
+  }
+}
+/* Desktop */
+@media only screen {
+  /* line 481, ../sass/partials/_custom.scss */
+  .readkit-header {
+    top: 0;
+  }
+}
+/* Phone */
+@media (max-device-width: 240px) {
+  /* line 488, ../sass/partials/_custom.scss */
+  .readkit-serif, .readkit-sans {
+    display: none;
+  }
+}
+/* line 15, ../sass/partials/_drag_and_drop.scss */
+#readkit-epub-drag-upload {
+  border: 4px dotted #bcbec0;
+  height: 40%;
+  margin: 2em;
+  padding: 1em;
+}
+
+/* line 22, ../sass/partials/_drag_and_drop.scss */
+#readkit-epub-drag-upload p {
+  font-size: 2em;
+  text-align: center;
+  margin-bottom: 0.5em;
+}
+
+/* line 28, ../sass/partials/_drag_and_drop.scss */
+.readkit-epub-drag-upload-label {
+  font-family: Arial;
+  opacity: 0.2;
+}
+
+/* line 33, ../sass/partials/_drag_and_drop.scss */
+.readkit-drag-upload-spinner {
+  text-align: center;
+  margin: auto;
+  width: 50px;
+  height: 50px;
+  background-image: url("../images/spinner.gif");
+  opacity: 0;
+}
+
+/* line 42, ../sass/partials/_drag_and_drop.scss */
+#readkit-drag-upload-window {
+  width: 80%;
+  margin: 40px 10% 0;
+}
+
+/* line 47, ../sass/partials/_drag_and_drop.scss */
+.readkit-drag-upload-window {
+  display: none;
+  position: absolute;
+  top: 0;
+  z-index: 150;
+  padding-bottom: 20px;
+  background-color: #e6e7e8;
+  -moz-border-radius-bottomleft: 10px;
+  -moz-border-radius-bottomright: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  -moz-box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.5), inset 4px 6px 13px #e6e7e8;
+  margin: auto;
+  font-family: sans-serif;
+}
+
+/* line 66, ../sass/partials/_drag_and_drop.scss */
+.readkit-epub-drag-upload {
+  padding: 14px 30px 13px 35px;
+}
+
+/* line 70, ../sass/partials/_drag_and_drop.scss */
+.loading {
+  opacity: 0.2;
+}
+
+/* Progress bars: http://css-tricks.com/css3-progress-bars/ */
+/* line 75, ../sass/partials/_drag_and_drop.scss */
+.readkit-meter {
+  display: block;
+  height: 20px;
+  position: relative;
+  margin: auto 2em;
+  background: #555;
+  -moz-border-radius: 25px;
+  -webkit-border-radius: 25px;
+  border-radius: 25px;
+  padding: 10px;
+  -webkit-box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+  -moz-box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+}
+
+/* Progress bar fill */
+/* line 91, ../sass/partials/_drag_and_drop.scss */
+.readkit-meter > span {
+  display: block;
+  height: 100%;
+  -webkit-border-top-right-radius: 20px;
+  -webkit-border-bottom-right-radius: 20px;
+  -moz-border-radius-topright: 20px;
+  -moz-border-radius-bottomright: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  -webkit-border-top-left-radius: 20px;
+  -webkit-border-bottom-left-radius: 20px;
+  -moz-border-radius-topleft: 20px;
+  -moz-border-radius-bottomleft: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-color: #56a2d3;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #56a2d3), color-stop(1, #00093a));
+  background-image: -webkit-linear-gradient(center bottom, #56a2d3 37%, #00093a 69%);
+  background-image: -moz-linear-gradient(center bottom, #56a2d3 37%, #00093a 69%);
+  background-image: -ms-linear-gradient(center bottom, #56a2d3 37%, #00093a 69%);
+  background-image: -o-linear-gradient(center bottom, #56a2d3 37%, #00093a 69%);
+  -webkit-box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3), inset 0 -2px 6px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3), inset 0 -2px 6px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Candy-striping */
+/* line 145, ../sass/partials/_drag_and_drop.scss */
+.readkit-meter > span:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-image: -webkit-gradient(linear, 0 0, 100% 100%, color-stop(0.25, rgba(255, 255, 255, 0.2)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.2)), color-stop(0.75, rgba(255, 255, 255, 0.2)), color-stop(0.75, transparent), to(transparent));
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+  z-index: 1;
+  -webkit-background-size: 50px 50px;
+  -moz-background-size: 50px 50px;
+  background-size: 50px 50px;
+  -webkit-animation: move 2s linear infinite;
+  -moz-animation: move 2s linear infinite;
+  -webkit-border-top-right-radius: 8px;
+  -webkit-border-bottom-right-radius: 8px;
+  -moz-border-radius-topright: 8px;
+  -moz-border-radius-bottomright: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  -webkit-border-top-left-radius: 20px;
+  -webkit-border-bottom-left-radius: 20px;
+  -moz-border-radius-topleft: 20px;
+  -moz-border-radius-bottomleft: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  overflow: hidden;
+}
+
+@-webkit-keyframes move {
+  /* line 223, ../sass/partials/_drag_and_drop.scss */
+  0% {
+    background-position: 0 0;
+  }
+
+  /* line 226, ../sass/partials/_drag_and_drop.scss */
+  100% {
+    background-position: 50px 50px;
+  }
+}
+
+@-moz-keyframes move {
+  /* line 232, ../sass/partials/_drag_and_drop.scss */
+  0% {
+    background-position: 0 0;
+  }
+
+  /* line 235, ../sass/partials/_drag_and_drop.scss */
+  100% {
+    background-position: 50px 50px;
+  }
+}
+
+@-webkit-animation expandWidth {
+  /* line 241, ../sass/partials/_drag_and_drop.scss */
+  0% {
+    width: 0;
+  }
+
+  /*   100% { width: auto; } */
+}
+
+/* line 244, ../sass/partials/_drag_and_drop.scss */
+.readkit-meter > span:after {
+  -webkit-animation: move 2s linear infinite;
+}
+
+/* line 248, ../sass/partials/_drag_and_drop.scss */
+.readkit-cancel {
+  font-size: 18px;
+}
+
+/* line 252, ../sass/partials/_drag_and_drop.scss */
+.readkit-cancel_upload {
+  float: right;
+  cursor: pointer;
+  margin-right: 5px;
+}

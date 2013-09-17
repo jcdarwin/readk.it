@@ -1,0 +1,312 @@
+@charset "UTF-8";
+
+// ==========================================================================//
+//
+// $Variables
+//
+// ==========================================================================//
+
+$max-width: 940px;
+
+
+// ==========================================================================//
+//
+// $Typography
+//
+// ==========================================================================//
+
+@include font-face('Aleo Regular', font-files(
+    "aleo_font_v-1.1.3/Aleo-Regular.otf", opentype), false, 400, normal, false, Aleo-Regular);
+
+body{ font-family: 'Aleo Regular', serif; }
+
+// ==========================================================================//
+//
+// $BaseStyles
+//
+// ==========================================================================//
+
+* { -webkit-user-select: none; }
+
+html { height: 100%; }
+
+body{ height: 100%; margin: 0; font-style: normal; font-weight: 400; overflow: hidden; }
+
+a { text-decoration: none; }
+
+
+// ==========================================================================//
+//
+// $LayoutStyles
+//
+// ==========================================================================//
+
+
+// ==========================================================================//
+//
+// $ModuleStyles
+//
+// ==========================================================================//
+
+/* Header style */
+header.projecttitle {
+    height: 100%;
+    margin: 0 auto;
+    padding: 1px 0 0;
+    text-shadow: 1px 1px 0 rgba(0,0,0,.3);
+    color: $light-color;
+    background-color: $background-dark-color;
+}
+
+/* Header */
+.library {
+    button, button { background: transparent; border: 0; color: $light-color; opacity: .5; cursor: pointer;}
+    button:hover, button:hover { opacity: 1; }
+    button:disabled, button:disabled { opacity: .2; }
+
+    .forward, .backward { float: left; width: 50px; font-size: 60px; text-align: left;}
+    .forward i[class^="icon-"]:before, .backward i[class^="icon-"]:before { width: 0; }
+    .forward { float: right; }
+
+    .frame {
+        margin: 0 auto;
+        max-width: $max-width;
+        overflow: hidden;
+        text-shadow: none;
+        div.ul {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-size: 50px;
+            display: inline-block;
+            h2 { display: inline;}
+            div.li { float: left; margin: 0 1px 0 0; padding: 0; background: #eee; color: $border-dark-color; text-align: center; cursor: pointer; display:inline;}
+            div.li.active { color: $light-color; background: $bright-color; }
+        }
+    }
+
+    .scrollbar {
+        max-width: $max-width;
+        height: 20px;
+        line-height: 0;
+        .handle {
+            width: 100px;
+            height: 100%;
+            cursor: pointer;
+            .mousearea { width: 100%; height: 20px; background: $light-color; opacity: .5; border: 1px solid $light-color; border-radius: 5px; }
+            .mousearea:hover { opacity: 1; }
+        }
+    }
+
+    .readbar { max-width: $max-width; height: 30px; line-height: 0;}
+    .read { margin: auto; text-align: center; font-size: 20px; width: 100px; height: 30px; line-height: 1.4; background: $bright-color;  border-radius: 5px; cursor: pointer;}
+    .readtext { float: left; padding-left: 15px; }
+
+    .controls {
+        margin: 10px 0 0;
+        text-align: center;
+        .divider { display: inline-block; margin: 0 5px; }
+        button {
+            line-height: 32px; vertical-align: middle; font-size: 18px; text-transform: uppercase; padding: 1px; height: 50px; width: 50px; border-radius: 25px; background-color: $light-color;
+            i { position: relative; top: -2px; margin: 5px; padding: 0; font-size: 32px; vertical-align: middle; color: #000; }
+        }
+    }
+    
+}
+
+/* Publication */
+.publication{
+    height: 180px;
+    margin: 0 20px 20px 0;
+    padding: 10px;
+    float:left;
+    border-radius: 5px;
+
+    h2 { margin-top: 0; font-size: 12px; }
+
+    .publication img { border: 1px solid $border-dark-color; border-radius: 5px; box-sizing:border-box; -moz-box-shadow: 0 0 5px 2px $box-shadow-color; -webkit-box-shadow: 0 0 5px 2px $box-shadow-color; box-shadow: 0 0 5px 2px $box-shadow-color; }
+}
+
+/* 3D shenanigans */
+.csstransforms3d {
+    .frame {
+        -webkit-perspective: 800px;
+        -ms-perspective: 800px;
+        perspective: 800px;
+        -webkit-perspective-origin: 50% 50%;
+        -ms-perspective-origin: 50% 50%;
+        perspective-origin: 50% 50%;
+        div.ul {
+            -webkit-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            div.li {
+                position: relative;
+                margin: 2px -25px;
+                -webkit-transform: rotateY(60deg) scale(0.9);
+                -ms-transform: rotateY(60deg) scale(0.9);
+                transform: rotateY(60deg) scale(0.9);
+                -webkit-transition: -webkit-transform 300ms ease-out;
+                transition: transform 300ms ease-out;
+            }
+            div.li.active {
+                z-index: 10;
+                -webkit-transform: scale(1);
+                -ms-transform: scale(1);
+                transform: scale(1);
+            }
+            div.li.active ~ div.li {
+                -webkit-transform: rotateY(-60deg) scale(0.9);
+                -ms-transform: rotateY(-60deg) scale(0.9);
+                transform: rotateY(-60deg) scale(0.9);
+            }
+        }
+    }    
+}
+
+
+// ==========================================================================//
+//
+// $StateStyles
+//
+// ==========================================================================//
+
+
+// ==========================================================================//
+//
+// $Media Queries
+//
+// ==========================================================================//
+
+/* iPhone 2G-4S in portrait & landscape */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+    .library
+        {
+            margin: 40px auto 20px;
+            .forward, .backward { display: none; }
+            .scrollbar { margin: 20px auto 10px; }
+            .readbar { margin: 10px auto 20px; }
+            .frame div.ul div.li { width: 190px; height: 240px; }
+        }
+    .publication img {
+        width: 190px;
+        max-height:240px;
+    }
+}
+
+/* iPhone 2G-4S in landscape */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) 
+and (orientation : landscape) {
+    .library {
+        .forward, .backward { height: 200px; }
+        .frame { height: 200px; line-height: 200px; }
+        .controls { display: none; }
+        .scrollbar { margin: 10px auto 10px; }
+        .readbar { margin: 10px auto 10px;}
+        .frame div.ul div.li { width: 150px; height: 190px; }
+    }
+    .csstransforms3d .frame { height: 200px; line-height: 200px; }
+    .publication img {
+        width: 150px;
+        max-height:190px;
+    }
+}
+
+/* iPhone 5 in portrait & landscape */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px) {
+    .library {
+        margin: 40px auto 20px;
+        .forward, .backward {display: none;}
+        .scrollbar { margin: 20px auto 10px; }
+        .readbar { margin: 10px auto 20px;}
+        .frame div.ul div.li { width: 190px; height: 240px; }
+    }
+    .publication img {
+        width: 190px;
+        max-height:240px;
+    }
+}
+
+/* iPhone 5 in landscape */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px) 
+and (orientation : landscape) {
+    .library {
+        .forward, .backward { height: 200px; }
+        .frame { height: 200px; line-height: 200px; }
+        .controls { display: none; }
+        .scrollbar { margin: 10px auto 10px; }
+        .readbar { margin: 10px auto 10px;}
+        .frame div.ul div.li { width: 150px; height: 190px; }
+    }
+    .csstransforms3d .frame { height: 200px; line-height: 200px; }
+    .publication img {
+        width: 150px;
+        max-height:190px;
+    }
+}
+
+/* iPad in portrait & landscape */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)  {
+    .library {
+        margin: 60px auto 40px;
+        .forward, .backward { height: 250px; }
+        .frame { height: 250px; line-height: 250px; }
+        .scrollbar { margin: 20px auto 10px; }
+        .readbar { margin: 10px auto 20px;}
+        .frame div.ul div.li { width: 190px; height: 240px; }
+    }
+    .csstransforms3d .frame { height: 250px; line-height: 250px; }
+    .publication img {
+        width: 190px;
+        max-height:240px;
+    }
+}
+
+/* Desktop */
+@media only screen {
+    .library {
+        margin: 60px auto 40px;
+
+        .forward, .backward {
+            height: 250px;
+        }
+        .frame {
+            height: 250px;
+            line-height: 250px;
+
+            div.ul div.li {
+                width: 190px;
+                height: 240px;
+            }
+        }
+        .scrollbar {
+            margin: 20px auto 10px;
+        }
+        .readbar {
+            margin: 10px auto 20px;
+        }
+    }
+    .csstransforms3d .frame {
+        height: 250px;
+        line-height: 250px;
+    }
+
+    .publication img {
+        width: 190px;
+        max-height:240px;
+    }
+}
+
+/* Phone */
+@media (max-device-width:240px) {
+}

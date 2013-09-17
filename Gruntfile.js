@@ -25,6 +25,13 @@
 
 /*global module:false*/
 module.exports = function(grunt) {
+  var globals = {
+    identifier: [],
+    identifier_client_scripts_to_build: [],
+    identifier_mixin_client_config: [],
+    path: [],
+    oebps_path_src: []
+  };
 
   function processManifestDev(err, stdout, stderr, cb) {
     generateDynamicTasks(runDynamicTasks, 'dev', cb);
@@ -516,9 +523,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-bake');
 
-  var script_oebps_path_src = '';
-  var client_scripts = [];
-
   // We have to create many of our grunt tasks dynamically, as we don't
   // which or how many EPUBs we'll be processing ahead of time.
   // This page helped a lot: https://gist.github.com/brianfeister/4294776
@@ -534,6 +538,9 @@ module.exports = function(grunt) {
       var path = manifest[entry].path;
       var cover = manifest[entry].cover;
 
+      globals.identifier.push(identifier);
+      globals.path[identifier] = manifest[entry].path;
+
       // Determine the location of the opf file
       grunt.config('readkit_dom_munger.' + identifier + '_metaInf', {
         options: {
@@ -548,7 +555,13 @@ module.exports = function(grunt) {
       // Determine the location of the OEBPS directory
       grunt.config('readkit_dom_munger.' + identifier + '_oebps', {
         options: {
-          read: {selector: 'container rootfiles rootfile', attribute: 'full-path', replace: '\/.*$', replacewith: '', writeto: 'oebpsRef', isPath:false}
+          read: {selector: 'container rootfiles rootfile', attribute: 'full-path', replace: '\/.*$', replacewith: '', writeto: 'oebpsRef', isPath:false},
+          callback: function($) {
+            var regexp = new RegExp('\/.*$');
+            // Store the OEBPS path for the publication
+            var identifier = globals.identifier.shift();
+            globals.oebps_path_src[identifier] = grunt.template.process('<%= epub_src %>/') + globals.path[identifier] + $('container rootfiles rootfile').attr('full-path').replace(regexp, '');
+          }
         },
         src: '<%= epub_src %>/' + path + 'META-INF/container.xml'
       });
@@ -576,16 +589,9 @@ module.exports = function(grunt) {
       });
 
       // Read the client scripts from the html files
-      script_oebps_path_src = oebps_path_src;
       grunt.config('readkit_dom_munger.' + identifier + '_client_scripts', {
         options: {
-          //read: {selector: 'script', attribute: 'src', writeto: 'clientScriptRefs', isPath:false, concatenate: true},
-          callback: function($) {
-            script_oebps_path_src = oebps_path_src;
-            if ($('script[src]').attr('src')) {
-              client_scripts.push($('script[src]').attr('src'));
-            }
-          }
+          read: {selector: 'script', attribute: 'src', writeto: 'clientScriptRefs', isPath:false, concatenate: true},
         },
         src: ['<%= readkit_dom_munger.data.manifestHtmlRefs %>']
       });
@@ -718,12 +724,6 @@ module.exports = function(grunt) {
             src: ['client.config.js'],
             dest: 'build/readkit/js', filter: 'isFile'}
         ]
-      });
-
-      grunt.config(identifier + '_config_prod', {
-        options: {
-          oebps: oebps
-        }
       });
 
       // Update our production index.html to point to the built readkit,
@@ -1059,9 +1059,75 @@ module.exports = function(grunt) {
         // Ensure that drag-and-drop unzip can find the web worker
         grunt.registerTask(identifier + '_config_prod', 'Configure location of the webworkers (for drag and drop)', function(){
           var config = grunt.file.read('build/readkit/js/app/config.js');
-          //var options = grunt.config([identifier + '_config_prod', 'options']);
-          //grunt.file.write('build/readkit/js/app/config.js', config.replace(/workerScriptsPath\:[^\,\}]*/, 'workerScriptsPath: "' + options['oebps'] + '/readk.it/js/lib/zip/"'));
           grunt.file.write('build/readkit/js/app/config.js', config.replace(/workerScriptsPath\:[^\,\}]*/, 'workerScriptsPath: "js/lib/zip/"'));
+        });
+
+        // We have to define our own task to gather information about any client scripts.
+        // Originally we used 'readkit_dom_munger.' + identifier + '_client_scripts'
+        // but unfortunately this caused some succeeding tasks to fail silently.
+        globals.identifier_client_scripts_to_build.push(identifier);
+        grunt.registerTask(identifier + '_client_scripts_to_build', 'Move the client scripts to the build directory', function(){
+          var identifier = globals.identifier_client_scripts_to_build.shift();
+            if (grunt.file.exists(globals.oebps_path_src[identifier] + '/readk.it/js/client.config.js')) {
+              var config = grunt.file.read(globals.oebps_path_src[identifier] + '/readk.it/js/client.config.js');
+              var lines = config.split(/\r\n|\r|\n/g);
+              var regexp_script = /client_js_build\:\s*['"]([^'"]*)['"]/i;
+              for (var j = 0; j < lines.length; j++) {
+                var matches = regexp_script.exec(lines[j]);
+                if (matches) {
+                  matches.shift();
+                  // Copy our client script files to the build directory
+                  grunt.config('copy.' + identifier + '_client_scripts_to_build', {
+                    options: {
+                    },
+                    files: [
+                      // Note that the dest ('build/readkit/js/lib/'') is a fake path, as matches[0] is likely something like '../../js'
+                      // and will resolve to 'build/readkit'.
+                      {expand: true, src: [matches[0] + '/**'], cwd: globals.oebps_path_src[identifier] + '/readk.it/js/', dest: 'build/readkit/js/lib/'}
+                    ]
+                  });
+                  grunt.task.run('copy:' + identifier + '_client_scripts_to_build');
+                }
+              }
+            }
+        });
+
+        globals.identifier_mixin_client_config.push(identifier);
+        grunt.registerTask(identifier + '_mixin_client_config', 'Mixin the client config to the require compilation', function(){
+          var identifier = globals.identifier_mixin_client_config.shift();
+          // Mixin any client EPUB paths to the Readk.it paths
+          var extend = function(obj, defaults) {
+              for (var i in defaults) {
+                  if (!obj[i]) {
+                      obj[i] = defaults[i];
+                  }
+              }
+          };
+          eval(grunt.file.read('build/readkit/js/client.config.js'));
+
+          grunt.config('requirejs.' + identifier + '_compile_readkit', {
+            options: grunt.config.get('requirejs.compile_readkit.options')
+          });
+
+          // Mixin our client paths to our readkit paths
+          var paths = grunt.config.get('requirejs.' + identifier + '_compile_readkit.options.paths');
+          extend(paths, client.paths);
+          paths.client_js = paths.client_js_build;
+          grunt.config.set('requirejs.' + identifier + '_compile_readkit.options.paths', paths);
+
+          // Mixin our client includes to our readkit includes
+          var include = grunt.config.get('requirejs.' + identifier + '_compile_readkit.options.include');
+          grunt.config.set('requirejs.' + identifier + '_compile_readkit.options.include', include.concat(client.required));
+
+          // Mixin our client shims to our readkit shims
+          var shim = grunt.config.get('requirejs.' + identifier + '_compile_readkit.options.shim');
+          extend(shim, client.shims);
+          grunt.config.set('requirejs.' + identifier + '_compile_readkit.options.shim', shim);
+
+          // Compile readk.it for this publication
+grunt.log.writeln('RUNNING: ' + 'requirejs:' + identifier + '_compile_readkit');
+          grunt.task.run('requirejs:' + identifier + '_compile_readkit');
+grunt.log.writeln('RAN: ' + 'requirejs:' + identifier + '_compile_readkit');
         });
 
         // Our publication-specific prod/prod lite tasks
@@ -1088,14 +1154,10 @@ module.exports = function(grunt) {
           'shell:' + identifier + '_zip',
           'shell:' + identifier + '_mv',
           'config_mode_solo',
-          'client_scripts_to_build',
-          //'readkit_dom_munger:' + identifier + '_client_scripts',
-          //'copy:' + identifier + '_client_scripts_to_build',
+          identifier + '_client_scripts_to_build',
           'copy:' + identifier + '_client_config_to_build',
-          //'copy:content_js_to_build',
           'readkit_datauris:' + identifier,
-          'mixin_client_config',
-// TODO: ensure that client config is reset each time through
+          identifier + '_mixin_client_config',
           'clean:build_readkit_js',
           'requirejs:compile_readkit', // compile solo, including the data URIs in content.js
           'readkit_dom_munger:' + identifier + '_solo_index',
@@ -1156,67 +1218,6 @@ module.exports = function(grunt) {
   // Register our static tasks.
   grunt.registerTask('cleanBefore', ['clean:before']);
   grunt.registerTask('cleanAfter', ['clean:after']);
-
-  grunt.registerTask('mixin_client_config', 'Mixin the client config to the require compilation', function(){
-    // Mixin any client EPUB paths to the Readk.it paths
-    var extend = function(obj, defaults) {
-        for (var i in defaults) {
-            if (!obj[i]) {
-                obj[i] = defaults[i];
-            }
-        }
-    };
-    eval(grunt.file.read('build/readkit/js/client.config.js'));
-
-    // Mixin our client paths to our readkit paths
-    var paths = grunt.config.get('requirejs.compile_readkit.options.paths');
-    extend(paths, client.paths);
-    paths.client_js = paths.client_js_build;
-    grunt.config.set('requirejs.compile_readkit.options.paths', paths);
-
-    // Mixin our client includes to our readkit includes
-    var include = grunt.config.get('requirejs.compile_readkit.options.include');
-    grunt.config.set('requirejs.compile_readkit.options.include', include.concat(client.required));
-
-    // Mixin our client shims to our readkit shims
-    var shim = grunt.config.get('requirejs.compile_readkit.options.shim');
-    extend(shim, client.shims);
-    grunt.config.set('requirejs.compile_readkit.options.shim', shim);
-  });
-
-  // We have to define our own task to gather information about any client scripts.
-  // Originally we used 'readkit_dom_munger:' + identifier + '_client_scripts',
-  // but unfortuantely this causes some succeeding tasks to fail silently.
-  grunt.registerTask('client_scripts_to_build', 'Move the client scripts to the build directory', function(){
-grunt.log.writeln('LOOKING FOR: ' + grunt.template.process(script_oebps_path_src) + '/readk.it/js/client.config.js');
-    if (grunt.file.exists(grunt.template.process(script_oebps_path_src) + '/readk.it/js/client.config.js')) {
-grunt.log.writeln('FOUND: ' + grunt.template.process(script_oebps_path_src) + '/readk.it/js/client.config.js');
-      var config = grunt.file.read(grunt.template.process(script_oebps_path_src) + '/readk.it/js/client.config.js');
-      var lines = config.split(/\r\n|\r|\n/g);
-      var regexp_script = /client_js_build\:\s*['"]([^'"]*)['"]/i;
-      for (var j = 0; j < lines.length; j++) {
-        var matches = regexp_script.exec(lines[j]);
-        if (matches) {
-          matches.shift();
-          // Copy our client script files to the build directory
-grunt.log.writeln('FOUND: ' + matches[0]);
-          grunt.config('copy.client_scripts_to_build', {
-            options: {
-            },
-            files: [
-              // Note that the dest ('build/readkit/js/lib/'') is a fake path, as matches[0] is likely something like '../../js'
-              // and will resolve to 'build/readkit'.
-              {expand: true, src: [matches[0] + '/**'], cwd: grunt.template.process(script_oebps_path_src) + '/readk.it/js/', dest: 'build/readkit/js/lib/'}
-            ]
-          });
-          grunt.task.run('copy:client_scripts_to_build');
-        }
-      }
-    }
-
-    script_oebps_path_src = '';
-    client_scripts = [];
-  });
 
   grunt.registerTask('config_mode_publication', 'Configure the publication mode', function(){
     var config = grunt.file.read('build/readkit/js/app/config.js');

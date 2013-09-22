@@ -99,10 +99,10 @@ define([
                     blob.slice = blob.slice || blob.webkitSlice;
                     data = blob;
                 } else {
-                    data = decodeURIComponent(encodeURI(data)); // decode UTF-8
+                    data = decodeURIComponent(escape(data)); // decode UTF-8
                 }
             } else if (/;\s*charset=[uU][tT][fF]-?8\s*[;,]/.test(meta)) {
-                data = decodeURIComponent(encodeURI(data)); // decode UTF-8
+                data = decodeURIComponent(escape(data)); // decode UTF-8
             }
         } else {
             // Presumably we have a blob URL

@@ -27,11 +27,15 @@ define([
         this.version = '';
         this.title = '';
         this.author = '';
+        this.description = '';
+        this.publisher = '';
+        this.language = '';
+        this.rights = '';
+
         this.identifier = '';
         this.content = '';
 
         if (files) {
-
             // Decode Data URIs
             for (var i in files) {
                 files[i] = utility.decode(i, files[i]);
@@ -92,6 +96,29 @@ define([
         }
 
         epub.author = $(f).find('creator').text();
+        if (epub.author === null || epub.author === '') {
+            epub.author = $(f).find('dc\\:creator').text();
+        }
+
+        epub.description = $(f).find('description').text();
+        if (epub.description === null || epub.description === '') {
+            epub.description = $(f).find('dc\\:description').text();
+        }
+
+        epub.publisher = $(f).find('publisher').text();
+        if (epub.publisher === null || epub.publisher === '') {
+            epub.publisher = $(f).find('dc\\:publisher').text();
+        }
+
+        epub.language = $(f).find('language').text();
+        if (epub.language === null || epub.language === '') {
+            epub.language = $(f).find('dc\\:language').text();
+        }
+
+        epub.rights = $(f).find('rights').text();
+        if (epub.rights === null || epub.rights === '') {
+            epub.rights = $(f).find('dc\\:rights').text();
+        }
 
         epub.identifier = $($(f).find('identifier')[0]).text();  // Safari
         // Firefox

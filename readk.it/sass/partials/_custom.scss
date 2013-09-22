@@ -485,7 +485,7 @@ and (max-device-width : 1024px)  {
 
 /* Phone */
 @media (max-device-width:240px) {
-    .#{$namespace}-serif, .#{$namespace}-sans {
+    .#{$namespace}-icon-sans {
         display: none;
     }
 }

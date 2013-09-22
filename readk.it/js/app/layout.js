@@ -40,7 +40,7 @@ define([
         controller = caller;
         publication = pub;
         utility.identifier = pub.identifier;
-utility.storage('pages', []);
+//utility.storage('pages', []);
 //utility.storage('font-size', []);
         return {
             refresh: refresh,
@@ -67,7 +67,7 @@ utility.storage('pages', []);
         var previousPage = 0;
         $('#readkit-pageScroller .readkit-page').remove();
 
-        // Unload any stylesheets for the currently-load publication
+        // Unload any stylesheets for the currently-loaded publication
         if (publication.css_entries) {
             $.each(publication.css_entries, function(index, value) {
                 $('head link[rel="stylesheet"][href="' + value.href + '"]').remove();
@@ -361,6 +361,17 @@ utility.storage('pages', []);
     });
 
     var finalise = function() {
+
+        // Add the schema.org microdata: http://schema.org/Book
+        $('#readkit-pageScroller').attr('itemscope', '');
+        $('#readkit-pageScroller').attr('itemtype', 'http://schema.org/Book');
+        $('[itemprop="name"]').html(publication.title);
+        $('[itemprop="author"]').html(publication.author);
+        $('[itemprop="description"]').html(publication.description);
+        $('[itemprop="publisher"]').html(publication.publisher);
+        $('[itemprop="inLanguage"]').html(publication.language);
+        $('[itemprop="copyrightHolder"]').html(publication.rights);
+
         // Ensure that we can scroll using keyboard in desktop browsers
         $(document).bind('keydown', 'home', function(){
             if (currentPage !== undefined) {

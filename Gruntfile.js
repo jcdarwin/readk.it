@@ -673,6 +673,12 @@ module.exports = function(grunt) {
           {
             src: ['build/readkit/index.html'],
             dest: 'dist/readkit.library/library/solo/' + identifier + '_' + name + '.html'
+          },
+          {
+            cwd: 'build/readkit/images/',
+            expand: true,
+            src: ['*.png'],
+            dest: 'dist/readkit.library/library/solo/images/'
           }
         ]
       });
@@ -750,16 +756,11 @@ module.exports = function(grunt) {
             $('html').attr('manifest', 'readkit.appcache');
             $('.library_link').attr('href', '../library.html');
             $('#readkit-entry').removeAttr('data-main');
-            $('link[rel="stylesheet"]').remove();
-            $('link[rel="apple-touch-icon-precomposed"]').remove();
-            $('link[rel="apple-touch-startup-image"]').remove();
+            $('link[rel="stylesheet"][type="text/css"]').remove();
             $('link[rel="shortcut icon"]').remove();
             $('link[rel="stylesheet"][href="fonts/fontello/css/fontello.css"]').remove();
-            $('meta[name="apple-mobile-web-app-capable"]').remove();
-            $('meta[name="apple-mobile-web-app-status-bar-style"]').remove();
             $('head').append('<style><!--(bake css/screen.css)--></style>');
             $('script#readkit-client').remove();
-//            $('script#readkit-client').removeAttr('src').append('<!--(bake js/client.config.js)-->');
             $('script#readkit-entry').removeAttr('src').append('<!--(bake ../readkit.js)-->');
           }
         },
@@ -770,6 +771,10 @@ module.exports = function(grunt) {
         options: {
           callback: function($) {
             $('.readkit-library').removeAttr('data-library');
+            $('link[rel="apple-touch-icon-precomposed"]').remove();
+            $('link[rel="apple-touch-startup-image"]').remove();
+            $('meta[name="apple-mobile-web-app-capable"]').remove();
+            $('meta[name="apple-mobile-web-app-status-bar-style"]').remove();
           }
         },
         src: ['build/readkit/index.html']

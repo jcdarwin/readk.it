@@ -1,0 +1,27 @@
+CACHE MANIFEST
+
+# v1.0
+
+# For application-cache gotchas, refer:
+# http://www.alistapart.com/articles/application-cache-is-a-douchebag/
+
+library.html
+manifest.json
+
+css/add2home.css
+css/styles.css
+
+fonts/aleo_font_v-1.1.3/Aleo-Regular.otf
+fonts/fontello/css/fontello.css
+fonts/fontello/font/fontello.eot
+fonts/fontello/font/fontello.svg
+fonts/fontello/font/fontello.ttf
+fonts/fontello/font/fontello.woff
+
+html/
+
+images/spinner.gif
+
+js/library.client.config.js
+js/main.compiled.js
+js/script.js

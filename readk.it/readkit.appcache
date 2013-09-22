@@ -1,0 +1,13 @@
+CACHE MANIFEST
+
+# v1.0
+
+# For application-cache gotchas, refer:
+# http://www.alistapart.com/articles/application-cache-is-a-douchebag/
+
+# This application cache is for use with production solo readk.it.
+# As solo readk.it is a single file containing all resources 
+# (i.e. there are no external resources) and as an html file which 
+# references the application cache manifest is automatically cached
+# without needing to be included in the application cache, we therefore
+# don't need to list any files here.

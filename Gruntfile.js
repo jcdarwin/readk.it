@@ -61,8 +61,8 @@ module.exports = function(grunt) {
       '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
       '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
       ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
-    // Task configuration.
 
+    // Task configuration.
     clean: {
       // Before generating any new files, remove any previously-created files.
       before: [
@@ -336,7 +336,7 @@ module.exports = function(grunt) {
         files: [
           {expand: true, cwd: '<%= readkit_src %>/js', src: ['test/**'],
             dest: 'dist/readkit.library/js'},
-          {expand: true, cwd: '<%= readkit_src %>', src: ['*'],
+          {expand: true, cwd: '<%= readkit_src %>', src: ['*', '!**/*.appcache'],
             dest: 'dist/readkit.library', filter: 'isFile'},
           {expand: true, cwd: '<%= readkit_src %>/', src: ['images/**'],
             dest: 'dist/readkit.library'},
@@ -347,7 +347,9 @@ module.exports = function(grunt) {
             'fonts/SourceSansPro/**'],
             dest: 'dist/readkit.library'},
           {expand: true, cwd: '<%= readkit_src %>/library', src: ['fonts/**', 'images/**', 'library.html'],
-            dest: 'dist/readkit.library/library'}
+            dest: 'dist/readkit.library/library'},
+          {expand: true, cwd: '<%= readkit_src %>', src: ['readkit.appcache'],
+            dest: 'dist/readkit.library/library/solo'},
         ]
       },
       library_manifest_to_dist: {
@@ -414,7 +416,7 @@ module.exports = function(grunt) {
         command: [
           'cd <%= epub_src %>',
           //'python manifest.maker.py > manifest.json',
-          'python2.6.exe manifest.maker.py > manifest.json',
+//          'python2.6.exe manifest.maker.py > manifest.json',
           'echo Created manifest: manifest.json'
         ].join('&&'),
         options: {
@@ -745,6 +747,7 @@ module.exports = function(grunt) {
       grunt.config('readkit_dom_munger.' + identifier + '_solo_index', {
         options: {
           callback: function($) {
+            $('html').attr('manifest', 'readkit.appcache');
             $('.library_link').attr('href', '../library.html');
             $('#readkit-entry').removeAttr('data-main');
             $('link[rel="stylesheet"]').remove();
@@ -1156,8 +1159,6 @@ module.exports = function(grunt) {
           'copy:' + identifier + '_client_config_to_build',
           'readkit_datauris:' + identifier,
           identifier + '_mixin_client_config',
-          'clean:build_readkit_js',
-          'requirejs:compile_readkit', // compile solo, including the data URIs in content.js
           'readkit_dom_munger:' + identifier + '_solo_index',
           'bake:' + identifier + '_solo',
           'copy:' + identifier + '_solo_index_to_library',

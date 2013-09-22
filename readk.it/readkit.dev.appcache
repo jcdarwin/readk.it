@@ -5,9 +5,14 @@ CACHE MANIFEST
 # For application-cache gotchas, refer:
 # http://www.alistapart.com/articles/application-cache-is-a-douchebag/
 
+index.html
+favicon.ico
+
 css/add2home.css
 css/drag_and_drop.css
+css/fontello.css
 css/readkit-screen.css
+css/screen.css
 
 fonts/fontello/font/fontello.ttf
 fonts/fontello/font/fontello.woff
@@ -21,20 +26,21 @@ fonts/SourceSansPro/SourceSansPro-It.woff
 fonts/SourceSansPro/SourceSansPro-Regular.woff
 
 images/apple-touch-icon-57x57.png
-images/apple-touch-icon-57x57-precomposed.png
 images/apple-touch-icon-72x72.png
 images/apple-touch-icon-114x114.png
+images/apple-touch-icon-144x144.png
+images/apple-touch-startup-image-320x460.png
+images/apple-touch-startup-image-640x920.png
+images/apple-touch-startup-image-640x1096.png
+images/apple-touch-startup-image-748x1024.png
+images/apple-touch-startup-image-768x1004.png
+images/apple-touch-startup-image-1536x2008.png
+images/apple-touch-startup-image-2048x1496.png
 images/site_preloader.gif
 images/spinner.gif
-images/splash.png
 
+js/app/config.js
+js/lib/zip/inflate.js
 js/readkit.js
 js/client.config.js
 js/app/content.js
-
-favicon.ico
-
-index.html
-
-NETWORK:
-*

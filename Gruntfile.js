@@ -91,14 +91,10 @@ module.exports = function(grunt) {
           callback: function($) {
             $('.readkit-library').removeAttr('data-library');
             $('#readkit-entry').removeAttr('data-main');
-            $('link[rel="stylesheet"]').remove();
-            $('link[rel="apple-touch-icon-precomposed"]').remove();
-            $('link[rel="apple-touch-startup-image"]').remove();
-            $('link[rel="shortcut icon"]').remove();
-            $('link[rel="stylesheet"][href="fonts/fontello/css/fontello.css"]').remove();
-            $('meta[name="apple-mobile-web-app-capable"]').remove();
-            $('meta[name="apple-mobile-web-app-status-bar-style"]').remove();
-            $('head').append('<style><!--(bake css/screen.css)--></style>');
+            $('head link').remove();
+            $('head meta[name="apple-mobile-web-app-capable"]').before('<style><!--(bake css/screen.css)--></style>');
+            $('head meta[name="apple-mobile-web-app-capable"]').remove();
+            $('head meta[name="apple-mobile-web-app-status-bar-style"]').remove();
             $('script#readkit-client').removeAttr('src').append('<!--(bake js/client.config.js)-->');
             $('script#readkit-entry').removeAttr('src').append('<!--(bake ../readkit.js)-->');
           }
@@ -389,7 +385,6 @@ module.exports = function(grunt) {
         command: [
           'cd <%= epub_src %>',
           'python manifest.maker.py > manifest.json',
-//          'python2.6.exe manifest.maker.py > manifest.json',
           'echo Created manifest: manifest.json'
         ].join('&&'),
         options: {
@@ -402,7 +397,6 @@ module.exports = function(grunt) {
         command: [
           'cd <%= epub_src %>',
           'python manifest.maker.py > manifest.json',
-//          'python2.6.exe manifest.maker.py > manifest.json',
           'echo Created manifest: manifest.json'
         ].join('&&'),
         options: {
@@ -415,8 +409,7 @@ module.exports = function(grunt) {
         // Create our manifest describing the EPUB files
         command: [
           'cd <%= epub_src %>',
-          //'python manifest.maker.py > manifest.json',
-//          'python2.6.exe manifest.maker.py > manifest.json',
+          'python manifest.maker.py > manifest.json',
           'echo Created manifest: manifest.json'
         ].join('&&'),
         options: {
@@ -756,10 +749,8 @@ module.exports = function(grunt) {
             $('html').attr('manifest', 'readkit.appcache');
             $('.library_link').attr('href', '../library.html');
             $('#readkit-entry').removeAttr('data-main');
-            $('link[rel="stylesheet"][type="text/css"]').remove();
-            $('link[rel="shortcut icon"]').remove();
-            $('link[rel="stylesheet"][href="fonts/fontello/css/fontello.css"]').remove();
-            $('head').append('<style><!--(bake css/screen.css)--></style>');
+            $('head link').remove();
+            $('head meta[name="apple-mobile-web-app-capable"]').before('<style><!--(bake css/screen.css)--></style>');
             $('script#readkit-client').remove();
             $('script#readkit-entry').removeAttr('src').append('<!--(bake ../readkit.js)-->');
           }
@@ -771,10 +762,8 @@ module.exports = function(grunt) {
         options: {
           callback: function($) {
             $('.readkit-library').removeAttr('data-library');
-            $('link[rel="apple-touch-icon-precomposed"]').remove();
-            $('link[rel="apple-touch-startup-image"]').remove();
-            $('meta[name="apple-mobile-web-app-capable"]').remove();
-            $('meta[name="apple-mobile-web-app-status-bar-style"]').remove();
+            $('head meta[name="apple-mobile-web-app-capable"]').remove();
+            $('head meta[name="apple-mobile-web-app-status-bar-style"]').remove();
           }
         },
         src: ['build/readkit/index.html']
@@ -1014,6 +1003,7 @@ module.exports = function(grunt) {
         'requirejs:compile_library',
         'copy:library_prod_to_dist',
         'copy:library_assets_to_dist',
+        'library_dist_appcache_date',
         'readkit_dom_munger:index_library',
         'readkit_dom_munger:library',
         'copy:library_client_config_to_dist'];
@@ -1042,6 +1032,7 @@ module.exports = function(grunt) {
         'requirejs:compile_library',
         'copy:library_prod_to_dist',
         'copy:library_assets_to_dist',
+        'library_dist_appcache_date',
         'readkit_dom_munger:index_library',
         'readkit_dom_munger:library',
         'copy:library_client_config_to_dist'];
@@ -1247,6 +1238,12 @@ module.exports = function(grunt) {
   grunt.registerTask('library_config_dev', 'Configure the library to use dev instead of solo', function(){
     var config = grunt.file.read('dist/readkit.library/library/js/app/config.js');
     grunt.file.write('dist/readkit.library/library/js/app/config.js', config.replace(/solo\:\s*true/, 'solo: false'));
+  });
+
+  grunt.registerTask('library_dist_appcache_date', 'Include the datetime in appcache for cache busting purposes', function(){
+    var appcache = grunt.file.read('dist/readkit.library/library/solo/readkit.appcache');
+    var date = new Date();
+    grunt.file.write('dist/readkit.library/library/solo/readkit.appcache', appcache.replace(/<%datetime%>/, date));
   });
 
   grunt.registerTask('readme_epub', 'Write the Readkit EPUB Readme file', function(){

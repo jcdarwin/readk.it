@@ -974,6 +974,19 @@ module.exports = function(grunt) {
         }
       });
 
+      // Zip up our solo file.
+      grunt.config('shell.' + identifier + '_zip_solo', {
+        command: [
+          'echo Zipping ' + identifier + '_' + name + '.html...',
+          'cd dist/readkit.library/library/solo/',
+          'zip -DX9 ' + identifier + '_' + name + '.zip ' + identifier + '_' + name + '.html',
+        ].join('&&'),
+        options: {
+          stdout: true,
+          stderr: true
+        }
+      });
+
     }
 
     callback(target, cb);
@@ -1160,6 +1173,7 @@ module.exports = function(grunt) {
           'copy:' + identifier + '_solo_index_to_library',
           'readkit_dom_munger:' + identifier + '_solo_index_remove_library',
           'copy:' + identifier + '_solo_index_to_dist',
+          'shell:' + identifier + '_zip_solo',
           'copy:' + identifier + '_cover_to_library'
         ];
         prodTasks = prodTasks.concat(tasksForProd);
@@ -1184,6 +1198,7 @@ module.exports = function(grunt) {
           'copy:' + identifier + '_solo_index_to_library',
           'readkit_dom_munger:' + identifier + '_solo_index_remove_library',
           'copy:' + identifier + '_solo_index_to_dist',
+          'shell:' + identifier + '_zip_solo',
           'copy:' + identifier + '_cover_to_library'
         ];
         devTasks = devTasks.concat(tasksForDev);

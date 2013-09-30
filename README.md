@@ -6,17 +6,9 @@ Readk.it is a lightweight JavaScript-based reading system that allows publishers
 
 Readk.it can be embedded inside an EPUB file and travel with it, allowing future browser users to view the publication as the publisher intended. Readk.it can also be used to serve up a library of EPUB titles, allowing publishers to easily web-serve their existing EPUB files. If you'd prefer to have a single file that can be distributed to a user such that they can double-click on the file to view it in the browser, Readk.it Solo will provide this. Finally, when viewing any Readk.it-enabled publication in the browser, the user is able to drag-and-drop another EPUB into the browser page to begin reading the new publication.
 
-##Description
-
-Readk.it has been designed to take advantage of responsive design techniques in order to provide a seamless digital reading experience when the EPUB content is accessed via a browser, but where the EPUB file can also fallback to standard behaviour on dedicated EPUB reading devices (in which case Readk.it is quiesecent).
-
-No modifications to any existing EPUB files should be necessary in order to allow the EPUB to be read using Readk.it. However, a better reading experience than is currently possible on most dedicated EPUB reading devices can be acheived by coupling Readk.it with EPUB content created using responsive design techniques (see the Readk.it Manifesto for a simple example).
-
-Readk.it has come about because EPUB, in spite of the potential that the standard allows, is being restricted by a lack of features and standardisation on the part of dedicated vendor reading systems. Given that the modern browser is ubiquitous on mobile devices and that EPUB is based on web standards, it makes sense to provide a reading system that allows EPUB to take advantage of the browser environment.
-
-Readk.it does not aspire to cater for all of the functionality of the EPUB standard (as we've got [Readium](http://readium.org/) for that), rather it tries to provide a graceful reading experience for the majority of EPUBs which are typically found in the wild. If Readk.it can allow the majority of EPUB files to be read on a wide range of devices, including content designed with responsive design techniques, then it's done its job.
-
 Readk.it builds on the efforts of others, notably Matteo Spinelli's [iScroll4](http://cubiq.org/iscroll-4), as well as [jQuery](http://jquery.com/) and [RequireJs](http://requirejs.org/), while the Readk.it Manifesto provides an example of the use of [enquire.js](http://wicky.nillia.ms/enquire.js/) for JavaScript-based Media Queries.
+
+More information, along with examples, can be found on the [Readk.it](http://readk.it) site.
 
 ##Flavours
 

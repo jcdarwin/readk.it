@@ -978,7 +978,7 @@ module.exports = function(grunt) {
       grunt.config('shell.' + identifier + '_zip_solo', {
         command: [
           'echo Zipping ' + identifier + '_' + name + '.html...',
-          'cd dist/readkit.library/library/solo/',
+          'cd dist/readkit.solo/',
           'zip -DX9 ' + identifier + '_' + name + '.zip ' + identifier + '_' + name + '.html',
         ].join('&&'),
         options: {

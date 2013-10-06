@@ -35,6 +35,8 @@ define([
         var pub = $.localStorage(identifier) || [];
 
         if (value) {
+            log('Setting key ' + key + ' for publication: ' + identifier);
+
             var entry = {};
             entry[key] = value;
             // filter out any existing entries with the supplied key.
@@ -46,6 +48,8 @@ define([
             pub.push(entry);
             return $.localStorage(identifier, pub);
         } else {
+            log('Retrieving key ' + key + ' for publication: ' + identifier);
+
             pub = pub.filter(function (item) {
                 if (item[key]) {
                     return true;
@@ -117,20 +121,26 @@ define([
     };
 
     var log = function(msg) {
-        if (console && console.log) {
-            console.log(msg);
+        if (config.log) {
+            if (console && console.log) {
+                console.log(msg);
+            }
         }
     };
 
     var debug = function(msg) {
-        if (console && console.debug) {
-            console.debug(msg);
+        if (config.log) {
+            if (console && console.debug) {
+                console.debug(msg);
+            }
         }
     };
 
     var error = function(msg) {
-        if (console && console.error) {
-            console.error(msg);
+        if (config.log) {
+            if (console && console.error) {
+                console.error(msg);
+            }
         }
     };
 

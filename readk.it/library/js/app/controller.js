@@ -106,8 +106,7 @@ define([
                     var action = $(this).data('action');
                     sly[action]();
                 });
-                $('#library .read').on('click', function () {
-
+                $('#library .publication').on('click', function () {
                     $('#library .read .icon-book').hide();
                     $('#library .read .spinner').show();
                     $(this).css('opacity', '0.3');
@@ -116,7 +115,16 @@ define([
                         var url = $('.active').data('url');
                         window.location = url;
                     });
+                });
+                $('#library .read').on('click', function () {
+                    $('#library .read .icon-book').hide();
+                    $('#library .read .spinner').show();
+                    $(this).css('opacity', '0.3');
 
+                    $('#library .backward, #library .forward, #library .frame, #library .controls, #library .scrollbar').animate({opacity: '0'}, 500, function() {
+                        var url = $('.active').data('url');
+                        window.location = url;
+                    });
                 });
 
                 sly.on('change', function () {

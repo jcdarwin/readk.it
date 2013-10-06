@@ -40,6 +40,9 @@ define([
         controller = caller;
         publication = pub;
         utility.identifier = pub.identifier;
+
+        utility.log('Creating layout for: ' + utility.identifier);
+
 //utility.storage('pages', []);
 //utility.storage('font-size', []);
         return {

@@ -530,13 +530,19 @@ define([
             {   index: bookmarks.length,
                 file:  bookmark.file,
                 title: bookmark.title,
-                x:     '',
-                y:     ''}
+                x:     bookmark.x,
+                y:     bookmark.y}
         );
 
         $('#readkit-bookmark-list').append(html);
         bookmarks.push(bookmark);
         utility.storage('bookmarks', bookmarks);
+    });
+
+    $('#readkit-bookmark-anchor').on('click', function(e){
+        e.preventDefault();
+
+        // TODO: use the bookmark information to navigate to the correct page location.
     });
 
     // close any open dropdowns if the user clicks elsewhere

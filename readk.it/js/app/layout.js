@@ -366,8 +366,8 @@ define([
     var finalise = function() {
 
         // Add the schema.org microdata: http://schema.org/Book
-        $('#readkit-pageWrapper').attr('itemscope', '');
-        $('#readkit-pageWrapper').attr('itemtype', 'http://schema.org/Book');
+        $('#readkit-pageScroller').attr('itemscope', '');
+        $('#readkit-pageScroller').attr('itemtype', 'http://schema.org/Book');
         $('[itemprop="name"]').html(publication.title);
         $('[itemprop="author"]').html(publication.author);
         $('[itemprop="description"]').html(publication.description);

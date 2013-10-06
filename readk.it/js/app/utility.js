@@ -29,7 +29,7 @@ define([
     };
 
     // Local / session / cookie storage
-    var storage = function (key, value) {
+    var storage = function self(key, value) {
         // If only key is provided, it's a getter,
         // otherwise it's a setter.
         var pub = $.localStorage(identifier) || [];
@@ -39,7 +39,7 @@ define([
 
             var entry = {};
             entry[key] = value;
-            // filter out any existing entries with the supplied key.
+            // Filter out any existing entries with the supplied key.
             pub = pub.filter(function (item) {
                 if (!item[key]) {
                     return true;

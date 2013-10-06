@@ -34,6 +34,7 @@ define([
     };
 
     function initialiser() {
+        utility.identifier = layout.identifier;
         utility.subscribe('history_changed', check_backbutton);
 
         // Plugin to eliminate click delay on iOS

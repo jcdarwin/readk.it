@@ -46,6 +46,7 @@ define([
 //utility.storage('pages', []);
 //utility.storage('font-size', []);
         return {
+            identifier: pub.identifier,
             refresh: refresh,
             update: update,
             add: add,

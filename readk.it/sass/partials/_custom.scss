@@ -288,6 +288,10 @@ $slider-width: 30px;
     z-index: 2;
 }
 
+.#{$namespace}-bookmark-list {
+    margin-top: 5px;
+}
+
 .#{$namespace}-bookmark-list-item {
     float: left;
 }

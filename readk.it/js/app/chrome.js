@@ -13,10 +13,11 @@ define([
     'app/config',
     'zip/zip',
     'zip/inflate',
-    'jquery.ba-resize',
     'iscroll',
-    'lodash'
-], function($, utility, config, zip, inflate, jbr, IScroll, _){
+    'lodash',
+    'jquery.ba-resize',
+    'jquery.noClickDelay',
+], function($, utility, config, zip, inflate, IScroll, _){
 
     var controller;
     var layout;
@@ -37,36 +38,6 @@ define([
     function initialiser() {
         identifier = layout.identifier;
         utility.subscribe('history_changed', check_backbutton);
-
-        // Plugin to eliminate click delay on iOS
-        // http://cubiq.org/remove-onclick-delay-on-webkit-for-iphone
-        $.fn.noClickDelay = function() {
-            var $wrapper = this;
-            var $target = this;
-            var moved = false;
-            $wrapper.bind('touchstart mousedown',function(e) {
-                e.preventDefault();
-                moved = false;
-                $target = $(e.target);
-                if($target.nodeType === 3) {
-                    $target = $($target.parent());
-                }
-                $target.addClass('pressed');
-                $wrapper.bind('touchmove mousemove',function(e) {
-                    moved = true;
-                    $target.removeClass('pressed');
-                });
-                $wrapper.bind('touchend mouseup',function(e) {
-                    $wrapper.unbind('mousemove touchmove');
-                    $wrapper.unbind('mouseup touchend');
-                    if(!moved && $target.length) {
-                        $target.removeClass('pressed');
-                        $target.trigger('click');
-                        $target.focus();
-                    }
-                });
-            });
-        };
 
         //$('.readkit-back').noClickDelay();
         $('.readkit-status').noClickDelay();
@@ -539,12 +510,6 @@ define([
         $('#readkit-bookmark-list').append(html);
         bookmarks.push(bookmark);
         utility.storage(identifier, 'bookmarks', bookmarks);
-    });
-
-    $('#readkit-bookmark-anchor').on('click', function(e){
-        e.preventDefault();
-
-        // TODO: use the bookmark information to navigate to the correct page location.
     });
 
     // close any open dropdowns if the user clicks elsewhere

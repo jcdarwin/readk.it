@@ -28,6 +28,7 @@ var shims = {
     'jquery.ba-urlinternal': ['jquery'],
     'jquery.ba-resize': ['jquery'],
     'jquery.hotkeys': ['jquery'],
+    'jquery.noClickDelay': ['jquery'],
     // Make non-AMD modules available globally
     'iscroll': {exports: 'iScroll'},
     'zip/zip': {exports: 'zip'},

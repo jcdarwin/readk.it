@@ -44,8 +44,6 @@ define([
             pub.push(entry);
             return $.localStorage(identifier, pub);
         } else {
-            log('Retrieving key ' + key + ' for publication: ' + identifier);
-
             pub = pub.filter(function (item) {
                 if (item[key]) {
                     return true;

@@ -431,9 +431,9 @@ define([
             bookmarkeds += utility.compile($('#readkit-bookmark-list-item-tmpl').html(), {
                 index:  i,
                 file:  bookmark.file,
+                title: bookmark.title,
                 x:     bookmark.x,
-                y:     bookmark.y,
-                title: bookmark.title
+                y:     bookmark.y
             });
         });
         var html = utility.compile($('#readkit-bookmark-list-tmpl').html(), {bookmarkeds: bookmarkeds});
@@ -517,7 +517,7 @@ define([
         e.preventDefault();
         $('#readkit-for-bookmark').addClass('readkit-active').removeClass('readkit-inactive');
 
-        var value = $('#readkit-bookmark-input').attr('value');
+        var value = $('#readkit-bookmark-input').val();
         var file = $('#readkit-bookmark-input').attr('data-file');
         var bookmarks = utility.storage(identifier, 'bookmarks') || [];
 

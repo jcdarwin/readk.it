@@ -33,8 +33,6 @@ define([
         var pub = $.localStorage(identifier) || [];
 
         if (value) {
-            log('Setting key ' + key + ' for publication: ' + identifier);
-
             var entry = {};
             entry[key] = value;
             // Filter out any existing entries with the supplied key.

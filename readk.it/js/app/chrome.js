@@ -22,6 +22,7 @@ define([
     var layout;
     var upload = {};
     var progress_total = 0;
+    var identifier;
 
     /* Constructor */
     var Chrome = function (caller, surface) {
@@ -34,7 +35,7 @@ define([
     };
 
     function initialiser() {
-        utility.identifier = layout.identifier;
+        identifier = layout.identifier;
         utility.subscribe('history_changed', check_backbutton);
 
         // Plugin to eliminate click delay on iOS
@@ -80,7 +81,7 @@ define([
         //$('#readkit-pageWrapper').noClickDelay();
 
         // Check for stored font preference and apply accordingly.
-        var font = utility.storage('font');
+        var font = utility.storage(identifier, 'font');
         if (font === 'serif') {
             $('.readkit-icon-serif').click();
         } else if (font === 'sans') {
@@ -96,7 +97,7 @@ define([
         }
 
         // Check for stored font-size preference and apply accordingly.
-        var fontsize = utility.storage('font-size');
+        var fontsize = utility.storage(identifier, 'font-size');
         if (_.isNumber(fontsize)) {
             $('#readkit-for-size').addClass('readkit-active');
             $('#readkit-pageWrapper').css('font-size', fontsize + 'px');
@@ -109,7 +110,7 @@ define([
         }
 
         // Check for stored line-height preference and apply accordingly.
-        var lineheight = utility.storage('line-height');
+        var lineheight = utility.storage(identifier, 'line-height');
         if (_.isNumber(lineheight)) {
             $('#readkit-for-lineheight').addClass('readkit-active');
             $('#readkit-pageWrapper')
@@ -166,7 +167,7 @@ define([
     });
 
     function check_backbutton() {
-        var history = utility.storage('history');
+        var history = utility.storage(identifier, 'history');
         var status = history && history.length ? 'readkit-active' : 'readkit-inactive';
 
         if (status === 'readkit-active') {
@@ -192,7 +193,7 @@ define([
                     .removeClass('readkit-sans');
                 $('.readkit-icon-sans').removeClass('readkit-active');
 
-                utility.storage('font', []);
+                utility.storage(identifier, 'font', []);
             } else {
                 try {
                     $('#readkit-pageWrapper')
@@ -201,7 +202,7 @@ define([
                         .removeClass('readkit-serif');
                     $('.readkit-icon-serif').removeClass('readkit-active');
                     $('.readkit-icon-sans').addClass('readkit-active');
-                    utility.storage('font', 'sans');
+                    utility.storage(identifier, 'font', 'sans');
                 } catch (e) {
                     utility.log(e.message);
                 }
@@ -230,14 +231,14 @@ define([
                     .removeClass('readkit-serif');
                 $('.readkit-icon-serif').removeClass('readkit-active');
 
-                utility.storage('font', []);
+                utility.storage(identifier, 'font', []);
             } else {
                 $('#readkit-pageWrapper').find(config.tags)
                     .addClass('readkit-serif')
                     .removeClass('readkit-sans');
                 $('.readkit-icon-sans').removeClass('readkit-active');
                 $('.readkit-icon-serif').addClass('readkit-active');
-                utility.storage('font', 'serif');
+                utility.storage(identifier, identifier, 'font', 'serif');
             }
 
             $('.readkit-scroller').resize(function(){
@@ -270,7 +271,7 @@ define([
                 if ( $('#readkit-dropdown-bookmark').is(':visible') ) {
                     $('#readkit-dropdown-bookmark').slideUp();
                 }
-                var value = utility.storage('font-size');
+                var value = utility.storage(identifier, 'font-size');
                 $('.readkit-strength-size[data-size="' + value + '"]')
                     .removeClass('readkit-inactive')
                     .addClass('readkit-active');
@@ -305,7 +306,7 @@ define([
         }
 
         var y_percent = layout.location().y / layout.location().height;
-        utility.storage('font-size', value);
+        utility.storage(identifier, 'font-size', value);
 
         $('.readkit-scroller').resize(function(){
             layout.refresh(layout.location().page, y_percent);
@@ -341,7 +342,7 @@ define([
                 if ( $('#readkit-dropdown-bookmark').is(':visible') ) {
                     $('#readkit-dropdown-bookmark').slideUp();
                 }
-                var value = utility.storage('line-height');
+                var value = utility.storage(identifier, 'line-height');
                 $('.readkit-strength-line-height[data-size="' + value + '"]')
                     .removeClass('readkit-inactive')
                     .addClass('readkit-active');
@@ -380,7 +381,7 @@ define([
         }
 
         var y_percent = layout.location().y / layout.location().height;
-        utility.storage('line-height', value);
+        utility.storage(identifier, 'line-height', value);
 
         $('.readkit-scroller').resize(function(){
             layout.refresh(layout.location().page, y_percent);
@@ -408,7 +409,7 @@ define([
 
     // Bookmark event handlers
     function check_bookmarks() {
-        var bookmarks = utility.storage('bookmarks')  || [];
+        var bookmarks = utility.storage(identifier, 'bookmarks')  || [];
 
         var input = '';
         if (layout.location().file && layout.location().title) {
@@ -468,7 +469,7 @@ define([
             if ( $('#readkit-dropdown-bookmark').is(':visible') ) {
                 $('#readkit-dropdown-bookmark').slideUp('slow');
             } else {
-                var value = utility.storage('font-bookmark');
+                var value = utility.storage(identifier, 'font-bookmark');
                 $('.readkit-strength-bookmark[data-size="' + value + '"]').addClass('readkit-active');
                 if ( $('#readkit-dropdown-size').is(':visible') ) {
                     $('#readkit-dropdown-size').slideUp();
@@ -500,9 +501,9 @@ define([
         e.preventDefault();
         var index = $(this).data('index');
 
-        var bookmarks = utility.storage('bookmarks') || [];
+        var bookmarks = utility.storage(identifier, 'bookmarks') || [];
         bookmarks.splice(index,1);
-        utility.storage('bookmarks', bookmarks);
+        utility.storage(identifier, 'bookmarks', bookmarks);
 
         $(this).parent().remove();
 
@@ -518,7 +519,7 @@ define([
 
         var value = $('#readkit-bookmark-input').attr('value');
         var file = $('#readkit-bookmark-input').attr('data-file');
-        var bookmarks = utility.storage('bookmarks') || [];
+        var bookmarks = utility.storage(identifier, 'bookmarks') || [];
 
         var bookmark = {
             title: value,
@@ -537,7 +538,7 @@ define([
 
         $('#readkit-bookmark-list').append(html);
         bookmarks.push(bookmark);
-        utility.storage('bookmarks', bookmarks);
+        utility.storage(identifier, 'bookmarks', bookmarks);
     });
 
     $('#readkit-bookmark-anchor').on('click', function(e){

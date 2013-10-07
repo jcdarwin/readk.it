@@ -30,6 +30,7 @@ define([
     var restoring = true;
     var publication = {};
     var controller;
+    var identifier;
 
     /* Constructor */
     var Layout = function (caller, pub) {
@@ -39,12 +40,11 @@ define([
 
         controller = caller;
         publication = pub;
-        utility.identifier = pub.identifier;
+        identifier = pub.identifier;
 
-        utility.log('Creating layout for: ' + utility.identifier);
-
-//utility.storage('pages', []);
-//utility.storage('font-size', []);
+        utility.log('Creating layout for: ' + identifier);
+//utility.storage(identifier, 'pages', []);
+//utility.storage(identifier, 'font-size', []);
         return {
             identifier: pub.identifier,
             refresh: refresh,
@@ -104,26 +104,26 @@ define([
                 this.options['page_scroller_waiting'] = undefined;
                 this.options['page_scroller_anchor'] = undefined;
 
-                if (utility.storage('page') !== currentPage) {
-                    if (utility.storage('history')) {
-                        var history = utility.storage('history');
-                        history.push(utility.storage('page'));
-                        utility.storage('history', history);
+                if (utility.storage(identifier, 'page') !== currentPage) {
+                    if (utility.storage(identifier, 'history')) {
+                        var history = utility.storage(identifier, 'history');
+                        history.push(utility.storage(identifier, 'page'));
+                        utility.storage(identifier, 'history', history);
                     } else {
-                        utility.storage('history', [utility.storage('page')]);
+                        utility.storage(identifier, 'history', [utility.storage('page')]);
                     }
                     // Notify any subscribers that the history has changed.
                     utility.publish('history_changed');
                 }
             }
 
-            utility.storage('page', currentPage);
+            utility.storage(identifier, 'page', currentPage);
 
-            var pages_previous = utility.storage('pages') || [];
+            var pages_previous = utility.storage(identifier, 'pages') || [];
             if (pages_previous[currentPage]) {
                 pages_previous[currentPage].x = $(book_scroller)[0].x;
             }
-            utility.storage('pages', pages_previous);
+            utility.storage(identifier, 'pages', pages_previous);
         }
     });
 
@@ -166,11 +166,11 @@ define([
 
     // Revisit the last entry in the history.
     var go_back = function () {
-        var history = utility.storage('history');
+        var history = utility.storage(identifier, 'history');
         if (history.length) {
             var page = history.pop();
             book_scroller.scrollToPage(page, 0, 0);
-            utility.storage('history', history);
+            utility.storage(identifier, 'history', history);
         }
     };
 
@@ -190,16 +190,16 @@ define([
                     if (pages[currentPage]) {
                         pages[currentPage].y = (page_scrollers[currentPage]).scroller.y;
                         pages[currentPage].height = (page_scrollers[currentPage]).scroller.scrollerH;
-                        utility.storage('pages', pages);
+                        utility.storage(identifier, 'pages', pages);
                     }
                 }
             }
         });
-        var pages_previous = utility.storage('pages') || [];
+        var pages_previous = utility.storage(identifier, 'pages') || [];
         if (!pages_previous[page_scrollers.length]) {
             pages_previous[page_scrollers.length] = {x: 0, y: 0};
         }
-        utility.storage('pages', pages_previous);
+        utility.storage(identifier, 'pages', pages_previous);
         page_scrollers.push({file: file, scroller: page_scroller});
 
         // Capture clicks so we can update the scroll position.
@@ -322,10 +322,10 @@ define([
 
     // Restore our previous position in the layout
     var restore_bookmarks = function () {
-        if (utility.storage('pages')) {
-            pages = utility.storage('pages');
+        if (utility.storage(identifier, 'pages')) {
+            pages = utility.storage(identifier, 'pages');
 
-            var page = utility.storage('page'),
+            var page = utility.storage(identifier, 'page'),
                 y = 0;
 
             if (page && book_scroller.pagesX.length > page) {
@@ -438,7 +438,7 @@ define([
     };
 
     var location = function() {
-        pages = utility.storage('pages');
+        pages = utility.storage(identifier, 'pages');
 
         return {
             page:   currentPage,

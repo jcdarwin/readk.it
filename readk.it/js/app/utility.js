@@ -16,8 +16,6 @@ define([
     'detectizr'
 ], function(config, $, $storage, tinytim, Modernizr, Detectizr){
 
-    var identifier = '';
-
     var isTextFile = function(filename){
         var suffix = filename.lastIndexOf('.') === -1 ? '' : filename.substr(filename.lastIndexOf('.') + 1).toLowerCase();
         return ['opf', 'xml', 'htm', 'html', 'xhtml', 'css', 'ncx', 'txt', ''].indexOf(suffix) !== -1;
@@ -29,7 +27,7 @@ define([
     };
 
     // Local / session / cookie storage
-    var storage = function self(key, value) {
+    var storage = function self(identifier, key, value) {
         // If only key is provided, it's a getter,
         // otherwise it's a setter.
         var pub = $.localStorage(identifier) || [];
@@ -175,7 +173,6 @@ define([
     return {
         isTextFile: isTextFile,
         compile: compile,
-        identifier: identifier,
         storage: storage,
         subscribe: subscribe,
         unsubscribe: unsubscribe,

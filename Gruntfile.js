@@ -1056,6 +1056,7 @@ module.exports = function(grunt) {
         'compass:readkit',
         'copy:reader_dev_to_dist',
         'compass:library',
+        'copy:library_manifest_to_dist',
         'copy:library_dev_to_dist',
         'library_config_dev',
         'copy:library_assets_to_dist',
@@ -1174,7 +1175,8 @@ module.exports = function(grunt) {
           'readkit_dom_munger:' + identifier + '_solo_index_remove_library',
           'copy:' + identifier + '_solo_index_to_dist',
           'shell:' + identifier + '_zip_solo',
-          'copy:' + identifier + '_cover_to_library'
+          'copy:' + identifier + '_cover_to_library',
+          'readme_solo'
         ];
         prodTasks = prodTasks.concat(tasksForProd);
         prodLiteTasks = prodLiteTasks.concat(tasksForProd);
@@ -1191,21 +1193,14 @@ module.exports = function(grunt) {
           'readkit_dom_munger:' + identifier + '_opf_mixin_dev',
           'shell:' + identifier + '_zip',
           'shell:' + identifier + '_mv',
-          'readkit_datauris:' + identifier,
-          'copy:' + identifier + '_readkit_dev_to_solo',
-          'readkit_dom_munger:' + identifier + '_solo_index',
-          'bake:' + identifier + '_solo',
-          'copy:' + identifier + '_solo_index_to_library',
-          'readkit_dom_munger:' + identifier + '_solo_index_remove_library',
-          'copy:' + identifier + '_solo_index_to_dist',
-          'shell:' + identifier + '_zip_solo',
           'copy:' + identifier + '_cover_to_library'
+          // No point in making a solo version for dev, as the readkit.epub versions provide this
         ];
         devTasks = devTasks.concat(tasksForDev);
       }
 
       // Tasks that happen after the EPUBs have been processed
-      var afterTasks = ['readme_epub', 'readme_library', 'readme_reader', 'readme_solo', 'clean:after'];
+      var afterTasks = ['readme_epub', 'readme_library', 'readme_reader', 'clean:after'];
       prodTasks = prodTasks.concat(afterTasks);
       prodLiteTasks = prodLiteTasks.concat(afterTasks);
       devTasks = devTasks.concat(afterTasks);

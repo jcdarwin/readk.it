@@ -82,7 +82,7 @@ define([
 
     var book_scroller = new IScroll('readkit-pageWrapper', {
         snap: true,
-        snapThreshold:1,
+        snapThreshold: 1,
         momentum: false,
         hScrollbar: true,
         vScrollbar: false,
@@ -95,7 +95,8 @@ define([
 
                 // Ensure we align nicely on a page boundary
                 if (currentPage !== previousPage) {
-                    book_scroller.scrollToPage(currentPage, 0, 0);
+//                    If we're going to do this, it should use a callback
+//                    book_scroller.scrollToPage(currentPage, 0, 0);
                 }
             }
 
@@ -205,7 +206,8 @@ define([
         page_scrollers.push({file: file, scroller: page_scroller});
 
         // Capture clicks so we can update the scroll position.
-        $('#' + id).on('click', function() {
+        // jQuery is not too good with selectors containing periods, so esacape them.
+        $('#' + file.replace(/\./, '\\.')).on('click', function() {
             file = this.id.replace(/_/, '.');
 
             // Firstly, find the page scroller from our collection that is keyed to our page.
@@ -225,7 +227,7 @@ define([
         });
 
         // Capture clicks on buttons so we can update the scroll position.
-        $('#' + id + ' button').on('click', function() {
+        $('#' + file.replace(/\./, '\\.') + ' button').on('click', function() {
             file = $(this).parents('.readkit-page').attr('id').replace(/_/, '.');
 
             // Firstly, find the page scroller from our collection that is keyed to our page.
@@ -245,7 +247,7 @@ define([
         });
 
         // Capture clicks on anchors so we can update the scroll position.
-        $('#' + id + ' a').on('click', function(event) {
+        $('#' + file.replace(/\./, '\\.') + ' a').on('click', function(event) {
             trap_anchor(this, event);
         });
 
@@ -305,7 +307,8 @@ define([
                 // Set the options in the book_scroller indicating that there is
                 // a page-scroller waiting to be processed.
                 book_scroller.options['page_scroller_waiting'] = filtered_page_scrollers[0];
-                book_scroller.options['page_scroller_anchor'] = anchor.replace(/\./, '_');
+//              book_scroller.options['page_scroller_anchor'] = anchor.replace(/\./, '_');
+                book_scroller.options['page_scroller_anchor'] = anchor;
 
                 // Call the book_scroller to scroll horizontally to the page.
                 // Remember that book_scroller processes the options in the 'onAnimationEnd' callback.

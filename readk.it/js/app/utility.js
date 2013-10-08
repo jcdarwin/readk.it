@@ -32,12 +32,12 @@ define([
         // otherwise it's a setter.
         var pub = $.localStorage(identifier) || [];
 
-        if (value) {
+        if (value !== undefined) {
             var entry = {};
             entry[key] = value;
             // Filter out any existing entries with the supplied key.
             pub = pub.filter(function (item) {
-                if (!item[key]) {
+                if (item[key] === undefined) {
                     return true;
                 }
             });
@@ -45,7 +45,7 @@ define([
             return $.localStorage(identifier, pub);
         } else {
             pub = pub.filter(function (item) {
-                if (item[key]) {
+                if (item[key] !== undefined) {
                     return true;
                 }
             });

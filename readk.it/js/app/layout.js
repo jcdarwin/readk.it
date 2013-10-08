@@ -105,12 +105,12 @@ define([
                 this.options['page_scroller_anchor'] = undefined;
 
                 if (utility.storage(identifier, 'page') !== currentPage) {
-                    if (utility.storage(identifier, 'history')) {
+                    if (utility.storage(identifier, 'history').length) {
                         var history = utility.storage(identifier, 'history');
                         history.push(utility.storage(identifier, 'page'));
                         utility.storage(identifier, 'history', history);
                     } else {
-                        utility.storage(identifier, 'history', [utility.storage('page')]);
+                        utility.storage(identifier, 'history', [utility.storage(identifier, 'page')]);
                     }
                     // Notify any subscribers that the history has changed.
                     utility.publish('history_changed');
@@ -169,8 +169,10 @@ define([
         var history = utility.storage(identifier, 'history');
         if (history.length) {
             var page = history.pop();
-            book_scroller.scrollToPage(page, 0, 0);
-            utility.storage(identifier, 'history', history);
+            if (page !== null) {
+                book_scroller.scrollToPage(page, 0, 0);
+                utility.storage(identifier, 'history', history);
+            }
         }
     };
 
@@ -277,45 +279,51 @@ define([
 
             // Firstly, find the page scroller from our collection that is keyed to our page.
             var filtered_page_scrollers = _.filter(page_scrollers, function(scroller) {
-                return scroller.file === page_anchor;
+                // We may have a page_anchor = 'section-0001.html' and a scroller.file = 'Text_section-0001.html'
+                // (the prefix being the path to the file as per the content.opf href, with '_' instead of '/'),
+                // so, in this case, we want to determine if /section-0001.html/.test("Text_section-0001.html").
+                var re = new RegExp(page_anchor + '$');
+                return re.test(scroller.file);
             });
 
             if (filtered_page_scrollers.length === 0) {
                 filtered_page_scrollers = _.filter(page_scrollers, function(scroller) {
                     // Find the pagescroller with the page containing the id matching our anchor.
-                    return scroller.file === $('[id="' + page_anchor + '"]').parents('.readkit-page').attr('id');
+                    return scroller.file === $('[id="' + page_anchor.replace(/\./, '_') + '"]').parents('.readkit-page').attr('id');
                 });
             }
 
-            var newPage;
-            page_scrollers.every(function(page_scroller, i){
-                if (page_scroller.file === filtered_page_scrollers[0].file){
-                    newPage = i;
+            if (filtered_page_scrollers.length !== 0) {
+                var newPage;
+                page_scrollers.every(function(page_scroller, i){
+                    if (page_scroller.file === filtered_page_scrollers[0].file){
+                        newPage = i;
+                    }
+                    return newPage !== i;
+                });
+
+                // Set the options in the book_scroller indicating that there is
+                // a page-scroller waiting to be processed.
+                book_scroller.options['page_scroller_waiting'] = filtered_page_scrollers[0];
+                book_scroller.options['page_scroller_anchor'] = anchor.replace(/\./, '_');
+
+                // Call the book_scroller to scroll horizontally to the page.
+                // Remember that book_scroller processes the options in the 'onAnimationEnd' callback.
+                book_scroller.scrollToPage(newPage, 0, 0);
+
+                var x = $(that).attr('data-x') || 0;
+                var y = $(that).attr('data-y') || 0;
+
+                if (y) {
+                    (filtered_page_scrollers[0]).scroller.scrollTo(0, y, 0, 0);
+                } else {
+                    // Redraw the page scroller layout, as the click may have resulted in
+                    // the size of the page changing.
+                    // We leave this a second to let any animations complete.
+                    setTimeout(function(){
+                        update((filtered_page_scrollers[0]).scroller);
+                    }, config.css_page_redraw_interval);
                 }
-                return newPage !== i;
-            });
-
-            // Set the options in the book_scroller indicating that there is
-            // a page-scroller waiting to be processed.
-            book_scroller.options['page_scroller_waiting'] = filtered_page_scrollers[0];
-            book_scroller.options['page_scroller_anchor'] = anchor;
-
-            // Call the book_scroller to scroll horizontally to the page.
-            // Remember that book_scroller processes the options in the 'onAnimationEnd' callback.
-            book_scroller.scrollToPage(newPage, 0, 0);
-
-            var x = $(that).attr('data-x') || 0;
-            var y = $(that).attr('data-y') || 0;
-
-            if (y) {
-                (filtered_page_scrollers[0]).scroller.scrollTo(0, y, 0, 0);
-            } else {
-                // Redraw the page scroller layout, as the click may have resulted in
-                // the size of the page changing.
-                // We leave this a second to let any animations complete.
-                setTimeout(function(){
-                    update((filtered_page_scrollers[0]).scroller);
-                }, config.css_page_redraw_interval);
             }
         }
     };

@@ -95,8 +95,7 @@ define([
 
                 // Ensure we align nicely on a page boundary
                 if (currentPage !== previousPage) {
-//                    If we're going to do this, it should use a callback
-//                    book_scroller.scrollToPage(currentPage, 0, 0);
+                    book_scroller.scrollToPage(currentPage, 0, 0);
                 }
             }
 
@@ -106,8 +105,8 @@ define([
                 this.options['page_scroller_anchor'] = undefined;
 
                 if (utility.storage(identifier, 'page') !== currentPage) {
-                    if (utility.storage(identifier, 'history').length) {
-                        var history = utility.storage(identifier, 'history');
+                    var history = utility.storage(identifier, 'history') || [];
+                    if (history.length) {
                         history.push(utility.storage(identifier, 'page'));
                         utility.storage(identifier, 'history', history);
                     } else {
@@ -287,6 +286,13 @@ define([
                 var re = new RegExp(page_anchor + '$');
                 return re.test(scroller.file);
             });
+
+            if (filtered_page_scrollers.length === 0) {
+                filtered_page_scrollers = _.filter(page_scrollers, function(scroller) {
+                    // Find the pagescroller with the page containing the id matching our anchor.
+                    return scroller.file === $('[id="' + page_anchor + '"]').parents('.readkit-page').attr('id');
+                });
+            }
 
             if (filtered_page_scrollers.length === 0) {
                 filtered_page_scrollers = _.filter(page_scrollers, function(scroller) {

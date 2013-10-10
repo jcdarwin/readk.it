@@ -156,7 +156,18 @@ define([
     // Font style handlers
     $('.readkit-icon-sans').click(function(){
         if (utility.supported(utility.operation.fontSwitch)) {
+
             var y_percent = layout.location().y / layout.location().height;
+            $('.readkit-scroller').resize(function(){
+                layout.refresh(layout.location().page, y_percent);
+
+                // We wait for a reasonable amount of time for the DOM
+                // to adapt to the CSS changes, and then stop polling for resize.
+                // If we don't do this, scroll performance may be affected.
+                setTimeout(function () {
+                    $('.readkit-scroller').unbind('resize');
+                }, config.css_redraw_interval);
+            });
 
             if ( $('.readkit-icon-sans').hasClass('readkit-active') ) {
                 $('#readkit-pageWrapper')
@@ -178,7 +189,13 @@ define([
                     utility.log(e.message);
                 }
             }
+        }
+    });
 
+    $('.readkit-icon-serif').click(function(){
+        if (utility.supported(utility.operation.fontSwitch)) {
+
+            var y_percent = layout.location().y / layout.location().height;
             $('.readkit-scroller').resize(function(){
                 layout.refresh(layout.location().page, y_percent);
 
@@ -188,14 +205,8 @@ define([
                 setTimeout(function () {
                     $('.readkit-scroller').unbind('resize');
                 }, config.css_redraw_interval);
-
             });
-        }
-    });
 
-    $('.readkit-icon-serif').click(function(){
-        if (utility.supported(utility.operation.fontSwitch)) {
-            var y_percent = layout.location().y / layout.location().height;
             if ( $('.readkit-icon-serif').hasClass('readkit-active') ) {
                 $('#readkit-pageWrapper')
                     .find(config.tags)
@@ -211,18 +222,6 @@ define([
                 $('.readkit-icon-serif').addClass('readkit-active');
                 utility.storage(identifier, identifier, 'font', 'serif');
             }
-
-            $('.readkit-scroller').resize(function(){
-                layout.refresh(layout.location().page, y_percent);
-
-                // We wait for a reasonable amount of time for the DOM
-                // to adapt to the CSS changes, and then stop polling for resize.
-                // If we don't do this, scroll performance may be affected.
-                setTimeout(function () {
-                    $('.readkit-scroller').unbind('resize');
-                }, config.css_redraw_interval);
-
-            });
         }
     });
 
@@ -257,6 +256,19 @@ define([
 
     $('.readkit-strength-size').on('click', function(e){
         e.stopPropagation();
+
+        var y_percent = layout.location().y / layout.location().height;
+        $('.readkit-scroller').resize(function(){
+            layout.refresh(layout.location().page, y_percent);
+
+            // We wait for a reasonable amount of time for the DOM
+            // to adapt to the CSS changes, and then stop polling for resize.
+            // If we don't do this, scroll performance may be affected.
+            setTimeout(function () {
+                $('.readkit-scroller').unbind('resize');
+            }, config.css_redraw_interval);
+        });
+
         var value = [];
         if ( $(this).hasClass('readkit-active') ) {
             $('.readkit-strength-size')
@@ -276,20 +288,7 @@ define([
             $('#readkit-for-size').addClass('readkit-active');
         }
 
-        var y_percent = layout.location().y / layout.location().height;
         utility.storage(identifier, 'font-size', value);
-
-        $('.readkit-scroller').resize(function(){
-            layout.refresh(layout.location().page, y_percent);
-
-            // We wait for a reasonable amount of time for the DOM
-            // to adapt to the CSS changes, and then stop polling for resize.
-            // If we don't do this, scroll performance may be affected.
-            setTimeout(function () {
-                $('.readkit-scroller').unbind('resize');
-            }, config.css_redraw_interval);
-
-        });
 
         setTimeout(function () {
             $('#readkit-dropdown-size').slideUp('slow');
@@ -327,8 +326,21 @@ define([
     });
 
     $('.readkit-strength-line-height').on('click', function(e){
-       e.stopPropagation();
-       var value = [];
+        e.stopPropagation();
+
+        var y_percent = layout.location().y / layout.location().height;
+        $('.readkit-scroller').resize(function(){
+            layout.refresh(layout.location().page, y_percent);
+
+            // We wait for a reasonable amount of time for the DOM
+            // to adapt to the CSS changes, and then stop polling for resize.
+            // If we don't do this, scroll performance may be affected.
+            setTimeout(function () {
+                $('.readkit-scroller').unbind('resize');
+            }, config.css_redraw_interval);
+        });
+
+        var value = [];
         if ( $(this).hasClass('readkit-active') ) {
             $('.readkit-strength-line-height')
                 .removeClass('readkit-active')
@@ -351,20 +363,7 @@ define([
             $('#readkit-for-lineheight').addClass('readkit-active');
         }
 
-        var y_percent = layout.location().y / layout.location().height;
         utility.storage(identifier, 'line-height', value);
-
-        $('.readkit-scroller').resize(function(){
-            layout.refresh(layout.location().page, y_percent);
-
-            // We wait for a reasonable amount of time for the DOM
-            // to adapt to the CSS changes, and then stop polling for resize.
-            // If we don't do this, scroll performance may be affected.
-            setTimeout(function () {
-                $('.readkit-scroller').unbind('resize');
-            }, config.css_redraw_interval);
-
-        });
 
         setTimeout(function () {
             $('#readkit-dropdown-lineheight').slideUp('slow');

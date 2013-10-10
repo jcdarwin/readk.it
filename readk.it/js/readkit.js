@@ -61,7 +61,7 @@ require.config({
 var addToHomeConfig = {
     startDelay: 30000,
     lifespan:10000,
-    touchIcon:true,
+    touchIcon:false,
     message:'Install this book on your %device: tap %icon and then <strong>Add to Home Screen</strong>.'
 };
 

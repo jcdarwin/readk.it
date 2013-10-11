@@ -17,7 +17,8 @@
     "grunt-contrib-requirejs": "~0.4.1",
     "grunt-contrib-cssmin": "~0.6.1",
     "grunt-image-embed": "~0.3.1",
-    "grunt-bake": "~0.2.1"
+    "grunt-bake": "~0.2.1",
+    "grunt-readkit-data-uri": "git+https://github.com/jcdarwin/grunt-readkit-data-uri.git#master"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

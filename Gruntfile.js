@@ -137,6 +137,20 @@ module.exports = function(grunt) {
       }
     },
 
+    readkit_data_uri: {
+      solo: {
+        // src file
+        src: ['build/readkit/index.html'],
+        // output dir
+        dest: 'build/readkit',
+        options: {
+          // which files do we wish to encode to data uris?
+          target: ['build/readkit/images/*.*', 'build/readkit/favicon.ico'],
+          type: 'html'
+        }
+      }
+    },
+
     jshint: {
       // Check our js
       readkit: {
@@ -517,6 +531,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-image-embed");
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-bake');
+  grunt.loadNpmTasks('grunt-readkit-data-uri');
 
   // We have to create many of our grunt tasks dynamically, as we don't
   // which or how many EPUBs we'll be processing ahead of time.
@@ -749,7 +764,8 @@ module.exports = function(grunt) {
             $('html').attr('manifest', 'readkit.appcache');
             $('.library_link').attr('href', '../library.html');
             $('#readkit-entry').removeAttr('data-main');
-            $('head link').remove();
+ //           $('head link').remove();
+            $('head link[rel="stylesheet"]').remove();
             $('head meta[name="apple-mobile-web-app-capable"]').before('<style><!--(bake css/screen.css)--></style>');
             $('script#readkit-client').remove();
             $('script#readkit-entry').removeAttr('src').append('<!--(bake ../readkit.js)-->');
@@ -762,8 +778,8 @@ module.exports = function(grunt) {
         options: {
           callback: function($) {
             $('.readkit-library').removeAttr('data-library');
-            $('head meta[name="apple-mobile-web-app-capable"]').remove();
-            $('head meta[name="apple-mobile-web-app-status-bar-style"]').remove();
+//            $('head meta[name="apple-mobile-web-app-capable"]').remove();
+//            $('head meta[name="apple-mobile-web-app-status-bar-style"]').remove();
           }
         },
         src: ['build/readkit/index.html']
@@ -1169,6 +1185,7 @@ module.exports = function(grunt) {
           'copy:' + identifier + '_client_config_to_build',
           'readkit_datauris:' + identifier,
           identifier + '_mixin_client_config',
+          'readkit_data_uri:solo',
           'readkit_dom_munger:' + identifier + '_solo_index',
           'bake:' + identifier + '_solo',
           'copy:' + identifier + '_solo_index_to_library',

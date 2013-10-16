@@ -8,14 +8,15 @@
 	$.fn.UItoTop = function(options) {
 
         var defaults = {
-                text: 'To Top',
-                min: 200,
+                text: 'To Right',
+                min: 320,
                 inDelay:600,
                 outDelay:400,
                 containerID: 'toTop',
                 containerHoverID: 'toTopHover',
                 scrollSpeed: 1200,
-                easingType: 'linear'
+                easingType: 'linear',
+                layout: ''
             },
             settings = $.extend(defaults, options),
             containerIDhash = '#' + settings.containerID,
@@ -43,17 +44,24 @@
 			});
 					
 		$(window).scroll(function() {
-			var sd = $(window).scrollTop();
+			// var sd = $(window).scrollTop();
+            var sd = settings.layout ? Math.abs(settings.layout.location().y) + $(window).height(): 0;
 			if(typeof document.body.style.maxHeight === "undefined") {
 				$(containerIDhash).css({
 					'position': 'absolute',
 					'top': sd + $(window).height() - 50
 				});
 			}
-			if ( sd > settings.min )
+			if ( sd > (settings.layout.location().height - settings.min) ) {
 				$(containerIDhash).fadeIn(settings.inDelay);
-			else
+
+                setTimeout(function () {
+                    $(containerIDhash).fadeOut(settings.Outdelay);
+                }, 700);
+
+			} else {
 				$(containerIDhash).fadeOut(settings.Outdelay);
+            }
 		});
 };
 })(jQuery);

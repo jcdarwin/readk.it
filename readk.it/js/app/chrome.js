@@ -17,7 +17,7 @@ define([
     'lodash',
     'jquery.ba-resize',
     'jquery.noClickDelay',
-    'jquery.ui.totop'
+    'ui-to-top/jquery.ui.totop'
 ], function($, utility, config, zip, inflate, IScroll, _){
 
     var controller;
@@ -39,6 +39,8 @@ define([
     function initialiser() {
         identifier = layout.identifier;
         utility.subscribe('history_changed', check_backbutton);
+
+        $().UItoTop({ easingType: 'easeOutQuart', layout: layout });
 
         //$('.readkit-back').noClickDelay();
         $('.readkit-status').noClickDelay();

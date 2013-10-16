@@ -5,11 +5,11 @@
 |--------------------------------------------------------------------------
 */
 
-#toTop {
+#toRight {
 	z-index: 10000;
 }
 
-#toTop {
+#toRight {
 	display:none;
 	text-decoration:none;
 	position:fixed;
@@ -24,25 +24,9 @@
 	height:40px;
 	border:none;
 	text-indent:100%;
-	background:#333 url(../js/lib/ui-to-top/ui.toright.png) center center no-repeat;
+	background:#333 url(../images/ui.toright.png) center center no-repeat;
 }
 
-#toTopHover {
-	background:#808080 url(../js/lib/ui-to-top/ui.toright.png) center center no-repeat;
-	width:40px;
-	height:40px;
-	-moz-border-radius: 100% 100% 100% 100%;
-	-webkit-border-radius: 100% 100% 100% 100%;
-	-o-border-radius: 100% 100% 100% 100%;
-	border-radius: 100% 100% 100% 100%;
-	display:block;
-	overflow:hidden;
-	float:left;
-	opacity: 0;
-	-moz-opacity: 0;
-	filter:alpha(opacity=0);
-}
-
-#toTop:active, #toTop:focus {
+#toRight:active, #toRight:focus {
 	outline:none;
 }

@@ -8,40 +8,21 @@
 	$.fn.UItoTop = function(options) {
 
         var defaults = {
-                text: 'To Right',
+                text: '',
                 min: 320,
                 inDelay:600,
                 outDelay:400,
-                containerID: 'toTop',
-                containerHoverID: 'toTopHover',
+                containerID: 'toRight',
                 scrollSpeed: 1200,
                 easingType: 'linear',
                 layout: ''
             },
             settings = $.extend(defaults, options),
-            containerIDhash = '#' + settings.containerID,
-            containerHoverIDHash = '#'+settings.containerHoverID;
+            containerIDhash = '#' + settings.containerID;
 		
 		$('body').append('<a href="#" id="'+settings.containerID+'">'+settings.text+'</a>');
 
-		$(containerIDhash).hide()
-/*
-        .on('click.UItoTop',function(){
-			$('html, body').animate({scrollTop:0}, settings.scrollSpeed, settings.easingType);
-			$('#'+settings.containerHoverID, this).stop().animate({'opacity': 0 }, settings.inDelay, settings.easingType);
-			return false;
-		})
-*/
-		.prepend('<span id="'+settings.containerHoverID+'"></span>')
-		.hover(function() {
-				$(containerHoverIDHash, this).stop().animate({
-					'opacity': 1
-				}, 600, 'linear');
-			}, function() {
-				$(containerHoverIDHash, this).stop().animate({
-					'opacity': 0
-				}, 700, 'linear');
-			});
+		$(containerIDhash).hide();
 					
 		$(window).scroll(function() {
 			// var sd = $(window).scrollTop();
@@ -53,11 +34,11 @@
 				});
 			}
 			if ( sd > (settings.layout.location().height - settings.min) ) {
-				$(containerIDhash).fadeIn(settings.inDelay);
-
-                setTimeout(function () {
-                    $(containerIDhash).fadeOut(settings.Outdelay);
-                }, 700);
+				$(containerIDhash).fadeIn(settings.inDelay, function(){
+                    setTimeout(function () {
+                        $(containerIDhash).fadeOut(settings.Outdelay);
+                    }, 700);
+                });
 
 			} else {
 				$(containerIDhash).fadeOut(settings.Outdelay);

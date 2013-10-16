@@ -17,6 +17,7 @@ define([
     'lodash',
     'jquery.ba-resize',
     'jquery.noClickDelay',
+    'jquery.ui.totop'
 ], function($, utility, config, zip, inflate, IScroll, _){
 
     var controller;

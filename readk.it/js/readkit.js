@@ -29,6 +29,7 @@ var shims = {
     'jquery.ba-resize': ['jquery'],
     'jquery.hotkeys': ['jquery'],
     'jquery.noClickDelay': ['jquery'],
+    'ui-to-top/jquery.ui.totop': ['jquery'],
     // Make non-AMD modules available globally
     'iscroll': {exports: 'iScroll'},
     'zip/zip': {exports: 'zip'},

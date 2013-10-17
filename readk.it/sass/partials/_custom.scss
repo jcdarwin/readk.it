@@ -152,6 +152,7 @@ $slider-width: 30px;
     padding-right: $padding;
     font-size: $font-large;
     -webkit-user-select: none;
+    text-indent: 0;
 }
 
 .#{$namespace}-slider, .#{$namespace}-slider span, label i, span.icon, span i {

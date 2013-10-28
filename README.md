@@ -55,6 +55,7 @@ Readk.it uses [Grunt](http://gruntjs.com/) as its build tool. In order to compil
 1. Ensure that you have [Python](http://www.python.org/), [Ruby and Compass installed](http://compass-style.org/install/) on your system
 1. [Install node](http://nodejs.org/download/) and npm
 1. [Install grunt](http://gruntjs.com/getting-started): ```npm install -g grunt-cli```
+1. [Install lxml python module](http://lxml.de/): ```pip install lxml```
 1. Clone the Readk.it repository
 1. ```cd``` to the Readk.it directory
 1. Install the node modules for the application: ```npm install```

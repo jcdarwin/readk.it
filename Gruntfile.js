@@ -565,7 +565,7 @@ module.exports = function(grunt) {
       // Determine the location of the OEBPS directory
       grunt.config('readkit_dom_munger.' + identifier + '_oebps', {
         options: {
-          read: {selector: 'container rootfiles rootfile', attribute: 'full-path', replace: '\/.*$', replacewith: '', writeto: 'oebpsRef', isPath:false},
+          read: {selector: 'container rootfiles rootfile', attribute: 'full-path', replace: '\/?[^\/]*$', replacewith: '', writeto: 'oebpsRef', isPath:false},
           callback: function($) {
             var regexp = new RegExp('\/.*$');
             // Store the OEBPS path for the publication

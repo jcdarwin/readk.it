@@ -125,8 +125,8 @@ define([
 
         // For file URLs, where the user has most likely double-clicked the index.html
         // show the drag and drop dialogue, as no publication has been loaded.
-        if (location.protocol === 'file:') {
-            if (!$('.readkit-drag-upload-window').is(':visible') && !$('#readkit-pageScroller .readkit-page').length) {
+        if (location.protocol === 'file:' || !$('#readkit-pageScroller .readkit-page').length) {
+            if (!$('.readkit-drag-upload-window').is(':visible')) {
                 upload.initalise();
             }
         }

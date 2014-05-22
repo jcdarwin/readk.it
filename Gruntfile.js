@@ -534,7 +534,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-readkit-data-uri');
 
   // We have to create many of our grunt tasks dynamically, as we don't
-  // which or how many EPUBs we'll be processing ahead of time.
+  // knowwhich or how many EPUBs we'll be processing ahead of time.
   // This page helped a lot: https://gist.github.com/brianfeister/4294776
   function generateDynamicTasks(callback, target, cb){
     var manifest = grunt.file.readJSON('readkit.epub/manifest.json');
@@ -543,7 +543,7 @@ module.exports = function(grunt) {
     for (var entry in manifest) {
 
       // Certain characters found in the EPUB id cause problems for grunt
-      var identifier = manifest[entry].identifier.replace(/\:/g, '_');
+      var identifier = manifest[entry].identifier.replace(/\:|\./g, '_');
       var name = manifest[entry].name.replace(/[^a-z\d]/gi, '_').toLowerCase();
       var path = manifest[entry].path;
       var cover = manifest[entry].cover;
@@ -1083,7 +1083,7 @@ module.exports = function(grunt) {
       // Process our manifest -- each entry in the manifest describes a particular EPUB file
       for (var entry in manifest) {
         grunt.log.writeln(manifest[entry].path);
-        var identifier = manifest[entry].identifier.replace(/\:/g, '_');
+        var identifier = manifest[entry].identifier.replace(/\:|\./g, '_');
 
         // Ensure that drag-and-drop unzip can find the web worker
         grunt.registerTask(identifier + '_config_prod', 'Configure location of the webworkers (for drag and drop)', function(){

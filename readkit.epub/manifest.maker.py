@@ -78,6 +78,7 @@ for r, d, files in os.walk("."):
             pages = len(itemref)
 
             path = re.sub(r'^(?:./)?(.*)(META-INF)$', r"\g<1>", r)
+            path = re.sub(r'\\', r"/", path)
 
             #For our special case, where we want to use Readk.it to both be used embedded in an
             #EPUB file (http://localhost:8000/OEBPS/readk.it/) and also to serve the library
@@ -97,6 +98,8 @@ for r, d, files in os.walk("."):
                 cover = info["root_folder"] + '/' + cover[0]
             else:
                 cover = ''
+
+            cover = re.sub(r'\\', r"/", cover)
 
             print comma
             printer(title[0].text.encode('utf-8'), version[0], identifier[0].text, path, pages, cover)

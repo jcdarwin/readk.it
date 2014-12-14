@@ -1,59 +1,51 @@
 @font-face {
   font-family: "Source Sans Pro";
-  src: local("SourceSansPro-Regular"), url('../fonts/SourceSansPro/SourceSansPro-Regular.woff') format('woff');
+  src: local("SourceSansPro-Regular"), url('../fonts/SourceSansPro/SourceSansPro-Regular.woff?1383360617') format('woff');
   font-weight: 400;
   font-style: normal;
 }
-
 @font-face {
   font-family: "Source Sans Pro";
-  src: local("SourceSansPro-Bold"), url('../fonts/SourceSansPro/SourceSansPro-Bold.woff') format('woff');
+  src: local("SourceSansPro-Bold"), url('../fonts/SourceSansPro/SourceSansPro-Bold.woff?1383360617') format('woff');
   font-weight: 700;
   font-style: normal;
 }
-
 @font-face {
   font-family: "Source Sans Pro";
-  src: local("SourceSansPro-It"), url('../fonts/SourceSansPro/SourceSansPro-It.woff') format('truetype');
+  src: local("SourceSansPro-It"), url('../fonts/SourceSansPro/SourceSansPro-It.woff?1383360617') format('truetype');
   font-weight: 400;
   font-style: italic;
 }
-
 @font-face {
   font-family: "Source Sans Pro";
-  src: local("SourceSansPro-BoldIt"), url('../fonts/SourceSansPro/SourceSansPro-BoldIt.woff') format('truetype');
+  src: local("SourceSansPro-BoldIt"), url('../fonts/SourceSansPro/SourceSansPro-BoldIt.woff?1383360617') format('truetype');
   font-weight: 700;
   font-style: italic;
 }
-
 @font-face {
   font-family: "Lora";
-  src: local("Lora-Regular"), url('../fonts/Lora/Lora.woff') format('woff');
+  src: local("Lora-Regular"), url('../fonts/Lora/Lora.woff?1383360617') format('woff');
   font-weight: 400;
   font-style: normal;
 }
-
 @font-face {
   font-family: "Lora";
-  src: local("Lora-Bold"), url('../fonts/Lora/Lora-Bold.woff') format('woff');
+  src: local("Lora-Bold"), url('../fonts/Lora/Lora-Bold.woff?1383360617') format('woff');
   font-weight: 700;
   font-style: normal;
 }
-
 @font-face {
   font-family: "Lora";
-  src: local("Lora-Italic"), url('../fonts/Lora/Lora-Italic.woff') format('truetype');
+  src: local("Lora-Italic"), url('../fonts/Lora/Lora-Italic.woff?1383360617') format('truetype');
   font-weight: 400;
   font-style: italic;
 }
-
 @font-face {
   font-family: "Lora";
-  src: local("Lora-BoldItalic"), url('../fonts/Lora/Lora-BoldItalic.woff') format('truetype');
+  src: local("Lora-BoldItalic"), url('../fonts/Lora/Lora-BoldItalic.woff?1383360617') format('truetype');
   font-weight: 700;
   font-style: italic;
 }
-
 /* line 68, ../sass/partials/_custom.scss */
 .readkit-margins {
   margin: 0 20px;
@@ -112,7 +104,7 @@
 /* line 123, ../sass/partials/_custom.scss */
 .readkit-scroller {
   position: absolute;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
   width: 100%;
   padding: 0;
   z-index: 1;
@@ -126,7 +118,7 @@
   height: 40px;
   width: 100%;
   margin-top: 0;
-  background-color: #e6e7e8;
+  background-color: #E6E7E8;
   z-index: 2;
   line-height: 1;
   font: normal 100%/1 sans-serif;
@@ -162,12 +154,12 @@
   position: absolute;
   top: 35px;
   margin-top: 5px;
-  background-color: #444444;
+  background-color: #444;
   border-radius: 12px;
   a: link;
-  a-color: white;
+  a-color: #fff;
   a: visited;
-  a-color: #bbbbbb;
+  a-color: #bbb;
 }
 
 /* line 187, ../sass/partials/_custom.scss */
@@ -182,7 +174,7 @@
   height: 380px;
   width: 280px;
   right: 10px;
-  color: white;
+  color: #fff;
   padding: 0 10px 10px 10px;
   overflow: hidden;
 }
@@ -282,7 +274,7 @@
   padding-top: 10px;
   padding-bottom: 5px;
   margin-bottom: 5px;
-  background-color: #444444;
+  background-color: #444;
   z-index: 2;
 }
 
@@ -302,12 +294,12 @@
 }
 /* line 304, ../sass/partials/_custom.scss */
 #readkit-bookmark-widget a:hover, #readkit-bookmark-widget a:active, #readkit-bookmark-widget a:focus {
-  color: white;
+  color: #fff;
   text-decoration: none;
 }
 /* line 309, ../sass/partials/_custom.scss */
 #readkit-bookmark-widget a, #readkit-bookmark-widget a:visited {
-  color: #bbbbbb;
+  color: #bbb;
   text-decoration: none;
 }
 /* line 314, ../sass/partials/_custom.scss */
@@ -340,7 +332,7 @@ pre {
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: black;
+  background-color: #000;
   z-index: 2;
 }
 
@@ -378,7 +370,7 @@ pre {
   width: 30px;
   border-radius: 15px;
   text-align: center;
-  background: black;
+  background: #000;
   padding-top: 6px;
   padding-bottom: 0px;
   cursor: hand;
@@ -387,12 +379,12 @@ pre {
 
 /* line 388, ../sass/partials/_custom.scss */
 .readkit-online, .readkit-active {
-  background-color: #56a2d3;
+  background-color: #56A2D3;
 }
 
 /* line 392, ../sass/partials/_custom.scss */
 .readkit-offline, .readkit-inactive {
-  background-color: #bcbec0;
+  background-color: #BCBEC0;
 }
 
 /* line 396, ../sass/partials/_custom.scss */
@@ -428,7 +420,7 @@ pre {
   border-radius: 12px;
   padding-top: 0;
   font-size: 24px;
-  color: #56a2d3;
+  color: #56A2D3;
   margin: 0;
 }
 
@@ -448,28 +440,33 @@ pre {
   float: left;
 }
 
+/* line 441, ../sass/partials/_custom.scss */
+.readkit-cancel .icon-cancel:before {
+  margin-left: -2.7em;
+}
+
 /* iPhone 2G-4S in portrait & landscape */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-  /* line 451, ../sass/partials/_custom.scss */
+  /* line 454, ../sass/partials/_custom.scss */
   .readkit-header {
     top: 0;
     -webkit-user-select: none;
   }
 
-  /* line 455, ../sass/partials/_custom.scss */
+  /* line 458, ../sass/partials/_custom.scss */
   .readkit-slider {
     width: 30px;
   }
 }
 /* iPhone 5 in portrait & landscape */
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
-  /* line 464, ../sass/partials/_custom.scss */
+  /* line 467, ../sass/partials/_custom.scss */
   .readkit-header {
     top: 0;
     -webkit-user-select: none;
   }
 
-  /* line 468, ../sass/partials/_custom.scss */
+  /* line 471, ../sass/partials/_custom.scss */
   .readkit-slider {
     width: 30px;
   }
@@ -477,7 +474,7 @@ pre {
 /* iPad in portrait & landscape */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   /* Accomodate status bar */
-  /* line 478, ../sass/partials/_custom.scss */
+  /* line 481, ../sass/partials/_custom.scss */
   .readkit-header {
     top: 0;
     -webkit-user-select: none;
@@ -485,14 +482,14 @@ pre {
 }
 /* Desktop */
 @media only screen {
-  /* line 486, ../sass/partials/_custom.scss */
+  /* line 489, ../sass/partials/_custom.scss */
   .readkit-header {
     top: 0;
   }
 }
 /* Phone */
 @media (max-device-width: 240px) {
-  /* line 493, ../sass/partials/_custom.scss */
+  /* line 496, ../sass/partials/_custom.scss */
   .readkit-icon-sans {
     display: none;
   }
@@ -646,38 +643,25 @@ pre {
 }
 
 @-webkit-keyframes move {
-  /* line 223, ../sass/partials/_drag_and_drop.scss */
   0% {
     background-position: 0 0;
   }
-
-  /* line 226, ../sass/partials/_drag_and_drop.scss */
   100% {
     background-position: 50px 50px;
   }
 }
-
 @-moz-keyframes move {
-  /* line 232, ../sass/partials/_drag_and_drop.scss */
   0% {
     background-position: 0 0;
   }
-
-  /* line 235, ../sass/partials/_drag_and_drop.scss */
   100% {
     background-position: 50px 50px;
   }
 }
-
 @-webkit-animation expandWidth {
-  /* line 241, ../sass/partials/_drag_and_drop.scss */
-  0% {
-    width: 0;
-  }
-
+  /*   0% { width: 0; } */
   /*   100% { width: auto; } */
 }
-
 /* line 244, ../sass/partials/_drag_and_drop.scss */
 .readkit-meter > span:after {
   -webkit-animation: move 2s linear infinite;

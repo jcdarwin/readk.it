@@ -22,7 +22,6 @@
   font-weight: 400;
   font-style: normal;
 }
-
 /* line 21, ../sass/partials/_custom.scss */
 body {
   font-family: 'Aleo Regular', serif;
@@ -59,7 +58,7 @@ header.projecttitle {
   margin: 0 auto;
   padding: 1px 0 0;
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
-  color: white;
+  color: #fff;
   background-color: #3e404a;
 }
 
@@ -68,7 +67,7 @@ header.projecttitle {
 .library button, .library button {
   background: transparent;
   border: 0;
-  color: white;
+  color: #fff;
   opacity: .5;
   cursor: pointer;
 }
@@ -127,7 +126,7 @@ header.projecttitle {
 }
 /* line 84, ../sass/partials/_custom.scss */
 .library .frame div.ul div.li.active {
-  color: white;
+  color: #fff;
   background: #82bf4c;
 }
 /* line 88, ../sass/partials/_custom.scss */
@@ -146,9 +145,9 @@ header.projecttitle {
 .library .scrollbar .handle .mousearea {
   width: 100%;
   height: 20px;
-  background: white;
+  background: #fff;
   opacity: .5;
-  border: 1px solid white;
+  border: 1px solid #fff;
   border-radius: 5px;
 }
 /* line 97, ../sass/partials/_custom.scss */
@@ -198,7 +197,7 @@ header.projecttitle {
   height: 50px;
   width: 50px;
   border-radius: 25px;
-  background-color: white;
+  background-color: #fff;
 }
 /* line 111, ../sass/partials/_custom.scss */
 .library .controls button i {
@@ -230,9 +229,9 @@ header.projecttitle {
   border: 1px solid #3a3c47;
   border-radius: 5px;
   box-sizing: border-box;
-  -moz-box-shadow: 0 0 5px 2px #888888;
-  -webkit-box-shadow: 0 0 5px 2px #888888;
-  box-shadow: 0 0 5px 2px #888888;
+  -moz-box-shadow: 0 0 5px 2px #888;
+  -webkit-box-shadow: 0 0 5px 2px #888;
+  box-shadow: 0 0 5px 2px #888;
 }
 
 /* 3D shenanigans */
@@ -277,7 +276,7 @@ header.projecttitle {
 
 /* iPhone 2G-4S in portrait & landscape */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-  /* line 186, ../sass/partials/_custom.scss */
+  /* line 185, ../sass/partials/_custom.scss */
   .library {
     margin: 40px auto 20px;
   }

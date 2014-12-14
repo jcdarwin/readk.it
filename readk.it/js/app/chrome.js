@@ -126,8 +126,12 @@ define([
         // For file URLs, where the user has most likely double-clicked the index.html
         // show the drag and drop dialogue, as no publication has been loaded.
         if (location.protocol === 'file:' || !$('#readkit-pageScroller .readkit-page').length) {
-            if (!$('.readkit-drag-upload-window').is(':visible')) {
-                upload.initalise();
+            // We don't want to show the drag and drop dialogue if the use has
+            // double-clicked a readkit solo publication.
+            if (!/readkit.solo/.test(location.href)) {
+                if (!$('.readkit-drag-upload-window').is(':visible')) {
+                    upload.initalise();
+                }
             }
         }
     }
@@ -589,7 +593,7 @@ define([
                         return $.Deferred(function(deferred_entry){
 
                             if (utility.isTextFile(entry.filename)) {
-                                // This is a text-like file that we need to parse or load directly 
+                                // This is a text-like file that we need to parse or load directly
                                 // into the browser, so store as text.
                                 try {
                                     // There's an issue with zip.TextWriter failing silently in

@@ -100,7 +100,6 @@ define([
             }
 
             if (this.options['page_scroller_waiting']) {
-console.log(this.options);
                 this.options['page_scroller_waiting'].scroller.scrollToElement($('[id="' + this.options['page_scroller_anchor'] + '"]')[0], 0);
                 this.options['page_scroller_waiting'] = undefined;
                 this.options['page_scroller_anchor'] = undefined;

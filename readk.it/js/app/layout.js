@@ -34,7 +34,7 @@ define([
 
     /* Constructor */
     var Layout = function (caller, pub) {
-        // Reset our layout, removing any previously 
+        // Reset our layout, removing any previously
         // laid-out publications.
         reset();
 
@@ -100,6 +100,7 @@ define([
             }
 
             if (this.options['page_scroller_waiting']) {
+console.log(this.options);
                 this.options['page_scroller_waiting'].scroller.scrollToElement($('[id="' + this.options['page_scroller_anchor'] + '"]')[0], 0);
                 this.options['page_scroller_waiting'] = undefined;
                 this.options['page_scroller_anchor'] = undefined;
@@ -269,11 +270,22 @@ define([
             //    update(book_scroller);
             //}, 0);
 
-            var matches = that.href.match(/^.*#((.*?(?:__.*)?))$/);
-            // http://localhost:8000/#ch04.xhtml                               => ["http://localhost:8000/#ch04.xhtml", "ch04.xhtml", "ch04.xhtml"]
-            // http://localhost:8000/#ch04.xhtml__epub_3_best_practices_teaser => ["http://localhost:8000/#ch04.xhtml__epub_3_best_practices_teaser", "ch04.xhtml__epub_3_best_practices_teaser", "ch04.xhtml"]
-            var anchor = matches[1];
-            var page_anchor = matches[2];
+            var matches = that.href.match(/^.*#(.*?(?:__(.*?))?)(\?.*)?$/);
+            // http://localhost:8000/#ch04.xhtml => [
+            //   "http://localhost:8000/#ch04.xhtml",
+            //   "ch04.xhtml",
+            //   "ch04.xhtml"
+            // ]
+            //
+            // http://localhost:8000/#ch04.xhtml__epub_3_best_practices_teaser => [
+            //   "http://localhost:8000/#ch04.xhtml__epub_3_best_practices_teaser",
+            //   "ch04.xhtml__epub_3_best_practices_teaser",
+            //   "ch04.xhtml"
+            //   "?showVideo=true"
+            // ]
+            var page_anchor = matches[1];
+            var anchor = matches[2];
+            var query_String = matches[3];
 
             // We have to use the book_scroller to scroll horizontally to the page...
             // and then callback to the page scroller to scroll vertically to the desired part of the page.
@@ -314,7 +326,7 @@ define([
                 // a page-scroller waiting to be processed.
                 book_scroller.options['page_scroller_waiting'] = filtered_page_scrollers[0];
 //              book_scroller.options['page_scroller_anchor'] = anchor.replace(/\./, '_');
-                book_scroller.options['page_scroller_anchor'] = anchor;
+                book_scroller.options['page_scroller_anchor'] = page_anchor;
 
                 // Call the book_scroller to scroll horizontally to the page.
                 // Remember that book_scroller processes the options in the 'onAnimationEnd' callback.

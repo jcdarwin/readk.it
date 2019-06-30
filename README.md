@@ -1,6 +1,6 @@
-#Readk.it: digital reading simplified
+# Readk.it: digital reading simplified
 
-##Introduction
+## Introduction
 
 Readk.it is a lightweight JavaScript-based reading system that allows publishers to distribute responsive content that can be read in a book-like form in modern browsers on practically all devices.
 
@@ -12,7 +12,7 @@ Readk.it builds on the efforts of others, notably Matteo Spinelli's [iScroll4](h
 
 More information, along with examples, can be found on the [Readk.it](http://readk.it) site.
 
-##<a id="flavours"></a>Flavours
+## <a id="flavours"></a>Flavours
 
 Readk.it comes in four flavours:
 
@@ -25,9 +25,9 @@ Readk.it comes in four flavours:
 1. **readkit.reader**: a version of Readk.it which does not itself contain any EPUB content, but which can either be web-served or double-clicked to allow the user to drag-and-drop an EPUB file of their choosing onto the page for reading using Readk.it. Note that all other flavours of Readk.it also provide this functionality.
 
 
-##Before we begin
+## Before we begin
 
-###Technologies
+### Technologies
 Although not necessary to make use of Readk.it, a knowledge of certain technologies is useful in order to understand how Readk.it works and how it can be tweaked or extended:
 
 * [EPUB](http://idpf.org/epub)
@@ -37,18 +37,18 @@ Although not necessary to make use of Readk.it, a knowledge of certain technolog
 * [SASS](http://sass-lang.com/) (for sane CSS development)
 
 
-##Getting started
+## Getting started
 
-###Drag-and-Drop
+### Drag-and-Drop
 Perhaps the easiest way to use Readk.it is to simply double-click on the index.html file in the readk.it folder to open it in a browser, and then drag and drop an EPUB onto the page. Providing your EPUB is of a reasonable size, it should then display in the browser.
 
-###Embedding Readk.it
+### Embedding Readk.it
 Embedding Readk.it inside an EPUB file can be as easy as dropping the readk.it folder into the OEBPS (or equivalent) folder of your EPUB.
 You may want to try this before running a complete build; to be able to read the publication, you'll then need to serve it with a web-server. I tend to fire up an instance of the [node http-server](https://github.com/nodeapps/http-server) and navigate to <code>http://localhost:8000/OEBPS/readk.it/</code>. Note that, in this case, the EPUB directory is the web server content root.
 
 Note that it is assumed that, in this case, the root directory of the EPUB is reached from the readk.it folder using <code>../..</code> &#8212; if this is not the case, amend the <code>epub_directory</code> parameter in <code>readk.it/js/app/config.js</code> accordingly.
 
-##Building
+## Building
 
 Readk.it uses [Grunt](http://gruntjs.com/) as its build tool. In order to compile EPUBs with Readk.it, you'll need to:
 
@@ -80,7 +80,7 @@ Grunt performs the following tasks:
 
 Note that the actual EPUB content is not optimised; this is intentional in order to preserve the sanity of future production staff who have to work with the EPUB content files to produce a new version. Although not ideal, it often happens that production staff only have recourse to the published files when producing the next version of content, say because the original source files have been lost, are not available, or are obsolete.
 
-###Outputs
+### Outputs
 
 A successful Readk.it build will result in the following outputs in the <code>dist</code> folder.
 
@@ -92,9 +92,9 @@ A successful Readk.it build will result in the following outputs in the <code>di
 
 1. **readkit.reader**: a version of Readk.it which does not itself contain any EPUB content, but which can either be web-served or double-clicked to allow the user to drag-and-drop an EPUB file of their choosing onto the page for reading using Readk.it. Note that all other flavours of Readk.it also provide this functionality.
 
-##Configuration
+## Configuration
 
-###config.js
+### config.js
 If you build normally or drop the readk.it folder into the OEBPS (or equivalent) folder, you won't need to make changes, however if you decide to place the readk.it folder elsewhere, then you can specify this path in <code>readk.it/js/app/config.js</code>:
 
     define({
@@ -109,7 +109,7 @@ This path is used by Readk.it to navigate from the readk.it folder up to where t
 
 Other settings in this file control aspects of Readk.it behaviour, such as intervals and durations that may need to be tweaked for larger publications (or slower reading devices).
 
-###<a id="client.config.js"></a>client.config.js
+### <a id="client.config.js"></a>client.config.js
 As Readk.it operates by compiling all of the EPUB XHTML files into a single HTML page (and thereby ignoring their HEAD elements and any scripts defined therein), if your publication needs access to JavaScript files/libraries other than those that Readk.it uses, these can be specified in <code>readk.it/js/client.config.js</code>, for example: 
 
     var client = {
@@ -149,9 +149,9 @@ In order to fully understand the above syntax you'll need to be familiar with [R
 
 
 
-##Technical notes
+## Technical notes
 
-###Design considerations
+### Design considerations
 
 #### Fonts ####
 Readk.it use web-fonts, specifically [WOFF](https://developer.mozilla.org/en-US/docs/Web/Guide/WOFF), to allow the user to switch between a standard serif ([Lora](http://www.google.com/fonts/specimen/Lora)) and sans-serif ([Source Sans Pro](http://www.google.com/fonts/specimen/Source+Sans+Pro)) face if they don't want to use the face natively embedded in the EPUB. WOFF has good [cross-browser support](http://caniuse.com/woff) these days in recent browser versions, and is compressed. These two fonts have been optimised using the Font Squirrel generator, so together occupy only 310KB of space. Note that, to achieve this we've had to reduce to weights that we use, as well as removing non-latin glyphs. Before doing this, these fonts occupied 650KB (Lora) and 1.4MB (Source Sans Pro) for a total payload of more than 2MB.
@@ -163,40 +163,40 @@ It goes without saying that, without JavaScript support, Readk.it will not funct
 
 Readk.it itself uses only CSS for Media Query support for differing device sizes, and not JavaScript. However, if you look into the Readk.it Manifesto EPUB you will find use of a JavaScript library, [enquire.js](http://wicky.nillia.ms/enquire.js/), used to provide JavaScript-based Media Query support for features such as detection of desktop browsers (e.g. for support of full-screen mode, which is not needed in mobile browsers or dedicated reading devices).
 
-###Testing
+### Testing
 
 A simple testing framework is available: [http://localhost:8000/OEBPS/readk.it/js/test/](http://localhost:8000/OEBPS/readk.it/js/test/)
 
-##Limitations
+## Limitations
 
-###Single-page app
+### Single-page app
 Readk.it follows a model whereby it loads all EPUB files into a single web page. It's smart enough to rewrite internal URLs and anchors (preventing collisions), and any third-party JavaScript files specifically required by the EPUB can also be [configured to be loaded](#client.config.js).
 
 The reason Readk.it adopts this behaviour is to allow a simple means of loading the entire EPUB, such that it can then be read without further recourse to the server. With the use of application cache to store all of the EPUB assets client-side and thereby allow further reading offline, this approach also makes sense.
 
 However, the main limitation this imposes is one of file size; this approach works well for normal-length text-based EPUBs but if your EPUB contains lots of media (particularly video), then you may find that it takes a long time for the publication to load (providing the browser doesn't time-out). Similarly, for large text-based publications such as Moby Dick, your experience will differ depending on the capabilities of your deivce. Moby Dick is not so much large as extensive, containing around 150 files, each of which has to be loaded before the publication can be displayed. For instance, my testing has shown that it loads generally well in desktop browsers, will load in my Kindle HD tablet (although taking about two minutes to do so), and I've yet to get it to load in my aging iPhone 3GS. The solution to this is simple: split your publication up into a series of smaller publications, and consider using the [Readk.it library configuration](#library) to serve them.
 
-###EPUB-lite
+### EPUB-lite
 The EPUB standard is verbose and complex ([canonical fragment identifiers](http://www.idpf.org/epub/linking/cfi/), anyone?) and Readk.it does not attempt to do much more than provide a mechanism for prising open an EPUB and wrapping it with a simple but functional navigation system. That's not to say that it couldn't be extended to support specific (and ocassionally esoteric) EPUB functionality in the way that [Readium](http://readium.org/) does, however the high majority of users should find that what Readk.it provides is ample. This is somewhat in the spirit of [EPUB Zero](http://epubzero.blogspot.co.nz/2013/02/epub-zero-radically-simpler-e-book.html), if somewhat less heretical in being able to cope with the existing EPUB file structure and metadata layout.
 
-###Cross-browser support
+### Cross-browser support
 Readk.it has been designed to work with modern browsers, including Internet Explorer 10. However, it is not guaranteed to work seamlessly in all modern browsers, and known issues include:
 
-####Data-URIs
+#### Data-URIs
 Readk.it Solo makes use of Data URIs and blobs to allow all of the content to be included in a single file. Unfortuantely Internet Explorer 10 treats blobs as cross-origin and denies access when the content is opened as a file URL (i.e. double-clicked).  A ticket is currently open with Microsoft regarding this behaviour.
 
-####jQuery2
+#### jQuery2
 Given that we are targeting modern browsers (and that Readk.it was designed primarily for use on mobile devices), we have made a conscious choice to go with [jQuery2](http://blog.jquery.com/2013/04/18/jquery-2-0-released/), meaning that older browsers are not catered for.
 
-####Non-standard browsers
+#### Non-standard browsers
 Browsers such as Opera Mini and the native Android browser are unlikely to support the functionaliy needed to allow Readk.it to work.
 
-####Drag-and-Drop
+#### Drag-and-Drop
 Because of the security risks of using web-workers for file URLs, drag-and-drop will work when using file urls though it will be noticeably slower than when web-served (in this case the zip.js library falls back to using a single process to unzip EPUB assets).
 
-##Patches
+## Patches
 
-###grunt-readkit-dom-munger
+### grunt-readkit-dom-munger
 
 The grunt-readkit-dom-munger plugin is a patched version of [grunt-dom-munger](https://github.com/cgross/grunt-dom-munger), created in order to support Readk.it requirements:
 

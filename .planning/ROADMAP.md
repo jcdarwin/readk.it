@@ -37,7 +37,27 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. `pnpm typecheck` passes against strict TypeScript (ES2022, ES modules) with no AMD/RequireJS in the new tree and no jQuery/Lo-Dash/iScroll/Modernizr/Detectizr in dependencies
   4. A staged file larger than 1 MB is rejected by the pre-commit hook; `dist/`, `dist*/`, `node_modules/`, `.cache/`, `*.epub` are listed in `.gitignore`
   5. CI fails the build if the working tree (excluding `.git`) exceeds an agreed cap; one committed lockfile (`pnpm-lock.yaml`) makes the install reproducible
-**Plans**: TBD (estimate 6 plans)
+**Plans**: 8 plans across 6 waves (will be revised by Plan 01 per D-25)
+  - **Wave 1** *(no dependencies — parallel-safe)*
+    - [ ] 01-01-PLAN.md — Update ROADMAP.md and REQUIREMENTS.md (D-25, D-26)
+    - [ ] 01-02-PLAN.md — Update CLAUDE.md and PROJECT.md (D-27, D-28)
+  - **Wave 2** *(blocked on Wave 1 completion; autonomous: false — destructive D-06)*
+    - [ ] 01-03-PLAN.md — Tag legacy-snapshot-2013 and delete the legacy 2013-era tree
+  - **Wave 3** *(blocked on Wave 2 completion — parallel-safe)*
+    - [ ] 01-04-PLAN.md — Bootstrap dotfiles + LICENSE (.gitignore, .nvmrc, .npmrc, .editorconfig, .browserslistrc, .prettierrc.json, .prettierignore, LICENSE)
+    - [ ] 01-05-PLAN.md — src/ skeleton READMEs and .gitkeep (D-05)
+  - **Wave 4** *(blocked on Wave 3 completion)*
+    - [ ] 01-06-PLAN.md — package.json, tsconfigs, vite.config.ts, eslint.config.js, npm install + commit lockfile
+  - **Wave 5** *(blocked on Wave 4 completion)*
+    - [ ] 01-07-PLAN.md — .husky/pre-commit (>1 MB block + lint-staged) and Lit dev shell (index.html + src/main.ts + readkit-app.ts + main.scss)
+  - **Wave 6** *(blocked on Wave 5 completion; autonomous: false — phase-gate manual smoke)*
+    - [ ] 01-08-PLAN.md — Top-level README.md (D-24) and phase-gate manual smoke
+
+  **Cross-cutting constraints** *(must hold across multiple plans):*
+  - npm-only: every plan uses `npm install`/`npm run …` (per CONTEXT.md D-04). Plans 01/02 land canonical text BEFORE Plans 03–08 quote it.
+  - Node LTS 22 + locked dep set: every direct dep pinned `^x.y.z`, lockfile committed (Plan 06).
+  - No Vitest/Playwright/`.github/workflows/*` in this phase (deferred to Phase 2 per D-12, D-13).
+  - Pre-commit `>1 MB` block is the only size gate (CI working-tree size cap dropped per D-09).
 **Notes**: This phase establishes hygiene gates that all later phases depend on. Repo-hygiene CONCERNS (committed dist/, vendored libs, GitHub-pinned forked plugins) must be defended against here, not retrofitted. Cross-LLM execution discipline begins here: every plan output references exact file paths, no TODOs, no `@ts-ignore`. The legacy `readk.it/` tree may be left alive for reference but must be excluded from every Vite/Vitest/Playwright glob.
 
 ### Phase 2: Test Harness, Fixtures & CI

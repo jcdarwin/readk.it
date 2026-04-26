@@ -903,32 +903,37 @@ SOFTWARE.
 
 **Note:** No claims about compliance / retention / security standards are tagged `[ASSUMED]` because Phase 1 doesn't touch those domains beyond ASVS V14 (which is well-established and cited in the Security Domain section below).
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Should Phase 1 add `npm` workspaces / monorepo structure preemptively?**
    - What we know: D-04 says "single flat `src/` tree, no npm workspaces."
    - What's unclear: P10 will add `tools/build-book.ts` which is Node-side; P11 may want a separate `src/library/` entry. Whether `tools/` ever needs its own `package.json` is a P10 decision.
    - Recommendation: **Honour D-04** — single flat tree. Re-evaluate at P10 if `tools/build-book.ts` accumulates Node-only deps that pollute the browser dep tree.
+   - RESOLVED: Honour D-04 — single flat `src/` tree; no npm workspaces in P1.
 
 2. **Should the Phase 1 `<readkit-app>` shell render anything dynamic, or just static text?**
    - What we know: D-14 says "an empty `<readkit-app>` rendering 'readk.it — Phase 1 dev shell' on a sass-compiled page". The element name and `src/main.ts` are stable across phases.
    - What's unclear: How much of the SCSS-via-dart-sass pipeline should P1 prove? A single `:host` rule? A multi-file `@import` chain to verify imports work?
    - Recommendation: **Minimal** — one `src/styles/main.scss` with one `@use` of a tiny variable file (e.g. `_tokens.scss` defining a single colour token), to prove dart-sass partial-imports work. Phase 6 will explode this into the real chrome.
+   - RESOLVED: Minimal SCSS — one `src/styles/main.scss` + one `_tokens.scss` partial via `@use` to prove dart-sass partial-imports work.
 
 3. **Should ESLint flat config use both `recommendedTypeChecked` and `stylisticTypeChecked`, or just `strictTypeChecked`?**
    - What we know: D-20 says "typescript-eslint strict-type-checked".
    - What's unclear: D-20 doesn't say whether the *stylistic* type-checked preset is included.
    - Recommendation: **Just `strictTypeChecked`** for P1. `stylisticTypeChecked` adds rules that conflict with Prettier-handled style decisions; it's surplus. Re-evaluate at P12 (cross-browser hardening).
+   - RESOLVED: Use `strictTypeChecked` only for P1; do NOT add `stylisticTypeChecked` (conflicts with Prettier).
 
 4. **Should Phase 1 commit to a particular Vitest config approach now, or pure-deferral to Phase 2?**
    - What we know: D-13 says `scripts.test` is a placeholder; CONTEXT-D-22 reserves the test infrastructure for Phase 2.
    - What's unclear: Some teams prefer to scaffold an empty `vitest.config.ts` early so the file exists; P1 deliverables don't include it.
    - Recommendation: **Defer entirely** to P2. P1 ships no test config to keep scope tight.
+   - RESOLVED: Defer Vitest entirely to Phase 2; P1 ships no test config.
 
 5. **Is there a Phase 1 step that exercises the dev server end-to-end?**
    - What we know: Success criterion (D-14) is "`npm run dev` starts Vite's dev server".
    - What's unclear: How is success verified? Curl `http://localhost:5173/` and check 200? Manual visual check? P2 has Playwright; P1 doesn't.
    - Recommendation: **Manual smoke** — the task description says "run `npm run dev`, visit `http://localhost:5173/`, see 'readk.it — Phase 1 dev shell' rendered". The plan-checker agent can require a screenshot or a `curl -i` snapshot in the plan's verification step.
+   - RESOLVED: Manual smoke for the dev server in P1 — `npm run dev`, visit `http://localhost:5173/`, see 'readk.it — Phase 1 dev shell' rendered (Playwright lands in P2).
 
 ## Environment Availability
 

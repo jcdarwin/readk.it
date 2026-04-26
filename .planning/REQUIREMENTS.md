@@ -125,50 +125,50 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| BUILD-01 | TBD | Pending |
-| BUILD-02 | TBD | Pending |
-| BUILD-03 | TBD | Pending |
-| BUILD-04 | TBD | Pending |
-| BUILD-05 | TBD | Pending |
-| BUILD-06 | TBD | Pending |
-| BUILD-07 | TBD | Pending |
-| BUILD-08 | TBD | Pending |
-| BUILD-09 | TBD | Pending |
-| ENGINE-01 | TBD | Pending |
-| ENGINE-02 | TBD | Pending |
-| ENGINE-03 | TBD | Pending |
-| ENGINE-04 | TBD | Pending |
-| ENGINE-05 | TBD | Pending |
-| READER-01 | TBD | Pending |
-| READER-02 | TBD | Pending |
-| READER-03 | TBD | Pending |
-| READER-04 | TBD | Pending |
-| READER-05 | TBD | Pending |
-| READER-06 | TBD | Pending |
-| READER-07 | TBD | Pending |
-| READER-08 | TBD | Pending |
-| DROP-01 | TBD | Pending |
-| DROP-02 | TBD | Pending |
-| DROP-03 | TBD | Pending |
-| LIBRARY-01 | TBD | Pending |
-| LIBRARY-02 | TBD | Pending |
-| THEME-01 | TBD | Pending |
-| THEME-02 | TBD | Pending |
-| THEME-03 | TBD | Pending |
-| A11Y-01 | TBD | Pending |
-| A11Y-02 | TBD | Pending |
-| A11Y-03 | TBD | Pending |
-| TEST-01 | TBD | Pending |
-| TEST-02 | TBD | Pending |
-| TEST-03 | TBD | Pending |
-| TEST-04 | TBD | Pending |
-| TEST-05 | TBD | Pending |
+| BUILD-01 | Phase 1 | Pending |
+| BUILD-02 | Phase 1 | Pending |
+| BUILD-03 | Phase 1 | Pending |
+| BUILD-04 | Phase 10 | Pending |
+| BUILD-05 | Phase 11 | Pending |
+| BUILD-06 | Phase 10 | Pending |
+| BUILD-07 | Phase 10 | Pending |
+| BUILD-08 | Phase 1 | Pending |
+| BUILD-09 | Phase 1 | Pending |
+| ENGINE-01 | Phase 4 | Pending |
+| ENGINE-02 | Phase 5 | Pending |
+| ENGINE-03 | Phase 4 | Pending |
+| ENGINE-04 | Phase 4 | Pending |
+| ENGINE-05 | Phase 4 | Pending |
+| READER-01 | Phase 6 | Pending |
+| READER-02 | Phase 7 | Pending |
+| READER-03 | Phase 8 | Pending |
+| READER-04 | Phase 7 | Pending |
+| READER-05 | Phase 7 | Pending |
+| READER-06 | Phase 8 | Pending |
+| READER-07 | Phase 7 | Pending |
+| READER-08 | Phase 6 | Pending |
+| DROP-01 | Phase 9 | Pending |
+| DROP-02 | Phase 9 | Pending |
+| DROP-03 | Phase 9 | Pending |
+| LIBRARY-01 | Phase 11 | Pending |
+| LIBRARY-02 | Phase 11 | Pending |
+| THEME-01 | Phase 6 | Pending |
+| THEME-02 | Phase 8 | Pending |
+| THEME-03 | Phase 6 | Pending |
+| A11Y-01 | Phase 12 | Pending |
+| A11Y-02 | Phase 12 | Pending |
+| A11Y-03 | Phase 12 | Pending |
+| TEST-01 | Phase 2 | Pending |
+| TEST-02 | Phase 2 | Pending |
+| TEST-03 | Phase 5 | Pending |
+| TEST-04 | Phase 2 | Pending |
+| TEST-05 | Phase 12 | Pending |
 
 **Coverage:**
 - v1 requirements: 38 total
-- Mapped to phases: 0 (filled by roadmapper)
-- Unmapped: 38 ⚠️ (will be 0 after roadmap creation)
+- Mapped to phases: 38
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-04-26*
-*Last updated: 2026-04-26 after initial definition*
+*Last updated: 2026-04-26 after roadmap creation (12 phases, FINE granularity); all 38 v1 requirements mapped to exactly one phase.*

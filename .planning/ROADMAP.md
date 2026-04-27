@@ -28,30 +28,30 @@ Decimal phases appear between their surrounding integers in numeric order.
 ## Phase Details
 
 ### Phase 1: Foundation & Repo Hygiene
-**Goal**: A contributor can clone the repo, run `pnpm install` on Node LTS 22, and produce a runnable dev server with strict TypeScript + Lit scaffolding, while a pre-commit hook + CI working-tree size gate prevent the legacy 700 MB-`dist/` regression.
+**Goal**: A contributor can clone the repo, run `npm install` on Node LTS 22, and produce a runnable dev server with strict TypeScript + Lit scaffolding, while a pre-commit hook + CI working-tree size gate prevent the legacy 700 MB-`dist/` regression.
 **Depends on**: Nothing (first phase)
 **Requirements**: BUILD-01, BUILD-02, BUILD-03, BUILD-08, BUILD-09
 **Success Criteria** (what must be TRUE):
-  1. A fresh clone + `pnpm install` on Node LTS 22 succeeds without Python, Ruby, or any globally-installed binary beyond Node and pnpm
-  2. `pnpm dev` starts Vite's dev server and serves the drag-drop reader entry point with HMR
-  3. `pnpm typecheck` passes against strict TypeScript (ES2022, ES modules) with no AMD/RequireJS in the new tree and no jQuery/Lo-Dash/iScroll/Modernizr/Detectizr in dependencies
+  1. A fresh clone + `npm install` on Node LTS 22 succeeds without Python, Ruby, or any globally-installed binary beyond Node and npm
+  2. `npm dev` starts Vite's dev server and serves the drag-drop reader entry point with HMR
+  3. `npm typecheck` passes against strict TypeScript (ES2022, ES modules) with no AMD/RequireJS in the new tree and no jQuery/Lo-Dash/iScroll/Modernizr/Detectizr in dependencies
   4. A staged file larger than 1 MB is rejected by the pre-commit hook; `dist/`, `dist*/`, `node_modules/`, `.cache/`, `*.epub` are listed in `.gitignore`
-  5. CI fails the build if the working tree (excluding `.git`) exceeds an agreed cap; one committed lockfile (`pnpm-lock.yaml`) makes the install reproducible
-**Plans**: 8 plans across 6 waves (will be revised by Plan 01 per D-25)
+  5. CI fails the build if the working tree (excluding `.git`) exceeds an agreed cap; one committed lockfile (`npm-lock.yaml`) makes the install reproducible
+**Plans**: 8 plans across 6 waves
   - **Wave 1** *(no dependencies — parallel-safe)*
-    - [ ] 01-01-PLAN.md — Update ROADMAP.md and REQUIREMENTS.md (D-25, D-26)
-    - [ ] 01-02-PLAN.md — Update CLAUDE.md and PROJECT.md (D-27, D-28)
+    - [ ] 01-01-PLAN.md — Update ROADMAP.md and REQUIREMENTS.md
+    - [ ] 01-02-PLAN.md — Update CLAUDE.md and PROJECT.md
   - **Wave 2** *(blocked on Wave 1 completion; autonomous: false — destructive D-06)*
-    - [ ] 01-03-PLAN.md — Tag legacy-snapshot-2013 and delete the legacy 2013-era tree
+    - [ ] 01-03-PLAN.md — Tag legacy-snapshot-2013 and delete legacy tree
   - **Wave 3** *(blocked on Wave 2 completion — parallel-safe)*
-    - [ ] 01-04-PLAN.md — Bootstrap dotfiles + LICENSE (.gitignore, .nvmrc, .npmrc, .editorconfig, .browserslistrc, .prettierrc.json, .prettierignore, LICENSE)
-    - [ ] 01-05-PLAN.md — src/ skeleton READMEs and .gitkeep (D-05)
+    - [ ] 01-04-PLAN.md — Bootstrap dotfiles and LICENSE
+    - [ ] 01-05-PLAN.md — Establish src/ skeleton and directory structure
   - **Wave 4** *(blocked on Wave 3 completion)*
-    - [ ] 01-06-PLAN.md — package.json, tsconfigs, vite.config.ts, eslint.config.js, npm install + commit lockfile
+    - [ ] 01-06-PLAN.md — Setup package.json, TS, Vite, and ESLint
   - **Wave 5** *(blocked on Wave 4 completion)*
-    - [ ] 01-07-PLAN.md — .husky/pre-commit (>1 MB block + lint-staged) and Lit dev shell (index.html + src/main.ts + readkit-app.ts + main.scss)
+    - [ ] 01-07-PLAN.md — Configure Husky pre-commit size gate and Lit dev shell
   - **Wave 6** *(blocked on Wave 5 completion; autonomous: false — phase-gate manual smoke)*
-    - [ ] 01-08-PLAN.md — Top-level README.md (D-24) and phase-gate manual smoke
+    - [ ] 01-08-PLAN.md — Top-level README.md and phase-gate smoke test
 
   **Cross-cutting constraints** *(must hold across multiple plans):*
   - npm-only: every plan uses `npm install`/`npm run …` (per CONTEXT.md D-04). Plans 01/02 land canonical text BEFORE Plans 03–08 quote it.
@@ -65,7 +65,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Depends on**: Phase 1
 **Requirements**: TEST-01, TEST-02, TEST-04
 **Success Criteria** (what must be TRUE):
-  1. `pnpm test` runs Vitest unit tests; `pnpm test:e2e` runs Playwright E2E tests on Chromium, WebKit, and Firefox
+  1. `npm test` runs Vitest unit tests; `npm test:e2e` runs Playwright E2E tests on Chromium, WebKit, and Firefox
   2. A curated fixture corpus exists under `tests/fixtures/`: at least one minimal-valid EPUB 2, one minimal-valid EPUB 3, a malformed corpus (truncated zip, invalid OPF, missing nav, encrypted, zip bomb), and a scripted-payload EPUB containing `<script>` and inline `on*=` handlers
   3. A GitHub Actions workflow runs unit + E2E on every push and every pull request; a failing test blocks merge
   4. Smoke "Hello readk.it" tests pass in both Vitest and Playwright; fixtures policy (LFS vs fixtures repo vs in-tree) is documented in `.planning/codebase/CONVENTIONS.md`
@@ -163,7 +163,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Depends on**: Phase 4 (engine, called from Node), Phase 5 (sanitiser), Phase 6 (chrome bundles into per-book HTML), Phase 8 (persistence works on `file://`), Phase 9 (smoke flow shared)
 **Requirements**: BUILD-04, BUILD-06, BUILD-07
 **Success Criteria** (what must be TRUE):
-  1. `pnpm build` (or equivalent) runs `tools/build-book.ts` and emits one self-contained HTML per `.epub` in the input directory; each opens in Chromium, WebKit, and Firefox without a server (verified by Playwright on `file://`)
+  1. `npm build` (or equivalent) runs `tools/build-book.ts` and emits one self-contained HTML per `.epub` in the input directory; each opens in Chromium, WebKit, and Firefox without a server (verified by Playwright on `file://`)
   2. Running the build against all 26 source EPUBs in `readkit.epub/` succeeds for every publication; a CI step asserts 26 outputs exist
   3. No output HTML contains `<html manifest=…>` or any `*.appcache` reference; `git grep -i 'manifest=\|appcache'` over `dist/` returns zero hits
   4. A CI size cap (start at 50 MB per per-book HTML; tunable) emits a hard error on exceed; the largest source EPUB is exercised on real iOS Safari before the phase ships
@@ -172,7 +172,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Notes**: Pitfall 3 (solo HTML size limits) is the primary defence — the size cap must be in place from day one of this phase, not retrofitted. Asset rebase strategy (data URIs vs embedded packed zip + `fflate` runtime decompression) is decided here based on a spike against the largest NZ-publisher EPUBs; the decision is documented as a Key Decision in PROJECT.md. The legacy `client.config.js` plug-in surface is **not** preserved.
 
 ### Phase 11: Library Index Page
-**Goal**: `pnpm build` additionally emits `dist/library/index.html` — a static cover-grid library listing every built book with cover thumbnail, title, and author, plus client-side search/sort and a "continue reading" affordance reading from the shared `PersistenceStore`.
+**Goal**: `npm build` additionally emits `dist/library/index.html` — a static cover-grid library listing every built book with cover thumbnail, title, and author, plus client-side search/sort and a "continue reading" affordance reading from the shared `PersistenceStore`.
 **Depends on**: Phase 3 (PersistenceStore for "continue reading"), Phase 10 (per-book HTML outputs to link to)
 **Requirements**: BUILD-05, LIBRARY-01, LIBRARY-02
 **Success Criteria** (what must be TRUE):
